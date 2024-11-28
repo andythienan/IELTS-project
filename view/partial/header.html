@@ -1,131 +1,238 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Unified Header</title>
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Unified Header</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      /* General Reset */
+      body {
+        margin: 0;
+        font-family: "Google Sans", sans-serif;
+        color: #333;
+      }
 
-    /* Header with unified background */
-    .header {
-      background-color: #0047ab; /* Unified blue background */
-      color: white;
-      padding: 10px 20px 0 20px; /* Reduce bottom padding */
-    }
+      /* Navbar Container */
+      .navbar {
+        background-color: #ffffff;
+        border-bottom: 1px solid #e0e0e0; /* Subtle divider */
+        box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        padding: 0;
+      }
 
-    .header-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 5px; /* Reduce space between title and navbar */
-    }
+      .navbar-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 10px 20px;
+        box-sizing: border-box;
+      }
 
-    .header-logo {
-      display: flex;
-      align-items: center;
-    }
+      /* Logo and Branding */
+      .navbar-logo {
+        display: flex;
+        align-items: center;
+        gap: 10px; /* Space between logo and text */
+      }
 
-    .header-logo img {
-      height: 40px; /* Adjust logo height */
-      margin-right: 10px;
-    }
+      .navbar-logo img {
+        height: 40px;
+        width: 40px;
+      }
 
-    .header-logo h5 {
-      font-size: 20px;
-      font-weight: bold;
-      margin: 0;
-    }
+      .navbar-brand {
+        font-weight: bold;
+        font-size: 1.2em;
+      }
 
-    .auth-links a {
-      color: white;
-      text-decoration: none;
-      font-size: 16px;
-      margin-left: 20px;
-    }
+      .navbar-tagline {
+        font-size: 0.9em;
+        color: #757575; /* Subtle grey for tagline */
+      }
 
-    .auth-links a:hover {
-      text-decoration: underline;
-    }
+      /* Navigation Links */
+      .navbar-links {
+        flex-grow: 1;
+        display: flex;
+        justify-content: center;
+      }
 
-    /* Navbar styling */
-    .navbar {
-      padding: 5px 0; /* Reduce navbar padding */
-    }
+      .navbar-nav {
+        display: flex;
+        list-style: none; /* Remove default bullet points */
+        padding: 0;
+        margin: 0;
+        gap: 20px; /* Space between links */
+      }
 
-    .navbar-nav {
-      display: flex;
-      justify-content: space-evenly; /* Distribute items evenly across the full width */
-      flex: 1;
-    }
+      .nav-item .nav-link {
+        text-decoration: none;
+        color: #333;
+        font-size: 1em;
+        font-weight: 500;
+        padding: 8px 12px;
+        border-radius: 4px;
+        transition: background-color 0.3s, color 0.3s;
+      }
 
-    .navbar-nav .nav-link {
-      color: white !important;
-      font-size: 18px; /* Larger font for navigation links */
-      font-weight: bold;
-      padding: 5px 15px;
-      text-align: center;
-    }
+      .nav-item .nav-link:hover {
+        background-color: #f1f8ff; /* Light blue hover background */
+        color: #1e88e5; /* Material Blue hover text */
+      }
 
-    .navbar-nav .nav-link:hover {
-      color: #d1e0ff !important; /* Lighter hover color */
-    }
-  </style>
-</head>
-<body>
-  <!-- Unified Header -->
-  <header class="header">
-    <!-- Top Header Content -->
-    <div class="header-top">
-      <div class="header-logo">
-        <img src="https://via.placeholder.com/40" alt="Logo">
-        <h5>IELTS Mastery | LearnEnglish</h5>
+      .nav-item .nav-link.active {
+        background-color: #1e88e5; /* Material Blue for active link */
+        color: white;
+      }
+
+      /* Action Buttons */
+      .navbar-actions {
+        display: flex;
+        gap: 12px; /* Space between buttons */
+        align-items: center;
+      }
+
+      /* General Button Style */
+      .btn {
+        text-decoration: none;
+        font-size: 0.9em;
+        font-weight: bold;
+        padding: 8px 16px;
+        border-radius: 4px;
+        transition: background-color 0.3s, color 0.3s;
+        display: inline-block;
+      }
+
+      /* Log In Button */
+      .login-btn {
+        background-color: #ffffff; /* White background */
+        color: #333; /* Dark text */
+        border: 1px solid #e0e0e0; /* Subtle border */
+      }
+
+      .login-btn:hover {
+        background-color: #f5f5f5; /* Light grey hover background */
+        color: #1e88e5; /* Blue text on hover */
+      }
+
+      /* Register Button */
+      .register-btn {
+        background-color: #1e88e5; /* Material Blue background */
+        color: white; /* White text */
+        border: none;
+      }
+
+      .register-btn:hover {
+        background-color: #1565c0; /* Darker Blue */
+      }
+
+      /* Dropdown Button */
+      .dropdown-group {
+        position: relative;
+        display: inline-block;
+      }
+
+      .dropdown-btn {
+        background-color: #f1f8ff; /* Light blue */
+        color: #1e88e5; /* Blue text */
+        border: 1px solid #e0e0e0;
+        padding: 8px 16px;
+        cursor: pointer;
+      }
+
+      .dropdown-btn:hover {
+        background-color: #dbeffd; /* Slightly darker blue */
+      }
+
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #ffffff;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        border: 1px solid #e0e0e0;
+        padding: 8px 0;
+        border-radius: 4px;
+        z-index: 1000;
+        min-width: 150px;
+      }
+
+      .dropdown-content .dropdown-item {
+        text-decoration: none;
+        color: #333;
+        font-size: 0.9em;
+        padding: 8px 16px;
+        display: block;
+        transition: background-color 0.3s, color 0.3s;
+      }
+
+      .dropdown-content .dropdown-item:hover {
+        background-color: #f1f8ff;
+        color: #1e88e5;
+      }
+
+      .dropdown-group:hover .dropdown-content {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Unified Header -->
+    <header class="navbar">
+      <div class="navbar-container">
+        <!-- Logo and Branding -->
+        <div class="navbar-logo">
+          <img src="https://via.placeholder.com/40x40" alt="Logo" />
+          <span class="navbar-brand">learnEnglish™</span>
+          <span class="navbar-tagline">Access. The future of education.</span>
+        </div>
+
+        <!-- Navigation Links -->
+        <nav class="navbar-links">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Exam Library</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Tips</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Skills</a>
+            </li>
+          </ul>
+        </nav>
+
+        <!-- Action Buttons -->
+        <div class="navbar-actions">
+          <div class="dropdown-group">
+            <button class="btn dropdown-btn">More ▼</button>
+            <div class="dropdown-content">
+              <a href="#" class="dropdown-item">Vocabulary</a>
+              <a href="#" class="dropdown-item">Forum</a>
+              <a href="#" class="dropdown-item">About us</a>
+            </div>
+          </div>
+          <a href="#" class="btn login-btn">Log in</a>
+          <a href="#" class="btn register-btn">Register</a>
+        </div>
       </div>
-      <div class="auth-links">
-        <a href="#"><i class="bi bi-search"></i></a>
-        <a href="#">Log in</a>
-        <a href="#">Register</a>
-      </div>
-    </div>
-    
-    <!-- Navigation Bar -->
-    <nav class="navbar navbar-expand-lg">
-      <div class="container-fluid">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link active" href="#">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Exam Library</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Tips</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Skills</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Vocabulary</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Forum</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">About us</a>
-          </li>
-        </ul>
-      </div>
-    </nav>
-  </header>
+    </header>
 
-  <!-- Bootstrap Icons -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.js"></script>
-  <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
-</body>
+    <!-- Bootstrap Icons -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
 </html>

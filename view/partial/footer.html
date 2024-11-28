@@ -5,64 +5,162 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Updated Footer</title>
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #f5f5f5;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
+   /* Footer Container */
+.footer {
+  font-family:'Google Sans';
+  background-color: #333; /* Dark background */
+  color: #ddd; /* Light text */
+  padding: 40px 20px;
+  font-family: 'Inter', sans-serif;
+}
 
-    footer {
-      background-color: #0367a6;
-      color: white;
-      text-align: center;
-      padding: 20px 0;
-      margin-top: auto;
-    }
+/* Main Footer Section */
+.footer-main {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  max-width: 1300px;
+  margin: 0 auto;
+  gap: 30px;
+}
 
-    footer .logo {
-      font-size: 24px;
-      font-weight: bold;
-      margin-bottom: 10px;
-    }
+/* Mission Section */
+.footer-mission {
+  flex: 1 1 300px;
+  text-align: left;
+}
 
-    footer .links {
-      margin: 10px 0;
-    }
+.footer-mission h2 {
+  font-size: 1.4em;
+  color: #fff;
+  margin-bottom: 10px;
+}
 
-    footer .links a {
-      color: white;
-      text-decoration: none;
-      margin: 0 15px;
-      font-size: 14px;
-      font-weight: bold;
-    }
+.footer-mission p {
+  font-size: 1em;
+  line-height: 1.6;
+}
 
-    footer .links a:hover {
-      text-decoration: underline;
-    }
+.footer-mission a {
+  color: #ffc107; /* Yellow for emphasis */
+  text-decoration: none;
+}
 
-    footer .copyright {
-      font-size: 12px;
-      margin-top: 10px;
-    }
+.footer-mission a:hover {
+  text-decoration: underline;
+}
+
+/* Footer Columns */
+.footer-columns {
+  display: flex;
+  justify-content: flex-start; /* Align items to the left */
+  gap: 60px; /* Even spacing between columns */
+  flex-wrap: wrap; /* Allow wrapping for smaller screens */
+}
+
+.footer-column {
+  text-align: left; /* Align text to the left within each column */
+  flex: 1; /* Equal width for all columns */
+}
+
+.footer-column h3 {
+  font-size: 1.2em;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.footer-column a {
+  display: block;
+  color: #ddd;
+  text-decoration: none;
+  margin-bottom: 8px;
+  font-size: 0.95em;
+}
+
+.footer-column a:hover {
+  color: #ffc107; /* Highlight links on hover */
+}
+
+/* Bottom Footer Section */
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  border-top: 1px solid #444; /* Subtle divider */
+  margin-top: 30px;
+  padding-top: 20px;
+  font-size: 0.9em;
+  max-width: 1300px;
+  margin: 30px auto 0;
+}
+
+/* Social Icons */
+.social-icons {
+  display: flex;
+  gap: 15px;
+}
+
+.social-icons a {
+  color: #ddd;
+  font-size: 1.2em;
+  text-decoration: none;
+}
+
+.social-icons a:hover {
+  color: #ffc107; /* Highlight icons on hover */
+}
+
   </style>
 </head>
 <body>
-  <footer>
-    <div class="logo">IELTS Mastery</div>
-    <div class="links">
-      <a href="#">About us</a>
-      <a href="#">Accessibility</a>
-      <a href="#">Complaints</a>
-      <a href="#">Legal & policies</a>
-      <a href="#">Sitemap</a>
+  <footer class="footer">
+    <div class="footer-main">
+        <!-- Mission Statement -->
+        <div class="footer-mission">
+            <h2>Our Mission</h2>
+            <p>
+                We aim to make education accessible for everyone. Join us in
+                transforming the future of learning. <a href="#">Give today</a> to support our mission.
+            </p>
+        </div>
+
+        <!-- Links Columns -->
+        <div class="footer-columns">
+            <div class="footer-column">
+                <h3>Help</h3>
+                <a href="#">Contact Us</a>
+                <a href="#">Support Center</a>
+                <a href="#">FAQ</a>
+            </div>
+            <div class="footer-column">
+                <h3>learnEnglish</h3>
+                <a href="#">Press</a>
+                <a href="#">Newsletter</a>
+                <a href="#">Careers</a>
+            </div>
+            <div class="footer-column">
+                <h3>Policies</h3>
+                <a href="#">Accessibility Statement</a>
+                <a href="#">Terms of Use</a>
+                <a href="#">Licensing</a>
+                <a href="#">Privacy Notice</a>
+                <a href="#">Manage Cookies</a>
+            </div>
+        </div>
     </div>
-    <div class="copyright">
-      © 2024. IELTS is jointly owned by the British Council, IDP IELTS, and Cambridge University Press & Assessment.
+
+    <div class="footer-bottom">
+        <p>
+            © 2024. All rights reserved. This content is licensed under a <a href="#">Creative Commons Attribution 4.0 License</a>.
+        </p>
+        <div class="social-icons">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+        </div>
     </div>
-  </footer>
+</footer>
 </body>
 </html>
