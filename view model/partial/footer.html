@@ -3,154 +3,66 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Exact Footer Design</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <title>Updated Footer</title>
   <style>
     body {
       margin: 0;
-      background-color: #36b4ff;
       font-family: Arial, sans-serif;
-    }
-
-    /* Ribbon with Gradient */
-    .ribbon {
-      position: relative;
-      height: 100px;
-      background: linear-gradient(135deg, #1a90cc 50%, #36b4ff 50%);
-      clip-path: polygon(0 0, 100% 0, 70% 100%, 0 100%);
-    }
-
-    .ribbon-circle {
-      position: absolute;
-      top: -30px;
-      right: 50px;
-      background: #1a90cc;
-      width: 70px;
-      height: 70px;
-      border-radius: 50%;
+      background-color: #f5f5f5;
+      min-height: 100vh;
       display: flex;
-      justify-content: center;
-      align-items: center;
+      flex-direction: column;
     }
 
-    .ribbon-circle img {
-      width: 40px;
-    }
-
-    /* Navigation Bar */
-    .nav-bar {
-      background-color: #1a1874;
-      border-radius: 10px;
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-      padding: 20px 10px;
-      margin: 30px 15px;
-    }
-
-    .nav-item {
-      text-align: center;
+    footer {
+      background-color: #0367a6;
       color: white;
+      text-align: center;
+      padding: 20px 0;
+      margin-top: auto;
     }
 
-    .nav-item img {
-      width: 40px;
+    footer .logo {
+      font-size: 24px;
+      font-weight: bold;
       margin-bottom: 10px;
     }
 
-    .nav-item span {
-      display: block;
+    footer .links {
+      margin: 10px 0;
+    }
+
+    footer .links a {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
       font-size: 14px;
       font-weight: bold;
     }
 
-    /* Footer Links */
-    .footer-links {
-      display: flex;
-      justify-content: space-between;
-      padding: 20px 30px;
-      color: white;
-      font-size: 14px;
-    }
-
-    .footer-links ul {
-      list-style: none;
-      padding: 0;
-    }
-
-    .footer-links ul li {
-      margin-bottom: 10px;
-    }
-
-    .footer-links ul li a {
-      color: white;
-      text-decoration: none;
-    }
-
-    .footer-links ul li a:hover {
+    footer .links a:hover {
       text-decoration: underline;
     }
 
-    /* Footer Logo */
-    .footer-logo {
-      text-align: center;
-      color: white;
-      margin-top: 20px;
-    }
-
-    .footer-logo span {
-      font-size: 16px;
-      font-weight: bold;
+    footer .copyright {
+      font-size: 12px;
+      margin-top: 10px;
     }
   </style>
 </head>
 <body>
-  <!-- Ribbon with Gradient -->
-  <div class="ribbon">
-    <div class="ribbon-circle">
-      <img src="https://via.placeholder.com/40" alt="Globe Icon">
+  <footer>
+    <div class="logo">IELTS Mastery</div>
+    <div class="links">
+      <a href="#">About us</a>
+      <a href="#">Accessibility</a>
+      <a href="#">Complaints</a>
+      <a href="#">Legal & policies</a>
+      <a href="#">Sitemap</a>
     </div>
-  </div>
-
-  <!-- Navigation Bar -->
-  <div class="nav-bar">
-    <div class="nav-item">
-      <img src="https://via.placeholder.com/40" alt="Online Courses">
-      <span>Online Courses</span>
+    <div class="copyright">
+      © 2024. IELTS is jointly owned by the British Council, IDP IELTS, and Cambridge University Press & Assessment.
     </div>
-    <div class="nav-item">
-      <img src="https://via.placeholder.com/40" alt="Self Study">
-      <span>Self Study</span>
-    </div>
-    <div class="nav-item">
-      <img src="https://via.placeholder.com/40" alt="Personal Tutoring">
-      <span>Personal Tutoring</span>
-    </div>
-    <div class="nav-item">
-      <img src="https://via.placeholder.com/40" alt="Prepare for IELTS">
-      <span>Prepare for IELTS</span>
-    </div>
-  </div>
-
-  <!-- Footer Links -->
-  <div class="footer-links">
-    <ul>
-      <li><a href="#">Site map</a></li>
-      <li><a href="#">Getting started</a></li>
-      <li><a href="#">Frequently asked questions</a></li>
-      <li><a href="#">Contact us</a></li>
-    </ul>
-    <ul>
-      <li><a href="#">About us</a></li>
-      <li><a href="#">Terms of use</a></li>
-      <li><a href="#">Accessibility</a></li>
-      <li><a href="#">Privacy and cookies</a></li>
-    </ul>
-  </div>
-
-  <!-- Footer Logo -->
-  <div class="footer-logo">
-    <span>IELTS Mastery | LearnEnglish</span>
-  </div>
+  </footer>
 </body>
 </html>
