@@ -1,238 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Unified Header</title>
-    <!-- Bootstrap CSS -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <style>
-      /* General Reset */
-      body {
-        margin: 0;
-        font-family: "Google Sans", sans-serif;
-        color: #333;
-      }
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Header</title>
+    <link rel="stylesheet" href="about us.css">
+    <link rel="stylesheet" href="header.css">
+    <link rel="stylesheet" href="footer.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
 
-      /* Navbar Container */
-      .navbar {
-        background-color: #ffffff;
-        border-bottom: 1px solid #e0e0e0; /* Subtle divider */
-        box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-        position: sticky;
-        top: 0;
-        z-index: 1000;
-        padding: 0;
-      }
-
-      .navbar-container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        max-width: 1400px;
-        margin: 0 auto;
-        padding: 10px 20px;
-        box-sizing: border-box;
-      }
-
-      /* Logo and Branding */
-      .navbar-logo {
-        display: flex;
-        align-items: center;
-        gap: 10px; /* Space between logo and text */
-      }
-
-      .navbar-logo img {
-        height: 40px;
-        width: 40px;
-      }
-
-      .navbar-brand {
-        font-weight: bold;
-        font-size: 1.2em;
-      }
-
-      .navbar-tagline {
-        font-size: 0.9em;
-        color: #757575; /* Subtle grey for tagline */
-      }
-
-      /* Navigation Links */
-      .navbar-links {
-        flex-grow: 1;
-        display: flex;
-        justify-content: center;
-      }
-
-      .navbar-nav {
-        display: flex;
-        list-style: none; /* Remove default bullet points */
-        padding: 0;
-        margin: 0;
-        gap: 20px; /* Space between links */
-      }
-
-      .nav-item .nav-link {
-        text-decoration: none;
-        color: #333;
-        font-size: 1em;
-        font-weight: 500;
-        padding: 8px 12px;
-        border-radius: 4px;
-        transition: background-color 0.3s, color 0.3s;
-      }
-
-      .nav-item .nav-link:hover {
-        background-color: #f1f8ff; /* Light blue hover background */
-        color: #1e88e5; /* Material Blue hover text */
-      }
-
-      .nav-item .nav-link.active {
-        background-color: #1e88e5; /* Material Blue for active link */
-        color: white;
-      }
-
-      /* Action Buttons */
-      .navbar-actions {
-        display: flex;
-        gap: 12px; /* Space between buttons */
-        align-items: center;
-      }
-
-      /* General Button Style */
-      .btn {
-        text-decoration: none;
-        font-size: 0.9em;
-        font-weight: bold;
-        padding: 8px 16px;
-        border-radius: 4px;
-        transition: background-color 0.3s, color 0.3s;
-        display: inline-block;
-      }
-
-      /* Log In Button */
-      .login-btn {
-        background-color: #ffffff; /* White background */
-        color: #333; /* Dark text */
-        border: 1px solid #e0e0e0; /* Subtle border */
-      }
-
-      .login-btn:hover {
-        background-color: #f5f5f5; /* Light grey hover background */
-        color: #1e88e5; /* Blue text on hover */
-      }
-
-      /* Register Button */
-      .register-btn {
-        background-color: #1e88e5; /* Material Blue background */
-        color: white; /* White text */
-        border: none;
-      }
-
-      .register-btn:hover {
-        background-color: #1565c0; /* Darker Blue */
-      }
-
-      /* Dropdown Button */
-      .dropdown-group {
-        position: relative;
-        display: inline-block;
-      }
-
-      .dropdown-btn {
-        background-color: #f1f8ff; /* Light blue */
-        color: #1e88e5; /* Blue text */
-        border: 1px solid #e0e0e0;
-        padding: 8px 16px;
-        cursor: pointer;
-      }
-
-      .dropdown-btn:hover {
-        background-color: #dbeffd; /* Slightly darker blue */
-      }
-
-      .dropdown-content {
-        display: none;
-        position: absolute;
-        background-color: #ffffff;
-        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-        border: 1px solid #e0e0e0;
-        padding: 8px 0;
-        border-radius: 4px;
-        z-index: 1000;
-        min-width: 150px;
-      }
-
-      .dropdown-content .dropdown-item {
-        text-decoration: none;
-        color: #333;
-        font-size: 0.9em;
-        padding: 8px 16px;
-        display: block;
-        transition: background-color 0.3s, color 0.3s;
-      }
-
-      .dropdown-content .dropdown-item:hover {
-        background-color: #f1f8ff;
-        color: #1e88e5;
-      }
-
-      .dropdown-group:hover .dropdown-content {
-        display: block;
-      }
-    </style>
-  </head>
-  <body>
-    <!-- Unified Header -->
+    <!-- Header (Reusing Navbar Design) -->
     <header class="navbar">
-      <div class="navbar-container">
-        <!-- Logo and Branding -->
-        <div class="navbar-logo">
-          <img src="https://via.placeholder.com/40x40" alt="Logo" />
-          <span class="navbar-brand">learnEnglish™</span>
-          <span class="navbar-tagline">Access. The future of education.</span>
-        </div>
-
-        <!-- Navigation Links -->
-        <nav class="navbar-links">
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link active" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Exam Library</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Tips</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Skills</a>
-            </li>
-          </ul>
-        </nav>
-
-        <!-- Action Buttons -->
-        <div class="navbar-actions">
-          <div class="dropdown-group">
-            <button class="btn dropdown-btn">More ▼</button>
-            <div class="dropdown-content">
-              <a href="#" class="dropdown-item">Vocabulary</a>
-              <a href="#" class="dropdown-item">Forum</a>
-              <a href="#" class="dropdown-item">About us</a>
+        <div class="navbar-container">
+            <!-- Logo and Branding -->
+            <div class="navbar-logo">
+                <img src="https://via.placeholder.com/40x40" alt="Logo" />
+                <span class="navbar-brand">learnEnglish™</span>
+                <span class="navbar-tagline">Access. The future of education.</span>
             </div>
-          </div>
-          <a href="#" class="btn login-btn">Log in</a>
-          <a href="#" class="btn register-btn">Register</a>
+    
+            <!-- Navigation Links -->
+            <nav class="navbar-links">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Exam Library</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Tips</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Skills</a>
+                    </li>
+                </ul>
+            </nav>
+    
+            <!-- Action Buttons -->
+            <div class="navbar-actions">
+                <div class="dropdown-group">
+                    <button class="btn dropdown-btn">More ▼</button>
+                    <div class="dropdown-content">
+                        <a href="#" class="dropdown-item">Vocabulary</a>
+                        <a href="#" class="dropdown-item">Forum</a>
+                        <a href="#" class="dropdown-item">About us</a>
+                    </div>
+                </div>
+                <a href="#" class="btn login-btn">Log in</a>
+                <a href="#" class="btn register-btn">Register</a>
+            </div>
         </div>
-      </div>
     </header>
-
-    <!-- Bootstrap Icons -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.js"></script>
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
-  </body>
-</html>
