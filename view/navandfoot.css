@@ -1,0 +1,146 @@
+
+/* Top Navigation Styles */
+.top-nav {
+    background-color: #2e6ca7;
+    color: #fff;
+    padding: 30px 0;
+    font-size: 0.9em;
+}
+
+.top-nav .container {
+    .top-nav .container {
+        display: flex;
+        justify-content: flex-start; /* Align items to the left */
+        align-items: center; /* Vertically center all items */
+        padding-left: 15px; /* Add padding for proper alignment */
+    }
+    
+}
+
+.logo {
+    .logo {
+        display: flex;
+        align-items: center; /* Vertically center the logo */
+        margin-bottom: 0; /* Ensure no extra space below the logo */
+        margin-left: 0; /* Align with the same starting point as the footer */
+        gap: 10px; /* Add space between elements inside the logo if needed */
+    }
+    
+}
+
+.logo span{
+    color: white;
+    margin: 0 10px;
+}
+
+.auth {
+    display: flex;
+    align-items: center;
+}
+
+.auth a {
+    color: #fff;
+    margin-left: 20px;
+    font-weight: 500;
+}
+
+.search-icon{
+    font-size: 18px;
+}
+
+/* Main Navigation Styles */
+.main-nav {
+    background-color: #3880c4;
+    color: #fff;
+    padding: 10px 0;
+}
+
+.main-nav .container ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: left; /* Center the navigation items */
+}
+
+.main-nav .container ul li {
+    margin: 0 15px; /* Add some space between navigation items */
+}
+
+.main-nav .container ul li a {
+    color: #fff;
+    font-weight: 500;
+    padding: 8px 15px; /* Add padding to the links */
+}
+
+.main-nav .container ul li a:hover {
+    background-color: #2e6ca7;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+/* Footer Styles */
+footer {
+    background-color: #2e6ca7;
+    color: #fff;
+    padding: 30px 0;
+    font-size: 0.9em;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    /* Align items to opposite ends */
+    align-items: center;
+    /* Vertically center align items */
+    flex-wrap: wrap;
+    /* Keep responsiveness for smaller screens */
+}
+
+.footer-logo {
+    display: flex;
+    align-items: center; /* Vertically center the logo */
+    margin-bottom: 0; /* Remove extra space */
+    gap: 10px; /* Maintain consistent spacing */
+}
+
+
+.footer-logo span {
+    color: white;
+    margin: 0 10px;
+}
+
+.footer-links {
+    display: flex;
+    align-items: center;
+    /* Vertically center the links */
+    flex-wrap: wrap;
+    /* Wrap items on smaller screens */
+    margin-left: 0;
+    /* Adjust spacing as needed */
+}
+
+
+.footer-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    /* Align links horizontally */
+    gap: 15px;
+    /* Space between items */
+}
+
+.footer-links ul li {
+    margin: 0;
+    /* Remove unnecessary margin */
+}
+
+
+.footer-links ul li a {
+    color: #fff;
+}
+
+.footer-links ul li a:hover {
+    text-decoration: underline;
+}
