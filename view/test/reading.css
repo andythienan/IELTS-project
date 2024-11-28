@@ -3,6 +3,13 @@
     src: url('/view/fonts/GoogleSansText-Medium.ttf') format('truetype');
   }
 
+  @font-face {
+    font-family: 'Minion Pro';
+    src: url('/view/fonts/Minion-Pro.OTF') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+  }
+
 *{
     font-family:'Google Sans';
 }
@@ -17,17 +24,24 @@ body {
     min-height: 100vh;
     background-color: #f5f5f5; /* Light grey background */
     color: #212121; /* Dark text */
+    font-stretch: 175%;
 }
 
 
 /* Header Section */
 .header {
+    position: fixed; /* Fix the header */
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000; /* Ensure it stays on top of other content */
+    background-color: #fff; /* Match the design */
+    border-bottom: 1px solid #ddd;
+    padding: 10px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
-    background-color: #fff;
-    border-bottom: 1px solid #ddd;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .header-left h1 {
@@ -69,6 +83,8 @@ body {
 
 /* Main Layout */
 .main-layout {
+    margin-top: 30px; /* Add space equal to header height */
+    margin-bottom: 60px; /* Add space equal to footer height */
     display: flex;
     flex: 1;
 }
@@ -128,12 +144,18 @@ h2 {
 
 /* Footer */
 .footer {
-    background: #fff;
-    padding: 20px;
+    position: fixed; /* Fix the footer */
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000; /* Ensure it stays on top of other content */
+    background-color: #fff; /* Match the design */
+    border-top: 1px solid #ddd;
+    padding: 10px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-top: 1px solid #ddd;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .btn-question-number {
@@ -153,6 +175,16 @@ h2 {
     border-radius: 4px;
     cursor: pointer;
 }
+
+.btn-prev{
+    background: #aab7c5;
+    color: rgb(0, 0, 0);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
 
 /* Options */
 .options {
@@ -197,4 +229,88 @@ h2 {
     margin-right: 10px;
     color: #007bff;
     font-weight: bold;
+}
+
+/* Highlight UI */
+.highlight-ui {
+    position: absolute;
+    display: none;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    width: 220px;
+}
+
+.highlight-colors {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.color-btn {
+    width: 30px;
+    height: 30px;
+    border: 2px solid transparent;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out, border-color 0.2s;
+}
+
+.color-btn.active {
+    border-color: black;
+}
+
+.color-btn:hover {
+    transform: scale(1.1);
+}
+
+.note-input {
+    width: 100%;
+    height: 60px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    font-size: 0.9em;
+    resize: none;
+}
+
+.save-note-btn {
+    width: 100%;
+    margin-top: 10px;
+    padding: 8px;
+    font-size: 0.9em;
+    background-color: #27548a;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.save-note-btn:hover {
+    background-color: #1a3a66;
+}
+
+/* Tooltip */
+.tooltip {
+    position: absolute;
+    display: none;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+    font-size: 0.9em;
+    z-index: 1000;
+    max-width: 200px;
+    line-height: 1.4;
+}
+
+/* Highlighted text */
+.highlighted {
+    cursor: pointer;
+    position: relative;
 }

@@ -3,21 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test Platform</title>
+    <title>Test Navigation</title>
     <link rel="stylesheet" href="reading.css">
 </head>
 <body>
-
-    <!-- Header Section -->
+    <!-- Header -->
     <header class="header">
         <div class="header-left">
             <h1>Reading - Test 1</h1>
         </div>
         <div class="header-right">
-            <span class="timer">31:19</span>
-            <button class="btn-annotate"><i class="fas fa-pen"></i> Annotate</button>
-            <button class="btn-menu"><i class="fas fa-ellipsis-h"></i></button>
-        </div>
+            <span id="timer" class="timer">45:00</span>
+        </div>        
     </header>
 
     <!-- Progress Bar -->
@@ -25,51 +22,67 @@
         <div class="progress-marker"></div>
     </div>
 
-    <!-- Main Content -->
+    <!-- Main Layout -->
     <div class="main-layout">
-        <!-- Left Column: Passage -->
+        <!-- Left Column -->
         <div class="left-column">
-            <p>
-              
-The term government describes the means by which a society organizes itself and how it allocates authority in order to accomplish collective goals and provide benefits that the society as a whole needs. Among the goals that governments around the world seek to accomplish are economic prosperity, secure national borders, and the safety and well-being of citizens. Governments also provide benefits for their citizens. The type of benefits provided differ according to the country and their specific type of governmental system, but governments commonly provide such things as education, health care, and an infrastructure for transportation. The term politics refers to the process of gaining and exercising control within a government for the purpose of setting and achieving particular goals, especially those related to the division of resources within a nation.
-
-Sometimes governmental systems are confused with economic systems. This is because certain types of political thought or governmental organization are closely related to or develop with certain types of economic systems. For example, the economic system of capitalism in Western Europe and North America developed at roughly the same time as ideas about democratic republics, self-government, and natural rights. At this time, the idea of liberty became an important concept. According to John Locke, an English political philosopher of the seventeenth century, all people have natural rights to life, liberty, and property. From this came the idea that people should be free to consent to being governed. In the eighteenth century, in Great Britain’s North American colonies, and later in France, this developed into the idea that people should govern themselves through elected representatives and not a king; only those representatives chosen by the people had the right to make laws to govern them.
-
-Similarly, Adam Smith, a Scottish philosopher who was born nineteen years after Locke’s death, believed that all people should be free to acquire property in any way that they wished. Instead of being controlled by government, business, and industry, Smith argued, people should be allowed to operate as they wish and keep the proceeds of their work. Competition would ensure that prices remained low and faulty goods disappeared from the market. In this way, businesses would reap profits, consumers would have their needs satisfied, and society as a whole would prosper. Smith discussed these ideas, which formed the basis for industrial capitalism, in his book The Wealth of Nations, which was published in 1776, the same year that the Declaration of Independence was written.
+            <p class="passage" id="passage">
+                This is the passage content. It will update dynamically as you navigate through the questions.
+            </p>
         </div>
 
-        <!-- Right Column: Question -->
+        <!-- Right Column -->
         <div class="right-column">
-            <div class="question-header">
-                <span class="question-number">Question 1</span>
-                <button class="btn-mark"><i class="fas fa-flag"></i> Mark for Review</button>
-            </div>
-            <h2>What is one of the primary differences between governmental systems and economic systems as described in the passage?</h2>
-            <div class="options">
-                <label class="choice-box">
-                    <input type="radio" name="q1" value="A">
-                    <span>A. Governmental systems focus on the allocation of resources, while economic systems prioritize political representation.</span>
-                </label>
-                <label class="choice-box">
-                    <input type="radio" name="q1" value="B">
-                    <span>B. Governmental systems organize society and provide benefits, while economic systems dictate how goods and services are produced and distributed.</span>
-                </label>
-                <label class="choice-box">
-                    <input type="radio" name="q1" value="C">
-                    <span>C. Governmental systems are based on liberty and natural rights, while economic systems are primarily about restricting individual freedoms.</span>
-                </label>
-                <label class="choice-box">
-                    <input type="radio" name="q1" value="D">
-                    <span>D. Governmental systems only exist in democracies, while economic systems are unique to capitalist societies.</span>
-                </label>
+            <div id="question-container">
+                <!-- Question Content -->
+                <h2 id="question-title">Question 1</h2>
+                <p id="question-text">What is the main idea of the passage?</p>
+                <div class="options" id="options-container">
+                    <label class="choice-box">
+                        <input type="radio" name="q1" value="A">
+                        <span>A. First option</span>
+                    </label>
+                    <label class="choice-box">
+                        <input type="radio" name="q1" value="B">
+                        <span>B. Second option</span>
+                    </label>
+                    <label class="choice-box">
+                        <input type="radio" name="q1" value="C">
+                        <span>C. Third option</span>
+                    </label>
+                    <label class="choice-box">
+                        <input type="radio" name="q1" value="D">
+                        <span>D. Fourth option</span>
+                    </label>
+                </div>
             </div>
         </div>
+
+        <div id="highlight-ui" class="highlight-ui">
+            <div class="highlight-colors">
+                <button class="color-btn" style="background-color: yellow;" data-color="yellow"></button>
+                <button class="color-btn" style="background-color: #a3e635;" data-color="#a3e635"></button>
+                <button class="color-btn" style="background-color: #38bdf8;" data-color="#38bdf8"></button>
+                <button class="color-btn" style="background-color: #818cf8;" data-color="#818cf8"></button>
+                <button class="color-btn" style="background-color: #f472b6;" data-color="#f472b6"></button>
+            </div>
+            <textarea class="note-input" placeholder="Add a note..."></textarea>
+            <button id="save-note" class="save-note-btn">Save Note</button>
+        </div>
+        <div id="tooltip" class="tooltip"></div>
+        
+        
+        
+        
+        
     </div>
 
     <!-- Footer -->
     <footer class="footer">
-        <button class="btn-question-number">Question 1 of 27</button>
-        <button class="btn-next">Next</button>
+        <button class="btn btn-prev" id="prev-button">Previous</button>
+        <button class="btn btn-next" id="next-button">Next</button>
     </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
