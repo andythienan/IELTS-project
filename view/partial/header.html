@@ -1,131 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Unified Header</title>
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-    }
-
-    /* Header with unified background */
-    .header {
-      background-color: #0047ab; /* Unified blue background */
-      color: white;
-      padding: 10px 20px 0 20px; /* Reduce bottom padding */
-    }
-
-    .header-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 5px; /* Reduce space between title and navbar */
-    }
-
-    .header-logo {
-      display: flex;
-      align-items: center;
-    }
-
-    .header-logo img {
-      height: 40px; /* Adjust logo height */
-      margin-right: 10px;
-    }
-
-    .header-logo h5 {
-      font-size: 20px;
-      font-weight: bold;
-      margin: 0;
-    }
-
-    .auth-links a {
-      color: white;
-      text-decoration: none;
-      font-size: 16px;
-      margin-left: 20px;
-    }
-
-    .auth-links a:hover {
-      text-decoration: underline;
-    }
-
-    /* Navbar styling */
-    .navbar {
-      padding: 5px 0; /* Reduce navbar padding */
-    }
-
-    .navbar-nav {
-      display: flex;
-      justify-content: space-evenly; /* Distribute items evenly across the full width */
-      flex: 1;
-    }
-
-    .navbar-nav .nav-link {
-      color: white !important;
-      font-size: 18px; /* Larger font for navigation links */
-      font-weight: bold;
-      padding: 5px 15px;
-      text-align: center;
-    }
-
-    .navbar-nav .nav-link:hover {
-      color: #d1e0ff !important; /* Lighter hover color */
-    }
-  </style>
-</head>
-<body>
-  <!-- Unified Header -->
-  <header class="header">
-    <!-- Top Header Content -->
-    <div class="header-top">
-      <div class="header-logo">
-        <img src="https://via.placeholder.com/40" alt="Logo">
-        <h5>IELTS Mastery | LearnEnglish</h5>
-      </div>
-      <div class="auth-links">
-        <a href="#"><i class="bi bi-search"></i></a>
-        <a href="#">Log in</a>
-        <a href="#">Register</a>
-      </div>
+<header>
+    <div class="top-nav">
+        <div class="container">
+            <div class="logo">
+                <img src="Logo.png" alt="IELTS Mastery Logo" height="60">
+            </div>
+            <div class="auth">
+                <a href="#" class="search-icon"><i class="fa fa-search"></i></a>
+                <a href="#">Log in</a>
+                <a href="#">Register</a>
+            </div>
+        </div>
     </div>
-    
-    <!-- Navigation Bar -->
-    <nav class="navbar navbar-expand-lg">
-      <div class="container-fluid">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link active" href="#">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Exam Library</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Tips</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Skills</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Vocabulary</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Forum</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">About us</a>
-          </li>
-        </ul>
-      </div>
+    <nav class="main-nav">
+        <div class="container">
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Exam Library</a></li>
+                <li><a href="#">Tips</a></li>
+                <li><a href="#">Skills</a></li>
+                <li><a href="#">Vocabulary</a></li>
+                <li><a href="#">Forum</a></li>
+                <li><a href="#">About us</a></li>
+            </ul>
+        </div>
     </nav>
-  </header>
-
-  <!-- Bootstrap Icons -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.js"></script>
-  <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+</header>
