@@ -3,86 +3,307 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test Navigation</title>
-    <link rel="stylesheet" href="reading.css">
+    <title>Modern Test Interface</title>
+    <style>
+        /* General Styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+
+        /* Header Section */
+        #header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background-color: #007bff;
+            color: white;
+        }
+
+        #header h1 {
+            font-size: 18px;
+            margin: 0;
+        }
+
+        #timer {
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        /* Main Container */
+        #container {
+            display: flex;
+            height: calc(100vh - 100px);
+        }
+
+        /* Passage Section */
+        #passage-container {
+            flex: 1;
+            padding: 20px;
+            background: white;
+            border-right: 2px solid #eee;
+            overflow-y: auto;
+        }
+
+        #passage-container h2 {
+            margin-top: 0;
+            font-size: 16px;
+            color: #007bff;
+        }
+
+        #passage {
+            line-height: 1.6;
+            font-size: 15px;
+        }
+
+        /* Question Section */
+        #question-container {
+            flex: 1;
+            padding: 20px;
+            background: white;
+            overflow-y: auto;
+        }
+
+        #question-container h2 {
+            margin-top: 0;
+            font-size: 16px;
+            color: #007bff;
+        }
+
+        #question {
+            font-size: 15px;
+            margin-bottom: 20px;
+        }
+
+        .options {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .options li {
+            margin-bottom: 15px;
+        }
+
+        .choice-box {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            background-color: #fff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .choice-box:hover {
+            background-color: #f0f8ff;
+            border-color: #007bff;
+        }
+
+        .choice-box input[type="radio"] {
+            display: none;
+        }
+
+        .choice-box.selected {
+            background-color: #007bff;
+            border-color: #007bff;
+            color: white;
+            transform: scale(1.02);
+        }
+
+        .choice-box label {
+            flex: 1;
+            font-size: 14px;
+        }
+
+        .choice-box span {
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        /* Footer Section */
+        #footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+        }
+
+        #footer button {
+            background-color: white;
+            color: #007bff;
+            border: none;
+            border-radius: 5px;
+            padding: 8px 15px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        #footer button:disabled {
+            background-color: #ccc;
+            color: white;
+            cursor: not-allowed;
+        }
+
+        #footer span {
+            font-size: 14px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            #container {
+                flex-direction: column;
+            }
+
+            #passage-container, #question-container {
+                flex: none;
+                height: 50%;
+                border-right: none;
+                border-bottom: 2px solid #eee;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <div class="header-left">
-            <h1>Reading - Test 1</h1>
+    <div id="header">
+        <h1>Section 1, Module 1: Reading and Writing</h1>
+        <span id="timer">31:19</span>
+    </div>
+    <div id="container">
+        <div id="passage-container">
+            <h2>Passage</h2>
+            <div id="passage"></div>
         </div>
-        <div class="header-right">
-            <span id="timer" class="timer">45:00</span>
-        </div>        
-    </header>
-
-    <!-- Progress Bar -->
-    <div class="progress-bar">
-        <div class="progress-marker"></div>
+        <div id="question-container">
+            <h2>Question</h2>
+            <div id="question"></div>
+            <ul class="options" id="options"></ul>
+        </div>
+    </div>
+    <div id="footer">
+        <button id="prev-question" disabled>Previous</button>
+        <span id="question-counter">Question 1 of 3</span>
+        <button id="next-question">Next</button>
     </div>
 
-    <!-- Main Layout -->
-    <div class="main-layout">
-        <!-- Left Column -->
-        <div class="left-column">
-            <p class="passage" id="passage">
-                This is the passage content. It will update dynamically as you navigate through the questions.
-            </p>
-        </div>
+    <script>
+        // Data store for passages, questions, and answers
+        const testData = [
+            {
+                passage: "Researchers and conservationists stress that biodiversity loss due to invasive species is _____. For example, people can take simple steps such as washing their footwear after travel to avoid introducing potentially invasive organisms into new environments.",
+                question: "Which choice completes the text with the most logical and precise word or phrase?",
+                options: ["Preventable", "Undeniable", "Common", "Concerning"],
+                answer: "Preventable"
+            },
+            {
+                passage: "Habitat destruction caused by deforestation can lead to significant biodiversity loss. Scientists urge sustainable practices to mitigate these effects.",
+                question: "What can mitigate biodiversity loss caused by deforestation?",
+                options: ["Deforestation", "Sustainable Practices", "Industrialization", "None of the above"],
+                answer: "Sustainable Practices"
+            },
+            {
+                passage: "Climate change is affecting ecosystems globally. Rising temperatures disrupt natural habitats, causing many species to migrate or face extinction.",
+                question: "What is one major effect of climate change mentioned in the passage?",
+                options: ["Ecosystem Stability", "Species Migration", "Increased Biodiversity", "None of the above"],
+                answer: "Species Migration"
+            }
+        ];
 
-        <!-- Right Column -->
-        <div class="right-column">
-            <div id="question-container">
-                <!-- Question Content -->
-                <h2 id="question-title">Question 1</h2>
-                <p id="question-text">What is the main idea of the passage?</p>
-                <div class="options" id="options-container">
-                    <label class="choice-box">
-                        <input type="radio" name="q1" value="A">
-                        <span>A. First option</span>
-                    </label>
-                    <label class="choice-box">
-                        <input type="radio" name="q1" value="B">
-                        <span>B. Second option</span>
-                    </label>
-                    <label class="choice-box">
-                        <input type="radio" name="q1" value="C">
-                        <span>C. Third option</span>
-                    </label>
-                    <label class="choice-box">
-                        <input type="radio" name="q1" value="D">
-                        <span>D. Fourth option</span>
-                    </label>
-                </div>
-            </div>
-        </div>
+        let currentQuestionIndex = 0;
+        const userAnswers = [];
 
-        <div id="highlight-ui" class="highlight-ui">
-            <div class="highlight-colors">
-                <button class="color-btn" style="background-color: yellow;" data-color="yellow"></button>
-                <button class="color-btn" style="background-color: #a3e635;" data-color="#a3e635"></button>
-                <button class="color-btn" style="background-color: #38bdf8;" data-color="#38bdf8"></button>
-                <button class="color-btn" style="background-color: #818cf8;" data-color="#818cf8"></button>
-                <button class="color-btn" style="background-color: #f472b6;" data-color="#f472b6"></button>
-            </div>
-            <textarea class="note-input" placeholder="Add a note..."></textarea>
-            <button id="save-note" class="save-note-btn">Save Note</button>
-        </div>
-        <div id="tooltip" class="tooltip"></div>
-        
-        
-        
-        
-        
-    </div>
+        // Timer functionality
+        function startTimer(duration) {
+            let timer = duration;
+            const timerDisplay = document.getElementById('timer');
 
-    <!-- Footer -->
-    <footer class="footer">
-        <button class="btn btn-prev" id="prev-button">Previous</button>
-        <button class="btn btn-next" id="next-button">Next</button>
-    </footer>
+            setInterval(() => {
+                const minutes = Math.floor(timer / 60);
+                const seconds = timer % 60;
+                timerDisplay.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+                timer--;
+                if (timer < 0) {
+                    alert("Time is up!");
+                }
+            }, 1000);
+        }
 
-    <script src="script.js"></script>
+        // Load the passage and question
+        function loadQuestion(index) {
+            const data = testData[index];
+            document.getElementById('passage').textContent = data.passage;
+            document.getElementById('question').textContent = data.question;
+
+            // Render options
+            const optionsContainer = document.getElementById('options');
+            optionsContainer.innerHTML = '';
+            data.options.forEach((option, i) => {
+                const optionItem = document.createElement('li');
+
+                const choiceBox = document.createElement('div');
+                choiceBox.className = 'choice-box';
+                choiceBox.dataset.value = option;
+
+                const optionInput = document.createElement('input');
+                optionInput.type = 'radio';
+                optionInput.name = 'question';
+                optionInput.id = `option-${i}`;
+                optionInput.value = option;
+
+                const optionLabel = document.createElement('label');
+                optionLabel.htmlFor = `option-${i}`;
+                optionLabel.textContent = option;
+
+                choiceBox.appendChild(optionInput);
+                choiceBox.appendChild(optionLabel);
+
+                if (userAnswers[index] === option) {
+                    choiceBox.classList.add('selected');
+                    optionInput.checked = true;
+                }
+
+                // Add click event for animation
+                choiceBox.addEventListener('click', () => {
+                    document.querySelectorAll('.choice-box').forEach(box => box.classList.remove('selected'));
+                    choiceBox.classList.add('selected');
+                    optionInput.checked = true;
+                    userAnswers[index] = option;
+                });
+
+                optionItem.appendChild(choiceBox);
+                optionsContainer.appendChild(optionItem);
+            });
+
+            document.getElementById('question-counter').textContent = `Question ${index + 1} of ${testData.length}`;
+            document.getElementById('prev-question').disabled = index === 0;
+            document.getElementById('next-question').disabled = index === testData.length - 1;
+        }
+
+        document.getElementById('prev-question').addEventListener('click', () => {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                loadQuestion(currentQuestionIndex);
+            }
+        });
+
+        document.getElementById('next-question').addEventListener('click', () => {
+            if (currentQuestionIndex < testData.length - 1) {
+                currentQuestionIndex++;
+                loadQuestion(currentQuestionIndex);
+            }
+        });
+
+        // Initialize
+        loadQuestion(currentQuestionIndex);
+        startTimer(31 * 60); // 31 minutes
+    </script>
 </body>
 </html>

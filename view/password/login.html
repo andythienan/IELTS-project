@@ -1,245 +1,241 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="about us.css">
-    <link rel="stylesheet" href="header.css">
-    <link rel="stylesheet" href="footer.css">
-    <link href="https://fonts.googleapis.com/css2?family=Krona+One&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <title>Simple HTML Template</title>
+    <title>LearnEnglish Login</title>
     <style>
-        .visually-hidden {
-            clip: rect(0 0 0 0);
-            clip-path: inset(50%);
-            height: 1px;
-            overflow: hidden;
-            position: absolute;
-            white-space: nowrap;
-            width: 1px;
+        @font-face {
+            font-family: 'Google Sans';
+            src: url('/view/fonts/GoogleSansText-Medium.ttf') format('truetype');
         }
 
-        .login-wrapper {
-            background-color: rgba(181, 200, 255, 1);
+        * {
+            font-family: 'Google Sans', Arial, sans-serif;
+        }
+
+        /* General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f9f9f9;
+            color: #333;
             display: flex;
-            flex-direction: column;
-            overflow: hidden;
+            justify-content: center;
             align-items: center;
-            padding: 238px 80px 105px;
-            font: 400 20px Krona One, sans-serif;
-            border: 1px solid rgba(0, 0, 0, 1);
+            min-height: 100vh;
+            
+        }
+
+        .main-menu {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .logo img {
+            max-width: 150px;
         }
 
         .login-container {
-            border-radius: 25px;
-            background-color: rgba(255, 255, 255, 1);
+            max-width: 500px;
+            margin: 60px auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            position: relative;
+        }
+
+        .tab-group {
             display: flex;
-            margin-left: 21px;
-            width: 815px;
-            max-width: 100%;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .tab {
+            flex: 1;
+            text-align: center;
+            padding: 10px;
+            font-size: 1em;
+            cursor: pointer;
+            color: #666;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.3s, color 0.3s;
+        }
+
+        .tab:hover {
+            color: #1e88e5;
+        }
+
+        .tab.login--active {
+            color: #1e88e5;
+            font-weight: bold;
+            border-bottom: 2px solid #1e88e5;
+        }
+
+        .page-header {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #1e88e5;
+        }
+
+        form {
+            display: flex;
             flex-direction: column;
-            align-items: start;
-            padding: 89px 80px;
         }
 
-        .login-heading {
-            color: rgba(0, 0, 0, 1);
-            font-size: 40px;
+        .form-group {
+            margin-bottom: 15px;
         }
 
-        .input-field {
-            border-radius: 25px;
-            background-color: rgba(217, 217, 217, 1);
-            width: 595px;
-            max-width: 100%;
-            height: 52px;
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            font-size: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            transition: border-color 0.3s;
+        }
+
+        .form-control:focus {
+            border-color: #1e88e5;
+            outline: none;
+        }
+
+        .primary {
+            background-color: #1e88e5;
+            color: white;
+            padding: 12px;
             border: none;
-            padding: 0 20px;
-            margin: 21px 0;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.3s;
         }
 
-        .input-label {
-            color: rgba(0, 0, 0, 1);
-            margin: 40px 0 0 20px;
+        .primary:hover {
+            background-color: #1565c0;
         }
 
-        .account-actions {
-            display: flex;
-            gap: 11px;
-            font-family: Alexandria, sans-serif;
-            margin: 29px 0 0 20px;
-        }
-
-        .account-text {
-            color: rgba(0, 0, 0, 1);
-        }
-
-        .account-link {
-            color: rgba(0, 20, 131, 1);
-            text-decoration: none;
+        .primary:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
         }
 
         .forgot-password {
-            color: rgba(31, 31, 128, 1);
-            font-family: Alexandria, sans-serif;
-            margin: 27px 0 0 20px;
+            text-align: right;
+            font-size: 0.9rem;
+            margin-top: 10px;
+        }
+
+        .forgot-password a {
+            color: #1e88e5;
             text-decoration: none;
         }
 
-        .submit-button {
-            border-radius: 25px;
-            background-color: rgba(132, 163, 255, 1);
-            font-size: 24px;
-            color: rgba(255, 255, 255, 1);
-            border: none;
-            cursor: pointer;
-            margin: 57px 0 -20px;
-            padding: 12px 40px 20px;
-            align-self: flex-end;
+        .forgot-password a:hover {
+            text-decoration: underline;
         }
 
-        @media (max-width: 991px) {
-            .login-wrapper {
-                padding: 100px 20px;
-            }
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 0.9rem;
+            color: #777;
+        }
 
+        footer a {
+            color: #1e88e5;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
             .login-container {
-                padding: 0 20px 100px;
+                padding: 20px;
             }
 
-            .input-label {
-                max-width: 100%;
+            .tab {
+                font-size: 1rem;
+                padding: 8px;
             }
 
-            .account-actions {
-                margin-left: 10px;
+            .page-header {
+                font-size: 1.6rem;
             }
 
-            .forgot-password {
-                margin-left: 10px;
+            .form-control {
+                padding: 8px;
             }
 
-            .submit-button {
-                white-space: initial;
-                margin: 40px 0 10px;
-                padding: 0 20px;
+            .primary {
+                font-size: 0.9rem;
+                padding: 10px;
             }
         }
     </style>
 </head>
+
 <body>
-    <header class="navbar">
-        <div class="navbar-container">
-            <!-- Logo and Branding -->
-            <div class="navbar-logo">
-                <img src="https://via.placeholder.com/40x40" alt="Logo" />
-                <span class="navbar-brand">learnEnglish™</span>
-                <span class="navbar-tagline">Access. The future of education.</span>
-            </div>
-    
-            <!-- Navigation Links -->
-            <nav class="navbar-links">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Exam Library</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Tips</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Skills</a>
-                    </li>
-                </ul>
-            </nav>
-    
-            <!-- Action Buttons -->
-            <div class="navbar-actions">
-                <div class="dropdown-group">
-                    <button class="btn dropdown-btn">More ▼</button>
-                    <div class="dropdown-content">
-                        <a href="#" class="dropdown-item">Vocabulary</a>
-                        <a href="#" class="dropdown-item">Forum</a>
-                        <a href="#" class="dropdown-item">About us</a>
-                    </div>
-                </div>
-                <a href="#" class="btn login-btn">Log in</a>
-                <a href="#" class="btn register-btn">Register</a>
-            </div>
+    <div>
+        <!-- Logo Section -->
+        <div class="main-menu">
+            <a href="https://openstax.org">
+            </a>
         </div>
-    </header>
-    <main>
-        <div class="login-wrapper">
-            <form class="login-container">
-              <h1 class="login-heading">Log in</h1>
-              
-              <label for="username" class="input-label">Username/Email/Phone number</label>
-              <input type="text" id="username" class="input-field" required aria-required="true">
-              
-              <label for="password" class="input-label">Password</label>
-              <input type="password" id="password" class="input-field" required aria-required="true">
-              
-              <div class="account-actions">
-                <span class="account-text">Don't have an account?</span>
-                <a href="#" class="account-link">Create one!</a>
-              </div>
-              
-              <a href="#" class="forgot-password">Can't access to your account?</a>
-              
-              <button type="submit" class="submit-button">Confirm</button>
+
+        <!-- Login Form Container -->
+        <div class="login-container">
+            <div class="tab-group">
+                <a href="/view/password/login.html" class="tab login login--active">Log in</a>
+                <a href="/view/password/signup.html" class="tab signup">Sign up</a>
+            </div>
+
+            <header class="page-header">Log in to your LearnEnglish account</header>
+            <form action="/accounts/i/login" accept-charset="UTF-8" method="post">
+                <input type="hidden" name="authenticity_token" value="VGih3QOX3jqZDflQ7YDoDbCsueRxZiKE3_kmki6nvwx-YdHj4wXAKJMWL0qHviUNuDPkoeoSf5oVYsu7FBn6lQ" autocomplete="off">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="login_form_email" class="form-control" name="login_form[email]" placeholder="me@myemail.com" autofocus required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="login_form_password" class="form-control" name="login_form[password]" placeholder="Enter your password" required>
+                </div>
+
+                <button type="submit" class="primary">Continue</button>
             </form>
-        </div>
-    </main>
-    <footer class="footer">
-        <div class="footer-main">
-            <!-- Mission Statement -->
-            <div class="footer-mission">
-                <h2>Our Mission</h2>
-                <p>
-                    We aim to make education accessible for everyone. Join us in
-                    transforming the future of learning. <a href="#">Give today</a> to support our mission.
-                </p>
-            </div>
-      
-            <!-- Links Columns -->
-            <div class="footer-columns">
-                <div class="footer-column">
-                    <h3>Help</h3>
-                    <a href="#">Contact Us</a>
-                    <a href="#">Support Center</a>
-                    <a href="#">FAQ</a>
-                </div>
-                <div class="footer-column">
-                    <h3>learnEnglish</h3>
-                    <a href="#">Press</a>
-                    <a href="#">Newsletter</a>
-                    <a href="#">Careers</a>
-                </div>
-                <div class="footer-column">
-                    <h3>Policies</h3>
-                    <a href="#">Accessibility Statement</a>
-                    <a href="#">Terms of Use</a>
-                    <a href="#">Licensing</a>
-                    <a href="#">Privacy Notice</a>
-                    <a href="#">Manage Cookies</a>
-                </div>
+
+            <div class="forgot-password">
+                <a href="/accounts/i/forgot_password_form">Forgot your password?</a>
             </div>
         </div>
-      
-        <div class="footer-bottom">
-            <p>
-                © 2024. All rights reserved. This content is licensed under a <a href="#">Creative Commons Attribution 4.0 License</a>.
-            </p>
-            <div class="social-icons">
-                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-            </div>
-        </div>
-    </footer>
+
+        <footer>
+            <p>Copyright 2024 - 2025 LearnEnglish™</p>
+            <a href="/accounts/terms">Terms of Use</a>
+        </footer>
+    </div>
 </body>
+
 </html>

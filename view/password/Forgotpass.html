@@ -1,254 +1,234 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="about us.css">
-    <link rel="stylesheet" href="header.css">
-    <link rel="stylesheet" href="footer.css">
-    <link href="https://fonts.googleapis.com/css2?family=Krona+One&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <title>Simple HTML Template</title>
+    <title>Forgot Password</title>
     <style>
-        .visually-hidden {
-            position: absolute;
-            width: 1px;
-            height: 1px;
+        /* Font Import */
+        @font-face {
+            font-family: 'Google Sans';
+            src: url('/view/fonts/GoogleSansText-Medium.ttf') format('truetype');
+        }
+
+        /* General Styles */
+        * {
+            font-family: 'Google Sans', Arial, sans-serif;
+        }
+
+        body {
+            margin: 0;
             padding: 0;
-            margin: -1px;
-            overflow: hidden;
-            clip: rect(0,0,0,0);
-            border: 0;
+            color: #333;
+            background-color: #f5f5f5;
         }
-        .recovery-page {
-            background-color: rgba(181, 200, 255, 1);
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-            align-items: center;
-            padding: 238px 80px 105px;
-            border: 1px solid rgba(0, 0, 0, 1);
-        }
-        .recovery-container {
-            border-radius: 25px;
-            background-color: rgba(255, 255, 255, 1);
-            display: flex;
-            margin-left: 21px;
-            width: 815px;
-            max-width: 100%;
-            flex-direction: column;
-            padding: 89px 80px;
-        }
-        .recovery-title {
-            color: rgba(0, 0, 0, 1);
-            align-self: start;
-            font: 400 40px Krona One, sans-serif;
-        }
-        .input-label {
-            color: rgba(0, 0, 0, 1);
-            align-self: start;
-            margin: 54px 0 0 21px;
-            font: 400 20px Krona One, sans-serif;
-        }
-        .input-field {
-            border-radius: 25px;
-            background-color: rgba(217, 217, 217, 1);
-            align-self: center;
-            margin-top: 28px;
-            width: 595px;
-            max-width: 100%;
-            height: 52px;
-            border: none;
-            padding: 0 20px;
-        }
-        .verification-box {
-            border-radius: 10px;
-            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-            align-self: center;
-            display: flex;
-            margin-top: 66px;
-            width: 595px;
-            max-width: 100%;
-            flex-direction: column;
-            padding: 11px 40px 24px;
-            border: 4px solid rgba(0, 0, 0, 1);
-        }
-        .verification-title {
-            color: rgba(0, 0, 0, 1);
-            font: 400 20px Krona One, sans-serif;
-        }
-        .code-inputs {
-            align-self: center;
-            display: flex;
-            margin-top: 40px;
-            width: 463px;
-            max-width: 100%;
-            gap: 20px;
-            justify-content: space-between;
-        }
-        .code-input {
-            background-color: rgba(255, 255, 255, 1);
-            width: 48px;
-            height: 48px;
-            border: 2px solid rgba(0, 0, 0, 1);
+
+        h2 {
             text-align: center;
-            font-size: 24px;
+            color: #1e88e5;
         }
-        .next-button {
-            border-radius: 25px;
-            background-color: rgba(132, 163, 255, 1);
-            align-self: end;
-            width: 196px;
-            max-width: 100%;
-            color: rgba(255, 255, 255, 1);
-            margin: 41px 0 -20px;
-            padding: 12px 70px 21px;
-            font: 400 24px Krona One, sans-serif;
+
+        /* Container */
+        .forgot-password-container {
+            max-width: 500px;
+            margin: 60px auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            position: relative;
+            margin-top:100px;
+        }
+
+        /* Form Elements */
+        .form-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #555;
+        }
+
+        .form-control {
+            width: calc(100% - 26px);
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: border-color 0.3s;
+        }
+
+        .form-control:focus {
+            border-color: #1e88e5;
+            outline: none;
+        }
+
+        .form-control.error {
+            border-color: #e53935;
+        }
+
+        .form-control[disabled] {
+            background-color: #f0f0f0;
+            cursor: not-allowed;
+        }
+
+        /* Error Message */
+        .error-message {
+            color: #e53935;
+            font-size: 0.9rem;
+            margin-top: 5px;
+            display: none;
+        }
+
+        /* Password Tooltip */
+        .password-tooltip {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 110%;
+            transform: translateY(-50%);
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+            width: 250px;
+            font-size: 0.9rem;
+            color: #333;
+            z-index: 1000;
+        }
+
+        .password-tooltip p {
+            margin: 5px 0;
+        }
+
+        .password-tooltip .valid {
+            color: #4caf50;
+        }
+
+        .password-tooltip .invalid {
+            color: #e53935;
+        }
+
+        /* Buttons */
+        .primary-button {
+            width: 100%;
+            padding: 12px;
+            background-color: #1e88e5;
+            color: white;
             border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            font-weight: bold;
             cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 10px;
         }
-        @media (max-width: 991px) {
-            .recovery-page {
-                padding: 100px 20px;
-            }
-            .recovery-container {
-                padding: 0 20px 100px;
-            }
-            .recovery-title {
-                max-width: 100%;
-            }
-            .input-label {
-                max-width: 100%;
-                margin-top: 40px;
-            }
-            .verification-box {
-                margin-top: 40px;
-                padding: 0 20px;
-            }
-            .verification-title {
-                max-width: 100%;
-            }
-            .next-button {
-                margin: 40px 0 10px;
-                padding: 0 20px;
-            }
+
+        .primary-button:disabled {
+            background-color: #bbb;
+            cursor: not-allowed;
+        }
+
+        .primary-button:hover:not(:disabled) {
+            background-color: #1565c0;
+        }
+
+        /* Success Message */
+        .success-message {
+            display: none;
+            text-align: center;
+            color: #4caf50;
+            font-size: 1em;
+            margin-top: 20px;
         }
     </style>
 </head>
+
 <body>
-    <header class="navbar">
-        <div class="navbar-container">
-            <!-- Logo and Branding -->
-            <div class="navbar-logo">
-                <img src="https://via.placeholder.com/40x40" alt="Logo" />
-                <span class="navbar-brand">learnEnglish™</span>
-                <span class="navbar-tagline">Access. The future of education.</span>
+    <div class="forgot-password-container">
+        <h2>Forgot Password</h2>
+        <form id="forgot-password-form">
+            <div class="form-group">
+                <label for="email">Email *</label>
+                <input type="email" id="email" class="form-control" placeholder="Enter your email">
             </div>
-    
-            <!-- Navigation Links -->
-            <nav class="navbar-links">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Exam Library</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Tips</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Skills</a>
-                    </li>
-                </ul>
-            </nav>
-    
-            <!-- Action Buttons -->
-            <div class="navbar-actions">
-                <div class="dropdown-group">
-                    <button class="btn dropdown-btn">More ▼</button>
-                    <div class="dropdown-content">
-                        <a href="#" class="dropdown-item">Vocabulary</a>
-                        <a href="#" class="dropdown-item">Forum</a>
-                        <a href="#" class="dropdown-item">About us</a>
-                    </div>
-                </div>
-                <a href="#" class="btn login-btn">Log in</a>
-                <a href="#" class="btn register-btn">Register</a>
-            </div>
-        </div>
-    </header>
-    <main>
-        <div class="recovery-page">
-            <form class="recovery-container">
-              <h1 class="recovery-title">Forgot your password?</h1>
-              
-              <label for="recoveryInput" class="input-label">Enter your email/phone number</label>
-              <input type="text" id="recoveryInput" class="input-field" required aria-required="true">
-              
-              <div class="verification-box">
-                <label class="verification-title">Enter the code sent to your mail/phone</label>
-                <div class="code-inputs">
-                  <input type="text" class="code-input" maxlength="1" pattern="[0-9]" inputmode="numeric" required aria-required="true">
-                  <input type="text" class="code-input" maxlength="1" pattern="[0-9]" inputmode="numeric" required aria-required="true">
-                  <input type="text" class="code-input" maxlength="1" pattern="[0-9]" inputmode="numeric" required aria-required="true">
-                  <input type="text" class="code-input" maxlength="1" pattern="[0-9]" inputmode="numeric" required aria-required="true">
-                  <input type="text" class="code-input" maxlength="1" pattern="[0-9]" inputmode="numeric" required aria-required="true">
-                  <input type="text" class="code-input" maxlength="1" pattern="[0-9]" inputmode="numeric" required aria-required="true">
-                </div>
-              </div>
-              
-              <button type="submit" class="next-button">Next</button>
-            </form>
-        </div>
-    </main>
-    <footer class="footer">
-        <div class="footer-main">
-            <!-- Mission Statement -->
-            <div class="footer-mission">
-                <h2>Our Mission</h2>
-                <p>
-                    We aim to make education accessible for everyone. Join us in
-                    transforming the future of learning. <a href="#">Give today</a> to support our mission.
-                </p>
-            </div>
-      
-            <!-- Links Columns -->
-            <div class="footer-columns">
-                <div class="footer-column">
-                    <h3>Help</h3>
-                    <a href="#">Contact Us</a>
-                    <a href="#">Support Center</a>
-                    <a href="#">FAQ</a>
-                </div>
-                <div class="footer-column">
-                    <h3>learnEnglish</h3>
-                    <a href="#">Press</a>
-                    <a href="#">Newsletter</a>
-                    <a href="#">Careers</a>
-                </div>
-                <div class="footer-column">
-                    <h3>Policies</h3>
-                    <a href="#">Accessibility Statement</a>
-                    <a href="#">Terms of Use</a>
-                    <a href="#">Licensing</a>
-                    <a href="#">Privacy Notice</a>
-                    <a href="#">Manage Cookies</a>
+
+            <div class="form-group">
+                <label for="new-password">New Password *</label>
+                <input type="password" id="new-password" class="form-control" placeholder="Enter your new password">
+                <div class="password-tooltip" id="password-rules">
+                    <p id="rule-length" class="invalid">• At least 8 characters</p>
+                    <p id="rule-number" class="invalid">• At least 1 number</p>
+                    <p id="rule-special" class="invalid">• At least 1 special character (!@#$%^&*)</p>
                 </div>
             </div>
-        </div>
-      
-        <div class="footer-bottom">
-            <p>
-                © 2024. All rights reserved. This content is licensed under a <a href="#">Creative Commons Attribution 4.0 License</a>.
-            </p>
-            <div class="social-icons">
-                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+
+            <div class="form-group">
+                <label for="confirm-password">Re-enter Password *</label>
+                <input type="password" id="confirm-password" class="form-control" placeholder="Confirm your new password" disabled>
             </div>
-        </div>
-    </footer>
+
+            <button type="button" class="primary-button" id="request-button" disabled>Request Password Reset</button>
+        </form>
+        <p class="success-message" id="success-message">Your request has been submitted. Please wait...</p>
+    </div>
+
+    <script>
+        const emailInput = document.getElementById('email');
+        const newPasswordInput = document.getElementById('new-password');
+        const confirmPasswordInput = document.getElementById('confirm-password');
+        const passwordRules = document.getElementById('password-rules');
+        const requestButton = document.getElementById('request-button');
+        const successMessage = document.getElementById('success-message');
+
+        const ruleLength = document.getElementById('rule-length');
+        const ruleNumber = document.getElementById('rule-number');
+        const ruleSpecial = document.getElementById('rule-special');
+
+        const validatePassword = () => {
+            const password = newPasswordInput.value;
+
+            // Check password rules
+            const isLongEnough = password.length >= 8;
+            const hasNumber = /\d/.test(password);
+            const hasSpecialChar = /[!@#$%^&*]/.test(password);
+
+            ruleLength.classList.toggle('valid', isLongEnough);
+            ruleNumber.classList.toggle('valid', hasNumber);
+            ruleSpecial.classList.toggle('valid', hasSpecialChar);
+
+            confirmPasswordInput.disabled = !(isLongEnough && hasNumber && hasSpecialChar);
+            validatePasswordMatch();
+        };
+
+        const validatePasswordMatch = () => {
+            const passwordsMatch = newPasswordInput.value === confirmPasswordInput.value && confirmPasswordInput.value !== '';
+            requestButton.disabled = !passwordsMatch;
+        };
+
+        newPasswordInput.addEventListener('focus', () => passwordRules.style.display = 'block');
+        newPasswordInput.addEventListener('blur', () => {
+            if (newPasswordInput.value === '') passwordRules.style.display = 'none';
+        });
+
+        newPasswordInput.addEventListener('input', validatePassword);
+        confirmPasswordInput.addEventListener('input', validatePasswordMatch);
+
+        requestButton.addEventListener('click', () => {
+            successMessage.style.display = 'block';
+            requestButton.disabled = true;
+            setTimeout(() => {
+                alert('Password reset successful!');
+                successMessage.style.display = 'none';
+            }, 3000);
+        });
+    </script>
 </body>
+
 </html>
