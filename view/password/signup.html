@@ -166,6 +166,22 @@
         .password-tooltip .invalid {
             color: #e53935;
         }
+
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 0.9rem;
+            color: #777;
+        }
+
+        footer a {
+            color: #1e88e5;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 
@@ -200,7 +216,8 @@
 
                 <div class="form-group">
                     <label for="confirm-password">Re-enter Password *</label>
-                    <input type="password" id="confirm-password" class="form-control" placeholder="Confirm your password" disabled>
+                    <input type="password" id="confirm-password" class="form-control"
+                        placeholder="Confirm your password" disabled>
                     <p class="error-message" id="password-error">Passwords do not match.</p>
                 </div>
 
@@ -283,8 +300,12 @@
         passwordInput.addEventListener('input', validatePassword);
         confirmPasswordInput.addEventListener('input', validatePasswordMatch);
 
-        
+
     </script>
 </body>
+
+<footer>
+    <p>Copyright 2024 - 2025 LearnEnglish™</p>
+</footer>
 
 </html>
