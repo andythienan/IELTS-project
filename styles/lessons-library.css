@@ -154,3 +154,58 @@ main {
     color: #999;
     cursor: not-allowed;
 }
+
+/* Announcement Section */
+.announcement {
+    position: relative;
+    padding: 20px;
+    background-color: #fffbcc; /* Light yellow background for emphasis */
+    border: 2px solid #ffe066; /* Gold border for prominence */
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-bottom: 24px;
+    animation: fadeIn 1s ease-in-out; /* Subtle fade-in animation */
+}
+
+.announcement h2 {
+    font-size: 1.5rem;
+    color: #ff6f00; /* Deep orange text color for the title */
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between emoji and text */
+}
+
+.announcement h2::before {
+    content: "🎉"; /* Emoji for excitement */
+    font-size: 1.8rem;
+    animation: bounce 1s infinite;
+}
+
+.announcement p {
+    font-size: 1rem;
+    color: #555; /* Subtle grey for the body text */
+    line-height: 1.5;
+}
+
+/* Bounce Animation for Emoji */
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Fade-in Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
