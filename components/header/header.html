@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Header</title>
-    <link rel="stylesheet" href="about us.css">
     <link rel="stylesheet" href="header.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
@@ -16,6 +15,11 @@
             <div class="navbar-logo">
                 <span class="navbar-brand">learnEnglish™</span>
                 <span class="navbar-tagline">Access. The future of education.</span>
+            </div>
+    
+            <!-- Hamburger Menu -->
+            <div class="hamburger-menu" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
             </div>
     
             <!-- Navigation Links -->
@@ -59,7 +63,17 @@
         </div>
     </header>
 
-    <script src="activenav.js"></script>
-</body>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+  const hamburgerMenu = document.getElementById("hamburger-menu");
+  const navbarLinks = document.getElementById("navbar-links");
 
+  // Toggle menu visibility
+  hamburgerMenu.addEventListener("click", () => {
+    navbarLinks.classList.toggle("open");
+  });
+});
+
+    </script>
+</body>
 </html>

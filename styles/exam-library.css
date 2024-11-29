@@ -148,6 +148,7 @@ main {
     position: relative;
     width: 100%;
     margin-top: 12px;
+    z-index: 1;
 }
 
 .book-dropbtn {
