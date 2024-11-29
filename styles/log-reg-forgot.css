@@ -309,3 +309,50 @@
         font-size: 1em;
         margin-top: 20px;
     }
+
+    .return-home {
+        text-align: center;
+        margin-top: 20px;
+    }
+    
+    .return-home-btn {
+        display: inline-block;
+        text-decoration: none;
+        color: #1e88e5;
+        font-weight: bold;
+        font-size: 1rem;
+        padding: 10px 20px;
+        border: 2px solid #1e88e5;
+        border-radius: 5px;
+        background-color: white;
+        transition: background-color 0.3s, color 0.3s;
+    }
+    
+    .return-home-btn:hover {
+        background-color: #1e88e5;
+        color: white;
+    }
+    
+    .return-login {
+        text-align: center;
+        margin-top: 20px;
+    }
+    
+    .return-login-btn {
+        display: inline-block;
+        text-decoration: none;
+        color: #1e88e5;
+        font-weight: bold;
+        font-size: 1rem;
+        padding: 10px 20px;
+        border: 2px solid #1e88e5;
+        border-radius: 5px;
+        background-color: white;
+        transition: background-color 0.3s, color 0.3s;
+    }
+    
+    .return-login-btn:hover {
+        background-color: #1e88e5;
+        color: white;
+    }
+    
