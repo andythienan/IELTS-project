@@ -113,46 +113,29 @@
     <a href="#" class="btn-primary">I'm interested!</a>
   </section>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="footer-content">
-      <div class="footer-left">
-        <h4>OpenStax's mission is to make an amazing education accessible for all.</h4>
-        <p>OpenStax is part of Rice University...</p>
-        <a href="#">Give today</a>
-      </div>
-      <div class="footer-links">
-        <div class="link-group">
-          <h5>Help</h5>
-          <ul>
-            <li><a href="#">Contact Us</a></li>
-            <li><a href="#">Support Center</a></li>
-            <li><a href="#">FAQ</a></li>
-          </ul>
-        </div>
-        <div class="link-group">
-          <h5>OpenStax</h5>
-          <ul>
-            <li><a href="#">Press</a></li>
-            <li><a href="#">Newsletter</a></li>
-            <li><a href="#">Careers</a></li>
-          </ul>
-        </div>
-        <div class="link-group">
-          <h5>Policies</h5>
-          <ul>
-            <li><a href="#">Accessibility Statement</a></li>
-            <li><a href="#">Terms of Use</a></li>
-            <li><a href="#">Licensing</a></li>
-            <li><a href="#">Privacy Notice</a></li>
-            <li><a href="#">Manage Cookies</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>&copy; 2024, Rice University. All rights reserved.</p>
-    </div>
-  </footer>
+  <footer class="footer"></footer>
+  <script>
+    // Load footer HTML
+    fetch('styles/footer.html')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.text();
+        })
+        .then(html => {
+            // Inject the HTML content into the .footer element
+            document.querySelector('.footer').innerHTML = html;
+
+            // Dynamically add the footer CSS if it's not already included
+            if (!document.querySelector('link[href="styles/footer.css"]')) {
+                const link = document.createElement('link');
+                link.rel = 'stylesheet';
+                link.href = 'styles/footer.css';
+                document.head.appendChild(link);
+            }
+        })
+        .catch(error => console.error('Error loading footer:', error));
+</script>
 </body>
 </html>

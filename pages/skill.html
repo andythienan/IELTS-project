@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Skills Improvement</title>
+    <link rel="stylesheet" href="/styles/typography.css">
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        /* Header */
+        .title {
+            background-color: #4655B8;
+            color: white;
+            padding: 30px 10%;
+            text-align: center;
+        }
+
+        .title h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color:white;
+        }
+
+        .title p {
+            font-size: 1.2rem;
+            color:white;
+        }
+
+        /* Main Content */
+        main {
+            padding: 40px 10%;
+        }
+
+        .intro-section {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .intro-section h2 {
+            font-size: 2rem;
+            color: #4655B8;
+            margin-bottom: 15px;
+        }
+
+        .intro-section p {
+            font-size: 1.2rem;
+            color: #555;
+        }
+
+        /* Skills Section (Row Design) */
+        .skills-section {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .skill-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            border-radius: 10px;
+            color: #333;
+            transition: transform 0.3s;
+        }
+
+        .skill-row:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .skill-row h3 {
+            font-size: 1.8rem;
+            margin: 0;
+        }
+
+        .skill-row p {
+            font-size: 1rem;
+            flex: 1;
+            margin: 0 20px;
+        }
+
+        .skill-row a {
+            padding: 10px 20px;
+            background-color: white;
+            color: inherit;
+            font-weight: bold;
+            border-radius: 5px;
+            text-transform: none;
+            transition: background-color 0.3s, color 0.3s;
+            min-width: 150px;
+            /* Set minimum width */
+            text-align: center;
+            display: inline-block;
+            /* Ensure all buttons are consistent */
+        }
+
+        .skill-row a:hover {
+            background-color: rgba(255, 255, 255, 0.8);
+            color: inherit;
+        }
+
+        /* Skill Row Colors */
+        .listening {
+            background-color: #3A8DFF;
+            /* Blue */
+        }
+
+        .reading {
+            background-color: #4CAF50;
+            /* Green */
+        }
+
+        .writing {
+            background-color: #FFC107;
+            /* Amber */
+        }
+
+        .speaking {
+            background-color: #E53935;
+            /* Red */
+        }
+
+        /* Courses Section */
+        .courses-section {
+            background-color: #f0f4ff;
+            padding: 40px;
+            border-radius: 10px;
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .courses-section h2 {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .courses-section p {
+            font-size: 1.2rem;
+            color: #555;
+            margin-bottom: 30px;
+        }
+
+        .courses-section a {
+            background-color: #4655B8;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .courses-section a:hover {
+            background-color: #3544a6;
+        }
+
+        /* Help Section */
+        .help-section {
+            margin-top: 50px;
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .help-box {
+            flex: 1;
+            background-color: #d0d9f5;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: left;
+        }
+
+        .help-box h3 {
+            font-size: 1.5rem;
+            color: #4655B8;
+            margin-bottom: 15px;
+        }
+
+        .help-box ul {
+            list-style: none;
+        }
+
+        .help-box ul li {
+            margin-bottom: 10px;
+        }
+
+        .help-box ul li a {
+            font-size: 1rem;
+            color: #333;
+        }
+
+        .help-box ul li a:hover {
+            color: #4655B8;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header"></header>
+    <script src="/scripts/header.js"></script>
+
+    <section class="title">
+        <h1>Skills</h1>
+        <p>Improve your reading, writing, listening, and speaking skills at your level.</p>
+    </section>
+    <main>
+        <!-- Introduction Section -->
+        <section class="intro-section">
+            <h2>Improve Your English Proficiency</h2>
+            <p>Enhance your vocabulary and develop English communication skills through practice activities and
+                structured lessons.</p>
+        </section>
+
+        <!-- Skills Section -->
+        <section class="skills-section">
+            <div class="skill-row listening">
+                <h3>Listening</h3>
+                <p>Practice your listening skills to understand English conversations better.</p>
+                <a href="#">Start</a>
+            </div>
+            <div class="skill-row reading">
+                <h3>Reading</h3>
+                <p>Enhance your vocabulary and reading comprehension with targeted exercises.</p>
+                <a href="#">Start</a>
+            </div>
+            <div class="skill-row writing">
+                <h3>Writing</h3>
+                <p>Develop your writing skills to express your ideas effectively in English.</p>
+                <a href="#">Start</a>
+            </div>
+            <div class="skill-row speaking">
+                <h3>Speaking</h3>
+                <p>Improve your fluency and pronunciation through speaking activities.</p>
+                <a href="#">Start</a>
+            </div>
+        </section>
+
+        <!-- Courses Section -->
+        <section class="courses-section">
+            <h2>Discover Our Online English Courses</h2>
+            <p>Boost your English proficiency with our curated courses tailored to all skill levels.</p>
+            <a href="#">Explore Courses</a>
+        </section>
+    </main>
+    <footer class="footer"></footer>
+    <script src="/scripts/footer.js"></script>
+</body>
+
+</html>

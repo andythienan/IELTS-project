@@ -1,309 +1,311 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modern Test Interface</title>
-    <style>
-        /* General Styling */
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f9;
-            color: #333;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Reading Test</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="/styles/typography.css">
+  <style>
+    /* General Styling */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        /* Header Section */
-        #header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 20px;
-            background-color: #007bff;
-            color: white;
-        }
+    body {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      background-color: #f8f9fa;
+      color: #333;
+    }
 
-        #header h1 {
-            font-size: 18px;
-            margin: 0;
-        }
+    /* Header */
+    #header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+      background-color: #4655B8;
+      color: white;
+      font-size: 1.5rem;
+      font-weight: bold;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
 
-        #timer {
-            font-size: 16px;
-            font-weight: bold;
-        }
+    #header span {
+      background: #6F82FE;
+      padding: 10px 20px;
+      border-radius: 25px;
+      font-size: 1rem;
+    }
 
-        /* Main Container */
-        #container {
-            display: flex;
-            height: calc(100vh - 100px);
-        }
+    /* Main Container */
+    #container {
+      display: flex;
+      flex: 1;
+      margin: 20px;
+      gap: 20px;
+    }
 
-        /* Passage Section */
-        #passage-container {
-            flex: 1;
-            padding: 20px;
-            background: white;
-            border-right: 2px solid #eee;
-            overflow-y: auto;
-        }
+    /* Passage Section */
+    #passage-container {
+      flex: 1;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      overflow-y: auto;
+    }
 
-        #passage-container h2 {
-            margin-top: 0;
-            font-size: 16px;
-            color: #007bff;
-        }
+    #passage-container h2 {
+      font-size: 1.8rem;
+      color: #4655B8;
+      margin-bottom: 10px;
+    }
 
-        #passage {
-            line-height: 1.6;
-            font-size: 15px;
-        }
+    #passage {
+      line-height: 1.8;
+      font-size: 1rem;
+    }
 
-        /* Question Section */
-        #question-container {
-            flex: 1;
-            padding: 20px;
-            background: white;
-            overflow-y: auto;
-        }
+    /* Question Section */
+    #question-container {
+      flex: 1;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      overflow-y: auto;
+    }
 
-        #question-container h2 {
-            margin-top: 0;
-            font-size: 16px;
-            color: #007bff;
-        }
+    #question-container h2 {
+      font-size: 1.8rem;
+      color: #4655B8;
+      margin-bottom: 10px;
+    }
 
-        #question {
-            font-size: 15px;
-            margin-bottom: 20px;
-        }
+    #question {
+      margin-bottom: 20px;
+    }
 
-        .options {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
+   
 
-        .options li {
-            margin-bottom: 15px;
-        }
+    /* Footer */
+    #footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+      background-color: #4655B8;
+      color: white;
+      font-size: 1rem;
+      box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.1);
+    }
 
-        .choice-box {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 15px;
-            border: 2px solid #ccc;
-            border-radius: 8px;
-            background-color: #fff;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
+    #footer button {
+      background-color: #ffffff;
+      color: #4655B8;
+      border: none;
+      border-radius: 25px;
+      padding: 10px 20px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.3s, transform 0.2s;
+    }
 
-        .choice-box:hover {
-            background-color: #f0f8ff;
-            border-color: #007bff;
-        }
+    #footer button:hover {
+      background-color: #eef4ff;
+      transform: scale(1.05);
+    }
 
-        .choice-box input[type="radio"] {
-            display: none;
-        }
+    #footer button:disabled {
+      background-color: #ccc;
+      color: white;
+      cursor: not-allowed;
+    }
 
-        .choice-box.selected {
-            background-color: #007bff;
-            border-color: #007bff;
-            color: white;
-            transform: scale(1.02);
-        }
+    .options {
+  display: flex;
+  flex-direction: column; /* Ensures choices stack vertically */
+  gap: 15px; /* Adds spacing between rows */
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
 
-        .choice-box label {
-            flex: 1;
-            font-size: 14px;
-        }
+.choice-box {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  padding: 15px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  background-color: #f8f9fa;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  text-align: left;
+  font-size: 1.1rem;
+  font-weight: 500;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
 
-        .choice-box span {
-            font-size: 14px;
-            font-weight: bold;
-        }
+.choice-box:hover {
+  background-color: #eef4ff;
+  border-color: #4655B8;
+}
 
-        /* Footer Section */
-        #footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 20px;
-            background-color: #007bff;
-            color: white;
-        }
+.choice-box.selected {
+  background-color: #4655B8;
+  color: white;
+  border-color: #4655B8;
+  transform: scale(1.02);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
 
-        #footer button {
-            background-color: white;
-            color: #007bff;
-            border: none;
-            border-radius: 5px;
-            padding: 8px 15px;
-            cursor: pointer;
-            font-size: 14px;
-        }
-
-        #footer button:disabled {
-            background-color: #ccc;
-            color: white;
-            cursor: not-allowed;
-        }
-
-        #footer span {
-            font-size: 14px;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            #container {
-                flex-direction: column;
-            }
-
-            #passage-container, #question-container {
-                flex: none;
-                height: 50%;
-                border-right: none;
-                border-bottom: 2px solid #eee;
-            }
-        }
-    </style>
+  </style>
 </head>
 <body>
-    <div id="header">
-        <h1>Section 1, Module 1: Reading and Writing</h1>
-        <span id="timer">31:19</span>
-    </div>
-    <div id="container">
-        <div id="passage-container">
-            <h2>Passage</h2>
-            <div id="passage"></div>
-        </div>
-        <div id="question-container">
-            <h2>Question</h2>
-            <div id="question"></div>
-            <ul class="options" id="options"></ul>
-        </div>
-    </div>
-    <div id="footer">
-        <button id="prev-question" disabled>Previous</button>
-        <span id="question-counter">Question 1 of 3</span>
-        <button id="next-question">Next</button>
-    </div>
+  <!-- Header -->
+  <header id="header">
+    <h1>Interactive Reading Test</h1>
+    <span id="timer">30:00</span>
+  </header>
 
-    <script>
-        // Data store for passages, questions, and answers
-        const testData = [
-            {
-                passage: "Researchers and conservationists stress that biodiversity loss due to invasive species is _____. For example, people can take simple steps such as washing their footwear after travel to avoid introducing potentially invasive organisms into new environments.",
-                question: "Which choice completes the text with the most logical and precise word or phrase?",
-                options: ["Preventable", "Undeniable", "Common", "Concerning"],
-                answer: "Preventable"
-            },
-            {
-                passage: "Habitat destruction caused by deforestation can lead to significant biodiversity loss. Scientists urge sustainable practices to mitigate these effects.",
-                question: "What can mitigate biodiversity loss caused by deforestation?",
-                options: ["Deforestation", "Sustainable Practices", "Industrialization", "None of the above"],
-                answer: "Sustainable Practices"
-            },
-            {
-                passage: "Climate change is affecting ecosystems globally. Rising temperatures disrupt natural habitats, causing many species to migrate or face extinction.",
-                question: "What is one major effect of climate change mentioned in the passage?",
-                options: ["Ecosystem Stability", "Species Migration", "Increased Biodiversity", "None of the above"],
-                answer: "Species Migration"
-            }
-        ];
+  <!-- Main Content -->
+  <div id="container">
+    <section id="passage-container">
+      <h2>Passage</h2>
+      <p id="passage">Loading...</p>
+    </section>
+    <section id="question-container">
+      <h2>Question</h2>
+      <p id="question">Loading...</p>
+      <ul id="options" class="options">
+        <li class="choice-box">Option 1</li>
+        <li class="choice-box">Option 2</li>
+        <li class="choice-box">Option 3</li>
+        <li class="choice-box">Option 4</li>
+      </ul>
+      
+    </section>
+  </div>
 
-        let currentQuestionIndex = 0;
-        const userAnswers = [];
+  <!-- Footer -->
+  <footer id="footer">
+    <button id="prev-question" disabled>Previous</button>
+    <span id="question-counter">Question 1 of 3</span>
+    <button id="next-question">Next</button>
+  </footer>
 
-        // Timer functionality
-        function startTimer(duration) {
-            let timer = duration;
-            const timerDisplay = document.getElementById('timer');
+  <script>
+    // Sample Data
+    const testData = [
+      {
+        passage: "Climate change is impacting global ecosystems. Rising temperatures disrupt natural habitats, causing species migration and potential extinction.",
+        question: "What is one major effect of climate change mentioned in the passage?",
+        options: ["Species Migration", "Habitat Stability", "Increased Biodiversity", "None of the above"],
+        answer: "Species Migration",
+      },
+      {
+        passage: "Deforestation leads to habitat destruction, threatening biodiversity. Sustainable practices can mitigate these effects.",
+        question: "How can biodiversity loss caused by deforestation be mitigated?",
+        options: ["Industrialization", "Sustainable Practices", "Deforestation", "Urbanization"],
+        answer: "Sustainable Practices",
+      },
+    ];
 
-            setInterval(() => {
-                const minutes = Math.floor(timer / 60);
-                const seconds = timer % 60;
-                timerDisplay.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-                timer--;
-                if (timer < 0) {
-                    alert("Time is up!");
-                }
-            }, 1000);
-        }
+    let currentQuestionIndex = 0;
+    const userAnswers = [];
 
-        // Load the passage and question
-        function loadQuestion(index) {
-            const data = testData[index];
-            document.getElementById('passage').textContent = data.passage;
-            document.getElementById('question').textContent = data.question;
+    const passageElement = document.getElementById("passage");
+    const questionElement = document.getElementById("question");
+    const optionsElement = document.getElementById("options");
+    const questionCounterElement = document.getElementById("question-counter");
+    const prevButton = document.getElementById("prev-question");
+    const nextButton = document.getElementById("next-question");
 
-            // Render options
-            const optionsContainer = document.getElementById('options');
-            optionsContainer.innerHTML = '';
-            data.options.forEach((option, i) => {
-                const optionItem = document.createElement('li');
+    function loadQuestion(index) {
+  const data = testData[index];
+  passageElement.textContent = data.passage;
+  questionElement.textContent = data.question;
 
-                const choiceBox = document.createElement('div');
-                choiceBox.className = 'choice-box';
-                choiceBox.dataset.value = option;
+  optionsElement.innerHTML = "";
+  data.options.forEach((option) => {
+    const optionElement = document.createElement("li");
+    optionElement.classList.add("choice-box");
+    optionElement.textContent = option;
 
-                const optionInput = document.createElement('input');
-                optionInput.type = 'radio';
-                optionInput.name = 'question';
-                optionInput.id = `option-${i}`;
-                optionInput.value = option;
+    if (userAnswers[index] === option) {
+      optionElement.classList.add("selected");
+    }
 
-                const optionLabel = document.createElement('label');
-                optionLabel.htmlFor = `option-${i}`;
-                optionLabel.textContent = option;
+    optionElement.addEventListener("click", () => {
+      document.querySelectorAll(".choice-box").forEach((box) => box.classList.remove("selected"));
+      optionElement.classList.add("selected");
+      userAnswers[index] = option;
+    });
 
-                choiceBox.appendChild(optionInput);
-                choiceBox.appendChild(optionLabel);
+    optionsElement.appendChild(optionElement);
+  });
 
-                if (userAnswers[index] === option) {
-                    choiceBox.classList.add('selected');
-                    optionInput.checked = true;
-                }
+  questionCounterElement.textContent = `Question ${index + 1} of ${testData.length}`;
+  prevButton.disabled = index === 0;
+  nextButton.disabled = index === testData.length - 1;
+}
 
-                // Add click event for animation
-                choiceBox.addEventListener('click', () => {
-                    document.querySelectorAll('.choice-box').forEach(box => box.classList.remove('selected'));
-                    choiceBox.classList.add('selected');
-                    optionInput.checked = true;
-                    userAnswers[index] = option;
-                });
 
-                optionItem.appendChild(choiceBox);
-                optionsContainer.appendChild(optionItem);
-            });
-
-            document.getElementById('question-counter').textContent = `Question ${index + 1} of ${testData.length}`;
-            document.getElementById('prev-question').disabled = index === 0;
-            document.getElementById('next-question').disabled = index === testData.length - 1;
-        }
-
-        document.getElementById('prev-question').addEventListener('click', () => {
-            if (currentQuestionIndex > 0) {
-                currentQuestionIndex--;
-                loadQuestion(currentQuestionIndex);
-            }
-        });
-
-        document.getElementById('next-question').addEventListener('click', () => {
-            if (currentQuestionIndex < testData.length - 1) {
-                currentQuestionIndex++;
-                loadQuestion(currentQuestionIndex);
-            }
-        });
-
-        // Initialize
+    prevButton.addEventListener("click", () => {
+      if (currentQuestionIndex > 0) {
+        currentQuestionIndex--;
         loadQuestion(currentQuestionIndex);
-        startTimer(31 * 60); // 31 minutes
-    </script>
+      }
+    });
+
+    nextButton.addEventListener("click", () => {
+      if (currentQuestionIndex < testData.length - 1) {
+        currentQuestionIndex++;
+        loadQuestion(currentQuestionIndex);
+      }
+    });
+
+    loadQuestion(currentQuestionIndex);
+
+
+    // Set the initial time in minutes (e.g., 30 minutes)
+let timerDuration = 30 * 60; // 30 minutes in seconds
+
+// Select the timer element
+const timerElement = document.getElementById("timer");
+
+// Function to format time as MM:SS
+function formatTime(seconds) {
+  const minutes = Math.floor(seconds / 60);
+  const remainingSeconds = seconds % 60;
+  return `${String(minutes).padStart(2, '0')}:${String(remainingSeconds).padStart(2, '0')}`;
+}
+
+// Function to start the timer
+function startCountdown(duration) {
+  let timeLeft = duration;
+
+  const countdownInterval = setInterval(() => {
+    if (timeLeft <= 0) {
+      clearInterval(countdownInterval); // Stop the timer
+      timerElement.textContent = "00:00";
+      alert("Time is up!"); // Trigger an alert or custom action
+    } else {
+      timerElement.textContent = formatTime(timeLeft); // Update timer display
+      timeLeft--;
+    }
+  }, 1000); // Update every second
+}
+
+// Start the countdown
+startCountdown(timerDuration);
+
+  </script>
 </body>
 </html>

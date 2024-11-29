@@ -1,0 +1,15 @@
+[
+    {
+      "passage": "The government allocates resources to achieve collective goals such as safety and prosperity.",
+      "question": "What are the main objectives of the government?",
+      "options": ["Safety", "Prosperity", "Both", "None"],
+      "answer": "Both"
+    },
+    {
+      "passage": "Climate change disrupts ecosystems, causing species migration and extinction.",
+      "question": "What is a major impact of climate change?",
+      "options": ["Stable ecosystems", "Species migration", "Increased biodiversity", "None"],
+      "answer": "Species migration"
+    }
+  ]
+  
