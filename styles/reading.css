@@ -2,7 +2,6 @@
 body {
     margin: 0;
     padding: 0;
-    font-family: 'Montserrat', sans-serif;
     background-color: #f8f9fa;
     color: #333;
     height: 100vh;
@@ -187,25 +186,40 @@ body {
     cursor: not-allowed;
 }
 
-.highlight {
-    background-color: #FFD54F;
-    position: relative;
+/* Highlighted text style */
+/* Highlight styling */
+mark.highlighted {
+    background-color: #ffeb3b; /* Bright yellow for highlighting */
     border-radius: 4px;
-    padding: 2px 4px;
-}
-
-.highlight:hover::after {
-    content: attr(data-note);
+    padding: 0 2px;
+    cursor: pointer; /* Indicate that it is clickable */
+  }
+  
+  /* Tooltip styling */
+  .tooltip {
     position: absolute;
-    top: 120%;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #4655B8;
+    background-color: #333;
     color: #fff;
-    padding: 10px;
-    font-size: 0.9rem;
-    border-radius: 8px;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    display: none;
+    z-index: 1000;
     white-space: nowrap;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-    z-index: 10;
-}
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  }
+  
+  .tooltip.visible {
+    display: block;
+    animation: fadeIn 0.3s ease;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  

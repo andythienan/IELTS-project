@@ -10,7 +10,6 @@
 </head>
 <body>
 
-    <!-- Header (Reusing Navbar Design) -->
     <header class="navbar">
         <div class="navbar-container">
             <!-- Logo and Branding -->
@@ -23,7 +22,7 @@
             <nav class="navbar-links">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link active" href="#">Home</a>
+                        <a class="nav-link" href="/index.html">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/pages/exam-library.html">Exam Library</a>
@@ -40,6 +39,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/pages/vocab.html">Vocabulary</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/pages/forum.html">Forum</a>
+                    </li>
                 </ul>
             </nav>
     
@@ -48,7 +50,7 @@
                 <div class="dropdown-group">
                     <button class="btn dropdown-btn">More ▼</button>
                     <div class="dropdown-content">
-                        <a href="/pages/about-us.html" class="dropdown-item">About us</a>
+                        <a href="/pages/about-us.html" class="dropdown-item" data-page="about-us">About us</a>
                     </div>
                 </div>
                 <a href="/pages/login.html" class="btn login-btn">Log in</a>
@@ -56,3 +58,8 @@
             </div>
         </div>
     </header>
+
+    <script src="activenav.js"></script>
+</body>
+
+</html>

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Interactive Reading Test</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="/styles/reading.css">
   <link rel="stylesheet" href="/styles/typography.css">
   <style>
     /* General Styling */
@@ -305,6 +305,84 @@ function startCountdown(duration) {
 
 // Start the countdown
 startCountdown(timerDuration);
+
+const passageContainer = document.getElementById("passage-container");
+let tooltip;
+
+// Create a tooltip for highlighting feedback
+function createTooltip() {
+  tooltip = document.createElement("div");
+  tooltip.classList.add("tooltip");
+  document.body.appendChild(tooltip);
+}
+
+// Update tooltip position dynamically
+function updateTooltipPosition(event) {
+  if (tooltip) {
+    tooltip.style.left = `${event.pageX}px`;
+    tooltip.style.top = `${event.pageY - 30}px`;
+  }
+}
+
+// Handle text highlighting
+function handleTextHighlight() {
+  const selection = window.getSelection();
+  const selectedText = selection.toString().trim();
+
+  // Only process if text is selected
+  if (selectedText.length > 0) {
+    const range = selection.getRangeAt(0);
+
+    // Avoid duplicate highlighting
+    const parentNode = range.commonAncestorContainer.parentNode;
+    if (parentNode && parentNode.tagName === "MARK") {
+      return;
+    }
+
+    const mark = document.createElement("mark");
+    mark.classList.add("highlighted");
+    mark.textContent = selection.toString();
+    range.deleteContents();
+    range.insertNode(mark);
+
+    // Display tooltip
+    tooltip.textContent = "Text highlighted! Click to remove.";
+    tooltip.classList.add("visible");
+    setTimeout(() => tooltip.classList.remove("visible"), 1500);
+
+    // Clear the selection
+    selection.removeAllRanges();
+
+    // Add event listener for removing highlight
+    mark.addEventListener("click", () => removeHighlight(mark));
+  }
+}
+
+// Remove highlight
+function removeHighlight(mark) {
+  const parent = mark.parentNode;
+  while (mark.firstChild) {
+    parent.insertBefore(mark.firstChild, mark);
+  }
+  parent.removeChild(mark);
+
+  // Display tooltip for removal
+  tooltip.textContent = "Highlight removed!";
+  tooltip.classList.add("visible");
+  setTimeout(() => tooltip.classList.remove("visible"), 1500);
+}
+
+// Attach event listeners
+passageContainer.addEventListener("mouseup", (event) => {
+  updateTooltipPosition(event);
+  handleTextHighlight();
+});
+
+passageContainer.addEventListener("mousemove", updateTooltipPosition);
+
+// Initialize the tooltip on page load
+createTooltip();
+
 
   </script>
 </body>
