@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Signup</title>
+    <style>
+        @font-face {
+            font-family: 'Google Sans';
+            src: url('/view/fonts/GoogleSansText-Medium.ttf') format('truetype');
+        }
+
+        * {
+            font-family: 'Google Sans', Arial, sans-serif;
+        }
+
+        /* General Styles */
+        body {
+            margin: 0;
+            padding: 0;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+
+        .signup-container {
+            max-width: 500px;
+            margin: 60px auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            position: relative;
+        }
+
+        .tab-container {
+            display: flex;
+            justify-content: space-around;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 20px;
+        }
+
+        .tab {
+            flex: 1;
+            text-align: center;
+            padding: 10px;
+            font-size: 1em;
+            cursor: pointer;
+            color: #666;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.3s, color 0.3s;
+        }
+
+        .tab.active {
+            color: #1e88e5;
+            font-weight: bold;
+            border-bottom: 2px solid #1e88e5;
+        }
+
+        .signup-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .signup-header h1 {
+            font-size: 2.2em;
+            color: #1e88e5;
+            margin: 0;
+        }
+
+        .signup-header p {
+            font-size: 1em;
+            color: #666;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #555;
+        }
+
+        .form-control {
+            width: calc(100% - 26px);
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: border-color 0.3s;
+        }
+
+        .form-control:focus {
+            border-color: #1e88e5;
+            outline: none;
+        }
+
+        .form-control.error {
+            border-color: #e53935;
+        }
+
+        .form-control[disabled] {
+            background-color: #f0f0f0;
+            cursor: not-allowed;
+        }
+
+        .error-message {
+            color: #e53935;
+            font-size: 0.9rem;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .primary-button {
+            width: 100%;
+            padding: 12px;
+            background-color: #1e88e5;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+        }
+
+        .primary-button:disabled {
+            background-color: #bbb;
+            cursor: not-allowed;
+        }
+
+        .primary-button:hover:not(:disabled) {
+            background-color: #1565c0;
+        }
+
+        .password-tooltip {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 110%;
+            transform: translateY(-50%);
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+            width: 250px;
+            font-size: 0.9rem;
+            color: #333;
+            z-index: 1000;
+        }
+
+        .password-tooltip p {
+            margin: 5px 0;
+        }
+
+        .password-tooltip .valid {
+            color: #4caf50;
+        }
+
+        .password-tooltip .invalid {
+            color: #e53935;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="signup-container">
+        <div class="tab-container">
+            <a href="login.html" class="tab" id="tab-login">Log in</a>
+            <a href="signup.html" class="tab active" id="tab-signup">Sign up</a>
+        </div>
+
+        <div class="signup-header">
+            <h1 id="step-title">Set up your account</h1>
+            <p id="step-indicator">Step 1 of 2</p>
+        </div>
+
+        <form id="signup-form">
+            <div id="step-1">
+                <div class="form-group">
+                    <label for="email">Email *</label>
+                    <input type="email" id="email" class="form-control" placeholder="Enter your email">
+                </div>
+
+                <div class="form-group" style="position: relative;">
+                    <label for="password">Password *</label>
+                    <input type="password" id="password" class="form-control" placeholder="Enter your password">
+                    <div class="password-tooltip" id="password-rules">
+                        <p id="rule-length" class="invalid">• At least 8 characters</p>
+                        <p id="rule-number" class="invalid">• At least 1 number</p>
+                        <p id="rule-special" class="invalid">• At least 1 special character (!@#$%^&*)</p>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirm-password">Re-enter Password *</label>
+                    <input type="password" id="confirm-password" class="form-control" placeholder="Confirm your password" disabled>
+                    <p class="error-message" id="password-error">Passwords do not match.</p>
+                </div>
+
+                <button type="button" class="primary-button" id="continue-button" disabled>Continue</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        const passwordInput = document.getElementById('password');
+        const confirmPasswordInput = document.getElementById('confirm-password');
+        const passwordRules = document.getElementById('password-rules');
+        const passwordError = document.getElementById('password-error');
+        const continueButton = document.getElementById('continue-button');
+
+        const ruleLength = document.getElementById('rule-length');
+        const ruleNumber = document.getElementById('rule-number');
+        const ruleSpecial = document.getElementById('rule-special');
+
+        const validatePassword = () => {
+            const password = passwordInput.value;
+
+            // Check password rules
+            const isLongEnough = password.length >= 8;
+            const hasNumber = /\d/.test(password);
+            const hasSpecialChar = /[!@#$%^&*]/.test(password);
+
+            ruleLength.classList.toggle('valid', isLongEnough);
+            ruleLength.classList.toggle('invalid', !isLongEnough);
+
+            ruleNumber.classList.toggle('valid', hasNumber);
+            ruleNumber.classList.toggle('invalid', !hasNumber);
+
+            ruleSpecial.classList.toggle('valid', hasSpecialChar);
+            ruleSpecial.classList.toggle('invalid', !hasSpecialChar);
+
+            // Enable/disable confirm password field
+            const isValidPassword = isLongEnough && hasNumber && hasSpecialChar;
+            confirmPasswordInput.disabled = !isValidPassword;
+
+            if (!isValidPassword) {
+                confirmPasswordInput.value = '';
+                validatePasswordMatch(); // Reset validation
+            } else {
+                validatePasswordMatch();
+            }
+        };
+
+        const validatePasswordMatch = () => {
+            const password = passwordInput.value;
+            const confirmPassword = confirmPasswordInput.value;
+
+            if (confirmPassword && password !== confirmPassword) {
+                confirmPasswordInput.classList.add('error');
+                passwordError.style.display = 'block';
+                continueButton.disabled = true;
+            } else {
+                confirmPasswordInput.classList.remove('error');
+                passwordError.style.display = 'none';
+            }
+
+            const isValidPassword = !ruleLength.classList.contains('invalid') &&
+                !ruleNumber.classList.contains('invalid') &&
+                !ruleSpecial.classList.contains('invalid') &&
+                password === confirmPassword;
+
+            continueButton.disabled = !isValidPassword;
+        };
+
+        passwordInput.addEventListener('focus', () => {
+            passwordRules.style.display = 'block';
+        });
+
+        passwordInput.addEventListener('blur', () => {
+            if (passwordInput.value === '') {
+                passwordRules.style.display = 'none';
+            }
+        });
+
+        passwordInput.addEventListener('input', validatePassword);
+        confirmPasswordInput.addEventListener('input', validatePasswordMatch);
+
+        
+    </script>
+</body>
+
+</html>

@@ -1,9 +1,66 @@
-// JavaScript: Functional Next and Previous Buttons
+const passageText = document.getElementById('passage-text');
+const highlightButton = document.getElementById('highlight-button');
+const colorPalette = document.querySelector('.color-palette');
+const colorOptions = document.querySelectorAll('.color-option');
+const noteArea = document.querySelector('.note-area');
+const noteText = document.getElementById('note-text');
+const saveNoteButton = document.getElementById('save-note-button');
 
-// Sample questions and passage data
-const questions = [
+let selectedColor = 'yellow'; // Default highlight color
+let currentHighlight = null; // Keep track of currently highlighted span
+
+// Highlight and Note-Taking Logic
+highlightButton.addEventListener('click', () => {
+    colorPalette.classList.toggle('active');
+});
+
+colorOptions.forEach(option => {
+    option.addEventListener('click', () => {
+        selectedColor = option.dataset.color;
+        highlightText();
+        colorPalette.classList.remove('active'); // Hide palette after selection
+    });
+});
+
+function highlightText() {
+    const selection = window.getSelection();
+    const selectedText = selection.toString().trim();
+    if (selectedText) {
+        const range = selection.getRangeAt(0);
+        currentHighlight = document.createElement('span');
+        currentHighlight.classList.add('highlight', selectedColor);
+        currentHighlight.textContent = selectedText;
+        range.deleteContents();
+        range.insertNode(currentHighlight);
+
+        // Show note area and position it near the highlight
+        noteArea.classList.add('active');
+        const highlightRect = currentHighlight.getBoundingClientRect();
+        noteArea.style.top = `${highlightRect.bottom + 5}px`;
+        noteArea.style.left = `${highlightRect.left}px`;
+        noteText.value = ''; // Clear previous note
+
+    }
+    selection.removeAllRanges();
+}
+
+passageText.addEventListener('mouseup', () => {
+    if (colorPalette.classList.contains('active')) {
+        highlightText();
+    }
+});
+
+saveNoteButton.addEventListener('click', () => {
+    if (currentHighlight) {
+        const note = noteText.value;
+        currentHighlight.dataset.note = note; // Store
+    }
+}
+
+   // Question Data (Replace with your actual questions)
+   const questions = [
     {
-        title: "Question 1",
+        number: 1,
         text: "What is the main idea of the passage?",
         options: [
             "A. Governments provide essential benefits to citizens.",
@@ -11,199 +68,217 @@ const questions = [
             "C. Adam Smith's theories had no impact on economics.",
             "D. All governmental systems operate in the same way."
         ],
-        passage: `
-        The term government describes the means by which a society organizes itself and how it allocates authority in order to accomplish collective goals and provide benefits that the society as a whole needs. Among the goals that governments around the world seek to accomplish are economic prosperity, secure national borders, and the safety and well-being of citizens. Governments also provide benefits for their citizens. The type of benefits provided differ according to the country and their specific type of governmental system, but governments commonly provide such things as education, health care, and an infrastructure for transportation. The term politics refers to the process of gaining and exercising control within a government for the purpose of setting and achieving particular goals, especially those related to the division of resources within a nation.
-
-        Sometimes governmental systems are confused with economic systems. This is because certain types of political thought or governmental organization are closely related to or develop with certain types of economic systems. For example, the economic system of capitalism in Western Europe and North America developed at roughly the same time as ideas about democratic republics, self-government, and natural rights. At this time, the idea of liberty became an important concept. According to John Locke, an English political philosopher of the seventeenth century, all people have natural rights to life, liberty, and property. From this came the idea that people should be free to consent to being governed. In the eighteenth century, in Great Britain’s North American colonies, and later in France, this developed into the idea that people should govern themselves through elected representatives and not a king; only those representatives chosen by the people had the right to make laws to govern them.
-
-        Similarly, Adam Smith, a Scottish philosopher who was born nineteen years after Locke’s death, believed that all people should be free to acquire property in any way that they wished. Instead of being controlled by government, business, and industry, Smith argued, people should be allowed to operate as they wish and keep the proceeds of their work. Competition would ensure that prices remained low and faulty goods disappeared from the market. In this way, businesses would reap profits, consumers would have their needs satisfied, and society as a whole would prosper. Smith discussed these ideas, which formed the basis for industrial capitalism, in his book The Wealth of Nations, which was published in 1776, the same year that the Declaration of Independence was written.
-        `
+        answer: "A"
     },
     {
-        title: "Question 2",
-        text: "Which statement best supports the main idea of the passage?",
+        number: 2,
+        text: "According to the passage, what is the purpose of politics?",
         options: [
-            "A. Governments always guarantee equality.",
-            "B. Political and economic systems often develop together.",
-            "C. Adam Smith advocated for strong government control.",
-            "D. Democracy and capitalism are unrelated."
+            "A. To confuse citizens about economics.",
+            "B. To set and achieve particular goals within a government.",
+            "C. To promote a single type of economic system.",
+            "D. To separate resources equally among all nations."
         ],
-        passage: `
-        In democratic societies, the rule of law and individual rights are intertwined with economic freedoms. The principles of free-market capitalism ensure that individuals and businesses have the liberty to make their own economic decisions while governments play a role in ensuring fairness and protecting the public good. This relationship between politics and economics has shaped modern societies, emphasizing the need for governance structures that prioritize equality, fairness, and prosperity.`
-    }
+        answer: "B"
+    },
+    // Add more questions here...
 ];
 
-
-// Track current question index
 let currentQuestionIndex = 0;
+const questionNumber = document.getElementById('question-number');
+const questionText = document.getElementById('question-text');
+const answerList = document.getElementById('answer-list');
+const prevButton = document.getElementById('prev-button');
+const nextButton = document.getElementById('next-button');
 
-// DOM Elements
-const passageElement = document.getElementById("passage");
-const questionTitleElement = document.getElementById("question-title");
-const questionTextElement = document.getElementById("question-text");
-const optionsContainer = document.getElementById("options-container");
-const prevButton = document.getElementById("prev-button");
-const nextButton = document.getElementById("next-button");
-
-// Load a question
+// Function to load a question
 function loadQuestion(index) {
     const question = questions[index];
-    passageElement.textContent = question.passage;
-    questionTitleElement.textContent = question.title;
-    questionTextElement.textContent = question.text;
+    questionNumber.textContent = `Question ${question.number}`;
+    questionText.textContent = question.text;
 
-    // Clear and load options
-    optionsContainer.innerHTML = "";
-    question.options.forEach(option => {
-        const label = document.createElement("label");
-        label.className = "choice-box";
-        label.innerHTML = `
-            <input type="radio" name="question${index}" value="${option}">
-            <span>${option}</span>
-        `;
-        optionsContainer.appendChild(label);
+    answerList.innerHTML = '';
+    question.options.forEach((option, i) => {
+        const listItem = document.createElement('li');
+        const radioInput = document.createElement('input');
+        radioInput.type = 'radio';
+        radioInput.name = 'answer';
+        radioInput.id = `answer${String.fromCharCode(65 + i)}`; // A, B, C, D
+        radioInput.value = String.fromCharCode(65 + i);
+
+        const label = document.createElement('label');
+        label.htmlFor = `answer${String.fromCharCode(65 + i)}`;
+        label.textContent = option;
+
+        listItem.appendChild(radioInput);
+        listItem.appendChild(label);
+        answerList.appendChild(listItem);
     });
-
-    // Handle button states
-    prevButton.disabled = index === 0;
-    nextButton.disabled = index === questions.length - 1;
 }
 
-// Event Listeners
-prevButton.addEventListener("click", () => {
+// Initial question load
+loadQuestion(currentQuestionIndex);
+
+// Navigation buttons
+prevButton.addEventListener('click', () => {
     if (currentQuestionIndex > 0) {
         currentQuestionIndex--;
         loadQuestion(currentQuestionIndex);
     }
 });
 
-nextButton.addEventListener("click", () => {
+nextButton.addEventListener('click', () => {
     if (currentQuestionIndex < questions.length - 1) {
         currentQuestionIndex++;
         loadQuestion(currentQuestionIndex);
     }
 });
 
-// Initial Load
-loadQuestion(currentQuestionIndex);
-
-
-// Timer variables
-let timeLeft = 45 * 60; // 45 minutes in seconds
-const timerElement = document.getElementById("timer");
-
-// Function to format time as MM:SS
-function formatTime(seconds) {
-    const minutes = Math.floor(seconds / 60);
-    const secs = seconds % 60;
-    return `${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
-}
-
-// Function to start the countdown
-function startTimer() {
-    const timerInterval = setInterval(() => {
-        if (timeLeft <= 0) {
-            clearInterval(timerInterval);
-            alert("Time's up!");
-        } else {
-            timeLeft--;
-            timerElement.textContent = formatTime(timeLeft);
-        }
-    }, 1000);
-}
-
-// Start the timer
-startTimer();
-
-
-document.addEventListener("DOMContentLoaded", () => {
-    const passage = document.getElementById("passage");
-    const highlightUI = document.getElementById("highlight-ui");
-    const tooltip = document.getElementById("tooltip");
-    const noteInput = document.querySelector(".note-input");
-    const saveNoteBtn = document.getElementById("save-note");
-    let activeColor = null; // Selected highlight color
-    let activeHighlight = null; // Active highlighted element for editing
-
-    // Hover to show highlight UI
-    passage.addEventListener("mouseover", (e) => {
-        if (!e.target.classList.contains("highlighted")) {
-            const selection = window.getSelection();
-            if (selection.toString().trim()) {
-                const range = selection.getRangeAt(0);
-                const rect = range.getBoundingClientRect();
-                highlightUI.style.top = `${window.scrollY + rect.bottom + 5}px`;
-                highlightUI.style.left = `${rect.left}px`;
-                highlightUI.style.display = "block";
-                activeHighlight = null; // Reset active highlight
-            }
-        }
+//Store highlights and notes
+let highlightsAndNotes = [];
+function saveHighlightsAndNotes() {
+    const allHighlights = document.querySelectorAll('.highlight');
+    allHighlights.forEach(highlight => {
+        const text = highlight.textContent;
+        const color = highlight.classList.contains('yellow') ? 'yellow' : highlight.classList.contains('green') ? 'green' : 'blue';
+        const note = highlight.dataset.note || '';
+        highlightsAndNotes.push({text, color, note});
     });
+    console.log(highlightsAndNotes);
+}
 
-    // Click on color to highlight
-    document.querySelectorAll(".color-btn").forEach((btn) => {
-        btn.addEventListener("click", (e) => {
-            const selection = window.getSelection();
-            if (!selection.toString().trim() && !activeHighlight) return;
+window.addEventListener('beforeunload', saveHighlightsAndNotes);
 
-            const range = selection.getRangeAt(0);
+function loadHighlightsAndNotes() {
+    const storedHighlightsAndNotes = localStorage.getItem('highlightsAndNotes');
 
-            if (activeHighlight) {
-                // Remove highlight if clicked again
-                if (activeHighlight.style.backgroundColor === e.target.dataset.color) {
-                    activeHighlight.replaceWith(document.createTextNode(activeHighlight.textContent));
-                    activeHighlight = null;
+    if (storedHighlightsAndNotes) {
+        const parsedHighlightsAndNotes = JSON.parse(storedHighlightsAndNotes);
+
+        parsedHighlightsAndNotes.forEach(highlightData => {
+            const textToHighlight = highlightData.text;
+            const color = highlightData.color;
+            const note = highlightData.note;
+
+            const textNodes = getTextNodes(passageText);
+
+            textNodes.forEach(textNode => {
+                const text = textNode.nodeValue;
+                const index = text.indexOf(textToHighlight);
+
+                if (index !== -1) {
+                    const range = document.createRange();
+                    range.setStart(textNode, index);
+                    range.setEnd(textNode, index + textToHighlight.length);
+
+                    const span = document.createElement('span');
+                    span.classList.add('highlight', color);
+                    span.textContent = textToHighlight;
+                    span.dataset.note = note;
+
+                    range.deleteContents();
+                    range.insertNode(span);
                 }
-                return;
-            }
-
-            // Add highlight
-            const span = document.createElement("span");
-            span.style.backgroundColor = e.target.dataset.color;
-            span.textContent = range.toString();
-            span.classList.add("highlighted");
-
-            range.deleteContents();
-            range.insertNode(span);
-
-            span.addEventListener("click", () => {
-                activeHighlight = span;
-                noteInput.value = span.getAttribute("data-note") || "";
-                highlightUI.style.display = "block";
             });
-
-            selection.removeAllRanges();
         });
-    });
+    }
+}
 
-    // Save note
-    saveNoteBtn.addEventListener("click", () => {
-        if (activeHighlight) {
-            activeHighlight.setAttribute("data-note", noteInput.value);
+// Helper function to get all text nodes within an element
+function getTextNodes(element) {
+    let textNodes = [];
+    if (element) {
+        if (element.nodeType === Node.TEXT_NODE) {
+            textNodes.push(element);
+        } else {
+            for (let child of element.childNodes) {
+                textNodes = textNodes.concat(getTextNodes(child));
+            }
         }
-        highlightUI.style.display = "none";
-    });
+    }
+    return textNodes;
+}
+window.addEventListener('load', loadHighlightsAndNotes);
 
-    // Hover on highlighted text to show tooltip
-    passage.addEventListener("mouseover", (e) => {
-        if (e.target.classList.contains("highlighted") && e.target.dataset.note) {
-            tooltip.textContent = e.target.dataset.note;
-            tooltip.style.display = "block";
-            tooltip.style.top = `${e.pageY + 5}px`;
-            tooltip.style.left = `${e.pageX + 5}px`;
-        }
-    });
+// Answer Submission/Storage
+let userAnswers = {};
 
-    passage.addEventListener("mouseout", (e) => {
-        if (e.target.classList.contains("highlighted")) {
-            tooltip.style.display = "none";
-        }
-    });
-
-    // Hide UI when clicking outside
-    document.addEventListener("click", (e) => {
-        if (!highlightUI.contains(e.target) && !passage.contains(e.target)) {
-            highlightUI.style.display = "none";
-        }
-    });
+answerList.addEventListener('change', (event) => {
+    if(event.target.type === 'radio') {
+        userAnswers[questions[currentQuestionIndex].number] = event.target.value;
+        console.log("User Answers:", userAnswers);
+    }
 });
+
+function submitTest() {
+    saveHighlightsAndNotes();
+    const results = calculateResults(userAnswers);
+    displayResults(results);
+    storeResults(userAnswers, results);
+}
+
+function calculateResults(userAnswers) {
+    let correctAnswers = 0;
+    for (const questionNumber in userAnswers) {
+        if (userAnswers.hasOwnProperty(questionNumber)) {
+            const userAnswer = userAnswers[questionNumber];
+            const correctAnswer = questions.find(q => q.number === parseInt(questionNumber)).answer;
+            if (userAnswer === correctAnswer) {
+                correctAnswers++;
+            }
+        }
+    }
+    return {
+        correct: correctAnswers,
+        total: questions.length,
+        score: (correctAnswers / questions.length) * 100
+    };
+}
+
+function displayResults(results) {
+    const resultDiv = document.createElement('div');
+    resultDiv.innerHTML = `
+        <h2>Test Results</h2>
+        <p>Correct Answers: ${results.correct}</p>
+        <p>Total Questions: ${results.total}</p>
+        <p>Score: ${results.score.toFixed(2)}%</p>
+        <button id="view-answers-button">View Answers</button>
+    `;
+    document.body.appendChild(resultDiv);
+
+    document.getElementById('view-answers-button').addEventListener('click', () => {
+        displayAnswerKey();
+    });
+}
+
+ function displayAnswerKey() {
+    const answerKeyDiv = document.createElement('div');
+    answerKeyDiv.innerHTML = '<h2>Answer Key</h2>';
+    const answerKeyList = document.createElement('ul');
+
+    questions.forEach(question => {
+        const listItem = document.createElement('li');
+        listItem.textContent = `Question ${question.number}: ${question.answer}`;
+        answerKeyList.appendChild(listItem);
+    });
+
+    answerKeyDiv.appendChild(answerKeyList);
+    document.body.appendChild(answerKeyDiv);
+}
+
+function storeResults(userAnswers, results) {
+    const testData = {
+        questions: questions,
+        userAnswers: userAnswers,
+        results: results,
+        highlightsAndNotes: highlightsAndNotes
+    };
+    localStorage.setItem('testData', JSON.stringify(testData));
+    console.log("Test Data Stored:", testData);
+}
+
+const submitButton = document.createElement('button');
+submitButton.id = 'submit-button';
+submitButton.textContent = 'Submit Test';
+submitButton.addEventListener('click', submitTest);
+document.querySelector('.controls').appendChild(submitButton);

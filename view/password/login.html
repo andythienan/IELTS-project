@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LearnEnglish Login</title>
+    <style>
+        @font-face {
+            font-family: 'Google Sans';
+            src: url('/view/fonts/GoogleSansText-Medium.ttf') format('truetype');
+        }
+
+        * {
+            font-family: 'Google Sans', Arial, sans-serif;
+        }
+
+        /* General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            
+        }
+
+        .main-menu {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .logo img {
+            max-width: 150px;
+        }
+
+        .login-container {
+            max-width: 500px;
+            margin: 60px auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            position: relative;
+        }
+
+        .tab-group {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .tab {
+            flex: 1;
+            text-align: center;
+            padding: 10px;
+            font-size: 1em;
+            cursor: pointer;
+            color: #666;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.3s, color 0.3s;
+        }
+
+        .tab:hover {
+            color: #1e88e5;
+        }
+
+        .tab.login--active {
+            color: #1e88e5;
+            font-weight: bold;
+            border-bottom: 2px solid #1e88e5;
+        }
+
+        .page-header {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #1e88e5;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            font-size: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            transition: border-color 0.3s;
+        }
+
+        .form-control:focus {
+            border-color: #1e88e5;
+            outline: none;
+        }
+
+        .primary {
+            background-color: #1e88e5;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+
+        .primary:hover {
+            background-color: #1565c0;
+        }
+
+        .primary:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        .forgot-password {
+            text-align: right;
+            font-size: 0.9rem;
+            margin-top: 10px;
+        }
+
+        .forgot-password a {
+            color: #1e88e5;
+            text-decoration: none;
+        }
+
+        .forgot-password a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 0.9rem;
+            color: #777;
+        }
+
+        footer a {
+            color: #1e88e5;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .login-container {
+                padding: 20px;
+            }
+
+            .tab {
+                font-size: 1rem;
+                padding: 8px;
+            }
+
+            .page-header {
+                font-size: 1.6rem;
+            }
+
+            .form-control {
+                padding: 8px;
+            }
+
+            .primary {
+                font-size: 0.9rem;
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <!-- Logo Section -->
+        <div class="main-menu">
+            <a href="https://openstax.org">
+            </a>
+        </div>
+
+        <!-- Login Form Container -->
+        <div class="login-container">
+            <div class="tab-group">
+                <a href="/view/password/login.html" class="tab login login--active">Log in</a>
+                <a href="/view/password/signup.html" class="tab signup">Sign up</a>
+            </div>
+
+            <header class="page-header">Log in to your LearnEnglish account</header>
+            <form action="/accounts/i/login" accept-charset="UTF-8" method="post">
+                <input type="hidden" name="authenticity_token" value="VGih3QOX3jqZDflQ7YDoDbCsueRxZiKE3_kmki6nvwx-YdHj4wXAKJMWL0qHviUNuDPkoeoSf5oVYsu7FBn6lQ" autocomplete="off">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="login_form_email" class="form-control" name="login_form[email]" placeholder="me@myemail.com" autofocus required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="login_form_password" class="form-control" name="login_form[password]" placeholder="Enter your password" required>
+                </div>
+
+                <button type="submit" class="primary">Continue</button>
+            </form>
+
+            <div class="forgot-password">
+                <a href="/accounts/i/forgot_password_form">Forgot your password?</a>
+            </div>
+        </div>
+
+        <footer>
+            <p>Copyright 2024 - 2025 LearnEnglish™</p>
+            <a href="/accounts/terms">Terms of Use</a>
+        </footer>
+    </div>
+</body>
+
+</html>
