@@ -4,261 +4,148 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="about us.css">
+    <link rel="stylesheet" href="header.css">
+    <link rel="stylesheet" href="footer.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-        }
-
-        /* Header with unified background */
-        .header {
-            background-color: #0047ab; /* Unified blue background */
-            color: white;
-            padding: 10px 20px 0 20px; /* Reduce bottom padding */
-        }
-
-        .header-top {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 5px; /* Reduce space between title and navbar */
-        }
-
-        .header-logo {
-            display: flex;
-            align-items: center;
-        }
-
-        .header-logo img {
-            height: 40px; /* Adjust logo height */
-            margin-right: 10px;
-        }
-
-        .header-logo h5 {
-            font-size: 20px;
-            font-weight: bold;
-            margin: 0;
-        }
-
-        .auth-links a {
-            color: white;
-            text-decoration: none;
-            font-size: 16px;
-            margin-left: 20px;
-        }
-
-        .auth-links a:hover {
-            text-decoration: underline;
-        }
-
-        /* Navbar styling */
-        .navbar {
-            padding: 5px 0; /* Reduce navbar padding */
-        }
-
-        .navbar-nav {
-            display: flex;
-            justify-content: space-evenly; /* Distribute items evenly across the full width */
-            flex: 1;
-        }
-
-        .navbar-nav .nav-link {
-            color: white !important;
-            font-size: 18px; /* Larger font for navigation links */
-            font-weight: bold;
-            padding: 5px 15px;
-            text-align: center;
-        }
-
-        .navbar-nav .nav-link:hover {
-            color: #d1e0ff !important; /* Lighter hover color */
-        }
-
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-
-        footer {
-            background-color: #0367a6;
-            color: white;
-            text-align: center;
-            padding: 20px 0;
-            margin-top: auto;
-        }
-
-        footer .logo {
-            font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-
-        footer .links {
-            margin: 10px 0;
-        }
-
-        footer .links a {
-            color: white;
-            text-decoration: none;
-            margin: 0 15px;
-            font-size: 14px;
-            font-weight: bold;
-        }
-
-        footer .links a:hover {
-            text-decoration: underline;
-        }
-
-        footer .copyright {
-            font-size: 12px;
-            margin-top: 10px;
-        }
-
-
-
-        .visually-hidden {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            padding: 0;
-            margin: -1px;
-            overflow: hidden;
-            clip: rect(0, 0, 0, 0);
-            border: 0;
-        }
+         /* General Reset */
+      .visually-hidden {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        border: 0;
+      }
+      .recovery-section {
+        background-color: rgba(181, 200, 255, 1);
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        align-items: center;
+        font-family: Krona One, sans-serif;
+        color: rgba(0, 0, 0, 1);
+        font-weight: 400;
+        padding: 238px 80px 105px;
+        border: 1px solid rgba(0, 0, 0, 1);
+      }
+      .recovery-card {
+        border-radius: 25px;
+        background-color: rgba(255, 255, 255, 1);
+        display: flex;
+        margin-left: 21px;
+        width: 815px;
+        max-width: 100%;
+        flex-direction: column;
+        align-items: start;
+        padding: 81px 80px;
+      }
+      .recovery-title {
+        font-size: 40px;
+      }
+      .recovery-message {
+        margin: 75px 0 0 23px;
+        font: 20px Alexandria, sans-serif;
+      }
+      .action-buttons {
+        align-self: end;
+        display: flex;
+        margin-top: 291px;
+        gap: 26px;
+        font-size: 24px;
+        color: rgba(255, 255, 255, 1);
+      }
+      .cancel-btn {
+        border-radius: 25px;
+        background-color: rgba(91, 93, 99, 1);
+        padding: 12px 46px 20px;
+        border: none;
+        cursor: pointer;
+        color: inherit;
+      }
+      .setup-btn {
+        border-radius: 25px;
+        background-color: rgba(132, 163, 255, 1);
+        padding: 14px 46px;
+        border: none;
+        cursor: pointer;
+        color: inherit;
+      }
+      @media (max-width: 991px) {
         .recovery-section {
-            background-color: rgba(181, 200, 255, 1);
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-            align-items: center;
-            font-family: Krona One, sans-serif;
-            color: rgba(0, 0, 0, 1);
-            font-weight: 400;
-            padding: 238px 80px 105px;
-            border: 1px solid rgba(0, 0, 0, 1);
+          padding: 100px 20px;
         }
         .recovery-card {
-            border-radius: 25px;
-            background-color: rgba(255, 255, 255, 1);
-            display: flex;
-            margin-left: 21px;
-            width: 815px;
-            max-width: 100%;
-            flex-direction: column;
-            align-items: start;
-            padding: 81px 80px;
+          padding: 0 20px;
         }
         .recovery-title {
-            font-size: 40px;
+          max-width: 100%;
         }
         .recovery-message {
-            margin: 75px 0 0 23px;
-            font: 20px Alexandria, sans-serif;
+          max-width: 100%;
+          margin-top: 40px;
         }
         .action-buttons {
-            align-self: end;
-            display: flex;
-            margin-top: 291px;
-            gap: 26px;
-            font-size: 24px;
-            color: rgba(255, 255, 255, 1);
+          margin-top: 40px;
         }
         .cancel-btn {
-            border-radius: 25px;
-            background-color: rgba(91, 93, 99, 1);
-            padding: 12px 46px 20px;
-            border: none;
-            cursor: pointer;
-            color: inherit;
+          padding: 0 20px;
         }
         .setup-btn {
-            border-radius: 25px;
-            background-color: rgba(132, 163, 255, 1);
-            padding: 14px 46px;
-            border: none;
-            cursor: pointer;
-            color: inherit;
+          padding: 0 20px;
         }
-        @media (max-width: 991px) {
-          .recovery-section {
-            padding: 100px 20px;
-          }
-          .recovery-card {
-            padding: 0 20px;
-          }
-          .recovery-title {
-            max-width: 100%;
-          }
-          .recovery-message {
-            max-width: 100%;
-            margin-top: 40px;
-          }
-          .action-buttons {
-            margin-top: 40px;
-          }
-          .cancel-btn {
-            padding: 0 20px;
-          }
-          .setup-btn {
-            padding: 0 20px;
-          }
-        }
-      </style>
+      }  
+    </style>
 </head>
 <body>
 
     <!-- Header Section -->
-    <header class="header">
-        <link href="https://fonts.googleapis.com/css2?family=Krona+One&display=swap" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet">
-        <!-- Top Header Content -->
-        <div class="header-top">
-          <div class="header-logo">
-            <img src="https://via.placeholder.com/40" alt="Logo">
-            <h5>IELTS Mastery | LearnEnglish</h5>
-          </div>
-          <div class="auth-links">
-            <a href="#"><i class="bi bi-search"></i></a>
-            <a href="#">Log in</a>
-            <a href="#">Register</a>
-          </div>
-        </div>
-        
-        <!-- Navigation Bar -->
-        <nav class="navbar navbar-expand-lg">
-          <div class="container-fluid">
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link active" href="#">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Exam Library</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Tips</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Skills</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Vocabulary</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Forum</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">About us</a>
-              </li>
-            </ul>
-          </div>
-        </nav>
-      </header>
+    <header class="navbar">
+        <div class="navbar-container">
+            <!-- Logo and Branding -->
+            <div class="navbar-logo">
+                <img src="https://via.placeholder.com/40x40" alt="Logo" />
+                <span class="navbar-brand">learnEnglish™</span>
+                <span class="navbar-tagline">Access. The future of education.</span>
+            </div>
     
+            <!-- Navigation Links -->
+            <nav class="navbar-links">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Exam Library</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Tips</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Skills</a>
+                    </li>
+                </ul>
+            </nav>
+    
+            <!-- Action Buttons -->
+            <div class="navbar-actions">
+                <div class="dropdown-group">
+                    <button class="btn dropdown-btn">More ▼</button>
+                    <div class="dropdown-content">
+                        <a href="#" class="dropdown-item">Vocabulary</a>
+                        <a href="#" class="dropdown-item">Forum</a>
+                        <a href="#" class="dropdown-item">About us</a>
+                    </div>
+                </div>
+                <a href="#" class="btn login-btn">Log in</a>
+                <a href="#" class="btn register-btn">Register</a>
+            </div>
+        </div>
+    </header>
+  
       <!-- Bootstrap Icons -->
       <script src="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.js"></script>
       <!-- Bootstrap JS -->
@@ -278,18 +165,53 @@
     </main>
 
     <!-- Footer Section -->
-    <footer>
-        <div class="logo">IELTS Mastery</div>
-        <div class="links">
-            <a href="#">About us</a>
-            <a href="#">Accessibility</a>
-            <a href="#">Complaints</a>
-            <a href="#">Legal & policies</a>
-            <a href="#">Sitemap</a>
-        </div>
-        <div class="copyright">
-            © 2024. IELTS is jointly owned by the British Council, IDP IELTS, and Cambridge University Press & Assessment.
-        </div>
+    <footer class="footer">
+      <div class="footer-main">
+          <!-- Mission Statement -->
+          <div class="footer-mission">
+              <h2>Our Mission</h2>
+              <p>
+                  We aim to make education accessible for everyone. Join us in
+                  transforming the future of learning. <a href="#">Give today</a> to support our mission.
+              </p>
+          </div>
+    
+          <!-- Links Columns -->
+          <div class="footer-columns">
+              <div class="footer-column">
+                  <h3>Help</h3>
+                  <a href="#">Contact Us</a>
+                  <a href="#">Support Center</a>
+                  <a href="#">FAQ</a>
+              </div>
+              <div class="footer-column">
+                  <h3>learnEnglish</h3>
+                  <a href="#">Press</a>
+                  <a href="#">Newsletter</a>
+                  <a href="#">Careers</a>
+              </div>
+              <div class="footer-column">
+                  <h3>Policies</h3>
+                  <a href="#">Accessibility Statement</a>
+                  <a href="#">Terms of Use</a>
+                  <a href="#">Licensing</a>
+                  <a href="#">Privacy Notice</a>
+                  <a href="#">Manage Cookies</a>
+              </div>
+          </div>
+      </div>
+    
+      <div class="footer-bottom">
+          <p>
+              © 2024. All rights reserved. This content is licensed under a <a href="#">Creative Commons Attribution 4.0 License</a>.
+          </p>
+          <div class="social-icons">
+              <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+              <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+              <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          </div>
+      </div>
     </footer>
 
 </body>
