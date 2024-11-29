@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="about us.css">
+    <link rel="stylesheet" href="header.css">
+    <link rel="stylesheet" href="footer.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Krona+One&display=swap" rel="stylesheet">
+    <title>Simple HTML Template</title>
+    <style>
+        .visually-hidden {
+            clip: rect(0 0 0 0);
+            clip-path: inset(50%);
+            height: 1px;
+            overflow: hidden;
+            position: absolute;
+            white-space: nowrap;
+            width: 1px;
+        }
+
+        .password-reset {
+            background: rgba(181, 200, 255, 1);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            align-items: center;
+            padding: 238px 80px 105px;
+            font: 400 20px Krona One, sans-serif;
+            border: 1px solid #000;
+        }
+
+        .reset-form-container {
+            border-radius: 25px;
+            background: #fff;
+            display: flex;
+            margin-left: 21px;
+            width: 815px;
+            max-width: 100%;
+            flex-direction: column;
+            padding: 83px 80px;
+        }
+
+        .reset-title {
+            font-size: 40px;
+            align-self: start;
+        }
+
+        .password-field-label {
+            align-self: start;
+            margin: 45px 0 0 24px;
+        }
+
+        .password-input {
+            border-radius: 25px;
+            background: rgba(217, 217, 217, 1);
+            align-self: center;
+            width: 595px;
+            max-width: 100%;
+            height: 52px;
+            margin-top: 26px;
+            border: none;
+            padding: 0 20px;
+        }
+
+        .confirm-password-label {
+            align-self: start;
+            margin: 24px 0 0 24px;
+        }
+
+        .confirm-password-input {
+            border-radius: 25px;
+            background: rgba(217, 217, 217, 1);
+            align-self: center;
+            width: 595px;
+            max-width: 100%;
+            height: 52px;
+            margin-top: 21px;
+            border: none;
+            padding: 0 20px;
+        }
+
+        .submit-button {
+            border-radius: 25px;
+            background: rgba(132, 163, 255, 1);
+            align-self: end;
+            margin-top: 165px;
+            font-size: 24px;
+            color: #fff;
+            border: none;
+            padding: 12px 40px;
+            cursor: pointer;
+        }
+
+        @media (max-width: 991px) {
+            .password-reset {
+                padding: 100px 20px;
+            }
+
+            .reset-form-container {
+                padding: 0 20px;
+            }
+
+            .reset-title {
+                max-width: 100%;
+            }
+
+            .password-field-label {
+                margin: 40px 0 0 10px;
+            }
+
+            .confirm-password-label {
+                margin-left: 10px;
+            }
+
+            .submit-button {
+                margin-top: 40px;
+                padding: 12px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <footer class="footer">
+        <div class="footer-main">
+            <!-- Mission Statement -->
+            <div class="footer-mission">
+                <h2>Our Mission</h2>
+                <p>
+                    We aim to make education accessible for everyone. Join us in
+                    transforming the future of learning. <a href="#">Give today</a> to support our mission.
+                </p>
+            </div>
+      
+            <!-- Links Columns -->
+            <div class="footer-columns">
+                <div class="footer-column">
+                    <h3>Help</h3>
+                    <a href="#">Contact Us</a>
+                    <a href="#">Support Center</a>
+                    <a href="#">FAQ</a>
+                </div>
+                <div class="footer-column">
+                    <h3>learnEnglish</h3>
+                    <a href="#">Press</a>
+                    <a href="#">Newsletter</a>
+                    <a href="#">Careers</a>
+                </div>
+                <div class="footer-column">
+                    <h3>Policies</h3>
+                    <a href="#">Accessibility Statement</a>
+                    <a href="#">Terms of Use</a>
+                    <a href="#">Licensing</a>
+                    <a href="#">Privacy Notice</a>
+                    <a href="#">Manage Cookies</a>
+                </div>
+            </div>
+        </div>
+      
+        <div class="footer-bottom">
+            <p>
+                © 2024. All rights reserved. This content is licensed under a <a href="#">Creative Commons Attribution 4.0 License</a>.
+            </p>
+            <div class="social-icons">
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+    </footer>
+    <main>
+        <div class="password-reset">
+            <form class="reset-form-container">
+              <h1 class="reset-title">Set up new password</h1>
+              
+              <label for="password" class="password-field-label">Password</label>
+              <input 
+                type="password" 
+                id="password" 
+                class="password-input"
+                required
+                aria-required="true"
+              />
+          
+              <label for="confirm-password" class="confirm-password-label">Retype new password</label>
+              <input 
+                type="password" 
+                id="confirm-password" 
+                class="confirm-password-input"
+                required
+                aria-required="true"
+              />
+          
+              <button type="submit" class="submit-button">Confirm</button>
+            </form>
+          </div>
+    </main>
+    <footer class="footer">
+        <div class="footer-main">
+            <!-- Mission Statement -->
+            <div class="footer-mission">
+                <h2>Our Mission</h2>
+                <p>
+                    We aim to make education accessible for everyone. Join us in
+                    transforming the future of learning. <a href="#">Give today</a> to support our mission.
+                </p>
+            </div>
+      
+            <!-- Links Columns -->
+            <div class="footer-columns">
+                <div class="footer-column">
+                    <h3>Help</h3>
+                    <a href="#">Contact Us</a>
+                    <a href="#">Support Center</a>
+                    <a href="#">FAQ</a>
+                </div>
+                <div class="footer-column">
+                    <h3>learnEnglish</h3>
+                    <a href="#">Press</a>
+                    <a href="#">Newsletter</a>
+                    <a href="#">Careers</a>
+                </div>
+                <div class="footer-column">
+                    <h3>Policies</h3>
+                    <a href="#">Accessibility Statement</a>
+                    <a href="#">Terms of Use</a>
+                    <a href="#">Licensing</a>
+                    <a href="#">Privacy Notice</a>
+                    <a href="#">Manage Cookies</a>
+                </div>
+            </div>
+        </div>
+      
+        <div class="footer-bottom">
+            <p>
+                © 2024. All rights reserved. This content is licensed under a <a href="#">Creative Commons Attribution 4.0 License</a>.
+            </p>
+            <div class="social-icons">
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
