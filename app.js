@@ -1,38 +1,35 @@
 const express = require('express');
+const morgan = require('morgan')
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
+const handlebars = require('express-handlebars');
 const path = require('path');
-const authRoutes = require('./routes/authRoute'); // Import auth routes
-
-dotenv.config(); // Load biến môi trường từ file .env
-
 const app = express();
+const port = 3000;
 
-// Middleware
-app.use(express.json()); // Parse JSON request body
-app.use(express.urlencoded({ extended: true })); // Parse form data
-app.use(express.static(path.join(__dirname, 'view'))); // Serve static files
+//Template engine
+app.engine('html', handlebars.engine({
+    extname: '.html',    // cấu hình Handlebars để nhận diện file .html
+}));
 
-// Định tuyến
+app.set('view engine', 'html'); 
+app.set('views', path.join(__dirname, 'views'));
+app.use(express.static(path.join(__dirname, 'public')));
+//Render
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'view', 'homepage.html'));
-});
-app.use('/auth', authRoutes); // Route cho authentication
+    res.render('homepage');
+  });
+  
+  app.get('/about-us', (req, res) => {
+    res.render('about-us');
+  });
+  
+  app.get('/exam-library', (req, res) => {
+    res.render('exam-library');
+  });
 
-// Kết nối MongoDB
-mongoose.connect('mongodb://localhost:27017/ieltsDB', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-});
 
-const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'Kết nối MongoDB thất bại:'));
-db.once('open', () => {
-    console.log('Kết nối MongoDB thành công!');
-});
-
-// Lắng nghe server
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log(`Server đang chạy tại http://localhost:${PORT}`);
-});
+//Lắng nghe server
+app.listen(port, () => {
+    console.log(`Server đang lắng nghe tại http://localhost:${port}`);
+  });
