@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/typography.css">
+    <link rel="stylesheet" href="/styles/log-reg-forgot.css">
+    <title>Login - learnEnglish</title>
+</head>
+
+<body>
+    <div>
+        <!-- Logo Section -->
+        <div class="main-menu">
+            <a href="https://openstax.org">
+            </a>
+        </div>
+
+        <!-- Login Form Container -->
+        <div class="container">
+            <div class="tab-group">
+                <a href="/pages/login.html" class="tab login login--active">Log in</a>
+                <a href="/pages/signup.html" class="tab signup">Sign up</a>
+            </div>
+
+            <header class="page-header">Log in to your LearnEnglish account</header>
+            <form action="/accounts/i/login" accept-charset="UTF-8" method="post">
+                <input type="hidden" name="authenticity_token" value="VGih3QOX3jqZDflQ7YDoDbCsueRxZiKE3_kmki6nvwx-YdHj4wXAKJMWL0qHviUNuDPkoeoSf5oVYsu7FBn6lQ" autocomplete="off">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="login_form_email" class="form-control" name="login_form[email]" placeholder="me@myemail.com" autofocus required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="login_form_password" class="form-control" name="login_form[password]" placeholder="Enter your password" required>
+                </div>
+
+                <button type="submit" class="primary">Continue</button>
+            </form>
+
+            <div class="forgot-password">
+                <a href="/pages/forgot-password.html">Forgot your password?</a>
+            </div>
+
+            <!-- Return to Home Button -->
+            <div class="return-home">
+                <a href="/index.html" class="return-home-btn">← Return to Home</a>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

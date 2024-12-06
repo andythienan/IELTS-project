@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About us - learnEnglish</title>
+    <link rel="stylesheet" href="/styles/about-us.css" />
+    <link rel="stylesheet" href="/styles/typography.css">
+  </head>
+  <body>
+    <header class="header">
+      <%- include('partials/header', { user: name}) %>
+
+  </header>
+
+    <!-- Main Content -->
+    <main class="about">
+      <!-- Mission Section -->
+      <section class="about-mission">
+        <h1>Our Mission</h1>
+        <p>
+          At IELTS Mastery, our mission is to make high-quality educational
+          resources accessible to every learner, everywhere. We believe in a
+          world where education is not bound by barriers and is available to all
+          regardless of their background, financial situation, or location.
+        </p>
+      </section>
+
+      <!-- Values Section -->
+      <section class="about-values">
+        <h2>Our Values</h2>
+        <div class="values-grid">
+          <div class="value-card">
+            <i class="fas fa-book-reader"></i>
+            <h3>Accessibility</h3>
+            <p>
+              We are dedicated to ensuring that every student has access to free
+              and high-quality learning materials.
+            </p>
+          </div>
+          <div class="value-card">
+            <i class="fas fa-globe"></i>
+            <h3>Inclusivity</h3>
+            <p>
+              Our resources are designed to be inclusive and adaptable for
+              diverse learning needs.
+            </p>
+          </div>
+          <div class="value-card">
+            <i class="fas fa-users"></i>
+            <h3>Collaboration</h3>
+            <p>
+              We work with educators, institutions, and partners to create
+              impactful learning experiences.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Team Section -->
+      <section class="about-team">
+        <h2>Meet Our Team</h2>
+        <p>
+          Our passionate team of educators, developers, and designers is
+          committed to making a difference in education.
+        </p>
+        <div class="team-grid">
+          <div class="team-member">
+            <img src="https://via.placeholder.com/150" alt="Team Member" />
+            <h3>John Doe</h3>
+            <p>Founder & CEO</p>
+          </div>
+          <div class="team-member">
+            <img src="https://via.placeholder.com/150" alt="Team Member" />
+            <h3>Jane Smith</h3>
+            <p>Head of Design</p>
+          </div>
+          <div class="team-member">
+            <img src="https://via.placeholder.com/150" alt="Team Member" />
+            <h3>Emily Johnson</h3>
+            <p>Director of Education</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <%- include('partials/footer'); -%>
+  </footer>
+
+    
+  </body>
+</html>

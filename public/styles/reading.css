@@ -1,0 +1,225 @@
+/* General Styling */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+    color: #333;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header */
+#header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #4655B8;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+#header h1 {
+    margin: 0;
+    font-size: 1.8rem;
+}
+
+#header span {
+    background: #6F82FE;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-size: 1rem;
+}
+
+/* Main Container */
+#container {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+/* Passage Section */
+#passage-container {
+    flex: 1;
+    padding: 20px;
+    background: #ffffff;
+    border-right: 1px solid #ddd;
+    overflow-y: auto;
+    border-radius: 8px;
+    margin-right: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#passage-container h2 {
+    color: #4655B8;
+    font-size: 1.5rem;
+    margin-top: 0;
+}
+
+#passage {
+    line-height: 1.8;
+    font-size: 1.1rem;
+    color: #555;
+}
+
+/* Question Section */
+#question-container {
+    flex: 1;
+    padding: 20px;
+    background: #ffffff;
+    overflow-y: auto;
+    border-radius: 8px;
+    margin-left: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#question-container h2 {
+    color: #4655B8;
+    font-size: 1.5rem;
+    margin-top: 0;
+}
+
+.options {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+.options li {
+    margin-bottom: 15px;
+}
+
+.choice-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f8f9fa;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 1.1rem;
+    font-weight: 500;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.choice-box:hover {
+    background-color: #eef4ff;
+    border-color: #4655B8;
+}
+
+.choice-box.selected {
+    background-color: #4655B8;
+    color: white;
+    border-color: #4655B8;
+    transform: scale(1.03);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Highlight Menu */
+#highlight-menu {
+    position: absolute;
+    background: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+#highlight-menu .color-btn {
+    width: 25px;
+    height: 25px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+#highlight-menu .color-btn:hover {
+    transform: scale(1.2);
+}
+
+.hidden {
+    display: none;
+}
+
+/* Footer */
+#footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #4655B8;
+    color: white;
+    box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.1);
+    font-size: 1rem;
+}
+
+#footer button {
+    background-color: #ffffff;
+    color: #4655B8;
+    border: none;
+    border-radius: 25px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+#footer button:hover {
+    background-color: #eef4ff;
+    transform: scale(1.05);
+}
+
+#footer button:disabled {
+    background-color: #ccc;
+    color: white;
+    cursor: not-allowed;
+}
+
+/* Highlighted text style */
+/* Highlight styling */
+mark.highlighted {
+    background-color: #ffeb3b; /* Bright yellow for highlighting */
+    border-radius: 4px;
+    padding: 0 2px;
+    cursor: pointer; /* Indicate that it is clickable */
+  }
+  
+  /* Tooltip styling */
+  .tooltip {
+    position: absolute;
+    background-color: #333;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    display: none;
+    z-index: 1000;
+    white-space: nowrap;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  }
+  
+  .tooltip.visible {
+    display: block;
+    animation: fadeIn 0.3s ease;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
