@@ -1,26 +1,9 @@
 [
   {
-    "id": "1733417489865",
+    "id": "1733471007791",
     "name": "Mike",
-    "email": "iammike1110@gmail.com",
-    "password": "$2b$10$Zzk/mtR7X/X4mumlbEVgg.77JZ6zrqYka0QqvGFJ1S71U2S6wZsfa"
-  },
-  {
-    "id": "1733417872840",
-    "name": "Mikeblocky ‎‎",
     "email": "mibeblocky@gmail.com",
-    "password": "$2b$10$gBJ..mOP07WJQc1mPH6oAeYgWEVI.a5zNuX/oiTyLSneOGwNp45li"
-  },
-  {
-    "id": "1733418003681",
-    "name": "Mikeblocky ‎‎",
-    "email": "me@mikeblocky.com",
-    "password": "$2b$10$g0Q22ZNsSGObEpzvd7H5mOH7ZznWDGgBbsY3HiW4LP6NYRzVZvU4m"
-  },
-  {
-    "id": "1733465055946",
-    "name": "Lê Minh Nhật",
-    "email": "mibeblocky@outlook.com",
-    "password": "$2b$10$4ts2YrY6mn2KVDQbIY0kbOWSkO4mEssepcrAM5WwGKPJGOdK1AF9C"
+    "password": "$2b$10$73uOToOegSJ6QmJWhSUuEuM2BhPrvWkJdclHgkQ3bMiU5E.LKuV7C",
+    "gender": "Male"
   }
 ]
