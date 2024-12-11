@@ -80,6 +80,30 @@
       <footer class="footer">
         <%- include('partials/footer'); -%>
     </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+          const tabs = document.querySelectorAll(".tab");
+          const tipsCards = document.querySelectorAll(".tips-cards");
+
+          tabs.forEach((tab) => {
+              tab.addEventListener("click", () => {
+                  // Remove active class from all tabs
+                  tabs.forEach((t) => t.classList.remove("active"));
+
+                  // Add active class to the clicked tab
+                  tab.classList.add("active");
+
+                  // Hide all tips content
+                  tipsCards.forEach((card) => card.classList.remove("active"));
+
+                  // Show the content of the clicked tab
+                  const skill = tab.dataset.skill;
+                  document.getElementById(skill).classList.add("active");
+              });
+          });
+      });
+  </script>
 </body>
 
 </html>

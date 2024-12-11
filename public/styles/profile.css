@@ -1,0 +1,297 @@
+/* General Reset */
+body {
+    font-size: 18px;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #fefefe; /* Lighter background */
+    color: #212121; /* Dark text */
+}
+
+main {
+    display: flex;
+    flex: 1;
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    gap: 24px; /* Consistent spacing */
+    max-width: 1400px;
+    box-sizing: border-box;
+}
+
+.sidebar {
+    width: 15%;
+    padding: 20px;
+    background-color: #f0f8ff; /* Subtle blue sidebar */
+    border-radius: 8px;
+}
+
+.sidebar h1 {
+    font-size: 1.8em;
+    color: #333;
+    margin-bottom: 16px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar li {
+    margin-bottom: 12px;
+}
+
+.sidebar a {
+    text-decoration: none;
+    color: #555;
+    font-size: 1em;
+    font-weight: 500;
+    padding: 8px 0;
+    display: block;
+    transition: color 0.3s, background-color 0.3s;
+}
+
+.sidebar a:hover {
+    color: #007bff;
+    background-color: #e0f7ff;
+}
+
+/* Divider Line */
+.divider {
+    width: 8px;
+    height: auto;
+    background: repeating-linear-gradient(
+        to bottom,
+        #aed581, #aed581 25%,
+        #ffcc80 25%, #ffcc80 50%,
+        #81d4fa 50%, #81d4fa 75%,
+        #f48fb1 75%, #f48fb1 100%
+    );
+    margin: 0 16px;
+    border-radius: 0;
+}
+
+/* Content Area */
+.content {
+    flex: 1;
+    padding: 20px;
+}
+
+.category h1 {
+    font-size: 2em;
+    color: #1e88e5;
+    margin-bottom: 14px;
+}
+
+.category h2 {
+    font-size: 1.5em;
+    color: #5e35b1;
+    margin-bottom: 23px;
+    margin-top:23px;
+}
+
+.category p {
+    font-size: 0.95em;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 12px;
+}
+
+.lessons-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  
+  .lesson {
+    background: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s;
+  }
+  
+  .lesson:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+  .lesson h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .lesson p {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.6;
+  }
+  
+  .lesson a {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 15px;
+    text-decoration: none;
+    font-size: 1rem;
+    border-radius: 5px;
+    color: white;
+    background-color: #007bff;
+    transition: background-color 0.3s;
+  }
+  
+  .lesson a.btn-success {
+    background-color: #28a745;
+  }
+  
+  .lesson a:hover {
+    background-color: #0056b3;
+  }
+  
+  .lesson a.btn-success:hover {
+    background-color: #218838;
+  }
+  
+.lesson button.btn-secondary {
+    background-color: #ddd;
+    color: #999;
+    cursor: not-allowed;
+}
+
+/* Announcement Section */
+.announcement {
+    position: relative;
+    padding: 20px;
+    background-color: #fffbcc; /* Light yellow background for emphasis */
+    border: 2px solid #ffe066; /* Gold border for prominence */
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-bottom: 24px;
+    animation: fadeIn 1s ease-in-out; /* Subtle fade-in animation */
+}
+
+.announcement h2 {
+    font-size: 1.5rem;
+    color: #ff6f00; /* Deep orange text color for the title */
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between emoji and text */
+}
+
+.announcement h2::before {
+    content: "🎉"; /* Emoji for excitement */
+    font-size: 1.8rem;
+    animation: bounce 1s infinite;
+}
+
+.announcement p {
+    font-size: 1rem;
+    color: #555; /* Subtle grey for the body text */
+    line-height: 1.5;
+}
+
+/* Logout Button */
+.logout-form {
+    margin-top: 20px;
+}
+
+.btn-logout {
+    display: block;
+    width: 100%;
+    padding: 10px 16px;
+    font-size: 1rem;
+    font-weight: 500;
+    text-align: center;
+    color: white;
+    background-color: #ff4d4d; /* Bright red for logout */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-logout:hover {
+    background-color: #e60000; /* Darker red on hover */
+    transform: translateY(-2px); /* Slightly lift button */
+}
+
+.btn-logout:active {
+    background-color: #cc0000; /* Even darker red on active */
+    transform: translateY(0); /* Reset lift on click */
+}
+
+/* Changelog Section */
+.changelog {
+    padding: 20px;
+    background-color: #f8f9fa;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 24px;
+    animation: fadeIn 1s ease-in-out; /* Subtle fade-in animation */
+}
+
+.changelog h2 {
+    font-size: 1.8rem;
+    color: #007bff; /* Bright blue for the header */
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between emoji and text */
+}
+
+.changelog h3 {
+    font-size: 1.4rem;
+    color: #333;
+    margin-bottom: 12px;
+}
+
+.changelog ul {
+    padding: 0;
+    list-style: none;
+    margin: 0;
+}
+
+.changelog ul li {
+    margin-bottom: 8px;
+    padding-left: 20px;
+    position: relative;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #555;
+}
+
+.changelog ul li:before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 1.2rem;
+    color: #007bff;
+}
+
+
+/* Bounce Animation for Emoji */
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Fade-in Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

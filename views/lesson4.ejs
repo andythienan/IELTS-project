@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Lessons - Synonyms and Antonyms</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/lesson.css"/>
+    <link rel="stylesheet" href="styles/typography.css">
+    <style>
+        .example-word {
+            font-weight: bold;
+            animation: pulse 1s infinite alternate;
+        }
+
+        @keyframes pulse {
+            from {
+                transform: scale(1);
+            }
+            to {
+                transform: scale(1.05);
+            }
+        }
+
+        .synonym-antonym-pair {
+            margin-bottom: 15px;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #f8f8f8;
+        }
+
+        .word {
+            font-weight: bold;
+            color: #28a745;
+            margin-bottom: 5px;
+        }
+
+        .synonyms {
+            color: #007bff;
+        }
+
+        .antonyms {
+            color: #dc3545;
+        }
+    </style>
+</head>
+<body>
+    <div class="lesson-card">
+        <h2>Lesson 3: Synonyms and Antonyms</h2>
+        <p>Learn about words with similar and opposite meanings!</p>
+        <button id="start-lesson-btn">Start Lesson</button>
+    </div>
+
+    <div id="lesson-content" style="display: none;">
+        <div class="lesson-section" id="section-1">
+            <h3 class="lesson-heading">What are Synonyms?</h3>
+            <p class="lesson-text">Synonyms are words that have the same or nearly the same meaning as another word.</p>
+            <div class="example-box">
+                <p>Examples:</p>
+                <ul>
+                    <li><span class="example-word">happy</span>, <span class="example-word">joyful</span>, <span class="example-word">content</span></li>
+                    <li><span class="example-word">big</span>, <span class="example-word">large</span>, <span class="example-word">huge</span></li>
+                </ul>
+            </div>
+            <button class="next-btn" data-target="section-2">Next</button>
+        </div>
+
+        <div class="lesson-section" id="section-2" style="display: none;">
+            <h3 class="lesson-heading">What are Antonyms?</h3>
+            <p class="lesson-text">Antonyms are words that have opposite meanings.</p>
+            <div class="example-box">
+                <p>Examples:</p>
+                <ul>
+                    <li><span class="example-word">hot</span> / <span class="example-word">cold</span></li>
+                    <li><span class="example-word">fast</span> / <span class="example-word">slow</span></li>
+                </ul>
+            </div>
+            <button class="next-btn" data-target="section-3">Next</button>
+        </div>
+
+        <div class="lesson-section" id="section-3" style="display: none;">
+            <h3 class="lesson-heading">Examples of Synonyms and Antonyms</h3>
+            <p class="lesson-text">Here are some more examples to help you understand the concept.</p>
+            <div class="synonym-antonym-pair">
+                <div class="word">Beautiful</div>
+                <div class="synonyms">Synonyms: <span class="example-word">pretty</span>, <span class="example-word">gorgeous</span>, <span class="example-word">stunning</span></div>
+                <div class="antonyms">Antonyms: <span class="example-word">ugly</span>, <span class="example-word">unattractive</span></div>
+            </div>
+            <div class="synonym-antonym-pair">
+                <div class="word">Brave</div>
+                <div class="synonyms">Synonyms: <span class="example-word">courageous</span>, <span class="example-word">fearless</span>, <span class="example-word">bold</span></div>
+                <div class="antonyms">Antonyms: <span class="example-word">cowardly</span>, <span class="example-word">timid</span></div>
+            </div>
+            <div class="synonym-antonym-pair">
+                <div class="word">Begin</div>
+                <div class="synonyms">Synonyms: <span class="example-word">start</span>, <span class="example-word">initiate</span>, <span class="example-word">commence</span></div>
+                <div class="antonyms">Antonyms: <span class="example-word">end</span>, <span class="example-word">finish</span>, <span class="example-word">conclude</span></div>
+              </div>
+            <div class="synonym-antonym-pair">
+                <div class="word">Happy</div>
+                <div class="synonyms">Synonyms: <span class="example-word">joyful</span>, <span class="example-word">cheerful</span>, <span class="example-word">content</span></div>
+                <div class="antonyms">Antonyms: <span class="example-word">sad</span>, <span class="example-word">unhappy</span>, <span class="example-word">miserable</span></div>
+            </div>
+            <button class="next-btn" data-target="section-4">Next</button>
+        </div>
+
+        <div class="lesson-section" id="section-4" style="display: none;">
+            <h3 class="lesson-heading">Interactive Quiz</h3>
+            <p class="lesson-text">Test your knowledge of synonyms and antonyms!</p>
+            <div id="quiz-container">
+                <!-- Quiz questions will be added here -->
+            </div>
+            <button id="submit-quiz-btn">Submit Quiz</button>
+            <button id="complete-lesson-btn" data-lesson-id="lesson-4">Complete Lesson</button>
+        </div>
+    </div>
+
+    <script src="/javascripts/lesson4.js"></script>
+</body>
+</html>

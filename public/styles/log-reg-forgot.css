@@ -245,11 +245,7 @@
     .error-message {
         color: #e53935;
         font-size: 0.9rem;
-<<<<<<< HEAD
         margin-top: 3px;
-=======
-        margin-top: 5px;
->>>>>>> d177cadf27b091a48dfa08d925b44c852c2b96b0
         display: none;
     }
 
@@ -359,7 +355,6 @@
         background-color: #1e88e5;
         color: white;
     }
-<<<<<<< HEAD
     
     .error-message {
         color: red;
@@ -429,6 +424,3 @@
         color: #6b4423;
         text-decoration-thickness: 10px;
     }
-=======
-    
->>>>>>> d177cadf27b091a48dfa08d925b44c852c2b96b0

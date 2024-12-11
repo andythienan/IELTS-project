@@ -1,264 +1,242 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Forum - learnEnglish</title>
-    <link rel="stylesheet" href="/styles/typography.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
-    <style>
-        /* General Reset */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-size:16px;
-        }
-
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f9f9f9;
-            color: #333;
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        /* Forum Container */
-        .forum-container {
-            max-width: 1200px;
-            margin: 50px auto;
-            padding: 20px;
-            background-color: #ffffff;
-            border: 1px solid #e0e0e0;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .forum-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding-bottom: 20px;
-            border-bottom: 1px solid #e0e0e0;
-        }
-
-        .forum-header h1 {
-            font-size: 2rem;
-            color: #333;
-        }
-
-        .forum-header a {
-            background-color: #007bff;
-            color: white;
-            padding: 10px 20px;
-            font-size: 1rem;
-            font-weight: bold;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-
-        .forum-header a:hover {
-            background-color: #0056b3;
-        }
-
-        /* Filters */
-        .forum-filters {
-            display: flex;
-            justify-content: space-between;
-            margin: 20px 0;
-        }
-
-        .forum-filters .filter-button {
-            background-color: #f1f1f1;
-            color: #333;
-            padding: 10px 15px;
-            font-size: 1rem;
-            border-radius: 5px;
-            border: none;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .forum-filters .filter-button:hover,
-        .forum-filters .filter-button.active {
-            background-color: #007bff;
-            color: white;
-        }
-
-        /* Post Cards */
-        .post-card {
-            display: flex;
-            flex-direction: column;
-            padding: 20px;
-            margin-bottom: 20px;
-            background-color: #f9f9f9;
-            border: 1px solid #e0e0e0;
-            border-radius: 10px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            transition: box-shadow 0.3s;
-        }
-
-        .post-card:hover {
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        .post-card .post-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .post-card .post-title {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-        }
-
-        .post-card .post-content {
-            font-size: 1rem;
-            color: #555;
-            margin-bottom: 10px;
-            line-height: 1.6;
-        }
-
-        .post-card .post-meta {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.9rem;
-            color: #777;
-        }
-
-        .post-card .post-meta span {
-            margin-right: 15px;
-        }
-
-        .post-card .post-meta a {
-            color: #007bff;
-        }
-
-        .post-card .post-meta a:hover {
-            text-decoration: underline;
-        }
-
-        .vote-controls {
-            display: flex;
-            gap: 10px;
-            align-items: center;
-        }
-
-        .vote-controls i {
-            cursor: pointer;
-            font-size: 1.2rem;
-            transition: color 0.3s;
-        }
-
-        .vote-controls i:hover {
-            color: #007bff;
-        }
-
-        .vote-count {
-            font-size: 1rem;
-            font-weight: bold;
-            color: #333;
-        }
-
-        @media (max-width: 768px) {
-            .post-card {
-                padding: 15px;
-            }
-        }
-    </style>
-</head>
-<body class="page-forum">
-    <!-- Header -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="/styles/typography.css" />
+    <link rel="stylesheet" href="/styles/forum.css" />
+  </head>
+  <body>
     <header class="header">
-        <%- include('partials/header', { user: name}) %>
-
+      <%- include('partials/header', { user: name}) %>
     </header>
 
-
-    <!-- Forum Main Section -->
     <div class="forum-container">
-        <div class="forum-header">
-            <h1>Today in the Forum</h1>
-            <a href="/pages/new-post.html">Create New Post</a>
-        </div>
-
-        <!-- Filters -->
-        <div class="forum-filters">
-            <button class="filter-button active" data-filter="hot">Hot</button>
-            <button class="filter-button" data-filter="new">New</button>
-            <button class="filter-button" data-filter="top">Top</button>
-        </div>
-
-        <!-- Post Example 1 -->
-        <div class="post-card" data-category="hot">
-            <div class="post-header">
-                <h3 class="post-title"><a href="/posts/1.html">What are some advanced tips for English writing?</a></h3>
-                <div class="vote-controls">
-                    <i class="fas fa-arrow-up" data-action="upvote"></i>
-                    <span class="vote-count">10</span>
-                    <i class="fas fa-arrow-down" data-action="downvote"></i>
-                </div>
-            </div>
-            <p class="post-content">Learning advanced writing skills is crucial for professional success. I’d love to hear recommendations on books, courses, or unique tips that have helped others.</p>
-            <div class="post-meta">
-                <span>Posted by <a href="/users/john.html">John Doe</a></span>
-                <span>3 hours ago</span>
-                <a href="/posts/1.html#comments">10 comments</a>
-            </div>
-        </div>
-
-        <!-- Post Example 2 -->
-        <div class="post-card" data-category="new">
-            <div class="post-header">
-                <h3 class="post-title"><a href="/posts/2.html">Suggestions for beginner podcasts?</a></h3>
-                <div class="vote-controls">
-                    <i class="fas fa-arrow-up" data-action="upvote"></i>
-                    <span class="vote-count">5</span>
-                    <i class="fas fa-arrow-down" data-action="downvote"></i>
-                </div>
-            </div>
-            <p class="post-content">Are there any beginner-level podcasts you’d recommend to improve English listening comprehension? Looking for something casual and fun!</p>
-            <div class="post-meta">
-                <span>Posted by <a href="/users/jane.html">Jane Smith</a></span>
-                <span>1 hour ago</span>
-                <a href="/posts/2.html#comments">5 comments</a>
-            </div>
-        </div>
+      <div class="forum-header">
+        <h1>Forum</h1>
+      </div>
+      <div id="posts"></div>
     </div>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <%- include('partials/footer'); -%>
-    </footer>
+    <!-- Floating Button -->
+    <button id="create-post-button" class="floating-button">
+      <i class="fas fa-plus"></i> Create Post
+    </button>
 
+    <!-- Modal -->
+    <div id="new-post-modal">
+      <button class="close-button" onclick="closeModal()">&times;</button>
+      <form id="new-post-form">
+        <input type="text" id="title" placeholder="Post Title" required />
+        <textarea id="content" placeholder="Post Content" required></textarea>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+
+    <footer class="footer"><%- include('partials/footer'); -%></footer>
     <script>
-        // Filter functionality
-        document.querySelectorAll('.filter-button').forEach(button => {
-            button.addEventListener('click', () => {
-                document.querySelectorAll('.filter-button').forEach(btn => btn.classList.remove('active'));
-                button.classList.add('active');
+      const loggedInUser = "<%= name %>";
 
-                const filter = button.getAttribute('data-filter');
-                document.querySelectorAll('.post-card').forEach(post => {
-                    post.style.display = post.dataset.category === filter || filter === 'hot' ? 'block' : 'none';
-                });
-            });
+      async function fetchPosts() {
+        const response = await fetch("/api/posts");
+        const posts = await response.json();
+        const postContainer = document.getElementById("posts");
+        postContainer.innerHTML = "";
+        posts.forEach((post) => addPostToDOM(post));
+      }
+
+      function addPostToDOM(post) {
+        const isAuthor = loggedInUser === post.author;
+        const timePosted = new Date(post.timestamp).toLocaleString();
+
+        const postCard = `
+    <div class="post-card" id="post-${post._id}">
+      <h3>${post.title}</h3>
+      <p>${post.content}</p>
+      <div class="post-meta">
+        Posted by <strong>${post.author}</strong> on ${timePosted}
+      </div>
+      <div class="post-actions">
+        <div class="vote-controls">
+          <i class="fas fa-arrow-up" onclick="vote('${
+            post._id
+          }', 'upvote')"></i>
+          <span>${post.votes}</span>
+          <i class="fas fa-arrow-down" onclick="vote('${
+            post._id
+          }', 'downvote')"></i>
+        </div>
+        ${
+          isAuthor
+            ? `<button class="delete-post" onclick="deletePost('${post._id}')"><i class="fas fa-trash"></i> Delete</button>`
+            : ""
+        }
+      </div>
+      <div class="replies">
+        <h4>Replies:</h4>
+        <div id="replies-${post._id}">
+          ${post.replies
+            .map(
+              (reply) => `
+            <div class="reply" id="reply-${reply._id}">
+              <p>${reply.content}</p>
+              <div class="reply-meta">
+                <span>Posted by <strong>${reply.author}</strong> on ${new Date(
+                reply.timestamp
+              ).toLocaleString()}</span>
+                ${
+                  loggedInUser === reply.author
+                    ? `<button class="delete-reply" onclick="deleteReply('${post._id}', '${reply._id}')"><i class="fas fa-trash"></i> Delete</button>`
+                    : ""
+                }
+              </div>
+            </div>
+          `
+            )
+            .join("")}
+        </div>
+        <form class="reply-form" onsubmit="addReply(event, '${post._id}')">
+          <textarea placeholder="Write a reply..." required></textarea>
+          <button type="submit">Reply</button>
+        </form>
+      </div>
+    </div>
+  `;
+        document
+          .getElementById("posts")
+          .insertAdjacentHTML("beforeend", postCard);
+      }
+
+      async function vote(postId, action) {
+        const response = await fetch(`/api/posts/${postId}/vote`, {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ action }),
         });
 
-        // Voting functionality
-        document.querySelectorAll('.vote-controls i').forEach(button => {
-            button.addEventListener('click', () => {
-                const isUpvote = button.dataset.action === 'upvote';
-                const voteCountElement = button.parentElement.querySelector('.vote-count');
-                let voteCount = parseInt(voteCountElement.textContent, 10);
-                voteCount = isUpvote ? voteCount + 1 : voteCount - 1;
-                voteCountElement.textContent = voteCount;
-            });
+        if (response.ok) {
+          const updatedPost = await response.json();
+          document.querySelector(`#post-${postId} span`).textContent =
+            updatedPost.votes;
+        }
+      }
+
+      async function deletePost(postId) {
+        try {
+          const response = await fetch(`/api/posts/${postId}`, {
+            method: "DELETE",
+          });
+
+          if (response.ok) {
+            // Remove the post from the DOM
+            document.getElementById(`post-${postId}`).remove();
+            alert("Post deleted successfully.");
+          } else {
+            const error = await response.json();
+            alert(`Error deleting post: ${error.error}`);
+          }
+        } catch (err) {
+          console.error("Error deleting post:", err);
+          alert("An unexpected error occurred while deleting the post.");
+        }
+      }
+
+      async function addReply(event, postId) {
+        event.preventDefault();
+
+        const replyContent = event.target.querySelector("textarea").value;
+
+        try {
+          const response = await fetch(`/api/posts/${postId}/replies`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ content: replyContent }),
+          });
+
+          if (response.ok) {
+            const newReply = await response.json();
+            const replyContainer = document.getElementById(`replies-${postId}`);
+            const replyHTML = `
+        <div class="reply">
+          <p>${newReply.content}</p>
+          <div class="reply-meta">
+            <span>Posted by <strong>${newReply.author}</strong> on ${new Date(
+              newReply.timestamp
+            ).toLocaleString()}</span>
+          </div>
+        </div>
+      `;
+            replyContainer.insertAdjacentHTML("beforeend", replyHTML);
+            event.target.reset(); // Clear the textarea
+          } else {
+            alert("Failed to add reply.");
+          }
+        } catch (error) {
+          console.error("Error adding reply:", error);
+          alert("An error occurred while adding the reply.");
+        }
+      }
+
+      async function deleteReply(postId, replyId) {
+        try {
+          const response = await fetch(
+            `/api/posts/${postId}/replies/${replyId}`,
+            {
+              method: "DELETE",
+            }
+          );
+
+          if (response.ok) {
+            // Remove the reply from the DOM
+            document.getElementById(`reply-${replyId}`).remove();
+            alert("Reply deleted successfully.");
+          } else {
+            const error = await response.json();
+            alert(`Error deleting reply: ${error.error}`);
+          }
+        } catch (err) {
+          console.error("Error deleting reply:", err);
+          alert("An unexpected error occurred while deleting the reply.");
+        }
+      }
+
+      document
+        .getElementById("new-post-form")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const title = document.getElementById("title").value;
+          const content = document.getElementById("content").value;
+
+          const response = await fetch("/api/posts", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ title, content }),
+          });
+
+          if (response.ok) {
+            const newPost = await response.json();
+            addPostToDOM(newPost);
+            closeModal();
+          }
         });
+
+      document
+        .getElementById("create-post-button")
+        .addEventListener("click", () => {
+          document.getElementById("new-post-modal").style.display = "block";
+        });
+
+      function closeModal() {
+        document.getElementById("new-post-modal").style.display = "none";
+      }
+
+      fetchPosts();
     </script>
-</body>
+  </body>
+  >
 </html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Lessons</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/lesson.css">
+    <link rel="stylesheet" href="styles/typography.css" >
+    <style>
+        .example-word {
+            font-weight: bold;
+            animation: pulse 1s infinite alternate; 
+        }
+
+        @keyframes pulse {
+            from {
+                transform: scale(1);
+            }
+            to {
+                transform: scale(1.05);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="lesson-card">
+        <h2>Lesson 1: Parts of Speech</h2>
+        <p>Learn about stuffs involving parts of speech!</p>
+        <button id="start-lesson-btn">Start Lesson</button>
+    </div>
+
+    <div id="lesson-content" style="display: none;">
+        <div class="lesson-section" id="part-1">
+            <h3 class="lesson-heading">Nouns</h3>
+            <p class="lesson-text">Nouns are words that name people, places, things, or ideas.</p>
+            <div class="example-box">
+              <p>Examples:</p>
+              <ul>
+                <li>The <span class="example-word">teacher</span> instructed her <span class="example-word">students</span> in the <span class="example-word">classroom</span>.</li>
+                <li><span class="example-word">Happiness</span> is a warm <span class="example-word">puppy</span>.</li>
+              </ul>
+            </div>
+            <button class="next-btn" data-target="part-2">Next</button>
+        </div>
+    
+        <div class="lesson-section" id="part-2" style="display: none;">
+            <h3 class="lesson-heading">Pronouns</h3>
+            <p class="lesson-text">Pronouns replace nouns to avoid repetition.</p>
+            <div class="example-box">
+              <p>Examples:</p>
+              <ul>
+                <li><span class="example-word">She</span> is reading a book. <span class="example-word">It</span> is very interesting.</li>
+                <li><span class="example-word">They</span> went to the park, and <span class="example-word">they</span> enjoyed <span class="example-word">themselves</span>.</li>
+              </ul>
+            </div>
+            <button class="next-btn" data-target="part-3">Next</button>
+        </div>
+    
+        <div class="lesson-section" id="part-3" style="display: none;">
+            <h3 class="lesson-heading">Verbs</h3>
+            <p class="lesson-text">Verbs describe actions or states of being.</p>
+            <div class="example-box">
+              <p>Examples:</p>
+              <ul>
+                <li>The children <span class="example-word">play</span> in the garden.</li>
+                <li>He <span class="example-word">is</span> a doctor.</li>
+                <li>She <span class="example-word">thinks</span> about the problem carefully.</li>
+              </ul>
+            </div>
+            <button class="next-btn" data-target="part-4">Next</button>
+        </div>
+    
+        <div class="lesson-section" id="part-4" style="display: none;">
+            <h3 class="lesson-heading">Adjectives</h3>
+            <p class="lesson-text">Adjectives describe nouns or pronouns.</p>
+            <div class="example-box">
+              <p>Examples:</p>
+              <ul>
+                <li>She wore a <span class="example-word">beautiful</span> dress.</li>
+                <li>The <span class="example-word">tall</span> man walked with a <span class="example-word">quick</span> pace.</li>
+              </ul>
+            </div>
+            <button class="next-btn" data-target="part-5">Next</button>
+        </div>
+    
+        <div class="lesson-section" id="part-5" style="display: none;">
+            <h3 class="lesson-heading">Adverbs</h3>
+            <p class="lesson-text">Adverbs modify verbs, adjectives, or other adverbs. They often end in '-ly'.</p>
+            <div class="example-box">
+              <p>Examples:</p>
+              <ul>
+                <li>He ran <span class="example-word">quickly</span> to catch the bus.</li>
+                <li>The test was <span class="example-word">extremely</span> difficult.</li>
+                <li>She spoke <span class="example-word">very</span> softly.</li>
+              </ul>
+            </div>
+            <button class="next-btn" data-target="part-6">Next</button>
+        </div>
+    
+        <div class="lesson-section" id="part-6" style="display: none;">
+            <h3 class="lesson-heading">Prepositions</h3>
+            <p class="lesson-text">Prepositions show the relationship between a noun or pronoun and another word in the sentence.</p>
+            <div class="example-box">
+              <p>Examples:</p>
+              <ul>
+                <li>The cat is <span class="example-word">on</span> the table.</li>
+                <li>He walked <span class="example-word">to</span> the store.</li>
+                <li>She is good <span class="example-word">at</span> playing the piano.</li>
+              </ul>
+            </div>
+            <button class="next-btn" data-target="part-7">Next</button>
+        </div>
+    
+        <div class="lesson-section" id="part-7" style="display: none;">
+            <h3 class="lesson-heading">Conjunctions</h3>
+            <p class="lesson-text">Conjunctions connect words, phrases, or clauses.</p>
+            <div class="example-box">
+              <p>Examples:</p>
+              <ul>
+                <li>I like tea <span class="example-word">and</span> coffee.</li>
+                <li>She is smart <span class="example-word">but</span> lazy.</li>
+                <li>He studied hard <span class="example-word">because</span> he wanted to pass the exam.</li>
+              </ul>
+            </div>
+            <button class="next-btn" data-target="part-8">Next</button>
+        </div>
+    
+        <div class="lesson-section" id="part-8" style="display: none;">
+            <h3 class="lesson-heading">Interjections</h3>
+            <p class="lesson-text">Interjections are words that express strong emotions and are often followed by an exclamation mark.</p>
+            <div class="example-box">
+              <p>Examples:</p>
+              <ul>
+                <li><span class="example-word">Wow!</span> That's amazing!</li>
+                <li><span class="example-word">Ouch!</span> That hurts!</li>
+                <li><span class="example-word">Oh no!</span> I forgot my keys.</li>
+              </ul>
+            </div>
+            <button id="complete-lesson-btn" data-lesson-id="lesson-1">Complete Lesson</button>
+        </div>
+    </div>
+
+    <script src="/javascripts/lesson.js"></script>
+</body>
+</html>

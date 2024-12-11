@@ -1,218 +1,152 @@
 <!DOCTYPE html>
 <html lang="en">
-
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exam library - learnEnglish</title>
-    <link rel="stylesheet" href="/styles/exam-library.css">
+    <title>Exam Library - Learn English</title>
+    <link rel="stylesheet" href="/styles/styles.css">
     <link rel="stylesheet" href="/styles/typography.css">
 </head>
-
-
 
 <body class="page-exam-library">
 
     <header class="header">
-        <%- include('partials/header', { user: name}) %>
-
+        <%- include('partials/header', { user: name }) %>
     </header>
 
+    <main>
+        <aside class="sidebar">
+            <h1>Categories</h1>
+            <ul>
+                <li><a href="#">Listening</a></li>
+                <li><a href="#">Reading</a></li>
+                <li><a href="#">Writing</a></li>
+                <li><a href="#">Speaking</a></li>
+                <li><a href="#">Mixed</a></li>
+            </ul>
+        </aside>
 
-        <main>
+        <div class="divider"></div>
 
-            <aside class="sidebar">
-                <h1>Category</h1>
-                <ul>
-                    <li><a href="#">Listening</a></li>
-                    <li><a href="#">Reading</a></li>
-                    <li><a href="#">Writing</a></li>
-                    <li><a href="#">Speaking</a></li>
-                    <li><a href="#">Mixed</a></li>
-                </ul>
-            </aside>
-
-            <div class="divider"></div>
-
-            <section class="content">
-                <section class="announcement">
-                    <h2>Exciting News!</h2>
-                    <p>
-                        We are thrilled to announce the release of our first tests for the
-                        <strong>Reading</strong> and <strong>Writing</strong> skills. Start
-                        exploring and testing your skills today!
-                    </p>
+        <section class="content">
+                 <!-- Announcement Section -->
+                 <section class="announcement">
+                    <h2>New Exams Added!</h2>
+                    <p>Get ready to elevate your skills! 🚀 Our brand-new interactive tests for <b>Reading</b> and <b>Writing</b> are here to challenge and inspire you! 🎉 Test your knowledge today and stay tuned—more exciting tests are just around the corner! 🔥</p>
                 </section>
+
                 
-                <section class="category">
-                    <h1>Exam Library</h1>
-                    <p>Simple to use, simple to adopt. Our exam library is designed to meet the standard scope and
-                        sequence requirements
-                        of their respective courses – and are 100% free online. Complete with free resources for
-                        educators
-                        (like LMS integration, lecture slides, instructor answer keys, and more), all tests are fully
-                        customizable.
-                        Explore our library below and add any and all parts useful to your course.</p>
-                </section>
-
-                <section class="category">
-                    <h2>Listening</h2>
-                    <p>Our listening tests are 100% free, customizable, and can be accessed anytime, anywhere. Did we
-                        also mention that they come with free resources for educators and students? Check them out
-                        below!</p>
-                    <div class="books-grid">
-                        <div class="book unavailable">
-                            <h3>Test 1</h3>
-                            <div class="dropdown book-dropdown">
-                                <button class="dropbtn book-dropbtn" disabled>Unavailable</button>
-                            </div>
-                        </div>
-
-                        <div class="book unavailable">
-                            <h3>Test 2</h3>
-                            <div class="dropdown book-dropdown">
-                                <button class="dropbtn book-dropbtn" disabled>Unavailable</button>
-                            </div>
-                        </div>
-                        <div class="book unavailable">
-                            <h3>Test 3</h3>
-                            <div class="dropdown book-dropdown">
-                                <button class="dropbtn book-dropbtn" disabled>Unavailable</button>
-                            </div>
-                        </div>
-                    </div>
-                    </div>
-                </section>
-
-                <section class="category">
-                    <h2>Reading</h2>
-                    <p>Our free reading tests are free, flexible, and can be viewed online, downloaded as a PDF, and
-                        come with additional free educational resources. Check them out below!</p>
-                    <div class="books-grid">
-                        <div class="book available">
-                            <h3>Test 1 <span class="tag">Available</span></h3>
-                            <div class="dropdown book-dropdown">
-                                <button class="dropbtn book-dropbtn">Get the test <i
-                                        class="fas fa-chevron-down"></i></button>
-                                <div class="dropdown-content book-dropdown-content">
-                                    <a href="#">View online</a>
-                                    <a href="/files/Reading_Test_Paper_Updated.pdf" download>Download a PDF</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="book unavailable">
-                            <h3>Test 2</h3>
-                            <div class="dropdown book-dropdown">
-                                <button class="dropbtn book-dropbtn" disabled>Unavailable</button>
-                            </div>
-                        </div>
-                        <div class="book unavailable">
-                            <h3>Test 3</h3>
-                            <div class="dropdown book-dropdown">
-                                <button class="dropbtn book-dropbtn" disabled>Unavailable</button>
-                            </div>
-                        </div>
-                    </div>
-
-                </section>
-
-                <section class="category">
-                    <h2>Writing</h2>
-                    <p>Our free reading tests are free, flexible, and can be viewed online, downloaded as a PDF, and
-                        come with additional free educational resources. Check them out below!</p>
-                    <div class="books-grid">
-                        <div class="book available">
-                            <h3>Test 1 <span class="tag">Available</span></h3>
-                            <div class="dropdown book-dropdown">
-                                <button class="dropbtn book-dropbtn">Get the test <i
-                                        class="fas fa-chevron-down"></i></button>
-                                <div class="dropdown-content book-dropdown-content">
-                                    <a href="#">View online</a>
-                                    <a href="#">Download a PDF</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="book unavailable">
-                            <h3>Test 2</h3>
-                            <div class="dropdown book-dropdown">
-                                <button class="dropbtn book-dropbtn" disabled>Unavailable</button>
-                            </div>
-                        </div>
-                        <div class="book unavailable">
-                            <h3>Test 3</h3>
-                            <div class="dropdown book-dropdown">
-                                <button class="dropbtn book-dropbtn" disabled>Unavailable</button>
-                            </div>
-                        </div>
-                    </div>
-
-                </section>
-
-                <section class="category">
-                    <h2>Speaking</h2>
-                    <p>Our free speaking tests are free, flexible, and can be viewed online, downloaded as a PDF, and
-                        come with additional free educational resources. Check them out below!</p>
-                    <div class="books-grid">
-                        <div class="book unavailable">
-                            <h3>Test 1</h3>
-                            <div class="dropdown book-dropdown">
-                                <button class="dropbtn book-dropbtn" disabled>Unavailable</button>
-                            </div>
-                        </div>
-
-                        <div class="book unavailable">
-                            <h3>Test 2</h3>
-                            <div class="dropdown book-dropdown">
-                                <button class="dropbtn book-dropbtn" disabled>Unavailable</button>
-                            </div>
-                        </div>
-                        <div class="book unavailable">
-                            <h3>Test 3</h3>
-                            <div class="dropdown book-dropdown">
-                                <button class="dropbtn book-dropbtn" disabled>Unavailable</button>
-                            </div>
-                        </div>
-                    </div>
-
-                </section>
-
-                <section class="category">
-                    <h2>Mixed</h2>
-                    <p>Our free mixed tests are free, flexible, and can be viewed online, downloaded as a PDF, and come
-                        with additional free educational resources. Check them out below!</p>
-                    <div class="books-grid">
-                        <div class="book unavailable">
-                            <h3>Test 1</h3>
-                            <div class="dropdown book-dropdown">
-                                <button class="dropbtn book-dropbtn" disabled>Unavailable</button>
-                            </div>
-                        </div>
-
-                        <div class="book unavailable">
-                            <h3>Test 2</h3>
-                            <div class="dropdown book-dropdown">
-                                <button class="dropbtn book-dropbtn" disabled>Unavailable</button>
-                            </div>
-                        </div>
-                        <div class="book unavailable">
-                            <h3>Test 3</h3>
-                            <div class="dropdown book-dropdown">
-                                <button class="dropbtn book-dropbtn" disabled>Unavailable</button>
-                            </div>
-                        </div>
-                    </div>
-
-                </section>
+            <!-- Introduction -->
+            <section class="category">
+                <h1>Exam Library</h1>
+                <p>Simple to use, simple to adopt. Our exam library is designed to meet the standard scope and sequence requirements of their respective courses – and are 100% free online. Complete with free resources for educators (like LMS integration, lecture slides, instructor answer keys, and more), all tests are fully customizable. Explore our library below and add any and all parts useful to your course.</p>
             </section>
-        </main>
 
-        <footer class="footer">
-            <%- include('partials/footer'); -%>
-        </footer>
+            <!-- Listening Section -->
+            <section class="category">
+                <h2>Listening</h2>
+                <p>Our listening tests are 100% free, customizable, and can be accessed anytime, anywhere. Did we also mention that they come with free resources for educators and students? Check them out below!</p>
+                <div class="grid">
+                    <div class="card exam unavailable">
+                        <h3>Test 1</h3>
+                        <button class="btn btn-secondary" disabled>Coming Soon</button>
+                    </div>
+
+                    <div class="card exam unavailable">
+                        <h3>Test 2</h3>
+                        <button class="btn btn-secondary" disabled>Coming Soon</button>
+                    </div>
+
+                    <div class="card exam unavailable">
+                        <h3>Test 3</h3>
+                        <button class="btn btn-secondary" disabled>Coming Soon</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Reading Section -->
+            <section class="category">
+                <h2>Reading</h2>
+                <p>Our free reading tests are free, flexible, and can be viewed online, downloaded as a PDF, and come with additional free educational resources. Check them out below!</p>
+                <div class="grid">
+                    <div class="card exam available">
+                        <h3>Test 1 <span class="tag">Available</span></h3>
+                        <div class="dropdown exam-dropdown">
+                            <button class="btn btn-primary">Get the Test <i class="fas fa-chevron-down"></i></button>
+                            <div class="dropdown-content exam-dropdown-content">
+                                <a href="/reading">View Online</a>
+                                <a href="/files/Reading1.pdf">Download PDF</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card exam unavailable">
+                        <h3>Test 2</h3>
+                        <button class="btn btn-secondary" disabled>Coming Soon</button>
+                    </div>
+
+                    <div class="card exam unavailable">
+                        <h3>Test 3</h3>
+                        <button class="btn btn-secondary" disabled>Coming Soon</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Writing Section -->
+            <section class="category">
+                <h2>Writing</h2>
+                <p>Our free writing tests are free, flexible, and can be viewed online, downloaded as a PDF, and come with additional free educational resources. Check them out below!</p>
+                <div class="grid">
+                    <div class="card exam available">
+                        <h3>Test 1 <span class="tag">Available</span></h3>
+                        <div class="dropdown exam-dropdown">
+                            <button class="btn btn-primary">Get the Test <i class="fas fa-chevron-down"></i></button>
+                            <div class="dropdown-content exam-dropdown-content">
+                                <a href="/writing1">View Online</a>
+                                <a href="/files/Writing1.pdf">Download PDF</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card exam unavailable">
+                        <h3>Test 2</h3>
+                        <button class="btn btn-secondary" disabled>Coming Soon</button>
+                    </div>
+
+                    <div class="card exam unavailable">
+                        <h3>Test 3</h3>
+                        <button class="btn btn-secondary" disabled>Coming Soon</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Speaking Section -->
+            <section class="category">
+                <h2>Speaking</h2>
+                <p>Our free speaking tests are free, flexible, and can be viewed online, downloaded as a PDF, and come with additional free educational resources. Check them out below!</p>
+                <div class="grid">
+                    <div class="card exam unavailable">
+                        <h3>Test 1</h3>
+                        <button class="btn btn-secondary" disabled>Coming Soon</button>
+                    </div>
+
+                    <div class="card exam unavailable">
+                        <h3>Test 2</h3>
+                        <button class="btn btn-secondary" disabled>Coming Soon</button>
+                    </div>
+
+                    <div class="card exam unavailable">
+                        <h3>Test 3</h3>
+                        <button class="btn btn-secondary" disabled>Coming Soon</button>
+                    </div>
+                </div>
+            </section>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <%- include('partials/footer'); -%>
+    </footer>
 
 </body>
-
 </html>

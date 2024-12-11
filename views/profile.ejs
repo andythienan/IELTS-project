@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="/styles/profile.css"> <!-- Ensure this points to your CSS file -->
+    <link rel="stylesheet" href="/styles/typography.css"> <!-- Ensure this points to your CSS file -->
+</head>
+<body>
+    <header>
+        <%- include('partials/header') %>
+    </header>
+
+    <main>
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <h1>Welcome, <%= user.name %>!</h1>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/profile">Profile</a></li>
+                <li><a href="/exam-library">Exam Library</a></li>
+                <li><a href="/reading">Reading</a></li>
+                <li>
+                    <form action="/logout?_method=DELETE" method="POST" class="logout-form">
+                        <button type="submit" class="btn-logout">Logout</button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Divider -->
+        <div class="divider"></div>
+
+        <!-- Content Area -->
+        <div class="content">
+            <div class="category">
+                <h1>Your Profile</h1>
+                <h2>Details</h2>
+                <p><strong>Name:</strong> <%= user.name %></p>
+                <p><strong>Email:</strong> <%= user.email %></p>
+                <p><strong>Gender:</strong> <%= user.gender %></p>
+
+                <h2>Activity</h2>
+                <div class="lessons-grid">
+                    <div class="lesson">
+                        <h3>Completed tests</h3>
+                        <p id="completed-tests">Loading...</p>
+                        <a href="/history" class="btn-primary">View Quiz History</a>
+                    </div>
+                    <div class="lesson">
+                        <h3>Lesson progress</h3>
+                        <p id="lesson-progress">Loading...</p>
+                        <a href="/history" class="btn-success">View Lesson History</a>
+                    </div>
+                </div>
+                
+
+                <h2>Pathway to Achieve</h2>
+                <div class="lessons-grid">
+                    <div class="lesson">
+                        <h3>Step 1: Build Grammar</h3>
+                        <p>Focus on mastering grammar fundamentals to strengthen your writing and speaking skills.</p>
+                        <a href="/lesson-library" class="btn-primary">Start Grammar Lessons</a>
+                    </div>
+                    <div class="lesson">
+                        <h3>Step 2: Practice Listening</h3>
+                        <p>Improve your listening comprehension by practicing with audio materials.</p>
+                        <a href="/exam-library" class="btn-success">Try Listening Practice</a>
+                    </div>
+                    <div class="lesson">
+                        <h3>Step 3: Take Mock Exams</h3>
+                        <p>Simulate real exam scenarios to prepare yourself for test conditions.</p>
+                        <a href="/exam-library" class="btn-primary">Take a Mock Exam</a>
+                    </div>
+                    <div class="lesson">
+                        <h3>Step 4: Expand Vocabulary</h3>
+                        <p>Learn new words daily to enhance your reading, writing, and speaking skills.</p>
+                        <a href="/lesson-library" class="btn-success">Learn Vocabulary</a>
+                    </div>
+                </div>
+                <h2>Announcements</h2>
+                <div class="announcement changelog">
+                    <h2>📜 Changelog</h2>
+                    <div class="changelog-entry">
+                        <h3>December 11th, 2024</h3>
+                        <ul>
+                            <li>
+                                <strong>🚀 Interactive Tests:</strong> 
+                                Reading and Writing tests are now live, offering a comprehensive way to challenge your skills. Test your knowledge with:
+                                <ul>
+                                    <li>Reading comprehension passages with detailed questions.</li>
+                                    <li>Writing prompts designed to evaluate grammar, structure, and creativity.</li>
+                                    <li>Instant feedback to help you improve as you progress.</li>
+                                </ul>
+                                Don’t wait—start testing your skills today!
+                            </li>
+                            <li>
+                                <strong>📘 New Lessons Added:</strong> 
+                                We’ve expanded our lesson library with advanced content, including:
+                                <ul>
+                                    <li><strong>Advanced Grammar Topics:</strong> Deep dive into complex sentence structures, conditionals, and modifiers.</li>
+                                    <li><strong>Idiomatic Expressions:</strong> Master 50+ new idioms to enhance your everyday communication.</li>
+                                </ul>
+                                Perfect for learners looking to refine their English fluency.
+                            </li>
+                            <li>
+                                <strong>🎯 Updated Mock Exams:</strong> 
+                                Mock exams for Listening and Reading have been revamped to align with the latest testing standards:
+                                <ul>
+                                    <li><strong>Listening:</strong> New audio scenarios added, including business meetings, lectures, and everyday conversations.</li>
+                                    <li><strong>Reading:</strong> Enhanced reading passages with diverse topics and updated question formats.</li>
+                                </ul>
+                                These updates aim to simulate real test conditions for optimal preparation.
+                            </li>
+                            <li>
+                                <strong>🧑‍💻 Profile Enhancements:</strong> 
+                                Explore the all-new **Profile** section, designed to give you insights into your progress:
+                                <ul>
+                                    <li>View your completed tests, lessons, and writing assignments.</li>
+                                    <li>Track your learning progress with easy-to-read charts and stats.</li>
+                                    <li>Access available only to registered users—sign up today if you haven’t already!</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <strong>📖 Vocabulary Page Integration:</strong> 
+                                To streamline learning and avoid duplicated content, the Vocabulary page has been merged into the Lessons section:
+                                <ul>
+                                    <li>All vocabulary content is now part of relevant lessons for a seamless learning experience.</li>
+                                    <li>Expect new vocabulary topics to be added in upcoming lessons.</li>
+                                    <li>This change allows for more focused and efficient content delivery.</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <strong>🐛 Fixed Bugs:</strong>
+                                We squashed a number of bugs to make the platform more stable:
+                                <ul>
+                                    <li>Fixed a crash when accessing the "Reading" tests on older browsers.</li>
+                                    <li>Corrected typo errors in some vocabulary lessons.</li>
+                                    <li>Resolved an issue where user progress wasn't being updated in the Profile section.</li>
+                                    <li>Fixed inconsistent button styling in the sidebar navigation.</li>
+                                    <li>Addressed a problem where the "Lesson Completed" status was not reflected correctly on mobile devices.</li>
+                                    <li>Fixed audio playback issues in Listening tests for Safari users.</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <strong>⚠️ Known Issues:</strong>
+                                As this is our first publish, there are a few known bugs we’re actively working to fix:
+                                <ul>
+                                    <li>Progress tracking for mock exams may occasionally show incorrect completion percentages.</li>
+                                    <li>Some users experience delays when loading the Profile page.</li>
+                                    <li>Dropdown menus in the sidebar may overlap content on smaller screens.</li>
+                                    <li>Grammar lessons may not load correctly on Internet Explorer (we recommend switching to a modern browser).</li>
+                                    <li>Audio may not pause correctly when switching tabs in Listening practice tests.</li>
+                                </ul>
+                                Our team is working diligently to resolve these issues in upcoming updates!
+                            </li>
+                            <li>
+                                <strong>✨ Future Improvements:</strong>
+                                We’re excited about upcoming features and improvements, including:
+                                <ul>
+                                    <li>Adding AI-powered feedback for writing assignments to give you personalized tips.</li>
+                                    <li>Introducing a dark mode for a better viewing experience at night.</li>
+                                    <li>Improving the user dashboard with more detailed analytics and goal-setting features.</li>
+                                    <li>Launching mobile-friendly mock exams for seamless practice on-the-go.</li>
+                                    <li>Expanding the lessons library with business English, TOEFL preparation, and IELTS practice materials.</li>
+                                </ul>
+                                Stay tuned for more updates!
+                            </li>
+                        </ul>
+                        
+                        
+                    </div>
+                    <div class="changelog-entry">
+                        <h3>December 6th, 2024</h3>
+                        <ul>
+                            <li><strong>Released to public:</strong> Our website is now online, we will add more features in the near feature!</li>
+                        </ul>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <%- include('partials/footer'); -%>
+    </footer>
+
+    <script>
+        async function fetchUserActivity() {
+            try {
+                const response = await fetch('/api/user-activity');
+                if (!response.ok) throw new Error('Failed to fetch user activity.');
+    
+                const { completedQuizzes, completedLessons, completedWritings } = await response.json();
+    
+                // Update the UI with fetched data
+                document.getElementById('completed-tests').textContent = 
+                    `${completedQuizzes + completedWritings} tests completed (${completedQuizzes} quizzes, ${completedWritings} writings)`;
+                
+                document.getElementById('lesson-progress').textContent = 
+                    `${completedLessons} lessons completed`;
+    
+            } catch (error) {
+                console.error('Error fetching user activity:', error);
+                document.getElementById('completed-tests').textContent = 'Unable to load data.';
+                document.getElementById('lesson-progress').textContent = 'Unable to load data.';
+            }
+        }
+    
+        // Fetch user activity on page load
+        fetchUserActivity();
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,301 @@
+     /* General Reset */
+     * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Arial", sans-serif;
+        background-color: #f9f9f9;
+        color: #333;
+      }
+
+      /* Forum Container */
+      .forum-container {
+        max-width: 800px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #ffffff;
+        border: 1px solid #e0e0e0;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .forum-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+
+      .forum-header h1 {
+        font-size: 2rem;
+        color: #333;
+      }
+
+      /* Post Cards */
+      .post-card {
+        padding: 20px;
+        margin-bottom: 20px;
+        background-color: #f9f9f9;
+        border: 1px solid #e0e0e0;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        position: relative;
+      }
+
+      .post-card h3 {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+        color: #007bff;
+        cursor: pointer;
+      }
+
+      .post-card h3:hover {
+        text-decoration: underline;
+      }
+
+      .post-card p {
+        font-size: 1rem;
+        color: #555;
+        line-height: 1.6;
+      }
+
+      .post-meta {
+        font-size: 0.9rem;
+        color: #777;
+        margin-top: 10px;
+      }
+
+      .post-actions {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 15px;
+      }
+
+      .post-actions .vote-controls {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .vote-controls i {
+        cursor: pointer;
+        font-size: 1.2rem;
+        transition: color 0.3s;
+      }
+
+      .vote-controls i:hover {
+        color: #007bff;
+      }
+
+      .delete-post {
+        background: none;
+        border: none;
+        color: #ff4d4f;
+        cursor: pointer;
+        font-size: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        transition: color 0.3s;
+      }
+
+      .delete-post:hover {
+        color: #d9363e;
+      }
+
+      /* Floating Create Post Button */
+      .floating-button {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 50px;
+        padding: 15px 25px;
+        font-size: 1rem;
+        font-weight: bold;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: background-color 0.3s, transform 0.3s;
+      }
+
+      .floating-button:hover {
+        background-color: #0056b3;
+        transform: translateY(-2px);
+      }
+
+      .floating-button i {
+        font-size: 1.2rem;
+      }
+
+      /* Modal Styling */
+      #new-post-modal {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        z-index: 1001;
+        max-width: 500px;
+        width: 90%;
+      }
+
+      #new-post-modal form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      #new-post-modal form input,
+      #new-post-modal form textarea {
+        width: 100%;
+        padding: 10px;
+        font-size: 1rem;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+      }
+
+      #new-post-modal form button {
+        padding: 10px;
+        font-size: 1rem;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      #new-post-modal form button:hover {
+        background-color: #0056b3;
+      }
+
+      #new-post-modal .close-button {
+        background: none;
+        border: none;
+        color: #333;
+        font-size: 1.2rem;
+        cursor: pointer;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+      }
+
+      #new-post-modal .close-button:hover {
+        color: #ff4d4f;
+      }
+
+      .replies {
+        margin-top: 20px;
+        padding: 10px;
+        border-top: 1px solid #ddd;
+      }
+
+      .reply {
+        padding: 10px;
+        margin-top: 10px;
+        background-color: #f9f9f9;
+        border: 1px solid #e0e0e0;
+        border-radius: 5px;
+      }
+
+      .reply-meta {
+        font-size: 0.9rem;
+        color: #777;
+        margin-top: 5px;
+      }
+
+      .reply-form {
+        margin-top: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .reply-form textarea {
+        width: 100%;
+        padding: 10px;
+        font-size: 1rem;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+      }
+
+      .reply-form button {
+        align-self: flex-end;
+        padding: 5px 15px;
+        font-size: 1rem;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      .reply-form button:hover {
+        background-color: #0056b3;
+      }
+
+
+      .reply {
+  padding: 10px;
+  margin-top: 10px;
+  background-color: #f9f9f9;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  position: relative;
+}
+
+.reply-meta {
+  font-size: 0.9rem;
+  color: #777;
+  margin-top: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.delete-post {
+  background: none;
+  border: none;
+  color: #ff4d4f;
+  cursor: pointer;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: color 0.3s;
+}
+
+.delete-post:hover {
+  color: #d9363e;
+}
+
+.delete-reply {
+  background: none;
+  border: none;
+  color: #ff4d4f;
+  cursor: pointer;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: color 0.3s;
+}
+
+.delete-reply:hover {
+  color: #d9363e;
+}

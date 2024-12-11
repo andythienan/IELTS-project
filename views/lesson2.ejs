@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Lessons - Tenses</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/lesson.css">
+    <link rel="stylesheet" href="styles/typography.css">
+    <style>
+        .example-word {
+            font-weight: bold;
+            animation: pulse 1s infinite alternate;
+        }
+
+        @keyframes pulse {
+            from {
+                transform: scale(1);
+            }
+            to {
+                transform: scale(1.05);
+            }
+        }
+
+        /* Styles for the timeline animation */
+        .timeline {
+            width: 100%;
+            height: 10px;
+            background-color: #ddd;
+            margin-top: 20px;
+            position: relative;
+            border-radius: 10px;
+        }
+
+        .timeline-marker {
+            width: 20px;
+            height: 20px;
+            background-color: #28a745;
+            border-radius: 50%;
+            position: absolute;
+            top: -5px;
+            cursor: pointer;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .timeline-marker:hover {
+            background-color: #218838;
+            transform: scale(1.1);
+        }
+
+        .timeline-label {
+            position: absolute;
+            top: -40px;
+            text-align: center;
+            width: 120px;
+            left: 50%;
+            margin-left: -60px;
+            font-size: 0.9rem;
+            color: #333;
+        }
+
+        .timeline-info {
+            margin-top: 30px;
+            font-size: 1rem;
+            color: #333;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="lesson-card">
+        <h2>Lesson 2: Tenses</h2>
+        <p>Learn about different tenses in English!</p>
+        <button id="start-lesson-btn">Start Lesson</button>
+    </div>
+
+    <div id="lesson-content" style="display: none;">
+        <!-- ... (Previous lesson sections: tense-1 to tense-9) ... -->
+        <div class="lesson-section" id="tense-1">
+            <h3 class="lesson-heading">Simple Present</h3>
+            <p class="lesson-text">The simple present tense is used to describe habits, unchanging situations, general truths, and fixed arrangements.</p>
+            <div class="example-box">
+                <p>Examples:</p>
+                <ul>
+                    <li>The sun <span class="example-word">rises</span> in the east.</li>
+                    <li>She <span class="example-word">works</span> as a teacher.</li>
+                </ul>
+            </div>
+            <button class="next-btn" data-target="tense-2">Next</button>
+        </div>
+
+        <div class="lesson-section" id="tense-2" style="display: none;">
+            <h3 class="lesson-heading">Simple Past</h3>
+            <p class="lesson-text">The simple past tense is used to talk about completed actions in the past.</p>
+            <div class="example-box">
+                <p>Examples:</p>
+                <ul>
+                    <li>He <span class="example-word">visited</span> Paris last year.</li>
+                    <li>They <span class="example-word">watched</span> a movie yesterday.</li>
+                </ul>
+            </div>
+            <button class="next-btn" data-target="tense-3">Next</button>
+        </div>
+
+        <div class="lesson-section" id="tense-3" style="display: none;">
+            <h3 class="lesson-heading">Simple Future</h3>
+            <p class="lesson-text">The simple future tense is used to talk about things that haven't happened yet.</p>
+            <div class="example-box">
+                <p>Examples:</p>
+                <ul>
+                    <li>I <span class="example-word">will travel</span> to Japan next month.</li>
+                    <li>She <span class="example-word">will start</span> her new job soon.</li>
+                </ul>
+            </div>
+            <button class="next-btn" data-target="tense-4">Next</button>
+        </div>
+
+        <div class="lesson-section" id="tense-4" style="display: none;">
+            <h3 class="lesson-heading">Present Continuous</h3>
+            <p class="lesson-text">The present continuous tense is used to describe actions that are happening at the current moment.</p>
+            <div class="example-box">
+                <p>Examples:</p>
+                <ul>
+                    <li>They <span class="example-word">are playing</span> football now.</li>
+                    <li>He <span class="example-word">is studying</span> for his exam.</li>
+                </ul>
+            </div>
+            <button class="next-btn" data-target="tense-5">Next</button>
+        </div>
+
+        <div class="lesson-section" id="tense-5" style="display: none;">
+            <h3 class="lesson-heading">Past Continuous</h3>
+            <p class="lesson-text">The past continuous tense is used to describe actions that were ongoing at a specific time in the past.</p>
+            <div class="example-box">
+                <p>Examples:</p>
+                <ul>
+                    <li>She <span class="example-word">was reading</span> a book when I called.</li>
+                    <li>They <span class="example-word">were watching</span> TV all night.</li>
+                </ul>
+            </div>
+            <button class="next-btn" data-target="tense-6">Next</button>
+        </div>
+
+        <div class="lesson-section" id="tense-6" style="display: none;">
+            <h3 class="lesson-heading">Future Continuous</h3>
+            <p class="lesson-text">The future continuous tense indicates an action that will be ongoing at a specific time in the future.</p>
+            <div class="example-box">
+                <p>Examples:</p>
+                <ul>
+                    <li>At this time tomorrow, I <span class="example-word">will be flying</span> to New York.</li>
+                    <li>She <span class="example-word">will be working</span> on her project all day.</li>
+                </ul>
+            </div>
+            <button class="next-btn" data-target="tense-7">Next</button>
+        </div>
+
+        <div class="lesson-section" id="tense-7" style="display: none;">
+            <h3 class="lesson-heading">Present Perfect</h3>
+            <p class="lesson-text">The present perfect tense is used to describe actions that happened at an unspecified time before now, or that began in the past and continue to the present.</p>
+            <div class="example-box">
+                <p>Examples:</p>
+                <ul>
+                    <li>I <span class="example-word">have visited</span> Rome.</li>
+                    <li>He <span class="example-word">has lived</span> here for five years.</li>
+                </ul>
+            </div>
+            <button class="next-btn" data-target="tense-8">Next</button>
+        </div>
+
+        <div class="lesson-section" id="tense-8" style="display: none;">
+            <h3 class="lesson-heading">Past Perfect</h3>
+            <p class="lesson-text">The past perfect tense is used to describe an action that was completed before another action in the past.</p>
+            <div class="example-box">
+                <p>Examples:</p>
+                <ul>
+                    <li>She <span class="example-word">had finished</span> her work before he arrived.</li>
+                    <li>By the time I got there, they <span class="example-word">had already left</span>.</li>
+                </ul>
+            </div>
+            <button class="next-btn" data-target="tense-9">Next</button>
+        </div>
+
+        <div class="lesson-section" id="tense-9" style="display: none;">
+            <h3 class="lesson-heading">Future Perfect</h3>
+            <p class="lesson-text">The future perfect tense indicates an action that will be completed before another action in the future.</p>
+            <div class="example-box">
+                <p>Examples:</p>
+                <ul>
+                    <li>By next year, I <span class="example-word">will have graduated</span> from university.</li>
+                    <li>She <span class="example-word">will have finished</span> the report by the time the meeting starts.</li>
+                </ul>
+            </div>
+            <button class="next-btn" data-target="tense-10">Next</button>
+        </div>
+
+        <div class="lesson-section" id="tense-10" style="display: none;">
+            <h3 class="lesson-heading">Tenses Relationship Animation</h3>
+            <p class="lesson-text">Understand how the tenses relate to each other in a timeline.</p>
+            <div class="timeline">
+                <div class="timeline-marker" id="past-marker" style="left: 20%;">
+                    <div class="timeline-label">Past</div>
+                </div>
+                <div class="timeline-marker" id="present-marker" style="left: 50%;">
+                    <div class="timeline-label">Present</div>
+                </div>
+                <div class="timeline-marker" id="future-marker" style="left: 80%;">
+                    <div class="timeline-label">Future</div>
+                </div>
+            </div>
+            <div class="timeline-info" id="timeline-info">
+                Hover over the markers to learn about each tense!
+            </div>
+            <button id="complete-lesson-btn" data-lesson-id="lesson-2">Complete Lesson</button>
+        </div>
+        
+
+    </div>
+
+    <script src="/javascripts/lesson.js"></script>
+</body>
+</html>

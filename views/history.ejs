@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User History</title>
+    <link rel="stylesheet" href="/styles/typography.css">
+    <link rel="stylesheet" href="/styles/history.css">
+</head>
+<body>
+    <header class="header">
+        <%- include('partials/header', { user: name }) %>
+    </header>
+
+    <main id="history-main">
+        <h1 id="history-title">Your Activity History</h1>
+
+        <section id="quiz-section" class="history-section">
+            <h2>Completed Quizzes</h2>
+            <ul id="quiz-history-list" class="history-list">
+                <li class="no-data">Loading quizzes...</li>
+            </ul>
+        </section>
+
+        <section id="lesson-section" class="history-section">
+            <h2>Completed Lessons</h2>
+            <ul id="lesson-history-list" class="history-list">
+                <li class="no-data">Loading lessons...</li>
+            </ul>
+        </section>
+
+        <section id="writing-section" class="history-section">
+            <h2>Writing Submissions</h2>
+            <ul id="writing-history-list" class="history-list">
+                <li class="no-data">Loading writings...</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <%- include('partials/footer') %>
+    </footer>
+
+    <script src="/javascripts/history.js">
+    </script>
+</body>
+</html>
