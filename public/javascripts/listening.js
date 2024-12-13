@@ -16,7 +16,8 @@ const submitButton = document.getElementById("submit-quiz");
 const questionCounterEl = document.getElementById("question-counter");
 const timerEl = document.getElementById("timer");
 const notificationEl = document.getElementById("notification");
-const closeNotificationButton = document.getElementById("notification-close");
+const closeNotificationButton =
+  document.getElementById("notification-close");
 
 // Context Menu Elements
 const contextMenu = document.getElementById("context-menu");
@@ -77,7 +78,9 @@ function loadQuestion(index) {
     optionsEl.appendChild(optionEl);
   });
 
-  questionCounterEl.textContent = `Question ${index + 1} of ${quizData.length}`;
+  questionCounterEl.textContent = `Question ${index + 1} of ${
+    quizData.length
+  }`;
   prevButton.disabled = index === 0;
   nextButton.disabled = index === quizData.length - 1;
   submitButton.disabled = true; // Keep submit disabled until all questions are answered
@@ -135,7 +138,9 @@ function highlightSelection(color) {
 
   // Check if the selection is already highlighted
   if (
-    selection.anchorNode.parentElement.classList.contains("selected-highlight")
+    selection.anchorNode.parentElement.classList.contains(
+      "selected-highlight"
+    )
   ) {
     return; // Do nothing if already highlighted
   }
@@ -194,7 +199,11 @@ function removeHighlightFromSelection() {
   // Clear the selection
   selection.removeAllRanges();
 
-  if (node && node.classList && node.classList.contains("selected-highlight")) {
+  if (
+    node &&
+    node.classList &&
+    node.classList.contains("selected-highlight")
+  ) {
     const originalText = document.createTextNode(node.textContent);
     node.parentNode.replaceChild(originalText, node);
 
@@ -240,60 +249,60 @@ function handleNavigation(offset) {
 }
 
 async function handleSubmit() {
-  clearInterval(timerInterval);
-
-  // Save any remaining notes
-  notes[currentQuestionIndex] = noteInputEl.value;
-
-  const userResponses = quizData.map((question, index) => ({
-    question: question.question,
-    userAnswer: question.options[userAnswers[index]] || "Not answered",
-    correctAnswer: question.answer,
-    isCorrect: question.options[userAnswers[index]] === question.answer, // Check if the answer is correct
-  }));
-
-  // Calculate score and percentage
-  let score = userResponses.filter((response) => response.isCorrect).length;
-  const percentage = ((score / quizData.length) * 100).toFixed(2);
-
-  // Display notification (you can customize this)
-  notificationEl.textContent = `Quiz submitted! Score: ${score}/${quizData.length} (${percentage}%)`;
-  notificationEl.style.display = "block";
-
-  // Prepare data for database
-  const quizResponseData = {
-    userId: loggedInUserId, // Use the passed user ID
-    quizId: "reading-quiz-1",
-    questions: userResponses,
-    score: score,
-    percentage: percentage,
-    highlights: highlightedPassages[currentQuestionIndex] || [],
-    notes: notes[currentQuestionIndex] || "",
-  };
-
-  // Send data to server
-  try {
-    const response = await fetch("/submit-quiz", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json", // Make sure this is set
-      },
-      body: JSON.stringify(quizResponseData),
-    });
-    if (response.ok) {
-      console.log("Quiz data sent to server successfully.");
-    } else {
-      console.error("Failed to send quiz data to server.");
+    clearInterval(timerInterval);
+  
+    // Save any remaining notes
+    notes[currentQuestionIndex] = noteInputEl.value;
+  
+    const userResponses = quizData.map((question, index) => ({
+      question: question.question,
+      userAnswer: question.options[userAnswers[index]] || "Not answered",
+      correctAnswer: question.answer,
+      isCorrect: question.options[userAnswers[index]] === question.answer, // Check if the answer is correct
+    }));
+  
+    // Calculate score and percentage
+    let score = userResponses.filter(response => response.isCorrect).length;
+    const percentage = ((score / quizData.length) * 100).toFixed(2);
+  
+    // Display notification (you can customize this)
+    notificationEl.textContent = `Quiz submitted! Score: ${score}/${quizData.length} (${percentage}%)`;
+    notificationEl.style.display = "block";
+  
+    // Prepare data for database
+    const quizResponseData = {
+        userId: loggedInUserId, // Use the passed user ID
+        quizId: "listening-quiz-1", 
+        questions: userResponses,
+        score: score,
+        percentage: percentage,
+        highlights: highlightedPassages[currentQuestionIndex] || [],
+        notes: notes[currentQuestionIndex] || "",
+      };
+  
+    // Send data to server
+    try {
+        const response = await fetch("/submit-quiz", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json", // Make sure this is set
+          },
+          body: JSON.stringify(quizResponseData),
+        });
+      if (response.ok) {
+        console.log("Quiz data sent to server successfully.");
+      } else {
+        console.error("Failed to send quiz data to server.");
+      }
+    } catch (error) {
+      console.error("Error sending quiz data to server:", error);
     }
-  } catch (error) {
-    console.error("Error sending quiz data to server:", error);
+  
+    // Redirect to the exam library after a delay
+    setTimeout(() => {
+      window.location.href = "/exam-library";
+    }, 5000);
   }
-
-  // Redirect to the exam library after a delay
-  setTimeout(() => {
-    window.location.href = "/exam-library";
-  }, 5000);
-}
 
 // Event listeners for navigation and submission
 prevButton.addEventListener("click", () => handleNavigation(-1));
@@ -319,7 +328,9 @@ function handleRightClick(event) {
   // Enable/disable context menu options based on selection
   highlightOption.style.display =
     isTextSelected && !isWithinHighlight ? "block" : "none";
-  removeHighlightOption.style.display = isWithinHighlight ? "block" : "none";
+  removeHighlightOption.style.display = isWithinHighlight
+    ? "block"
+    : "none";
   addTextOption.style.display = isTextSelected ? "block" : "none";
   removeTextOption.style.display = isTextSelected ? "block" : "none";
   colorPicker.style.display =
@@ -377,7 +388,10 @@ function handleRemoveTextOption() {
 
 // Event listeners for context menu options
 highlightOption.addEventListener("click", handleHighlightOption);
-removeHighlightOption.addEventListener("click", handleRemoveHighlightOption);
+removeHighlightOption.addEventListener(
+  "click",
+  handleRemoveHighlightOption
+);
 addTextOption.addEventListener("click", handleAddTextOption);
 removeTextOption.addEventListener("click", handleRemoveTextOption);
 
@@ -427,7 +441,9 @@ document.addEventListener("keydown", (event) => {
     // Enter: Select currently focused option
     const focusedOption = document.activeElement;
     if (focusedOption.classList.contains("choice-box")) {
-      const optionIndex = Array.from(optionsEl.children).indexOf(focusedOption);
+      const optionIndex = Array.from(optionsEl.children).indexOf(
+        focusedOption
+      );
       selectAnswer(optionIndex);
     }
   } else if (event.key === "ArrowRight") {
@@ -454,9 +470,14 @@ passageEl.addEventListener("dblclick", () => {
   wordRange.setEnd(range.endContainer, range.endOffset);
   while (
     wordRange.startOffset > 0 &&
-    wordRange.startContainer.nodeValue.charAt(wordRange.startOffset - 1) !== " "
+    wordRange.startContainer.nodeValue.charAt(
+      wordRange.startOffset - 1
+    ) !== " "
   ) {
-    wordRange.setStart(wordRange.startContainer, wordRange.startOffset - 1);
+    wordRange.setStart(
+      wordRange.startContainer,
+      wordRange.startOffset - 1
+    );
   }
   while (
     wordRange.endOffset < wordRange.endContainer.nodeValue.length &&
