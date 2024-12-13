@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Writing Test</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="/styles/writing.css" rel="stylesheet">
+</head>
+<body>
+  <header>
+    Interactive Writing Test
+    <div id="timer">25:00</div>
+  </header>
+  <div id="notification">
+    Writing test submitted successfully! Redirecting...
+    <button id="notification-close"><i class="material-icons">close</i></button>
+  </div>
+  <main>
+    <div class="column" id="task-container">
+      <h2>Writing Task</h2>
+      <p id="task-instructions">Loading...</p>
+    </div>
+    <div class="column" id="response-container">
+      <h2>Your Response</h2>
+      <textarea id="response-input" placeholder="Write your response here..." maxlength="5000"></textarea>
+      <div class="word-count">
+        Word Count: <span id="word-count">0</span>
+      </div>
+    </div>
+  </main>
+  <footer>
+    <button id="submit-writing" class="btn" disabled>Submit</button>
+  </footer>
+  <script>
+    const writingTasks = [
+      {
+        task: "The use of technology in education is increasing rapidly. Do the benefits of using technology in the classroom outweigh the disadvantages? Discuss your opinion and provide reasons and examples.",
+      },
+    ];
+
+    let currentTaskIndex = 0;
+    let wordCount = 0;
+    let timerInterval;
+    let timeRemaining = 1500; // 25 minutes in seconds
+
+    const taskInstructionsEl = document.getElementById("task-instructions");
+    const responseInputEl = document.getElementById("response-input");
+    const wordCountEl = document.getElementById("word-count");
+    const timerEl = document.getElementById("timer");
+    const submitButton = document.getElementById("submit-writing");
+    const notificationEl = document.getElementById("notification");
+    const closeNotificationButton = document.getElementById("notification-close");
+
+    function updateTimer() {
+      const minutes = String(Math.floor(timeRemaining / 60)).padStart(2, "0");
+      const seconds = String(timeRemaining % 60).padStart(2, "0");
+      timerEl.textContent = `${minutes}:${seconds}`;
+
+      if (timeRemaining === 0) {
+        clearInterval(timerInterval);
+        handleSubmit(); // Automatically submit when time runs out
+      } else {
+        timeRemaining--;
+      }
+    }
+
+    function startTimer() {
+      updateTimer();
+      timerInterval = setInterval(updateTimer, 1000);
+    }
+
+    function loadTask(index) {
+      const taskData = writingTasks[index];
+      taskInstructionsEl.textContent = taskData.task;
+      responseInputEl.value = ""; // Clear previous response
+      updateWordCount();
+      submitButton.disabled = true; // Disable submit until response is provided
+    }
+
+    function updateWordCount() {
+      const text = responseInputEl.value.trim();
+      wordCount = text === "" ? 0 : text.split(/\s+/).length;
+      wordCountEl.textContent = wordCount;
+
+      // Enable submit button if word count is above a minimum threshold
+      submitButton.disabled = wordCount < 50; // Adjust minimum word count as needed
+    }
+
+    async function handleSubmit() {
+  clearInterval(timerInterval);
+
+  const userResponse = {
+    task: writingTasks[currentTaskIndex].task,
+    response: responseInputEl.value,
+    wordCount: wordCount,
+  };
+
+  console.log("User Response:", userResponse);
+  notificationEl.style.display = "block";
+
+  // Send the response to the server
+  try {
+    const response = await fetch("/submit-writing", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userResponse),
+    });
+
+    if (response.ok) {
+      console.log("Writing test submitted successfully.");
+
+      // Clear the response input field after successful submission
+      responseInputEl.value = "";
+      updateWordCount(); // Update word count (should be 0 now)
+
+      // Optionally, display a success message in the notification
+      // (You might want to customize this message)
+      notificationEl.innerHTML = "Writing test submitted successfully! Redirecting...";
+      notificationEl.style.display = "block";
+
+    } else {
+      console.error("Failed to submit writing test.");
+
+      // Optionally, display an error message in the notification
+      notificationEl.innerHTML = "Failed to submit writing test. Please try again.";
+      notificationEl.style.display = "block";
+    }
+  } catch (error) {
+    console.error("Error submitting writing test:", error);
+
+    // Display an error message in the notification
+    notificationEl.innerHTML = "Error submitting writing test. Please check your connection.";
+    notificationEl.style.display = "block";
+  }
+
+  // Redirect to the exam library after a delay (only if submission was successful)
+  setTimeout(() => {
+    window.location.href = "/exam-library";
+  }, 5000);
+}
+    responseInputEl.addEventListener("input", updateWordCount);
+    submitButton.addEventListener("click", handleSubmit);
+    closeNotificationButton.addEventListener("click", () => notificationEl.style.display = "none");
+
+    loadTask(currentTaskIndex);
+    startTimer();
+  </script>
+</body>
+</html>

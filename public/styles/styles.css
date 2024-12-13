@@ -229,11 +229,6 @@ main {
     text-align: center;
 }
 
-/* Specific Styles for Exams */
-.exam img {
-    /* Exam-specific image styles (if needed) */
-}
-
 /* Dropdown */
 .exam-dropdown {
     position: relative;
