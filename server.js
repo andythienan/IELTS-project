@@ -221,7 +221,17 @@ app.get("/forum", (req, res) => {
 
 app.get("/writing1", (req, res) => {
   const name = req.user ? req.user.name : null; // Pass logged-in user's name
-  res.render("writing.ejs", { name });
+  res.render("writing1.ejs", { name });
+});
+
+app.get("/writing2", (req, res) => {
+  const name = req.user ? req.user.name : null; // Pass logged-in user's name
+  res.render("writing2.ejs", { name });
+});
+
+app.get("/writing3", (req, res) => {
+  const name = req.user ? req.user.name : null; // Pass logged-in user's name
+  res.render("writing3.ejs", { name });
 });
 
 app.get("/lesson1", (req, res) => {
