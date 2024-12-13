@@ -249,22 +249,6 @@ app.get("/writing3", (req, res) => {
   res.render("writing3.ejs", { name });
 });
 
-app.get("/listening1", (req, res) => {
-  const name = req.user ? req.user.name : null; // Pass logged-in user's name
-  res.render("listening1.ejs", { name });
-});
-
-app.get("/listening2", (req, res) => {
-  const name = req.user ? req.user.name : null; // Pass logged-in user's name
-  res.render("listening2.ejs", { name });
-});
-
-app.get("/listening3", (req, res) => {
-  const name = req.user ? req.user.name : null; // Pass logged-in user's name
-  res.render("listening3.ejs", { name });
-});
-
-
 app.get("/lesson1", (req, res) => {
   const name = req.user ? req.user.name : null; // Pass logged-in user's name
   res.render("lesson1.ejs", { name });
