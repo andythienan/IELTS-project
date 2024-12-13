@@ -191,7 +191,7 @@ const quizResponseData = {
 // If you have a user ID available from a server template or session, insert it here.
 // Otherwise, remove or hard-code a user ID if necessary.
 userId: "", 
-quizId: "listening-quiz-1", 
+quizId: "listening-quiz-2", 
 questions: userResponses,
 score: score,
 percentage: percentage,
