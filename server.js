@@ -182,6 +182,11 @@ app.get("/reading", (req, res) => {
   res.render("reading.ejs", { name });
 });
 
+app.get("/listening", (req, res) => {
+  const name = req.user ? req.user.name : null;
+  res.render("listening.ejs", { name });
+});
+
 // User Profile Route
 app.get("/profile", (req, res) => {
   const name = req.user ? req.user.name : null;
@@ -243,7 +248,6 @@ app.get('/history', checkAuthenticated, (req, res) => {
   const name = req.user ? req.user.name : null;
   res.render('history.ejs', { name });
 });
-
 
 app.post('/api/complete-lesson', checkAuthenticated, async (req, res) => {
   try {
