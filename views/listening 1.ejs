@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Listening Test</title>
+  <link href="/styles/listening.css" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.9.359/pdf.min.js"></script>
+</head>
+<body>
+  <header>
+    Interactive Listening Test
+    <div id="timer">20:00</div>
+  </header>
+  <main>
+    <!-- Left Box: Audio + PDF Viewer -->
+    <div class="column" id="audio-pdf-container">
+      <h2>Listen carefully and view the material:</h2>
+      <div id="audio-player-container">
+        <audio id="audio-player" controls>
+          <source id="audio-source" src="/files/Listening_1.mp3" type="audio/mpeg">
+          Your browser does not support the audio element.
+        </audio>
+      </div>
+      <div id="pdf-viewer-container" style="overflow-y: auto; max-height: 350px;"></div>
+    </div>
+
+    <!-- Right Box: Questions and Answers -->
+    <div class="column" id="question-container">
+      <h2>Interactive Questions</h2>
+      <div id="question-list" style="overflow-y: auto; max-height: 350px;">
+        <!-- Section 1: Text Input -->
+        <div class="question">
+          <p>1. Complete the table: _______</p>
+          <input type="text" class="answer-box" data-question="1" placeholder="Your answer here">
+        </div>
+        <div class="question">
+          <p>2. Complete the table: _______</p>
+          <input type="text" class="answer-box" data-question="2" placeholder="Your answer here">
+        </div>
+        <div class="question">
+          <p>3. Complete the table: _______</p>
+          <input type="text" class="answer-box" data-question="3" placeholder="Your answer here">
+        </div>
+        <div class="question">
+          <p>4. Complete the table: _______</p>
+          <input type="text" class="answer-box" data-question="1" placeholder="Your answer here">
+        </div>
+        <div class="question">
+          <p>5. Complete the table: _______</p>
+          <input type="text" class="answer-box" data-question="2" placeholder="Your answer here">
+        </div>
+        <div class="question">
+          <p>6. Complete the table: _______</p>
+          <input type="text" class="answer-box" data-question="1" placeholder="Your answer here">
+        </div>
+        <div class="question">
+          <p>7. Complete the table: _______</p>
+          <input type="text" class="answer-box" data-question="2" placeholder="Your answer here">
+        </div>
+        <div class="question">
+          <p>8. Complete the table: _______</p>
+          <input type="text" class="answer-box" data-question="3" placeholder="Your answer here">
+        </div>
+        <div class="question">
+          <p>9. Complete the table: _______</p>
+          <input type="text" class="answer-box" data-question="1" placeholder="Your answer here">
+        </div>
+        <div class="question">
+          <p>10. Complete the table: _______</p>
+          <input type="text" class="answer-box" data-question="2" placeholder="Your answer here">
+        </div>
+        <div class="question">
+          <p>11. Choose the correct option:</p>
+          <select class="answer-choice" data-question="2">
+            <option value="">Select your answer</option>
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+          </select>
+        </div>
+        <div class="question">
+          <p>12. Choose the correct option:</p>
+          <select class="answer-choice" data-question="2">
+            <option value="">Select your answer</option>
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+          </select>
+        </div>
+        <div class="question">
+          <p>13. Choose the correct option:</p>
+          <select class="answer-choice" data-question="2">
+            <option value="">Select your answer</option>
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+          </select>
+        </div>
+        <div class="question">
+          <p>14. Choose the correct option:</p>
+          <select class="answer-choice" data-question="2">
+            <option value="">Select your answer</option>
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+          </select>
+        </div>
+        <div class="question">
+          <p>15. Choose the correct option:</p>
+          <select class="answer-choice" data-question="2">
+            <option value="">Select your answer</option>
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+          </select>
+        </div>
+        <div class="question">
+          <p>16. Complete the table: _______</p>
+          <input type="text" class="answer-box" data-question="2" placeholder="Your answer here">
+        </div>
+        <div class="question">
+          <p>17. Complete the table: _______</p>
+          <input type="text" class="answer-box" data-question="1" placeholder="Your answer here">
+        </div>
+        <div class="question">
+          <p>18. Complete the table: _______</p>
+          <input type="text" class="answer-box" data-question="2" placeholder="Your answer here">
+        </div>
+        <div class="question">
+          <p>19. Complete the table: _______</p>
+          <input type="text" class="answer-box" data-question="3" placeholder="Your answer here">
+        </div>
+        <div class="question">
+          <p>20. Complete the table: _______</p>
+          <input type="text" class="answer-box" data-question="1" placeholder="Your answer here">
+        </div>
+        <div class="question">
+          <p>21. Choose the correct option:</p>
+          <select class="answer-choice" data-question="2">
+            <option value="">Select your answer</option>
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+          </select>
+        </div>
+        <div class="question">
+          <p>22. Choose the correct option:</p>
+          <select class="answer-choice" data-question="2">
+            <option value="">Select your answer</option>
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+          </select>
+        </div>
+        <div class="question">
+          <p>23. Choose the correct option:</p>
+          <select class="answer-choice" data-question="2">
+            <option value="">Select your answer</option>
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+          </select>
+        </div>
+        <div class="question">
+          <p>24. Choose the correct option:</p>
+          <select class="answer-choice" data-question="2">
+            <option value="">Select your answer</option>
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+          </select>
+        </div>
+        <div class="question">
+          <p>25. Choose the correct option:</p>
+          <select class="answer-choice" data-question="2">
+            <option value="">Select your answer</option>
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+          </select>
+        </div>
+        <div class="question">
+          <p>26. Choose the correct option:</p>
+          <select class="answer-choice" data-question="2">
+            <option value="">Select your answer</option>
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+          </select>
+        </div>
+        <div class="question">
+          <p>27. Choose the correct option:</p>
+          <select class="answer-choice" data-question="2">
+            <option value="">Select your answer</option>
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+          </select>
+        </div>
+        <div class="question">
+          <p>28. Choose the correct option:</p>
+          <select class="answer-choice" data-question="2">
+            <option value="">Select your answer</option>
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+          </select>
+        </div>
+        <div class="question">
+          <p>29. Choose the correct option:</p>
+          <select class="answer-choice" data-question="2">
+            <option value="">Select your answer</option>
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+          </select>
+        </div>
+        <div class="question">
+          <p>30. Choose the correct option:</p>
+          <select class="answer-choice" data-question="2">
+            <option value="">Select your answer</option>
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+          </select>
+        </div>
+        <div class="question">
+          <p>31. Complete the table: _______</p>
+          <input type="text" class="answer-box" data-question="1" placeholder="Your answer here">
+        </div>
+        <div class="question">
+          <p>32. Complete the table: _______</p>
+          <input type="text" class="answer-box" data-question="2" placeholder="Your answer here">
+        </div>
+        <div class="question">
+          <p>33. Complete the table: _______</p>
+          <input type="text" class="answer-box" data-question="3" placeholder="Your answer here">
+        </div>
+        <div class="question">
+          <p>34. Complete the table: _______</p>
+          <input type="text" class="answer-box" data-question="1" placeholder="Your answer here">
+        </div>
+        <div class="question">
+          <p>35. Complete the table: _______</p>
+          <input type="text" class="answer-box" data-question="2" placeholder="Your answer here">
+        </div>
+        <div class="question">
+          <p>36. Complete the table: _______</p>
+          <input type="text" class="answer-box" data-question="1" placeholder="Your answer here">
+        </div>
+        <div class="question">
+          <p>37. Complete the table: _______</p>
+          <input type="text" class="answer-box" data-question="2" placeholder="Your answer here">
+        </div>
+        <div class="question">
+          <p>38. Complete the table: _______</p>
+          <input type="text" class="answer-box" data-question="3" placeholder="Your answer here">
+        </div>
+        <div class="question">
+          <p>39. Complete the table: _______</p>
+          <input type="text" class="answer-box" data-question="1" placeholder="Your answer here">
+        </div>
+        <div class="question">
+          <p>40. Complete the table: _______</p>
+          <input type="text" class="answer-box" data-question="2" placeholder="Your answer here">
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer>
+    <button id="prev-question" class="btn" disabled>Previous</button>
+    <span id="question-counter">Question 1 of 40</span>
+    <button id="next-question" class="btn">Next</button>
+    <button id="submit-quiz" class="btn">Submit</button>
+  </footer>
+  <script src="/javascripts/listening1.js"></script>
+</body>
+</html>
