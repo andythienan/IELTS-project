@@ -177,9 +177,19 @@ app.get("/exam-library", (req, res) => {
   res.render("exam-library.ejs", { name });
 });
 
-app.get("/reading", (req, res) => {
+app.get("/reading1", (req, res) => {
   const name = req.user ? req.user.name : null;
-  res.render("reading.ejs", { name });
+  res.render("reading1.ejs", { name });
+});
+
+app.get("/reading2", (req, res) => {
+  const name = req.user ? req.user.name : null;
+  res.render("reading2.ejs", { name });
+});
+
+app.get("/reading3", (req, res) => {
+  const name = req.user ? req.user.name : null;
+  res.render("reading3.ejs", { name });
 });
 
 app.get("/listening", (req, res) => {
@@ -226,7 +236,17 @@ app.get("/forum", (req, res) => {
 
 app.get("/writing1", (req, res) => {
   const name = req.user ? req.user.name : null; // Pass logged-in user's name
-  res.render("writing.ejs", { name });
+  res.render("writing1.ejs", { name });
+});
+
+app.get("/writing2", (req, res) => {
+  const name = req.user ? req.user.name : null; // Pass logged-in user's name
+  res.render("writing2.ejs", { name });
+});
+
+app.get("/writing3", (req, res) => {
+  const name = req.user ? req.user.name : null; // Pass logged-in user's name
+  res.render("writing3.ejs", { name });
 });
 
 app.get("/lesson1", (req, res) => {
