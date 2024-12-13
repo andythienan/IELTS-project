@@ -263,7 +263,7 @@ async function handleSubmit() {
   // Prepare data for database
   const quizResponseData = {
     userId: loggedInUserId, // Use the passed user ID
-    quizId: "reading-quiz-1",
+    quizId: "reading-quiz-3",
     questions: userResponses,
     score: score,
     percentage: percentage,

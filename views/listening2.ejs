@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Listening Test</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link href="/styles/listening.css" rel="stylesheet" />
+  </head>
+  <body>
+    <header>
+      Listening Test
+      <div id="timer">25:00</div>
+    </header>
+    <div id="notification" style="display: none;">
+      Test submitted successfully!
+      <button id="notification-close">
+        <i class="material-icons">close</i>
+      </button>
+    </div>
+    <main>
+      <div class="column" id="audio-container">
+        <h2>Listen to the audio</h2>
+        <audio id="audio-player" controls>
+          <source src="/files/Listening2_audio.mp3" type="audio/mpeg" />
+          Your browser does not support the audio element.
+        </audio>
+        <div id="question-container"></div>
+      </div>
+      <div class="column" id="questions-container">
+        <h2>Questions</h2>
+        <form id="questions-form">
+          <div id="questions">
+            <!-- Questions will be dynamically added here -->
+          </div>
+          <button type="submit" id="submit-test" class="btn" disabled>
+            Submit
+          </button>
+        </form>
+      </div>
+    </main>
+
+    <script src="javascripts/listening2.js"></script>
+  </body>
+</html>
