@@ -177,9 +177,19 @@ app.get("/exam-library", (req, res) => {
   res.render("exam-library.ejs", { name });
 });
 
-app.get("/reading", (req, res) => {
+app.get("/reading1", (req, res) => {
   const name = req.user ? req.user.name : null;
-  res.render("reading.ejs", { name });
+  res.render("reading1.ejs", { name });
+});
+
+app.get("/reading2", (req, res) => {
+  const name = req.user ? req.user.name : null;
+  res.render("reading2.ejs", { name });
+});
+
+app.get("/reading3", (req, res) => {
+  const name = req.user ? req.user.name : null;
+  res.render("reading3.ejs", { name });
 });
 
 // User Profile Route
