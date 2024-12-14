@@ -18,16 +18,7 @@ const timerEl = document.getElementById("timer");
 const notificationEl = document.getElementById("notification");
 const closeNotificationButton =
   document.getElementById("notification-close");
-
-// Context Menu Elements
-const contextMenu = document.getElementById("context-menu");
-const highlightOption = document.getElementById("highlight-option");
-const removeHighlightOption = document.getElementById(
-  "remove-highlight-option"
-);
-const addTextOption = document.getElementById("add-text-option");
-const removeTextOption = document.getElementById("remove-text-option");
-const colorPicker = document.getElementById("color-picker");
+  
 
 // Function to update and display the timer
 function updateTimer() {
@@ -53,9 +44,6 @@ function loadQuestion(index) {
   const data = quizData[index];
   questionEl.textContent = data.question;
   optionsEl.innerHTML = "";
-
-  // Restore or initialize notes
-  noteInputEl.value = notes[index] || "";
 
   // Set the passage content
   passageEl.innerHTML = data.passage;
@@ -109,7 +97,7 @@ function handleHighlightClick(event) {
   if (selectedText && !isAlreadyHighlighted) {
     // Apply the last used color
     highlightSelection(lastUsedColor);
-  } else {
+  } else if (isAlreadyHighlighted){
     // Remove highlight
     removeHighlightFromSelection();
   }
@@ -170,7 +158,7 @@ function highlightSelection(color) {
   lastUsedColor = color;
 
   console.log("Highlighted passages:", highlightedPassages);
-  showNotification(`Text highlighted: "${selectedText}"`);
+  showNotification(`Highlight added`);
 }
 
 function removeHighlightFromSelection() {
@@ -213,7 +201,7 @@ function removeHighlightFromSelection() {
     ].filter((highlight) => highlight.text !== selectedText);
 
     // Show notification
-    showNotification(`Highlight removed from: "${selectedText}"`);
+    showNotification(`Highlight removed`);
   }
 }
 
@@ -231,6 +219,11 @@ function selectAnswer(index) {
 
   // Enable submit button if all questions are answered
   submitButton.disabled = !isQuizComplete();
+
+  // Enable next button if an answer is selected
+  if (currentQuestionIndex < quizData.length -1){
+    nextButton.disabled = false;
+  }
 }
 
 function isQuizComplete() {
@@ -242,7 +235,6 @@ function isQuizComplete() {
 
 function handleNavigation(offset) {
   // Save notes before navigating away from the current question
-  notes[currentQuestionIndex] = noteInputEl.value;
 
   currentQuestionIndex += offset;
   loadQuestion(currentQuestionIndex);
@@ -250,9 +242,6 @@ function handleNavigation(offset) {
 
 async function handleSubmit() {
     clearInterval(timerInterval);
-  
-    // Save any remaining notes
-    notes[currentQuestionIndex] = noteInputEl.value;
   
     const userResponses = quizData.map((question, index) => ({
       question: question.question,
@@ -277,7 +266,6 @@ async function handleSubmit() {
         score: score,
         percentage: percentage,
         highlights: highlightedPassages[currentQuestionIndex] || [],
-        notes: notes[currentQuestionIndex] || "",
       };
   
     // Send data to server
@@ -344,90 +332,6 @@ function handleRightClick(event) {
   contextMenu.style.left = `${event.clientX + offsetX}px`;
   contextMenu.style.display = "block";
 }
-
-function handleHighlightOption() {
-  highlightSelection(lastUsedColor);
-  contextMenu.style.display = "none";
-}
-
-function handleRemoveHighlightOption() {
-  removeHighlightFromSelection();
-  contextMenu.style.display = "none";
-}
-
-function handleAddTextOption() {
-  // Get the selected range
-  const selectedRange = window.getSelection().getRangeAt(0);
-  const selectedText = selectedRange.toString().trim();
-
-  // Prompt the user to enter text
-  const newText = prompt("Enter text to add:");
-  if (newText === null || newText.trim() === "") return; // Do nothing if canceled or empty
-
-  // Create a new text node with the entered text
-  const textNode = document.createTextNode(" " + newText + " ");
-
-  // Insert the new text node after the selected range
-  selectedRange.insertNode(textNode);
-
-  contextMenu.style.display = "none";
-}
-
-function handleRemoveTextOption() {
-  // Get the selected range
-  const selectedRange = window.getSelection().getRangeAt(0);
-  const selectedText = selectedRange.toString().trim();
-
-  if (selectedText) {
-    // Remove the selected text
-    selectedRange.deleteContents();
-  }
-
-  contextMenu.style.display = "none";
-}
-
-// Event listeners for context menu options
-highlightOption.addEventListener("click", handleHighlightOption);
-removeHighlightOption.addEventListener(
-  "click",
-  handleRemoveHighlightOption
-);
-addTextOption.addEventListener("click", handleAddTextOption);
-removeTextOption.addEventListener("click", handleRemoveTextOption);
-
-// Prevent default right-click behavior on the passage
-passageEl.addEventListener("contextmenu", handleRightClick);
-
-// Color Picker Event Listener
-colorPicker.querySelectorAll(".color-option").forEach((option) => {
-  option.addEventListener("click", (event) => {
-    // Remove 'selected' class from all color options
-    colorPicker.querySelectorAll(".color-option").forEach((opt) => {
-      opt.classList.remove("selected");
-    });
-
-    // Add 'selected' class to the clicked color option
-    const clickedColor = event.target;
-    clickedColor.classList.add("selected");
-
-    // Update the selected highlight color and save as last used
-    selectedHighlightColor = clickedColor.dataset.color;
-    lastUsedColor = selectedHighlightColor; // Update last used color
-  });
-});
-
-// Close the context menu when clicking outside or pressing Esc
-document.addEventListener("click", (event) => {
-  if (!contextMenu.contains(event.target)) {
-    contextMenu.style.display = "none";
-  }
-});
-
-document.addEventListener("keydown", (event) => {
-  if (event.key === "Escape") {
-    contextMenu.style.display = "none";
-  }
-});
 
 // Keyboard Shortcuts
 document.addEventListener("keydown", (event) => {

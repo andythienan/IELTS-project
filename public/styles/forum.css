@@ -1,262 +1,345 @@
-     /* General Reset */
-     * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-      body {
-        font-family: "Arial", sans-serif;
-        background-color: #f9f9f9;
-        color: #333;
-      }
+body {
+  font-family: "Patrick Hand", cursive, sans-serif; /* Fun and playful font */
+  background-color: #f0f0f8; /* Soft background color */
+  color: #333;
+  line-height: 1.6;
+  overflow-x: hidden; /* Prevent horizontal scroll due to animations */
+}
 
-      /* Forum Container */
-      .forum-container {
-        max-width: 800px;
-        margin: 50px auto;
-        padding: 20px;
-        background-color: #ffffff;
-        border: 1px solid #e0e0e0;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      }
+a {
+  text-decoration: none;
+}
 
-      .forum-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 20px;
-      }
+/* Forum Container */
+.forum-container {
+  max-width: 950px;
+  margin: 40px auto;
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 20px;
+  box-shadow: 0px 8px 25px -5px rgba(0, 0, 0, 0.2); /* More pronounced shadow */
+  animation: slideUp 0.8s ease-out; /* Entry animation */
+}
 
-      .forum-header h1 {
-        font-size: 2rem;
-        color: #333;
-      }
+@keyframes slideUp {
+  from {
+      opacity: 0;
+      transform: translateY(50px);
+  }
 
-      /* Post Cards */
-      .post-card {
-        padding: 20px;
-        margin-bottom: 20px;
-        background-color: #f9f9f9;
-        border: 1px solid #e0e0e0;
-        border-radius: 10px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        position: relative;
-      }
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
 
-      .post-card h3 {
-        font-size: 1.5rem;
-        margin-bottom: 10px;
-        color: #007bff;
-        cursor: pointer;
-      }
+.forum-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 3px dashed #e0e0e0; /* Playful dashed border */
+}
 
-      .post-card h3:hover {
-        text-decoration: underline;
-      }
+.forum-header h1 {
+  font-size: 2.5rem;
+  color: #0077cc; /* Bright, playful blue */
+  font-weight: 700;
+  text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.1); /* Add a text shadow */
+}
 
-      .post-card p {
-        font-size: 1rem;
-        color: #555;
-        line-height: 1.6;
-      }
+/* --- New Layout: Left-aligned with Sidebar --- */
+.forum-content {
+  display: flex;
+  gap: 30px;
+}
 
-      .post-meta {
-        font-size: 0.9rem;
-        color: #777;
-        margin-top: 10px;
-      }
+.main-content {
+  flex-grow: 1; /* Allow main content to take up available space */
+}
 
-      .post-actions {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-top: 15px;
-      }
+.sidebar {
+  width: 250px;
+  flex-shrink: 0; /* Prevent sidebar from shrinking */
+}
 
-      .post-actions .vote-controls {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-      }
-
-      .vote-controls i {
-        cursor: pointer;
-        font-size: 1.2rem;
-        transition: color 0.3s;
-      }
-
-      .vote-controls i:hover {
-        color: #007bff;
-      }
-
-      .delete-post {
-        background: none;
-        border: none;
-        color: #ff4d4f;
-        cursor: pointer;
-        font-size: 1rem;
-        display: flex;
-        align-items: center;
-        gap: 5px;
-        transition: color 0.3s;
-      }
-
-      .delete-post:hover {
-        color: #d9363e;
-      }
-
-      /* Floating Create Post Button */
-      .floating-button {
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        background-color: #007bff;
-        color: white;
-        border: none;
-        border-radius: 50px;
-        padding: 15px 25px;
-        font-size: 1rem;
-        font-weight: bold;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        cursor: pointer;
-        z-index: 1000;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        transition: background-color 0.3s, transform 0.3s;
-      }
-
-      .floating-button:hover {
-        background-color: #0056b3;
-        transform: translateY(-2px);
-      }
-
-      .floating-button i {
-        font-size: 1.2rem;
-      }
-
-      /* Modal Styling */
-      #new-post-modal {
-        display: none;
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background: white;
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        z-index: 1001;
-        max-width: 500px;
-        width: 90%;
-      }
-
-      #new-post-modal form {
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-      }
-
-      #new-post-modal form input,
-      #new-post-modal form textarea {
-        width: 100%;
-        padding: 10px;
-        font-size: 1rem;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-      }
-
-      #new-post-modal form button {
-        padding: 10px;
-        font-size: 1rem;
-        background-color: #007bff;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background-color 0.3s;
-      }
-
-      #new-post-modal form button:hover {
-        background-color: #0056b3;
-      }
-
-      #new-post-modal .close-button {
-        background: none;
-        border: none;
-        color: #333;
-        font-size: 1.2rem;
-        cursor: pointer;
-        position: absolute;
-        top: 10px;
-        right: 10px;
-      }
-
-      #new-post-modal .close-button:hover {
-        color: #ff4d4f;
-      }
-
-      .replies {
-        margin-top: 20px;
-        padding: 10px;
-        border-top: 1px solid #ddd;
-      }
-
-      .reply {
-        padding: 10px;
-        margin-top: 10px;
-        background-color: #f9f9f9;
-        border: 1px solid #e0e0e0;
-        border-radius: 5px;
-      }
-
-      .reply-meta {
-        font-size: 0.9rem;
-        color: #777;
-        margin-top: 5px;
-      }
-
-      .reply-form {
-        margin-top: 10px;
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-      }
-
-      .reply-form textarea {
-        width: 100%;
-        padding: 10px;
-        font-size: 1rem;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-      }
-
-      .reply-form button {
-        align-self: flex-end;
-        padding: 5px 15px;
-        font-size: 1rem;
-        background-color: #007bff;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background-color 0.3s;
-      }
-
-      .reply-form button:hover {
-        background-color: #0056b3;
-      }
-
-
-      .reply {
-  padding: 10px;
-  margin-top: 10px;
-  background-color: #f9f9f9;
-  border: 1px solid #e0e0e0;
-  border-radius: 5px;
+/* Post Cards */
+.post-card {
+  padding: 25px;
+  margin-bottom: 25px;
+  background-color: #fefefe;
+  border: none; /* Remove border for a softer look */
+  border-radius: 15px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
   position: relative;
+  overflow: hidden; /* For animations that might extend beyond the card */
+  transition: all 0.4s ease;
+}
+
+/* --- Playful Hover Effect --- */
+.post-card:hover {
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+  transform: translateY(-5px) rotate(1deg); /* Rotate slightly on hover */
+}
+
+.post-card h3 {
+  font-size: 1.7rem;
+  margin-bottom: 15px;
+  color: #0077cc;
+  cursor: pointer;
+  transition: color 0.3s, transform 0.3s;
+}
+
+.post-card h3:hover {
+  color: #0055aa;
+  transform: translateX(5px); /* Move title slightly on hover */
+}
+
+.post-card p {
+  font-size: 1.1rem;
+  color: #444;
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+/* --- Animated "New!" Tag --- */
+.post-card.new .post-meta::before {
+  content: "New!";
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background-color: #ffcc00; /* Bright yellow */
+  color: #333;
+  font-weight: bold;
+  padding: 5px 10px;
+  border-radius: 5px;
+  animation: pulse 1.5s infinite alternate; /* Pulsating animation */
+}
+
+@keyframes pulse {
+  from {
+      transform: scale(1);
+  }
+
+  to {
+      transform: scale(1.1);
+  }
+}
+
+.post-meta {
+  font-size: 0.95rem;
+  color: #777;
+  margin-top: 15px;
+}
+
+.post-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.post-actions .vote-controls {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.vote-controls i {
+  cursor: pointer;
+  font-size: 1.4rem;
+  color: #777;
+  transition: all 0.3s ease; /* Smooth transition for hover and animation */
+}
+
+/* --- Wobbly Animation on Vote --- */
+.vote-controls i:hover {
+  color: #0077cc;
+  animation: wobble 0.5s;
+}
+
+@keyframes wobble {
+  0% {
+      transform: rotate(0deg);
+  }
+
+  25% {
+      transform: rotate(10deg);
+  }
+
+  50% {
+      transform: rotate(-10deg);
+  }
+
+  75% {
+      transform: rotate(5deg);
+  }
+
+  100% {
+      transform: rotate(0deg);
+  }
+}
+
+.vote-controls .vote-count {
+  font-size: 1.1rem;
+  color: #555;
+  font-weight: 500;
+}
+
+.delete-post {
+  background: none;
+  border: none;
+  color: #ff4d4f;
+  cursor: pointer;
+  font-size: 1.05rem;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.3s ease;
+}
+
+.delete-post:hover {
+  color: #cc0000;
+  transform: translateX(2px);
+}
+
+/* Floating Create Post Button */
+.floating-button {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background-color: #0077cc; /* Brighter blue */
+  color: white;
+  border: none;
+  border-radius: 50%; /* Make it a circle */
+  width: 60px; /* Set width and height */
+  height: 60px;
+  font-size: 1.8rem; /* Larger icon size */
+  font-weight: bold;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center the icon */
+  transition: all 0.3s ease; /* Smooth transitions */
+}
+
+.floating-button:hover {
+  background-color: #0055aa;
+  transform: rotate(360deg); /* Rotate on hover */
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+.floating-button i {
+  font-size: 1.8rem;
+}
+
+/* Modal Styling */
+#new-post-modal {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.3);
+  z-index: 1001;
+  max-width: 600px;
+  width: 90%;
+  animation: popIn 0.5s ease-out; /* Entry animation */
+}
+
+@keyframes popIn {
+  from {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(0.8);
+  }
+
+  to {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+#new-post-modal form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+#new-post-modal form input,
+#new-post-modal form textarea {
+  width: 100%;
+  padding: 12px;
+  font-size: 1.05rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-family: inherit; /* Use the same font as the body */
+}
+
+#new-post-modal form button {
+  padding: 12px;
+  font-size: 1.1rem;
+  background-color: #0077cc;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#new-post-modal form button:hover {
+  background-color: #0055aa;
+  transform: translateY(-2px);
+}
+
+#new-post-modal .close-button {
+  background: none;
+  border: none;
+  color: #333;
+  font-size: 1.5rem;
+  cursor: pointer;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  transition: all 0.3s ease;
+}
+
+#new-post-modal .close-button:hover {
+  color: #ff4d4f;
+  transform: scale(1.2) rotate(180deg); /* Rotate on hover */
+}
+
+/* Replies */
+.replies {
+  margin-top: 25px;
+  padding-top: 20px;
+  border-top: 3px dashed #e0e0e0; /* Playful dashed border */
+}
+
+.reply {
+  padding: 15px;
+  margin-top: 15px;
+  background-color: #f8f8f8;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.reply:hover {
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
+  transform: scale(1.02); /* Slightly increase size on hover */
 }
 
 .reply-meta {
@@ -268,20 +351,38 @@
   align-items: center;
 }
 
-.delete-post {
-  background: none;
-  border: none;
-  color: #ff4d4f;
-  cursor: pointer;
-  font-size: 1rem;
+.reply-form {
+  margin-top: 15px;
   display: flex;
-  align-items: center;
-  gap: 5px;
-  transition: color 0.3s;
+  flex-direction: column;
+  gap: 12px;
 }
 
-.delete-post:hover {
-  color: #d9363e;
+.reply-form textarea {
+  width: 100%;
+  padding: 12px;
+  font-size: 1.05rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  resize: vertical;
+  font-family: inherit;
+}
+
+.reply-form button {
+  align-self: flex-end;
+  padding: 8px 20px;
+  font-size: 1.05rem;
+  background-color: #0077cc;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.reply-form button:hover {
+  background-color: #0055aa;
+  transform: translateY(-1px);
 }
 
 .delete-reply {
@@ -293,9 +394,70 @@
   display: flex;
   align-items: center;
   gap: 5px;
-  transition: color 0.3s;
+  transition: all 0.3s ease; /* Smooth transition for hover */
 }
 
 .delete-reply:hover {
-  color: #d9363e;
+  color: #cc0000;
+  transform: translateX(2px);
+}
+
+/* --- Sidebar Content --- */
+.sidebar-widget {
+  background-color: #f8f8f8; /* Light background */
+  border: 1px solid #eee;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.08); /* Subtle shadow */
+}
+
+.sidebar-widget h4 {
+  font-size: 1.3rem;
+  color: #333;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.sidebar-widget ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar-widget li {
+  margin-bottom: 10px;
+}
+
+.sidebar-widget a {
+  display: block;
+  padding: 8px 12px;
+  border-radius: 5px;
+  background-color: #fff;
+  color: #0077cc;
+  transition: all 0.3s ease; /* Smooth transition for hover */
+}
+
+.sidebar-widget a:hover {
+  background-color: #e0f0ff; /* Light blue on hover */
+  transform: translateX(3px); /* Slight move to the right */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .forum-content {
+      flex-direction: column; /* Stack content vertically */
+  }
+
+  .sidebar {
+      width: 100%; /* Sidebar takes full width */
+      margin-bottom: 30px; /* Add spacing below sidebar */
+  }
+
+  .floating-button {
+      bottom: 20px;
+      right: 20px;
+      width: 50px;
+      height: 50px;
+      font-size: 1.5rem;
+  }
 }

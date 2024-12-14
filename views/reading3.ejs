@@ -10,8 +10,8 @@
 </head>
 <body>
   <header>
-    Interactive Reading Test
-    <div id="timer">05:00</div>
+    Reading 3
+    <div id="timer">15:00</div>
   </header>
   <div id="notification">
     Quiz submitted successfully! Redirecting...
@@ -20,39 +20,11 @@
   <main>
     <div id="notification-container"></div>
     <div class="column" id="passage-container">
-      <h2>Passage</h2>
       <div id="passage">Loading...</div>
       <textarea id="note-input" placeholder="Write your notes here..."></textarea>
-      <!-- Context Menu -->
-      <div id="context-menu">
-        <div class="context-menu-item" id="highlight-option">
-          <i class="material-icons">format_color_fill</i>
-          <span>Highlight</span>
-        </div>
-        <div class="color-picker" id="color-picker">
-          <div class="color-option selected" data-color="yellow" style="background-color: yellow;"></div>
-          <div class="color-option" data-color="#a0c4ff" style="background-color: #a0c4ff;"></div>
-          <div class="color-option" data-color="#ffdd99" style="background-color: #ffdd99;"></div>
-          <div class="color-option" data-color="#c2f0c2" style="background-color: #c2f0c2;"></div>
-        </div>
-        <div class="context-menu-divider"></div>
-        <div class="context-menu-item" id="remove-highlight-option">
-          <i class="material-icons">format_clear</i>
-          <span>Remove Highlight</span>
-        </div>
-        <div class="context-menu-divider"></div>
-        <div class="context-menu-item" id="add-text-option">
-          <i class="material-icons">text_fields</i>
-          <span>Add Text</span>
-        </div>
-        <div class="context-menu-item" id="remove-text-option">
-          <i class="material-icons">delete</i>
-          <span>Remove Text</span>
-        </div>
       </div>
     </div>
     <div class="column" id="question-container">
-      <h2>Question</h2>
       <p id="question">Loading...</p>
       <div id="options"></div>
     </div>

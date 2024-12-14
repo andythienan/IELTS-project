@@ -1,47 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Interactive Listening Test</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="/styles/listening.css" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Listening Test</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <link href="/styles/listening.css" rel="stylesheet" />
 </head>
+
 <body>
   <header>
-    Interactive Listening Test
-    <div id="timer">20:00</div>
+    Listening Test
+    <div id="timer">00:10</div>
   </header>
-  <div id="notification">
-    Quiz submitted successfully! Redirecting...
-    <button id="notification-close"><i class="material-icons">close</i></button>
+  <div id="notification" style="display: none;">
+    Test submitted successfully!
+    <button id="notification-close">
+      <i class="material-icons">close</i>
+    </button>
   </div>
   <main>
-    <div class="column" id="audio-container">
-        <h2>Listen carefully and answer the questions:</h2>
-        <div id="audio-player-container">
-          <audio id="audio-player" controls>
-            <source src="/files/Listening_1.mp3" type="audio/mpeg">
-            Your browser does not support the audio element.
-          </audio>
-        </div>
+    <div class="column" class="response-column" id="response-container">
+      <h2>Your Response</h2>
+      <textarea id="response-input" placeholder="Write your response here..." maxlength="5000"></textarea>
+      <div class="word-count">
+        Word Count: <span id="word-count">0</span>
+      </div>
     </div>
-    <div class="column" id="question-container">
-      <h2>Question</h2>
-      <p id="question">Loading...</p>
-      <div id="options"><!-- Multi-answer options will appear here --></div>
-    </div>
+      <div class="column" id="questions-container">
+        <h2>Questions</h2>
+        <audio id="audio-player" style="display: none;">
+          <source src="/files/Listening1.mp3" type="audio/mpeg" />
+          Your browser does not support the audio element.
+        </audio>
+        <form id="questions-form">
+          <p id="question"></p>
+          </div>
+        </form>
+      </div>
   </main>
-  <footer>
-    <button id="prev-question" class="btn" disabled><i class="material-icons">navigate_before</i>Previous</button>
-    <span id="question-counter">Question 1 of 10</span>
-    <button id="next-question" class="btn">Next<i class="material-icons">navigate_next</i></button>
-    <button id="submit-quiz" class="btn" disabled>Submit</button>
-  </footer>
-  <script>
-    const loggedInUserId = "<%= user ? user._id : null %>";
-  </script>
+
   <script src="/javascripts/listening.js"></script>
 </body>
+
 </html>
