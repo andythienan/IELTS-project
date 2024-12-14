@@ -1,37 +1,55 @@
-/* General Reset */
+/* Google Sans Font */
+@font-face {
+    font-family: 'Google Sans';
+    src: url('/view/fonts/GoogleSansText-Medium.ttf') format('truetype');
+}
+
+* {
+    font-family: 'Google Sans', sans-serif;
+    box-sizing: border-box; /* Consistent sizing */
+}
+
+/* General Reset & Styling */
 body {
-    font-size: 18px;
+    font-size: 16px; /* Base font size */
     margin: 0;
     padding: 0;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background-color: #fefefe; /* Lighter background */
-    color: #212121; /* Dark text */
+    background-color: #f9f9f9; /* Light background */
+    color: #333; /* Dark text */
+    line-height: 1.7; /* Increased line-height */
 }
 
 main {
     display: flex;
     flex: 1;
-    width: 100%;
-    margin: 0 auto;
+    width: 95%; /* Reduced width for padding */
+    max-width: 1600px;
+    margin: 20px auto; /* Centered main */
     padding: 20px;
-    gap: 24px; /* Consistent spacing */
-    max-width: 1400px;
+    gap: 30px; /* Spacing */
     box-sizing: border-box;
+    position: relative; /* Add this to make relative for the overlay */
+    z-index: 1;
 }
 
+/* Sidebar */
 .sidebar {
-    width: 15%;
-    padding: 20px;
-    background-color: #f0f8ff; /* Subtle blue sidebar */
-    border-radius: 8px;
+    width: 20%; /* Increased width */
+    background-color: #fff; /* White background */
+    padding: 40px; /* More padding */
+    border-radius: 12px; /* Rounded corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08); /* Refined shadow */
+    z-index: 2;
 }
 
 .sidebar h1 {
-    font-size: 1.8em;
-    color: #333;
-    margin-bottom: 16px;
+    font-size: 2rem; /* Increased heading size */
+    color: #2196f3; /* Material Blue */
+    margin-bottom: 20px; /* Increased margin */
+    font-weight: bold;
 }
 
 .sidebar ul {
@@ -41,257 +59,263 @@ main {
 }
 
 .sidebar li {
-    margin-bottom: 12px;
+    margin-bottom: 20px;
 }
 
 .sidebar a {
     text-decoration: none;
-    color: #555;
-    font-size: 1em;
+    color: #555; /* Darker grey */
+    font-size: 1.1rem; /* Slightly larger */
     font-weight: 500;
-    padding: 8px 0;
+    padding: 10px 0; /* Increased padding */
     display: block;
-    transition: color 0.3s, background-color 0.3s;
+    transition: color 0.3s ease, background-color 0.3s ease, padding-left 0.3s ease; /* Smooth transition */
+    border-left: 4px solid transparent; /* Left indicator */
 }
 
-.sidebar a:hover {
-    color: #007bff;
-    background-color: #e0f7ff;
+.sidebar a:hover,
+.sidebar a.active {
+    color: #2196f3; /* Material Blue on hover/active */
+    background-color: #f0f7ff; /* Light blue hover */
+    padding-left: 10px; /* Animation */
+    border-left: 4px solid #2196f3;
 }
 
-/* Divider Line */
+/* Divider */
 .divider {
-    width: 8px;
+    width: 6px; /* Reduced width */
     height: auto;
-    background: repeating-linear-gradient(
-        to bottom,
-        #aed581, #aed581 25%,
-        #ffcc80 25%, #ffcc80 50%,
-        #81d4fa 50%, #81d4fa 75%,
-        #f48fb1 75%, #f48fb1 100%
-    );
-    margin: 0 16px;
-    border-radius: 0;
+    background: linear-gradient(to bottom, #d7bde2, #a9dfbf, #f9e79f, #f5b7b1);
+    margin: 0 20px; /* Increased margin */
+    border-radius: 3px; /* Slight rounding */
+    z-index: 2;
 }
 
-/* Content Area */
 .content {
     flex: 1;
-    padding: 20px;
+    padding: 25px;
+    z-index: 2;
 }
 
-.category h1 {
-    font-size: 2em;
-    color: #1e88e5;
-    margin-bottom: 14px;
+.content h2 {
+    font-size: 2.5rem; /* Increased heading size */
+    color: #1565c0; /* Darker Blue */
+    margin-top: 20px; /* Increased margin */
+    margin-bottom: 20px;
 }
 
-.category h2 {
-    font-size: 1.5em;
-    color: #5e35b1;
-    margin-bottom: 23px;
-    margin-top:23px;
-}
-
-.category p {
-    font-size: 0.95em;
-    color: #666;
-    line-height: 1.6;
-    margin-bottom: 12px;
-}
-
-.lessons-grid {
+/* Shared Grid */
+.grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
-  }
-  
-  .lesson {
-    background: #f9f9f9;
-    border: 1px solid #e0e0e0;
-    border-radius: 10px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Increased min size */
+    gap: 25px;
+    z-index: 2;
+}
+
+/* Shared Card Styles */
+.card {
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 12px;
+    text-align: left; /* Left aligned */
     padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.3s;
-  }
-  
-  .lesson:hover {
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-  }
-  
-  .lesson h3 {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-  }
-  
-  .lesson p {
-    font-size: 1rem;
-    color: #555;
-    line-height: 1.6;
-  }
-  
-  .lesson a {
-    display: inline-block;
-    margin-top: 10px;
-    padding: 10px 15px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+    position: relative; /* For pseudo-elements */
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(to right, #ff5e5e 0%, #ffa726 20%, #ffd500 40%, #76ff03 60%, #00e676 80%, #03a9f4 100%);
+    border-radius: 12px 12px 0 0;
+}
+
+
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.card h3 {
+    font-size: 1.6rem;
+    margin-bottom: 15px;
+    color: #444;
+}
+
+.card h3 .tag {
+    background-color: #4caf50;
+    color: white;
+    font-size: 0.9rem;
+    font-weight: bold;
+    padding: 4px 8px;
+    margin-left: 8px;
+    vertical-align: middle;
+    text-transform: uppercase;
+    border-radius: 6px;
+}
+
+.card button,
+.card a {
+    padding: 12px 20px; /* increased size */
+    border: none;
     text-decoration: none;
     font-size: 1rem;
-    border-radius: 5px;
+    border-radius: 6px; /* increased border radius */
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: auto;
+    display: inline-block; /* for better control */
+}
+
+
+.card a.btn-primary {
+    background-color: #2196f3;
     color: white;
-    background-color: #007bff;
-    transition: background-color 0.3s;
-  }
-  
-  .lesson a.btn-success {
-    background-color: #28a745;
-  }
-  
-  .lesson a:hover {
-    background-color: #0056b3;
-  }
-  
-  .lesson a.btn-success:hover {
-    background-color: #218838;
-  }
-  
-.lesson button.btn-secondary {
-    background-color: #ddd;
-    color: #999;
+    margin-right: 8px; /* spacing */
+}
+
+.card a.btn-success {
+    background-color: #4caf50;
+    color: white;
+}
+
+.card a.btn-primary:hover,
+.card a.btn-success:hover {
+    background-color: #1976d2; /* Darker on hover */
+     transform: translateY(-2px);
+}
+
+.card button.btn-secondary {
+    background-color: #eee;
+    color: #aaa;
     cursor: not-allowed;
 }
 
-/* Announcement Section */
-.announcement {
-    position: relative;
-    padding: 20px;
-    background-color: #fffbcc; /* Light yellow background for emphasis */
-    border: 2px solid #ffe066; /* Gold border for prominence */
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    margin-bottom: 24px;
-    animation: fadeIn 1s ease-in-out; /* Subtle fade-in animation */
-}
 
-.announcement h2 {
-    font-size: 1.5rem;
-    color: #ff6f00; /* Deep orange text color for the title */
-    margin-bottom: 8px;
+
+  .announcement {
+    position: relative;
+    padding: 24px; /* Increased padding */
+    background-color: #fff8e1; /* Soft yellow background */
+    border: none; /* Removed border */
+    border-radius: 12px; /* Increased border radius */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-bottom: 32px; /* Increased margin */
+    animation: fadeIn 1s ease-in-out;
+  }
+  
+  .announcement h2 {
+    font-size: 1.3rem; /* Adjusted font size */
+    color: #ff8f00; /* Adjusted orange color */
+    margin-bottom: 12px; /* Adjusted margin */
     display: flex;
     align-items: center;
-    gap: 10px; /* Space between emoji and text */
-}
-
-.announcement h2::before {
-    content: "🎉"; /* Emoji for excitement */
-    font-size: 1.8rem;
+    gap: 12px; /* Adjusted gap */
+    font-weight: 600; /* Semibold font weight */
+  }
+  
+  .announcement h2::before {
+    content: "🎉";
+    font-size: 1.6rem; /* Adjusted font size */
     animation: bounce 1s infinite;
-}
-
-.announcement p {
-    font-size: 1rem;
-    color: #555; /* Subtle grey for the body text */
-    line-height: 1.5;
-}
-
-/* Logout Button */
-.logout-form {
-    margin-top: 20px;
-}
-
-.btn-logout {
+  }
+  
+  .announcement p {
+    font-size: 0.95rem; /* Slightly reduced font size */
+    color: #555;
+    line-height: 1.6;
+  }
+  
+  /* --- Logout Button --- */
+  .logout-form {
+    margin-top: 32px; /* Increased margin */
+  }
+  
+  .btn-logout {
     display: block;
     width: 100%;
-    padding: 10px 16px;
+    padding: 12px 20px; /* Adjusted padding */
     font-size: 1rem;
-    font-weight: 500;
+    font-weight: 600; /* Semibold font weight */
     text-align: center;
     color: white;
-    background-color: #ff4d4d; /* Bright red for logout */
+    background-color: #dc3545; /* Adjusted red color */
     border: none;
-    border-radius: 5px;
+    border-radius: 8px; /* Adjusted border radius */
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.btn-logout:hover {
-    background-color: #e60000; /* Darker red on hover */
-    transform: translateY(-2px); /* Slightly lift button */
-}
-
-.btn-logout:active {
-    background-color: #cc0000; /* Even darker red on active */
-    transform: translateY(0); /* Reset lift on click */
-}
-
-/* Changelog Section */
-.changelog {
-    padding: 20px;
-    background-color: #f8f9fa;
-    border: 2px solid #e0e0e0;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin-bottom: 24px;
-    animation: fadeIn 1s ease-in-out; /* Subtle fade-in animation */
-}
-
-.changelog h2 {
-    font-size: 1.8rem;
-    color: #007bff; /* Bright blue for the header */
-    margin-bottom: 16px;
+  }
+  
+  .btn-logout:hover {
+    background-color: #c82333; /* Darker red on hover */
+    transform: translateY(-2px);
+  }
+  
+  .btn-logout:active {
+    background-color: #bd2130; /* Even darker red on active */
+    transform: translateY(0);
+  }
+  
+  /* --- Changelog Section --- */
+  .changelog {
+    padding: 24px; /* Increased padding */
+    background-color: #f8f9fa; /* Very light gray background */
+    border: none; /* Removed border */
+    border-radius: 12px; /* Increased border radius */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-bottom: 32px; /* Increased margin */
+    animation: fadeIn 1s ease-in-out;
+  }
+  
+  .changelog h2 {
+    font-size: 1.5rem; /* Adjusted font size */
+    color: #007bff;
+    margin-bottom: 20px; /* Adjusted margin */
     display: flex;
     align-items: center;
-    gap: 10px; /* Space between emoji and text */
-}
-
-.changelog h3 {
-    font-size: 1.4rem;
-    color: #333;
-    margin-bottom: 12px;
-}
-
-.changelog ul {
+    gap: 12px; /* Adjusted gap */
+    font-weight: 600; /* Semibold font weight */
+  }
+  
+  .changelog h2::before {
+    content: "✨"; /* Different emoji */
+    font-size: 1.4rem; /* Adjusted font size */
+  }
+  
+  .changelog h3 {
+    font-size: 1.2rem; /* Adjusted font size */
+    color: #343a40; /* Dark gray color */
+    margin-bottom: 16px; /* Adjusted margin */
+    font-weight: 600; /* Semibold font weight */
+  }
+  
+  .changelog ul {
     padding: 0;
     list-style: none;
     margin: 0;
-}
-
-.changelog ul li {
-    margin-bottom: 8px;
-    padding-left: 20px;
+  }
+  
+  .changelog ul li {
+    margin-bottom: 12px; /* Adjusted margin */
+    padding-left: 24px; /* Adjusted padding */
     position: relative;
-    font-size: 1rem;
+    font-size: 0.95rem; /* Slightly reduced font size */
     line-height: 1.6;
     color: #555;
-}
-
-.changelog ul li:before {
-    content: "•";
+  }
+  
+  .changelog ul li:before {
+    content: "→"; /* Different bullet style */
     position: absolute;
     left: 0;
-    top: 0;
-    font-size: 1.2rem;
+    top: 2px; /* Adjusted vertical alignment */
+    font-size: 0.9rem; /* Adjusted font size */
     color: #007bff;
-}
-
-
-/* Bounce Animation for Emoji */
-@keyframes bounce {
-    0%, 100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-10px);
-    }
-}
-
-/* Fade-in Animation */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
+  }

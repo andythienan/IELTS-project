@@ -22,17 +22,18 @@ a {
 
 /* Header */
 .title {
-    height: 750px;
     position: relative;
-    overflow: hidden;
-    text-align: left; /* Changed to left-align */
+    padding: 80px 10%; /* More Padding */
+    text-align: center;
+    overflow: hidden; /* Hide overflowing star elements */
+    min-height: 750px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-start; /* Align items to the start (left) */
-    color: white;
-    margin-top: -80px;
-    padding-left: 10%; /* added left padding */
+    align-items: left;
+    overflow-x:hidden;
+    text-align:left;
+    margin-top:-80px;
 }
 
 .title::before {
@@ -64,8 +65,8 @@ a {
 }
 
 .title h1 {
-    font-size: 4rem; /* Increased font size */
-    margin-bottom: 25px; /* Increased margin */
+    font-size: 4rem;
+    margin-bottom: 20px;
     color: white;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     z-index: 1;
@@ -73,43 +74,23 @@ a {
 }
 
 .title p {
-    font-size: 1.5rem; /* Increased font size */
+    font-size: 1.3rem;
     color: white;
     z-index: 1;
 }
 
-/* Star Animation (Subtle) */
-.star {
-    position: absolute;
-    background-color: white;
-    opacity: 0.5;
-    border-radius: 50%;
-    animation: twinkle ease-in-out infinite;
-}
-
-@keyframes twinkle {
-
-    0%,
-    100% {
-        opacity: 0.4;
-    }
-
-    50% {
-        opacity: 0.8;
-    }
-}
 
 /* Main Content */
 main {
-    padding: 80px 10%; /* Increased padding */
+    padding: 60px 10%;
     flex-grow: 1; /* Allow main to grow and push footer down */
 }
 
 /* Intro Section */
 .intro-section {
-    text-align: left; /* Left-align text */
-    margin-bottom: 80px; /* Increased margin */
-    padding: 50px; /* Increased padding */
+    text-align: center;
+    margin-bottom: 60px;
+    padding: 40px;
     border-radius: 20px;
     background: rgba(255, 255, 255, 0.8);
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
@@ -119,34 +100,42 @@ main {
 }
 
 .intro-section h2 {
-    font-size: 3rem; /* Increased font size */
+    font-size: 2.5rem;
     color: #4655B8;
-    margin-bottom: 25px; /* Increased margin */
+    margin-bottom: 20px;
     font-weight: bold;
 }
 
 .intro-section p {
-    font-size: 1.4rem; /* Increased font size */
+    font-size: 1.2rem;
     color: #555;
-    line-height: 1.7; /* Increased line height */
+    line-height: 1.6;
 }
+
+/* Skills Section */
+/* ... (Previous CSS) ... */
 
 /* Skills Section */
 .skills-section {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); /* Increased minmax */
-    gap: 40px; /* Increased gap */
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /* Adjusted minmax */
+    gap: 30px;
 }
 
 .skill-row {
-    background: #fff;
-    padding: 25px;
-    border-radius: 15px;
-    text-align: left;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    position: relative;
-    overflow: hidden;
+    position: relative; /* For positioning the rainbow line */
+    padding: 30px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden; /* Hide overflowing parts of the rainbow line */
 }
 
 /* Rainbow Line */
@@ -172,27 +161,28 @@ main {
     }
 }
 
+/* ... (Rest of the CSS) ... */
 .skill-row:hover {
     transform: translateY(-10px);
     box-shadow: 0 10px 40px 0 rgba(31, 38, 135, 0.5);
 }
 
 .skill-row h3 {
-    font-size: 2.2rem; /* Increased font size */
-    margin-bottom: 20px; /* Increased margin */
+    font-size: 2rem;
+    margin-bottom: 15px;
     color: #333;
     font-weight: bold;
 }
 
 .skill-row p {
-    font-size: 1.3rem; /* Increased font size */
+    font-size: 1.1rem;
     color: #555;
-    line-height: 1.6; /* Increased line height */
-    margin-bottom: 25px; /* Increased margin */
+    line-height: 1.5;
+    margin-bottom: 20px;
 }
 
 .skill-row a {
-    padding: 15px 30px; /* Increased padding */
+    padding: 12px 25px;
     background: transparent;
     color: #4655B8;
     font-weight: bold;
@@ -229,36 +219,36 @@ main {
 .courses-section {
     background: rgba(70, 85, 184, 0.2);
     /* Translucent */
-    padding: 60px; /* Increased padding */
+    padding: 50px;
     border-radius: 20px;
-    margin-top: 80px; /* Increased margin */
-    text-align: left; /* Left-align text */
+    margin-top: 60px;
+    text-align: center;
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-    -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
 .courses-section h2 {
-    font-size: 3rem; /* Increased font size */
+    font-size: 2.5rem;
     color: #333;
-    margin-bottom: 30px; /* Increased margin */
+    margin-bottom: 25px;
     font-weight: bold;
 }
 
 .courses-section p {
-    font-size: 1.4rem; /* Increased font size */
+    font-size: 1.2rem;
     color: #555;
-    margin-bottom: 50px; /* Increased margin */
-    line-height: 1.7; /* Increased line height */
+    margin-bottom: 40px;
+    line-height: 1.6;
 }
 
 .courses-section a {
     background-color: #4655B8;
     color: white;
-    padding: 18px 35px; /* Increased padding */
+    padding: 15px 30px;
     border-radius: 30px;
-    font-size: 1.4rem; /* Increased font size */
+    font-size: 1.2rem;
     font-weight: bold;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: background-color 0.3s, transform 0.3s;
@@ -271,23 +261,22 @@ main {
 
 /* Help Section */
 .help-section {
-    margin-top: 80px; /* Increased margin */
+    margin-top: 60px;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); /* Increased minmax */
-    gap: 40px; /* Increased gap */
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
 }
 
 .help-box {
     background: rgba(208, 217, 245, 0.5);
     /* Translucent */
     border-radius: 20px;
-    padding: 40px; /* Increased padding */
+    padding: 30px;
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-    -webkit-backdrop-filter: blur(6px);
     backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
     border: 1px solid rgba(255, 255, 255, 0.18);
     transition: transform 0.3s, box-shadow 0.3s;
-    text-align: left;
 }
 
 .help-box:hover {
@@ -296,9 +285,9 @@ main {
 }
 
 .help-box h3 {
-    font-size: 2rem; /* Increased font size */
+    font-size: 1.8rem;
     color: #4655B8;
-    margin-bottom: 25px; /* Increased margin */
+    margin-bottom: 20px;
     font-weight: bold;
 }
 
@@ -308,11 +297,11 @@ main {
 }
 
 .help-box ul li {
-    margin-bottom: 20px; /* Increased margin */
+    margin-bottom: 15px;
 }
 
 .help-box ul li a {
-    font-size: 1.3rem; /* Increased font size */
+    font-size: 1.1rem;
     color: #333;
     display: block;
     transition: color 0.3s, padding-left 0.3s;
@@ -328,6 +317,6 @@ footer {
     margin-top: auto; /* Push footer to the bottom */
     background-color: #333;
     color: white;
-    padding: 30px; /* Increased padding */
+    padding: 20px;
     text-align: center;
 }

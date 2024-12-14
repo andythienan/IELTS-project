@@ -503,3 +503,30 @@ body.distraction-free .column:not(.passage-column) {
     color: #666;
     margin-bottom: 1rem;
     }
+
+    #play-audio-btn {
+        padding: 1rem 2rem;
+        font-size: 1.1rem;
+        font-weight: bold;
+        color: #fff;
+        background-color: var(--primary-color);
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        margin-top: 1rem;
+      }
+      
+      #play-audio-btn:hover {
+        background-color: #3367d6;
+      }
+      
+      .fill-blank {
+        width: 100%;
+        padding: 0.5rem;
+        font-size: 1rem;
+        margin-top: 0.5rem;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+      

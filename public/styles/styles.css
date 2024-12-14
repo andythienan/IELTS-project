@@ -505,6 +505,8 @@ body {
     font-weight: 700;
     margin-bottom: 20px;
     letter-spacing: 1.5px;
+    color: white;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .hero p {
