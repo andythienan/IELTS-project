@@ -6,14 +6,15 @@
     <title>Log in - learnEnglish</title>
     <link rel="stylesheet" type="text/css" href="/styles/typography.css" />
     <link rel="stylesheet" type="text/css" href="/styles/log-reg-forgot.css" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   </head>
   <body>
     <div>
       <!-- Login Form Container -->
       <div class="container">
         <div class="tab-container">
-          <a href="/login" class="tab active" id="tab-login">Log in</a>
-          <a href="/register" class="tab" id="tab-signup">Sign up</a>
+          <a href="/login" class="tab active" id="tab-login">Log in <span class="material-icons">login</span></a>
+          <a href="/register" class="tab" id="tab-signup">Sign up <span class="material-icons">person_add</span></a>
         </div>
         
         <header class="page-header">Log in to your learnEnglish account</header>
@@ -28,7 +29,7 @@
         <form action="/login" method="POST" class="form-container">
           <!-- Email Field -->
           <div class="form-group">
-            <label for="email" class="form-label">Email</label>
+            <label for="email" class="form-label"><span class="material-icons">mail</span>  Email address</label>
             <input
               type="email"
               id="email"
@@ -41,7 +42,7 @@
 
           <!-- Password Field -->
           <div class="form-group">
-            <label for="password" class="form-label">Password</label>
+            <label for="password" class="form-label"><span class="material-icons">password</span>  Password</label>
             <input
               type="password"
               id="password"
@@ -53,7 +54,7 @@
           </div>
 
           <!-- Submit Button -->
-          <button type="submit" class="form-button primary">Log in</button>
+          <button type="submit" class="primary-button">Log in</button>
         </form>
 
         <!-- Links -->

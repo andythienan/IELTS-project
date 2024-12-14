@@ -6,6 +6,7 @@
     <title>User Profile</title>
     <link rel="stylesheet" href="/styles/profile.css"> <!-- Ensure this points to your CSS file -->
     <link rel="stylesheet" href="/styles/typography.css"> <!-- Ensure this points to your CSS file -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
     <header>
@@ -23,7 +24,7 @@
                 <li><a href="/reading">Reading</a></li>
                 <li>
                     <form action="/logout?_method=DELETE" method="POST" class="logout-form">
-                        <button type="submit" class="btn-logout">Logout</button>
+                        <button type="submit" class="btn-logout"><span class="material-icons">logout</span>  Logout</button>
                     </form>
                 </li>
             </ul>
@@ -46,12 +47,12 @@
                     <div class="card">
                         <h3>Completed tests</h3>
                         <p id="completed-tests">Loading...</p>
-                        <a href="/history" class="btn-primary">View Quiz History</a>
+                        <a href="/history" class="btn-primary"><span class="material-icons">history</span>  View history</a>
                     </div>
                     <div class="card">
                         <h3>Lesson progress</h3>
                         <p id="lesson-progress">Loading...</p>
-                        <a href="/history" class="btn-success">View Lesson History</a>
+                        <a href="/history" class="btn-success"><span class="material-icons">history</span>  View history</a>
                     </div>
                 </div>
                 

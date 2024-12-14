@@ -5,13 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="/styles/typography.css" />
   <link rel="stylesheet" href="/styles/log-reg-forgot.css" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <title>Sign Up - learnEnglish</title>
 </head>
 <body>
   <div class="container">
     <div class="tab-container">
-      <a href="/login" class="tab" id="tab-login">Log in</a>
-      <a href="/register" class="tab active" id="tab-signup">Sign up</a>
+      <a href="/login" class="tab" id="tab-login">Log in <span class="material-icons">login</span></a>
+      <a href="/register" class="tab active" id="tab-signup">Sign up <span class="material-icons">person_add</span></a>
     </div>
 
     <div class="signup-header">
@@ -25,7 +26,7 @@
 
     <form action="/register" method="POST" class="form-container">
       <div class="form-group">
-        <label for="name">Name *</label>
+        <label for="name"><span class="material-icons">badge</span>  Username</label>
         <input
           type="text"
           id="name"
@@ -37,7 +38,7 @@
       </div>
       
         <div class="form-group">
-          <label for="email">Email *</label>
+          <label for="email"><span class="material-icons">mail</span>  Email address</label>
           <input
             type="email"
             id="email"
@@ -51,7 +52,7 @@
         </div>
       
         <div class="form-group">
-          <label for="gender">Gender *</label>
+          <label for="gender"><span class="material-icons">wc</span>  Gender</label>
           <select id="gender" name="gender" class="form-control" required>
             <option value="" disabled selected>Select your gender</option>
             <option value="Male">Male</option>
@@ -61,7 +62,7 @@
         </div>
       
         <div class="form-group" style="position: relative">
-          <label for="password">Password *</label>
+          <label for="password"><span class="material-icons">password</span>  Password</label>
           <input
             type="password"
             id="password"
@@ -71,16 +72,14 @@
             required disabled
           />
           <div class="password-tooltip" id="password-rules">
-            <p id="rule-length" class="invalid">• At least 8 characters</p>
-            <p id="rule-number" class="invalid">• At least 1 number</p>
-            <p id="rule-special" class="invalid">
-              • At least 1 special character (!@#$%^&*)
-            </p>
+            <p id="rule-length" class="invalid"><span class="material-icons">title</span> At least 8 characters</p>
+            <p id="rule-number" class="invalid"><span class="material-icons">pin</span> At least 1 number</p>
+            <p id="rule-special" class="invalid"><span class="material-icons">priority_high</span> At least 1 special character (!@#$%^&*)</p>
           </div>
         </div>
       
         <div class="form-group">
-          <label for="confirm-password">Re-enter Password *</label>
+          <label for="confirm-password"><span class="material-icons">password</span> Re-enter your password</label>
           <input
             type="password"
             id="confirm-password"
@@ -95,7 +94,7 @@
         </div>
       
         <button type="submit" class="primary-button" id="continue-button" disabled>
-          Register
+          Sign up
         </button>
       </form>
       

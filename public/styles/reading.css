@@ -307,7 +307,7 @@ footer {
     border-radius: 30px;
     font-size: 1rem;
     font-weight: 600;
-    text-transform: uppercase;
+    text-transform: none;
     letter-spacing: 0.5px;
     cursor: pointer;
     transition: all 0.2s var(--ease-in-out-quad); /* Faster transition */

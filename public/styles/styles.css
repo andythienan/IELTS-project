@@ -691,3 +691,9 @@ body {
     background-color: #3D7BE5;
     transform: translateY(-3px);
 }
+
+/* --- ICONS --- */
+.material-icons {
+    font-size: 1.2rem;
+    vertical-align: middle;
+}

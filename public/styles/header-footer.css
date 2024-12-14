@@ -369,3 +369,9 @@ display: block;
 .social-icons a:hover {
   color: #ffc107; /* Highlight icons on hover */
 }
+
+/* --- ICONS --- */
+.material-icons {
+  font-size: 1.2rem;
+  vertical-align: middle;
+}
