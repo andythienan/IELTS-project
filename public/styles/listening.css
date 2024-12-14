@@ -48,7 +48,7 @@ h2 {
 /* Styling for Answer and Choice Boxes */
 .answer-box,
 .answer-choice {
-    width: 100%;
+    width: 80%;
     padding: 0.8rem;
     margin-bottom: 1rem;
     font-size: 1rem;
@@ -152,3 +152,5 @@ canvas {
     width: 100% !important; /* Make the canvas width responsive */
     height: auto !important; /* Maintain aspect ratio */
 }
+
+

@@ -1,163 +1,175 @@
-// Correct answers for validation
-const correctAnswers = {
-  // Section 1
-  1: "warehouse",
-  2: "Hitcher",
-  3: "supermarket",
-  4: "bakery",
-  5: "ARW204",
-  6: "adverts",
-  6: "advertisements",
-  7: "newspaper",
-  8: "agency",
-  9: "tutors",
-  10: "feedback",
-  11: "A",
-  12: "B",
-  13: "C",
-  14: "A",
-  15: "B",
-  16: "C",
-  17: "B",
-  18: "E",
-  19: "H",
-  20: "G",
-  21: "A",
-  22: "B",
-  23: "A",
-  24: "C",
-  25: "B",
-  26: "C",
-  27: "B",
-  27: "E",
-  28: "B",
-  28: "E",
-  29: "A",
-  29: "D",
-  30: "A",
-  30: "D",
-  31: "transportation",
-  32: "clean",
-  33: "information",
-  34: "residents",
-  35: "bonus",
-  36: "visitors",
-  37: "communication",
-  38: "sleep",
-  39: "plastic",
-  40: "planning",
-};
+// Variables
+let currentQuestionIndex = 0;
+const userAnswers = [];
+let timerInterval;
+let timeRemaining = 1200; // 20 minutes in seconds
 
-
-
-// Load PDF using pdf.js
-async function renderPDF(url) {
-  const pdfViewerContainer = document.getElementById("pdf-viewer-container");
-  const pdf = await pdfjsLib.getDocument(url).promise;
-
-  for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
-    const page = await pdf.getPage(pageNum);
-
-    // Use a higher scale for better resolution
-    const viewport = page.getViewport({ scale: 2.0 }); // High resolution
-
-    // Create a canvas for rendering the page
-    const canvas = document.createElement("canvas");
-    const context = canvas.getContext("2d");
-
-    // Set the canvas dimensions to match the PDF page
-    canvas.height = viewport.height;
-    canvas.width = viewport.width;
-
-    // Append the canvas to the container
-    pdfViewerContainer.appendChild(canvas);
-
-    // Render the PDF page
-    await page.render({ canvasContext: context, viewport }).promise;
-
-    // Scale down the canvas visually using CSS for better fitting
-    canvas.style.width = "100%"; // Fit width to container
-    canvas.style.height = "auto"; // Maintain aspect ratio
-  }
-}
-
-
-
-// Call renderPDF with the path to your PDF file
-renderPDF("/files/Listening 1.pdf");
-
-// Function to check answers
-function checkAnswers() {
-  const userAnswers = {};
-  const results = [];
-
-  // Validate text answers
-  document.querySelectorAll(".answer-box").forEach((input) => {
-    const question = input.dataset.question;
-    const answer = input.value.trim();
-    userAnswers[question] = answer;
-
-    // Compare user input with correct answers
-    const isCorrect = answer.toLowerCase() === (correctAnswers[question] || "").toLowerCase();
-    results.push({
-      question,
-      userAnswer: answer,
-      correctAnswer: correctAnswers[question],
-      isCorrect
-    });
-  });
-
-  // Validate choice answers
-  document.querySelectorAll(".answer-choice").forEach((select) => {
-    const question = select.dataset.question;
-    const answer = select.value;
-    userAnswers[question] = answer;
-
-    // Compare user choice with correct answers
-    const isCorrect = answer === (correctAnswers[question] || "");
-    results.push({
-      question,
-      userAnswer: answer,
-      correctAnswer: correctAnswers[question],
-      isCorrect
-    });
-  });
-
-  // Display results
-  results.forEach(result => {
-    console.log(`Question ${result.question}: ${result.isCorrect ? "Correct" : "Incorrect"}`);
-  });
-
-  alert("Check the console for detailed results!");
-}
-
-// Attach answer checking to the submit button
-document.getElementById("submit-quiz").addEventListener("click", checkAnswers);
-
+// Audio and PDF Variables
 const audioPlayer = document.getElementById("audio-player");
 const audioSource = document.getElementById("audio-source");
 const audioPlayerContainer = document.getElementById("audio-player-container");
-
-// List of audio files
 const audioFiles = [
-  "/files/Listening_1.mp3",
-  "/files/Listening_1-2.mp3",
-  "/files/Listening_1-3.mp3",
-  "/files/Listening_1-4.mp3"
+  "/media/audio1.mp3",
+  "/media/audio2.mp3",
+  "/media/audio3.mp3",
+  "/media/audio4.mp3",
 ];
-
 let currentAudioIndex = 0;
 
-// Hide the audio player when playing
-audioPlayer.addEventListener("play", () => {
-  audioPlayerContainer.style.visibility = "hidden"; // Hides the audio player
-});
+// DOM Elements
+const timerEl = document.getElementById("timer");
+const questionContainer = document.getElementById("question-container");
+const prevButton = document.getElementById("prev-question");
+const nextButton = document.getElementById("next-question");
+const submitButton = document.getElementById("submit-quiz");
+const questionCounterEl = document.getElementById("question-counter");
 
-// Show the audio player when finished
+// Question Data
+const questions = [
+  { type: "text", text: "1. Complete the table: _______", correct: "warehouse" },
+  { type: "text", text: "2. Complete the table: _______", correct: "Hitcher" },
+  { type: "text", text: "3. Complete the table: _______", correct: "supermarket" },
+  { type: "text", text: "4. Complete the table: _______", correct: "bakery" },
+  { type: "text", text: "5. Complete the table: _______", correct: "ARW204" },
+  { type: "text", text: "6. Complete the notes: _______", correct: "adverts" },
+  { type: "text", text: "6. Complete the notes: _______", correct: "advertisements" },
+  { type: "text", text: "7. Complete the notes: _______", correct: "newspaper" },
+  { type: "text", text: "8. Complete the notes: _______", correct: "agency" },
+  { type: "text", text: "9. Complete the notes: _______", correct: "tutors" },
+  { type: "text", text: "10. Complete the notes: _______", correct: "feedback" },
+  { type: "choice", text: "11. Choose the correct letter:", options: ["A", "B", "C"], correct: "A" },
+  { type: "choice", text: "12. Choose the correct letter:", options: ["A", "B", "C"], correct: "B" },
+  { type: "choice", text: "13. Choose the correct letter:", options: ["A", "B", "C"], correct: "C" },
+  { type: "choice", text: "14. Choose the correct letter:", options: ["A", "B", "C"], correct: "A" },
+  { type: "choice", text: "15. Choose the correct letter:", options: ["A", "B", "C"], correct: "B" },
+  { type: "choice", text: "16. Label the map: _______", options: ["A", "B", "C", "D", "E", "F", "G", "H"], correct: "C" },
+  { type: "choice", text: "17. Label the map: _______", options: ["A", "B", "C", "D", "E", "F", "G", "H"], correct: "B" },
+  { type: "choice", text: "18. Label the map: _______", options: ["A", "B", "C", "D", "E", "F", "G", "H"], correct: "E" },
+  { type: "choice", text: "19. Label the map: _______", options: ["A", "B", "C", "D", "E", "F", "G", "H"], correct: "H" },
+  { type: "choice", text: "20. Label the map: _______", options: ["A", "B", "C", "D", "E", "F", "G", "H"], correct: "G" },
+  { type: "choice", text: "21. Choose the correct letter:", options: ["A", "B", "C"], correct: "A" },
+  { type: "choice", text: "22. Choose the correct letter:", options: ["A", "B", "C"], correct: "B" },
+  { type: "choice", text: "23. Choose the correct letter:", options: ["A", "B", "C"], correct: "A" },
+  { type: "choice", text: "24. Choose the correct letter:", options: ["A", "B", "C"], correct: "C" },
+  { type: "choice", text: "25. Choose the correct letter:", options: ["A", "B", "C"], correct: "B" },
+  { type: "choice", text: "26. Choose the correct letter:", options: ["A", "B", "C"], correct: "C" },
+  { type: "choice", text: "27. Choose TWO letters:", options: ["A", "B", "C", "D", "E"], correct: "B,E" },
+  { type: "choice", text: "28. Choose TWO letters:", options: ["A", "B", "C", "D", "E"], correct: "B,E" },
+  { type: "choice", text: "29. Choose TWO letters:", options: ["A", "B", "C", "D", "E"], correct: "A,D" },
+  { type: "choice", text: "30. Choose TWO letters:", options: ["A", "B", "C", "D", "E"], correct: "A,D" },
+  { type: "text", text: "31. Complete the notes: _______", correct: "transportation" },
+  { type: "text", text: "32. Complete the notes: _______", correct: "clean" },
+  { type: "text", text: "33. Complete the notes: _______", correct: "information" },
+  { type: "text", text: "34. Complete the notes: _______", correct: "residents" },
+  { type: "text", text: "35. Complete the notes: _______", correct: "bonus" },
+  { type: "text", text: "36. Complete the notes: _______", correct: "visitors" },
+  { type: "text", text: "37. Complete the notes: _______", correct: "communication" },
+  { type: "text", text: "38. Complete the notes: _______", correct: "sleep" },
+  { type: "text", text: "39. Complete the notes: _______", correct: "plastic" },
+  { type: "text", text: "40. Complete the notes: _______", correct: "planning" },
+];
+
+// Initialize Timer
+function updateTimer() {
+  const minutes = String(Math.floor(timeRemaining / 60)).padStart(2, "0");
+  const secs = String(timeRemaining % 60).padStart(2, "0");
+  timerEl.textContent = `${minutes}:${secs}`;
+  if (timeRemaining === 0) {
+    clearInterval(timerInterval);
+    handleSubmit(); // Auto-submit when time runs out
+  } else {
+    timeRemaining--;
+  }
+}
+
+function startTimer() {
+  updateTimer();
+  timerInterval = setInterval(updateTimer, 1000);
+}
+
+// Load Question
+function loadQuestion(index) {
+  const question = questions[index];
+  questionContainer.innerHTML = ""; // Clear previous question
+
+  // Create question element
+  const questionEl = document.createElement("div");
+  questionEl.classList.add("question");
+  questionEl.innerHTML = `<p>${question.text}</p>`;
+
+  if (question.type === "text") {
+    // Text input for answers
+    const input = document.createElement("input");
+    input.type = "text";
+    input.classList.add("answer-box");
+    input.dataset.question = index;
+    input.value = userAnswers[index] || "";
+    input.placeholder = "Your answer here";
+    input.addEventListener("input", () => {
+      userAnswers[index] = input.value;
+    });
+    questionEl.appendChild(input);
+  } else if (question.type === "choice") {
+    // Multiple-choice options
+    const select = document.createElement("select");
+    select.classList.add("answer-choice");
+    select.dataset.question = index;
+    select.innerHTML = `<option value="">Select your answer</option>`;
+    question.options.forEach((option) => {
+      const optionEl = document.createElement("option");
+      optionEl.value = option;
+      optionEl.textContent = option;
+      if (userAnswers[index] === option) optionEl.selected = true;
+      select.appendChild(optionEl);
+    });
+    select.addEventListener("change", () => {
+      userAnswers[index] = select.value;
+    });
+    questionEl.appendChild(select);
+  }
+
+  questionContainer.appendChild(questionEl);
+
+  // Update navigation buttons and counter
+  questionCounterEl.textContent = `Question ${index + 1} of ${questions.length}`;
+  prevButton.disabled = index === 0;
+  nextButton.disabled = index === questions.length - 1;
+  submitButton.disabled = !isQuizComplete();
+}
+
+// Navigation
+function handleNavigation(offset) {
+  currentQuestionIndex += offset;
+  loadQuestion(currentQuestionIndex);
+}
+
+// Check if Quiz is Complete
+function isQuizComplete() {
+  return questions.every((_, index) => userAnswers[index] !== undefined);
+}
+
+// Submit Quiz
+function handleSubmit() {
+  clearInterval(timerInterval);
+
+  // Evaluate answers
+  const results = questions.map((q, index) => ({
+    question: q.text,
+    userAnswer: userAnswers[index] || "Not answered",
+    correctAnswer: q.correct,
+    isCorrect: userAnswers[index] === q.correct,
+  }));
+
+  // Display Results
+  const score = results.filter((r) => r.isCorrect).length;
+  const percentage = ((score / questions.length) * 100).toFixed(2);
+  alert(`Quiz submitted! Score: ${score}/${questions.length} (${percentage}%)`);
+
+  console.log("Results:", results);
+}
+
+// Handle Sequential Audio Playback
 audioPlayer.addEventListener("ended", () => {
-  audioPlayerContainer.style.visibility = "visible"; // Shows the audio player
-  
-  // Play the next audio if available
   currentAudioIndex++;
   if (currentAudioIndex < audioFiles.length) {
     audioSource.src = audioFiles[currentAudioIndex];
@@ -168,3 +180,40 @@ audioPlayer.addEventListener("ended", () => {
   }
 });
 
+// Event Listeners
+prevButton.addEventListener("click", () => handleNavigation(-1));
+nextButton.addEventListener("click", () => handleNavigation(1));
+submitButton.addEventListener("click", handleSubmit);
+
+// Initialize Quiz
+startTimer();
+loadQuestion(currentQuestionIndex);
+
+async function renderPDF(url) {
+  const pdfViewerContainer = document.getElementById("pdf-viewer-container");
+  const pdf = await pdfjsLib.getDocument(url).promise;
+
+  for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
+    const page = await pdf.getPage(pageNum);
+
+    // Render at a high resolution
+    const viewport = page.getViewport({ scale: 2.0 }); // Adjust scale for clarity
+    const canvas = document.createElement("canvas");
+    const context = canvas.getContext("2d");
+
+    // Set canvas dimensions to match the PDF page
+    canvas.height = viewport.height;
+    canvas.width = viewport.width;
+    pdfViewerContainer.appendChild(canvas);
+
+    // Render the page into the canvas
+    await page.render({ canvasContext: context, viewport }).promise;
+
+    // Scale down visually for fitting inside the container
+    canvas.style.width = "100%";
+    canvas.style.height = "auto";
+  }
+}
+
+// Call this function to load the PDF
+renderPDF("/files/Listening 1.pdf");
