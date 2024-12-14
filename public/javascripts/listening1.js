@@ -2,7 +2,7 @@
 let currentQuestionIndex = 0;
 const userAnswers = [];
 let timerInterval;
-let timeRemaining = 1200; // 20 minutes in seconds
+let timeRemaining = 2400; // 20 minutes in seconds
 
 // Audio and PDF Variables
 const audioPlayer = document.getElementById("audio-player");
@@ -31,8 +31,7 @@ const questions = [
   { type: "text", text: "3. Complete the table: _______", correct: "supermarket" },
   { type: "text", text: "4. Complete the table: _______", correct: "bakery" },
   { type: "text", text: "5. Complete the table: _______", correct: "ARW204" },
-  { type: "text", text: "6. Complete the notes: _______", correct: "adverts" },
-  { type: "text", text: "6. Complete the notes: _______", correct: "advertisements" },
+  { type: "text", text: "6. Complete the notes: _______", correct: ["adverts","advertisements"] },
   { type: "text", text: "7. Complete the notes: _______", correct: "newspaper" },
   { type: "text", text: "8. Complete the notes: _______", correct: "agency" },
   { type: "text", text: "9. Complete the notes: _______", correct: "tutors" },
@@ -53,10 +52,10 @@ const questions = [
   { type: "choice", text: "24. Choose the correct letter:", options: ["A", "B", "C"], correct: "C" },
   { type: "choice", text: "25. Choose the correct letter:", options: ["A", "B", "C"], correct: "B" },
   { type: "choice", text: "26. Choose the correct letter:", options: ["A", "B", "C"], correct: "C" },
-  { type: "choice", text: "27. Choose TWO letters:", options: ["A", "B", "C", "D", "E"], correct: "B,E" },
-  { type: "choice", text: "28. Choose TWO letters:", options: ["A", "B", "C", "D", "E"], correct: "B,E" },
-  { type: "choice", text: "29. Choose TWO letters:", options: ["A", "B", "C", "D", "E"], correct: "A,D" },
-  { type: "choice", text: "30. Choose TWO letters:", options: ["A", "B", "C", "D", "E"], correct: "A,D" },
+  { type: "choice", text: "27. Choose TWO letters:", options: ["A", "B", "C", "D", "E"], correct: ["B","E"] },
+  { type: "choice", text: "28. Choose TWO letters:", options: ["A", "B", "C", "D", "E"], correct: ["B","E"]},
+  { type: "choice", text: "29. Choose TWO letters:", options: ["A", "B", "C", "D", "E"], correct: ["A","D"]},
+  { type: "choice", text: "30. Choose TWO letters:", options: ["A", "B", "C", "D", "E"], correct: ["A","D"]},
   { type: "text", text: "31. Complete the notes: _______", correct: "transportation" },
   { type: "text", text: "32. Complete the notes: _______", correct: "clean" },
   { type: "text", text: "33. Complete the notes: _______", correct: "information" },
@@ -153,19 +152,39 @@ function handleSubmit() {
   clearInterval(timerInterval);
 
   // Evaluate answers
-  const results = questions.map((q, index) => ({
-    question: q.text,
-    userAnswer: userAnswers[index] || "Not answered",
-    correctAnswer: q.correct,
-    isCorrect: userAnswers[index] === q.correct,
-  }));
+  const results = questions.map((q, index) => {
+    const userAnswer = userAnswers[index];
 
-  // Display Results
+    // Validation for multiple correct answers
+    const isCorrect = Array.isArray(q.correct)
+      ? Array.isArray(userAnswer)
+        ? q.correct.sort().join(",") === userAnswer.sort().join(",") // For multiple-choice with multiple answers
+        : q.correct.some((validAnswer) => validAnswer.toLowerCase() === userAnswer.toLowerCase()) // For text answers with multiple correct
+      : userAnswer?.toLowerCase() === q.correct?.toLowerCase(); // Single correct answer
+
+    return {
+      question: q.text,
+      userAnswer: userAnswer || "Not answered",
+      correctAnswer: Array.isArray(q.correct) ? q.correct.join(", ") : q.correct,
+      isCorrect,
+    };
+  });
+
+  // Calculate score
   const score = results.filter((r) => r.isCorrect).length;
   const percentage = ((score / questions.length) * 100).toFixed(2);
+
+  // Display submission notification
   alert(`Quiz submitted! Score: ${score}/${questions.length} (${percentage}%)`);
 
+  // Log results (optional for debugging)
   console.log("Results:", results);
+
+  // Redirect after 5 seconds
+  setTimeout(() => {
+    // Replace the URL below with the desired redirect URL
+    window.location.href = "/your-redirect-page-url";
+  }, 5000); // 5000ms = 5 seconds
 }
 
 // Handle Sequential Audio Playback

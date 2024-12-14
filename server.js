@@ -197,6 +197,16 @@ app.get("/listening", (req, res) => {
   res.render("listening 1.ejs", { name });
 });
 
+app.get("/listening2", (req, res) => {
+  const name = req.user ? req.user.name : null;
+  res.render("listening 2.ejs", { name });
+});
+
+app.get("/listening3", (req, res) => {
+  const name = req.user ? req.user.name : null;
+  res.render("listening 3.ejs", { name });
+});
+
 // User Profile Route
 app.get("/profile", (req, res) => {
   const name = req.user ? req.user.name : null;

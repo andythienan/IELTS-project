@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Listening Test</title>
+  <link href="/styles/listening.css" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.9.359/pdf.min.js"></script>
+</head>
+<body>
+  <header>
+    Interactive Listening Test
+    <div id="timer">40:00</div>
+  </header>
+  <main>
+    <!-- Left Box: Audio + PDF Viewer -->
+    <div class="column" id="audio-pdf-container">
+      <h2>Listen carefully and view the material:</h2>
+      <div id="audio-player-container">
+        <audio id="audio-player" controls>
+          <source id="audio-source" src="/files/Listening_2.mp3" type="audio/mpeg">
+          Your browser does not support the audio element.
+        </audio>
+      </div>
+      <div id="pdf-viewer-container" style="overflow-y: auto; max-height: 350px;"></div>
+    </div>
+
+    <!-- Right Box: Questions and Answers -->
+    <div class="column" id="question-container">
+      <h2>Interactive Questions</h2>
+      <div id="question-list" style="overflow-y: auto; max-height: 350px;">
+        <!-- Questions will be dynamically inserted via JavaScript -->
+      </div>
+    </div>
+  </main>
+  <footer>
+    <button id="prev-question" class="btn" disabled>Previous</button>
+    <span id="question-counter">Question 1 of 40</span>
+    <button id="next-question" class="btn">Next</button>
+    <button id="submit-quiz" class="btn" disabled>Submit</button>
+  </footer>
+  <script src="/javascripts/listening2.js"></script>
+</body>
+</html>
