@@ -22,11 +22,13 @@ padding-top: 80px; /* Adjust for the height of the fixed header + spacing */
   z-index: 1000;
   padding: 0;
   transition: box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out; /* Smooth transitions */
-  border-radius: 12px;
+  border-radius: 100px;
   margin: 0 auto; /* Center the header */
   -webkit-backdrop-filter: blur(30px); /* Optional blur for glass effect */
   backdrop-filter: blur(30px); /* Optional blur for glass effect */
   max-width: 1400px;
+  height:60px;
+  transition:all .5s ease;
 }
 
 .navbar-container {
@@ -35,8 +37,9 @@ padding-top: 80px; /* Adjust for the height of the fixed header + spacing */
   align-items: center;
   max-width: 100%;
   margin: 0 auto;
-  padding: 15px 25px; /* Increased padding */
+  padding: 12px 30px; /* Increased padding */
   box-sizing: border-box;
+
 }
 
 /* Logo and Branding */
@@ -149,7 +152,7 @@ align-items: center;
 text-decoration: none;
 font-size: 0.95em;
 font-weight: bold;
-padding: 10px 20px; /* Increased padding */
+padding: 4px 20px; /* Increased padding */
 border-radius: 8px; /* More rounded */
 transition: background-color 0.3s, color 0.3s, transform 0.3s;
 display: inline-block;
