@@ -2,14 +2,13 @@ let currentQuestionIndex = 0;
 const userAnswers = [];
 let notes = [];
 let highlightedPassages = [];
+let quizData = []; // Variable to store fetched quiz data
 let timerInterval;
-let timeRemaining = 300; // 5 minutes in seconds
+let timeRemaining = 900; // 15 minutes in seconds
 let lastUsedColor = "yellow"; // Default and last used highlight color
-
 const passageEl = document.getElementById("passage");
 const questionEl = document.getElementById("question");
 const optionsEl = document.getElementById("options");
-const noteInputEl = document.getElementById("note-input");
 const prevButton = document.getElementById("prev-question");
 const nextButton = document.getElementById("next-question");
 const submitButton = document.getElementById("submit-quiz");
@@ -18,60 +17,74 @@ const timerEl = document.getElementById("timer");
 const notificationEl = document.getElementById("notification");
 const closeNotificationButton =
   document.getElementById("notification-close");
-  
 
 // Function to update and display the timer
 function updateTimer() {
-  const minutes = String(Math.floor(timeRemaining / 60)).padStart(2, "0");
-  const secs = String(timeRemaining % 60).padStart(2, "0");
-  timerEl.textContent = `${minutes}:${secs}`;
+    const minutes = String(Math.floor(timeRemaining / 60)).padStart(2, "0");
+    const secs = String(timeRemaining % 60).padStart(2, "0");
+    timerEl.textContent = `${minutes}:${secs}`;
 
-  if (timeRemaining === 0) {
-    clearInterval(timerInterval);
-    handleSubmit(); // Automatically submit when time runs out
-  } else {
-    timeRemaining--;
-  }
+    if (timeRemaining === 0) {
+        clearInterval(timerInterval);
+        handleSubmit(); // Automatically submit when time runs out
+    } else {
+        timeRemaining--;
+    }
 }
 
 // Start the timer when the quiz loads
 function startTimer() {
-  updateTimer(); // Update immediately to avoid 1-second delay
-  timerInterval = setInterval(updateTimer, 1000);
+    updateTimer(); // Update immediately to avoid 1-second delay
+    timerInterval = setInterval(updateTimer, 1000);
 }
 
-function loadQuestion(index) {
-  const data = quizData[index];
-  questionEl.textContent = data.question;
-  optionsEl.innerHTML = "";
-
-  // Set the passage content
-  passageEl.innerHTML = data.passage;
-
-  // Restore highlights for the current question
-  const currentQuestionHighlights = highlightedPassages[index] || [];
-  currentQuestionHighlights.forEach((highlight) => {
-    highlightTextInPassage(highlight.text, highlight.color);
-  });
-
-  // Select the answer if one was previously chosen
-  data.options.forEach((option, i) => {
-    const optionEl = document.createElement("div");
-    optionEl.textContent = option;
-    optionEl.className = "choice-box";
-    optionEl.addEventListener("click", () => selectAnswer(i));
-    if (userAnswers[index] === i) {
-      optionEl.classList.add("selected");
+async function fetchQuizData() {
+  try {
+    const response = await fetch(`/api/reading-quiz/${quizId}`);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
     }
-    optionsEl.appendChild(optionEl);
-  });
-
-  questionCounterEl.textContent = `Question ${index + 1} of ${
-    quizData.length
-  }`;
-  prevButton.disabled = index === 0;
-  nextButton.disabled = index === quizData.length - 1;
-  submitButton.disabled = true; // Keep submit disabled until all questions are answered
+    quizData = await response.json();
+    loadQuestion(currentQuestionIndex);
+  } catch (error) {
+    console.error("Failed to fetch quiz data:", error);
+    // Handle the error, e.g., show a message to the user
+  }
+}
+function loadQuestion(index) {
+    if (!quizData || quizData.length === 0) return;
+  
+    const data = quizData[index];
+    questionEl.textContent = data.question;
+    optionsEl.innerHTML = "";
+  
+    // Set the passage content
+    passageEl.innerHTML = data.passage;
+  
+    // Restore highlights for the current question
+    const currentQuestionHighlights = highlightedPassages[index] || [];
+    currentQuestionHighlights.forEach((highlight) => {
+      highlightTextInPassage(highlight.text, highlight.color);
+    });
+  
+    // Select the answer if one was previously chosen
+    data.options.forEach((option, i) => {
+      const optionEl = document.createElement("div");
+      optionEl.textContent = option;
+      optionEl.className = "choice-box";
+      optionEl.addEventListener("click", () => selectAnswer(i));
+      if (userAnswers[index] === i) {
+        optionEl.classList.add("selected");
+      }
+      optionsEl.appendChild(optionEl);
+    });
+  
+    questionCounterEl.textContent = `Question ${index + 1} of ${
+      quizData.length
+    }`;
+    prevButton.disabled = index === 0;
+    nextButton.disabled = index === quizData.length - 1;
+    submitButton.disabled = true; // Keep submit disabled until all questions are answered
 }
 
 function highlightTextInPassage(text, color) {
@@ -261,7 +274,7 @@ async function handleSubmit() {
     // Prepare data for database
     const quizResponseData = {
         userId: loggedInUserId, // Use the passed user ID
-        quizId: "reading-quiz-1", 
+        quizId: quizId, 
         questions: userResponses,
         score: score,
         percentage: percentage,
@@ -408,5 +421,5 @@ passageEl.addEventListener("mousedown", (event) => {
 // Event listener to trigger highlight on mouseup (for regular selection)
 passageEl.addEventListener("mouseup", handleHighlightClick);
 
+fetchQuizData();
 startTimer();
-loadQuestion(currentQuestionIndex);

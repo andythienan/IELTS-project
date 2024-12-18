@@ -1,0 +1,47 @@
+{
+    "audioSource": "/files/listening_audio/listening3.mp3",
+    "questions": [
+      {
+        "type": "multiple-choice",
+        "question": "What is the monthly rent for the three-bedroom apartment on Beetle Road?",
+        "options": ["$435, including internet and utilities", "$400, including utilities but no internet", "$340, with shared facilities", "$500, meals included"],
+        "answer": "$435, including internet and utilities"
+      },
+      {
+        "type": "multiple-choice",
+        "question": "Which apartment is closest to the student’s classes?",
+        "options": ["The apartment on Beetle Road", "The apartment on Oakington Avenue", "The apartment on Mead Street", "The Devon Close apartment"],
+        "answer": "The apartment on Oakington Avenue"
+      },
+      {
+        "type": "t-f-ng",
+        "question": "The apartment on Mead Street includes a DVD player.",
+        "options": ["True", "False", "Not Given"],
+        "answer": "False"
+      },
+      {
+        "type": "t-f-ng",
+        "question": "The apartment on Devon Close provides free breakfast and lunch.",
+        "options": ["True", "False", "Not Given"],
+        "answer": "False"
+      },
+       {
+              "type": "multiple-choice",
+              "question": "Which feature is missing in the Devon Close apartment?",
+             "options": ["A bathroom inside the apartment", "A study with a lamp", "Free evening meals", "Access to a dining hall"],
+              "answer": "A bathroom inside the apartment"
+       },
+       {
+          "type": "t-f-ng",
+          "question": "The student prefers the apartment on Beetle Road over the one on Devon Close.",
+          "options": ["True", "False", "Not Given"],
+          "answer": "Not Given"
+      },
+      {
+        "type": "multiple-choice",
+        "question": "What is the rent for a room with an air conditioner in the Oakington Avenue dormitory?",
+         "options": ["$435 per month", "$400 per month", "$340 per month", "$600 per month"],
+          "answer": "$400 per month"
+      }
+    ]
+  }

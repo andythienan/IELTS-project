@@ -1,0 +1,66 @@
+{
+    "audioSource": "/files/listening_audio/listening1.mp3",
+    "questions": [
+        {
+            "type": "multiple-choice",
+            "question": "What is the primary criterion for selecting the leading education officer?",
+            "options": [
+                "Experience in computer knowledge",
+                "Ability to direct and manage staff effectively",
+                "Creativity and knowledge in the arts",
+                "Fluency in multiple languages"
+            ],
+            "answer": "Ability to direct and manage staff effectively"
+        },
+        {
+            "type": "multiple-choice",
+            "question": "Why are the candidates from the computing faculty immediately dismissed?",
+            "options": [
+                "They lacked the necessary qualifications for the position.",
+                "They had insufficient experience compared to other faculties.",
+                "They failed to meet the language proficiency requirement.",
+                "Their skills were irrelevant to the managerial focus of the role."
+            ],
+            "answer": "They had insufficient experience compared to other faculties."
+        },
+        {
+            "type": "t-f-ng",
+            "question": "The computing faculty candidates were rejected because they failed to meet language proficiency requirements.",
+            "options": ["True", "False", "Not Given"],
+            "answer": "False"
+        },
+        {
+            "type": "t-f-ng",
+            "question": "Oscar has the least qualifications academically but is considered stable and cooperative.",
+            "options": ["True", "False", "Not Given"],
+            "answer": "True"
+        },
+        {
+            "type": "t-f-ng",
+            "question": "The role of leading education officer requires candidates to have fluency in multiple languages.",
+            "options": ["True", "False", "Not Given"],
+            "answer": "Not Given"
+        },
+        {
+            "type": "t-f-ng",
+            "question": "Leck has been criticized for avoiding personnel conflicts in his managerial roles.",
+            "options": ["True", "False", "Not Given"],
+            "answer": "False"
+        },
+        {
+            "type": "fill-in-the-blank",
+            "question": "The leading education officer must possess the ability to direct and manage staff ______________. (No more than 2 words)",
+            "answer": "effectively"
+        },
+        {
+            "type": "fill-in-the-blank",
+            "question": "Abdul might face challenges in the role due to his limited ______________ proficiency. (No more than 2 words)",
+            "answer": "English"
+        },
+         {
+            "type": "fill-in-the-blank",
+            "question": "The role includes benefits such as a private ______________ for the leading education officer. (No more than 2 words)",
+            "answer": "parking space"
+        }
+    ]
+}

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Lessons</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/lesson.css">
+    <link rel="stylesheet" href="/styles/typography.css" >
+</head>
+<body>
+    <div class="lesson-card">
+        <h2>Lesson</h2>
+        <p>Loading...</p>
+        <button id="start-lesson-btn">Start Lesson</button>
+    </div>
+
+    <div id="lesson-content" style="display: none;">
+    </div>
+      <script>
+    const loggedInUserId = "<%= user ? user._id : null %>";
+    const lessonId = "<%= lessonId %>";
+    </script>
+    <script src="/javascripts/lesson.js"></script>
+
+</body>
+</html>

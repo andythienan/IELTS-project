@@ -505,3 +505,38 @@ body {
     border: 1px solid #f4a29b;
     color: #c62828;
 }
+
+.example-word {
+    font-weight: bold;
+    animation: pulse 1s infinite alternate;
+}
+
+@keyframes pulse {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(1.05);
+    }
+}
+
+.synonym-antonym-pair {
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #f8f8f8;
+}
+
+.word {
+    font-weight: bold;
+    color: #28a745;
+    margin-bottom: 5px;
+}
+
+.synonyms {
+    color: #007bff;
+}
+
+.antonyms {
+    color: #dc3545;
+}

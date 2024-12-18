@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Reading Test</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="/styles/reading.css" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        Reading Test
+        <div id="timer"><span class="material-icons">timer</span> 15:00</div>
+    </header>
+    <div id="notification">
+        Quiz submitted successfully! Redirecting...
+        <button id="notification-close"><i class="material-icons">close</i></button>
+    </div>
+    <main>
+        <div id="notification-container"></div>
+        <div class="column" id="passage-container">
+            <div id="passage">Loading...</div>
+        </div>
+        <div class="column" id="question-container">
+            <p id="question">Loading...</p>
+            <div id="options"></div>
+        </div>
+    </main>
+    <footer>
+        <button id="prev-question" class="btn" disabled><i class="material-icons">navigate_before</i>Previous</button>
+        <span id="question-counter">Question 1 of 10</span>
+        <button id="next-question" class="btn">Next<i class="material-icons">navigate_next</i></button>
+        <button id="submit-quiz" class="btn" disabled>Submit</button>
+    </footer>
+    <script>
+      const loggedInUserId = "<%= user ? user._id : null %>";
+      const quizId = "<%= quizId %>"; // Get the quiz ID passed from the server
+    </script>
+    <script src="/javascripts/reading.js"></script>
+</body>
+
+</html>

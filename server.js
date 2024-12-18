@@ -1,11 +1,6 @@
-// ==============================
-// Environment Configuration
-// ==============================
+// server.js
 if (process.env.NODE_ENV !== "production") require("dotenv").config();
 
-// ==============================
-// Module Imports
-// ==============================
 const express = require("express");
 const bcrypt = require("bcrypt");
 const passport = require("passport");
@@ -14,6 +9,8 @@ const session = require("express-session");
 const methodOverride = require("method-override");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
+const fs = require("fs").promises;
+const path = require("path");
 
 // Models
 const User = require("./models/User");
@@ -41,24 +38,17 @@ const PostSchema = new mongoose.Schema({
     },
   ],
 });
-
 const Post = mongoose.model("Post", PostSchema);
 
-// ==============================
-// Database Connection
-// ==============================
+// Database connection
 const DB_URI = "mongodb+srv://Mikeblocky:iamawizardty%3AD%21@learnenglish.tnwoh.mongodb.net/?retryWrites=true&w=majority&appName=learnEnglish";
 mongoose
   .connect(DB_URI, { dbName: "myDatabase" })
   .then(() => console.log("Connected to MongoDB"))
   .catch((err) => console.error("MongoDB connection error:", err));
 
-// ==============================
-// App Initialization
-// ==============================
 const app = express();
 app.set("view-engine", "ejs");
-
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.json());
@@ -67,7 +57,7 @@ app.use(methodOverride("_method"));
 
 app.use(
   session({
-    secret: process.env.SESSION_SECRET,
+    secret: process.env.SESSION_SECRET || "some-secret",
     resave: false,
     saveUninitialized: false,
   })
@@ -83,28 +73,23 @@ initializePassport(
 app.use(passport.initialize());
 app.use(passport.session());
 
-// Middleware for global user context
+// Middleware for user context
 app.use((req, res, next) => {
   res.locals.user = req.user || null;
   next();
 });
 
-// ==============================
-// Middleware: Authentication
-// ==============================
+// Authentication middleware
 const checkAuthenticated = (req, res, next) => {
   if (req.isAuthenticated()) return next();
   res.redirect("/login");
 };
-
 const checkNotAuthenticated = (req, res, next) => {
   if (req.isAuthenticated()) return res.redirect("/");
   next();
 };
 
-// ==============================
 // Route Handlers
-// ==============================
 const renderPage = (page) => (req, res) =>
   res.render(`${page}.ejs`, { name: req.user?.name || null });
 
@@ -117,35 +102,160 @@ app.get("/vocabulary", renderPage("vocab"));
 app.get("/skills", renderPage("skill"));
 app.get("/tips", renderPage("tips"));
 
-
 // Authenticated Routes
-// On home
 app.get("/profile", checkAuthenticated, renderPage("profile"));
 app.get("/exam-library", checkAuthenticated, renderPage("exam-library"));
 app.get("/lesson-library", checkAuthenticated, renderPage("lessons-library"));
 app.get("/history", checkAuthenticated, renderPage("history"));
 app.get("/forum", checkAuthenticated, renderPage("forum"));
-// Tests
 
-// Listening
-app.get("/listening1", checkAuthenticated, renderPage("listening1"));
-app.get("/listening2", checkAuthenticated, renderPage("listening2"));
-app.get("/listening3", checkAuthenticated, renderPage("listening3"));
+app.get("/api/lesson/:lessonId", checkAuthenticated, async (req, res) => {
+  const { lessonId } = req.params;
+  const lessonData = await loadLessonData(lessonId);
+  if (lessonData) {
+    res.json(lessonData);
+  } else {
+    res.status(404).send("Lesson not found");
+  }
+});
 
-// Reading
-app.get("/reading1", checkAuthenticated, renderPage("reading1"));
-app.get("/reading2", checkAuthenticated, renderPage("reading2"));
-app.get("/reading3", checkAuthenticated, renderPage("reading3"));
+app.post("/api/complete-lesson", checkAuthenticated, async (req, res) => {
+    const { lessonId } = req.body;
 
-// Writing
-app.get("/writing1", checkAuthenticated, renderPage("writing1"));
-app.get("/writing2", checkAuthenticated, renderPage("writing2"));
-app.get("/writing3", checkAuthenticated, renderPage("writing3"));
+    try {
+        const lessonCompletion = new LessonCompletion({
+          userId: req.user._id,
+          lessonId: lessonId,
+        });
 
-// Lessons
-app.get("/lesson1", checkAuthenticated, renderPage("lesson1"));
-app.get("/lesson2", checkAuthenticated, renderPage("lesson2"));
-app.get("/lesson4", checkAuthenticated, renderPage("lesson4"));
+        await lessonCompletion.save();
+        res.status(200).json({ message: "Lesson completed" });
+    } catch (error) {
+        console.error("Error while marking lesson as complete", error);
+        res.status(500).json({ error: "Failed to mark lesson as complete" });
+    }
+});
+
+
+// Load lesson data from JSON
+async function loadLessonData(lessonId) {
+  try {
+      const filePath = path.join(__dirname, "data", "lesson", `${lessonId}.json`);
+      const data = await fs.readFile(filePath, "utf-8");
+      return JSON.parse(data);
+  } catch (error) {
+    console.error("Error loading lesson data:", error);
+    return null;
+  }
+}
+
+// Dynamic lesson route
+app.get("/lesson/:lessonId", checkAuthenticated, async (req, res) => {
+    const { lessonId } = req.params;
+    res.render("lesson.ejs", { lessonId });
+});
+
+
+
+// Listening test route
+app.get("/listening/:testId", checkAuthenticated, async (req, res) => {
+  const { testId } = req.params;
+  res.render("listening.ejs", { testId });
+});
+
+// Load listening data from JSON
+async function loadListeningTestData(testId) {
+  try {
+    const filePath = path.join(__dirname, "data", "listening", `${testId}.json`);
+    const data = await fs.readFile(filePath, "utf-8");
+    return JSON.parse(data);
+  } catch (error) {
+    console.error("Error loading listening data:", error);
+    return null;
+  }
+}
+
+// API endpoint for listening test
+app.get("/api/listening-test/:testId", checkAuthenticated, async (req, res) => {
+  const { testId } = req.params;
+  const testData = await loadListeningTestData(testId);
+  if (testData) {
+    res.json(testData);
+  } else {
+    res.status(404).send("Test not found");
+  }
+});
+
+// Reading test routes
+app.get("/reading/:quizId", checkAuthenticated, async (req, res) => {
+  const { quizId } = req.params;
+  res.render("reading.ejs", { quizId });
+});
+
+async function loadQuizData(quizId) {
+  try {
+    const filePath = path.join(__dirname, "data", "reading", `${quizId}.json`);
+    const data = await fs.readFile(filePath, "utf-8");
+    return JSON.parse(data);
+  } catch (error) {
+    console.error("Error loading quiz data:", error);
+    return null;
+  }
+}
+
+app.get("/api/reading-quiz/:quizId", checkAuthenticated, async (req, res) => {
+  const { quizId } = req.params;
+  const quizData = await loadQuizData(quizId);
+  if (quizData) {
+    res.json(quizData);
+  } else {
+    res.status(404).send("Quiz not found");
+  }
+});
+
+// Writing tasks
+app.get("/writing/:taskId", checkAuthenticated, async (req, res) => {
+  const { taskId } = req.params;
+  res.render("writing.ejs", { taskId });
+});
+
+async function loadWritingTaskData(taskId) {
+  try {
+    const filePath = path.join(__dirname, "data", "writing", `${taskId}.json`);
+    const data = await fs.readFile(filePath, "utf-8");
+    return JSON.parse(data);
+  } catch (error) {
+    console.error("Error loading writing task data:", error);
+    return null;
+  }
+}
+
+app.get("/api/writing-task/:taskId", checkAuthenticated, async (req, res) => {
+  const { taskId } = req.params;
+  const taskData = await loadWritingTaskData(taskId);
+  if (taskData) {
+    res.json(taskData);
+  } else {
+    res.status(404).send("Task not found");
+  }
+});
+
+app.post("/submit-writing", checkAuthenticated, async (req, res) => {
+  try {
+    const { task, response, wordCount } = req.body;
+    const writingResponse = new WritingResponse({
+      userId: req.user._id,
+      task,
+      response,
+      wordCount,
+    });
+    await writingResponse.save();
+    res.status(200).json({ message: "Writing response submitted successfully." });
+  } catch (error) {
+    console.error("Error saving writing response:", error);
+    res.status(500).json({ error: "Failed to save writing response." });
+  }
+});
 
 // Login and Registration
 app.post(
@@ -160,7 +270,6 @@ app.post(
 
 app.post("/register", checkNotAuthenticated, async (req, res) => {
   const { name, email, password, gender } = req.body;
-
   try {
     const existingUser = await User.findOne({ email });
     if (existingUser) {
@@ -171,7 +280,6 @@ app.post("/register", checkNotAuthenticated, async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, 10);
     const newUser = new User({ name, email, password: hashedPassword, gender });
     await newUser.save();
-
     res.redirect("/login");
   } catch (err) {
     console.error("Error registering user:", err);
@@ -180,18 +288,11 @@ app.post("/register", checkNotAuthenticated, async (req, res) => {
   }
 });
 
+// Quiz submission
 app.post("/submit-quiz", checkAuthenticated, async (req, res) => {
   try {
     const { userId, quizId, questions, score, percentage } = req.body;
-
-    const quizResponse = new QuizResponse({
-      userId,
-      quizId,
-      questions,
-      score,
-      percentage,
-    });
-
+    const quizResponse = new QuizResponse({ userId, quizId, questions, score, percentage });
     await quizResponse.save();
     res.status(200).json({ message: "Quiz response submitted successfully." });
   } catch (error) {
@@ -199,7 +300,6 @@ app.post("/submit-quiz", checkAuthenticated, async (req, res) => {
     res.status(500).json({ error: "Failed to save quiz response." });
   }
 });
-
 
 // Logout
 app.delete("/logout", (req, res, next) => {
@@ -217,18 +317,13 @@ app.get("/check-email", async (req, res) => {
   }
 });
 
-// ==============================
-// API Endpoints
-// ==============================
-
-// User History
+// User activity and history
 app.get("/api/user-activity", checkAuthenticated, async (req, res) => {
   try {
     const userId = req.user._id;
     const completedQuizzes = await QuizResponse.countDocuments({ userId });
     const completedLessons = await LessonCompletion.countDocuments({ userId });
     const completedWritings = await WritingResponse.countDocuments({ userId });
-
     res.json({ completedQuizzes, completedLessons, completedWritings });
   } catch (err) {
     console.error("Error fetching user activity:", err);
@@ -242,7 +337,6 @@ app.get("/api/user-history", checkAuthenticated, async (req, res) => {
     const quizzes = await QuizResponse.find({ userId });
     const lessons = await LessonCompletion.find({ userId });
     const writings = await WritingResponse.find({ userId });
-
     res.json({ quizzes, lessons, writings });
   } catch (err) {
     console.error("Error fetching user history:", err);
@@ -250,7 +344,7 @@ app.get("/api/user-history", checkAuthenticated, async (req, res) => {
   }
 });
 
-// Posts & Replies
+// Forum posts
 app.get("/api/posts", async (req, res) => {
   try {
     const posts = await Post.find().sort({ timestamp: -1 });
@@ -265,7 +359,6 @@ app.post("/api/posts", checkAuthenticated, async (req, res) => {
   try {
     const { title, content } = req.body;
     const newPost = new Post({ title, content, author: req.user.name });
-
     await newPost.save();
     res.status(201).json(newPost);
   } catch (err) {
@@ -274,17 +367,14 @@ app.post("/api/posts", checkAuthenticated, async (req, res) => {
   }
 });
 
-// Voting System
 app.put("/api/posts/:id/vote", async (req, res) => {
   try {
     const { id } = req.params;
     const { action } = req.body;
     const post = await Post.findById(id);
-
     if (!post) return res.status(404).json({ error: "Post not found" });
     post.votes += action === "upvote" ? 1 : action === "downvote" ? -1 : 0;
     await post.save();
-
     res.status(200).json(post);
   } catch (err) {
     console.error("Error updating vote:", err);
@@ -292,7 +382,5 @@ app.put("/api/posts/:id/vote", async (req, res) => {
   }
 });
 
-// ==============================
-// Server Startup
-// ==============================
-app.listen(3000, () => console.log("Server running on http://localhost:3000"));
+// Start server
+app.listen(8000, () => console.log("Server running on http://localhost:8000"));

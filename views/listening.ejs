@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Listening Test</title>
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link href="/styles/listening.css" rel="stylesheet" />
+  </head>
+  <body>
+    <header>
+      <p>Listening Test</p>
+      <div id="timer"><span class="material-icons">timer</span> 00:00</div>
+    </header>
+
+    <div id="notification" style="display: none"></div>
+
+    <main>
+      <div class="column response-column" id="response-container">
+        <h2>Note</h2>
+        <textarea
+          id="response-input"
+          placeholder="Write your note here..."
+          maxlength="5000"
+        ></textarea>
+        <div class="word-count">Word Count: <span id="word-count">0</span></div>
+      </div>
+
+      <div class="column" id="questions-container">
+        <h2>Questions</h2>
+        <div id="audio-section">
+          <audio id="audio-player">
+            <source type="audio/mpeg" id="audio-source" />
+            Your browser does not support the audio element.
+          </audio>
+          <button id="play-audio-btn" class="btn">
+            <span class="material-icons">play_arrow</span> Play audio
+          </button>
+        </div>
+        <form id="questions-form">
+          <div id="questions-list"></div>
+        </form>
+      </div>
+    </main>
+
+    <script>
+      const loggedInUserId = "<%= user ? user._id : '' %>";
+      const testId = "<%= testId %>";
+    </script>
+    <script src="/javascripts/listening.js"></script>
+  </body>
+</html>

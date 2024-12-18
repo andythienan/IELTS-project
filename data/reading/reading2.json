@@ -1,0 +1,112 @@
+[
+    {
+      "passage": "The concept of \"meritocracy\" is often presented as an ideal social system where success is determined by talent and effort. However, critics argue that meritocracy is a myth, as social mobility is significantly constrained by inherited advantages, such as wealth, connections, and access to quality education. These inherited advantages can create a \"head start\" that is difficult, if not impossible, for those from disadvantaged backgrounds to overcome. Furthermore, some argue that a focus on individual merit can obscure the impact of systemic inequalities, reinforcing the very structures it claims to overcome. This prompts a crucial question: can any social system truly be meritocratic, or are we destined to reproduce existing power imbalances?",
+      "question": "According to the passage, what is the primary critique of the idea of a true meritocracy?",
+      "options": [
+        "It encourages people to work harder.",
+        "It overlooks the impact of individual talents and skills.",
+        "It fails to account for systemic advantages some people possess.",
+        "It promotes too much focus on equality."
+      ],
+      "answer": "It fails to account for systemic advantages some people possess."
+    },
+    {
+      "passage": "The rise of digital surveillance technologies, often justified in the name of security, raises profound ethical questions about the balance between personal privacy and collective safety. Facial recognition software, for example, can be a powerful tool for crime prevention, but it also has the potential to be misused for purposes of mass surveillance and control. Furthermore, the data collected through these technologies is often stored indefinitely, creating a digital footprint that can be accessed by governments and corporations alike. This creates a \"surveillance society\" where individuals are constantly being monitored, potentially chilling free expression and inhibiting dissent. The critical ethical debate is how to manage the benefits of these technologies while safeguarding fundamental human rights.",
+      "question": "What is the central ethical dilemma concerning the use of digital surveillance technologies?",
+      "options": [
+        "Balancing economic growth with privacy regulations.",
+        "The debate over whether anonymity can be a right.",
+        "Balancing individual freedom with the benefits of collective security.",
+        "Balancing the amount of data collected with the type of data collected."
+      ],
+      "answer": "Balancing individual freedom with the benefits of collective security."
+    },
+    {
+      "passage": "The concept of \"cultural relativism\" suggests that moral or ethical principles are not universal but rather relative to particular cultural contexts. This viewpoint emphasizes the importance of understanding and respecting diverse cultural practices, even those that may seem foreign or controversial to outsiders. However, critics of cultural relativism argue that it can lead to moral paralysis, as it would seemingly prevent us from making judgments about practices that violate fundamental human rights. This raises the question: Is there a universal standard for morality that transcends cultural differences, or is morality entirely subjective? This debate lies at the heart of discussions on human rights and international relations.",
+      "question": "What is the primary criticism leveled against cultural relativism?",
+      "options": [
+        "It promotes a simplistic understanding of different cultures.",
+        "It can lead to moral indifference towards human rights violations.",
+        "It is not grounded in scientific evidence.",
+        "It fails to acknowledge the existence of shared values."
+      ],
+      "answer": "It can lead to moral indifference towards human rights violations."
+    },
+    {
+      "passage": "The philosophical problem of consciousness revolves around the nature of subjective experience. Materialists argue that consciousness is solely a product of brain activity, while dualists posit that there is a separate, non-physical aspect to consciousness that cannot be explained by physical processes. This leads to what is known as the \"hard problem\" of consciousness—how do physical processes give rise to subjective feelings and sensations? The debate is further complicated by the advent of artificial intelligence, as it forces us to consider whether consciousness can be created in a non-biological system.",
+      "question": "What is the 'hard problem' of consciousness, as presented in the passage?",
+      "options": [
+        "The problem of measuring conscious states.",
+        "How physical processes give rise to subjective feelings and sensations.",
+        "The problem of defining what constitutes intelligence.",
+        "The issue of whether dualism is an effective way to understand the mind."
+      ],
+      "answer": "How physical processes give rise to subjective feelings and sensations."
+    },
+    {
+      "passage": "The concept of \"intersectionality\" recognizes that individuals possess multiple identities (e.g., race, gender, class, sexual orientation) that intersect to create unique experiences of discrimination or privilege. A person's experience of oppression cannot be reduced to a single identity category but rather should be understood as the complex interaction of multiple social factors. This framework challenges single-axis approaches to inequality and highlights the interconnected nature of social justice issues. It forces us to think critically about how different forms of discrimination intersect and compound to affect people’s lives.",
+      "question": "What does the concept of 'intersectionality' primarily emphasize about the nature of inequality?",
+      "options": [
+        "The singular impact of identity categories.",
+        "The interconnected nature of multiple forms of social discrimination.",
+        "The need to focus on one specific social issue at a time.",
+        "The reduction of identity to simple, singular categories."
+      ],
+      "answer": "The interconnected nature of multiple forms of social discrimination."
+    },
+    {
+      "passage": "In the realm of political discourse, the phenomenon of \"echo chambers\" has emerged as a significant concern. These online spaces reinforce existing beliefs, limit exposure to dissenting views, and create a polarized environment where reasoned debate is difficult to achieve. Social media algorithms that personalize content contribute to this problem by prioritizing information that aligns with the user's existing views, further solidifying existing biases. The consequences of echo chambers are far-reaching, leading to increased polarization, reduced critical thinking, and the erosion of trust in institutions.",
+      "question": "What are the primary consequences of 'echo chambers' in the context of political discourse?",
+      "options": [
+        "Increased understanding of diverse viewpoints.",
+        "Reduced polarization and greater consensus.",
+        "Increased polarization and erosion of trust in institutions.",
+        "Increased critical thinking and balanced debate."
+      ],
+      "answer": "Increased polarization and erosion of trust in institutions."
+    },
+    {
+      "passage": "The relationship between technological advancement and societal well-being is not straightforward. While technology offers unprecedented opportunities for progress, it also presents new ethical and social challenges. The automation of jobs may lead to increased productivity, but it also raises concerns about mass unemployment. The development of artificial intelligence offers solutions to complex problems, but it also raises questions about accountability and algorithmic bias. It's crucial that we develop a nuanced understanding of the benefits and risks of new technologies and proactively address the challenges they present.",
+      "question": "What key consideration is necessary when evaluating the relationship between technological advancement and societal well-being?",
+      "options": [
+        "Focus only on technological benefits.",
+        "Ignore the ethical and social challenges.",
+        "Develop a nuanced understanding of both benefits and risks.",
+        "Focus primarily on economic efficiency."
+      ],
+      "answer": "Develop a nuanced understanding of both benefits and risks."
+    },
+    {
+      "passage": "The ongoing debate about the role of the nation-state in a globalized world highlights tensions between national sovereignty and international cooperation. Advocates of national sovereignty emphasize the importance of maintaining state autonomy, arguing that global institutions undermine democratic processes and national interests. On the other hand, proponents of international cooperation contend that transnational challenges like climate change and pandemics necessitate collective action and global governance. This tension has become more pronounced in recent years, as the rise of populism and nationalism challenges the established world order.",
+      "question": "What central tension is highlighted in the debate over the role of the nation-state in a globalized world?",
+      "options": [
+        "Balancing economic power and national security.",
+        "Tension between national sovereignty and international cooperation.",
+        "Focusing on economic growth over environmental sustainability.",
+        "The conflict between religious and secular ideologies."
+      ],
+      "answer": "Tension between national sovereignty and international cooperation."
+    },
+    {
+      "passage": "The concept of \"epistemic injustice\" refers to the ways in which some individuals or groups are unjustly excluded from knowledge practices, either by having their knowledge claims dismissed or by being unfairly excluded from knowledge-production processes. This can manifest in various ways, such as the systematic dismissal of marginalized voices or the privileging of certain forms of knowledge over others. The consequences of epistemic injustice are significant, as it can perpetuate inequality and prevent us from fully understanding complex social realities.",
+      "question": "According to the passage, how does 'epistemic injustice' manifest?",
+      "options": [
+        "By prioritizing empirical research over theoretical exploration.",
+        "By excluding certain individuals or groups from participating in knowledge-making.",
+        "By promoting a balanced and unbiased approach to knowledge production.",
+        "By favoring traditional forms of knowledge over new methodologies."
+      ],
+      "answer": "By excluding certain individuals or groups from participating in knowledge-making."
+    },
+    {
+      "passage": "The \"tragedy of the commons\" is a concept that describes a situation where individual actors, behaving rationally in their own self-interest, collectively deplete a shared resource. This phenomenon is often used to explain environmental degradation, as each individual or organization seeks to maximize their benefit from a common resource (like clean air or water), without taking into account the cumulative impact of their actions. Solutions to the tragedy of the commons often involve collective action, regulations, and/or privatization of resources.",
+      "question": "What is the core mechanism behind the 'tragedy of the commons'?",
+      "options": [
+        "Individual actors ignoring the long-term benefits of environmental stewardship.",
+        "Collective actions that lead to the responsible use of a shared resource.",
+        "Individual self-interest that collectively depletes a shared resource.",
+        "Governments overregulating the private use of shared resources."
+      ],
+      "answer": "Individual self-interest that collectively depletes a shared resource."
+    }
+]
