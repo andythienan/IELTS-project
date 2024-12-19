@@ -148,7 +148,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       setTimeout(() => {
-        window.location.href = "/lesson-library";
+        window.location.href = "/library?type=lesson";
       }, 1000);
     });
 
