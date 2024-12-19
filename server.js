@@ -313,44 +313,144 @@ app.get("/api/user-history", checkAuthenticated, async (req, res) => {
   }
 });
 
-// Forum Posts
 app.get("/api/posts", async (req, res) => {
   try {
-    res.json(await Post.find().sort({ timestamp: -1 }));
-  } catch (err) {
-    console.error("Error fetching posts:", err);
+    const posts = await Post.find().sort({ timestamp: -1 });
+    res.json(posts);
+  } catch (error) {
+    console.error("Error fetching posts:", error);
     res.status(500).json({ error: "Error fetching posts" });
   }
 });
 
+// API to create a new post
 app.post("/api/posts", checkAuthenticated, async (req, res) => {
   try {
-    res.status(201).json(
-      await new Post({
-        title: req.body.title,
-        content: req.body.content,
-        author: req.user.name,
-      }).save()
-    );
-  } catch (err) {
-    console.error("Error adding post:", err);
+    const { title, content } = req.body;
+    const newPost = new Post({
+      title,
+      content,
+      author: req.user.name,
+    });
+
+    await newPost.save();
+    res.status(201).json(newPost);
+  } catch (error) {
+    console.error("Error adding post:", error);
     res.status(500).json({ error: "Error adding post" });
   }
 });
 
+// API to delete a post
+app.delete("/api/posts/:id", checkAuthenticated, async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    // Find the post by ID
+    const post = await Post.findById(id);
+    if (!post) {
+      return res.status(404).json({ error: "Post not found" });
+    }
+
+    // Check if the logged-in user is the author
+    if (post.author !== req.user.name) {
+      return res.status(403).json({ error: "You are not authorized to delete this post" });
+    }
+
+    // Use deleteOne instead of remove
+    await Post.deleteOne({ _id: id });
+    res.status(200).json({ message: "Post deleted successfully" });
+  } catch (error) {
+    console.error("Error deleting post:", error);
+    res.status(500).json({ error: "An error occurred while deleting the post." });
+  }
+});
+
+
+
+// API to update votes
 app.put("/api/posts/:id/vote", async (req, res) => {
   try {
-    const post = await Post.findById(req.params.id);
-    if (!post) return res.status(404).json({ error: "Post not found" });
-    post.votes +=
-      req.body.action === "upvote" ? 1 : req.body.action === "downvote" ? -1 : 0;
+    const { id } = req.params;
+    const { action } = req.body;
+
+    const post = await Post.findById(id);
+    if (!post) {
+      return res.status(404).json({ error: "Post not found" });
+    }
+
+    if (action === "upvote") {
+      post.votes += 1;
+    } else if (action === "downvote") {
+      post.votes -= 1;
+    }
+
     await post.save();
     res.status(200).json(post);
-  } catch (err) {
-    console.error("Error updating vote:", err);
+  } catch (error) {
+    console.error("Error updating vote:", error);
     res.status(500).json({ error: "Error updating vote" });
   }
 });
 
+app.post("/api/posts/:id/replies", checkAuthenticated, async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { content } = req.body;
+
+    const post = await Post.findById(id);
+    if (!post) {
+      return res.status(404).json({ error: "Post not found" });
+    }
+
+    // Add reply to the post's replies array
+    const reply = {
+      content,
+      author: req.user.name,
+      timestamp: new Date(),
+    };
+    post.replies.push(reply);
+    await post.save();
+
+    res.status(201).json(reply);
+  } catch (error) {
+    console.error("Error adding reply:", error);
+    res.status(500).json({ error: "Error adding reply." });
+  }
+});
+
+app.delete("/api/posts/:postId/replies/:replyId", checkAuthenticated, async (req, res) => {
+  try {
+    const { postId, replyId } = req.params;
+
+    // Find the post
+    const post = await Post.findById(postId);
+    if (!post) {
+      return res.status(404).json({ error: "Post not found" });
+    }
+
+    // Find the reply in the replies array
+    const reply = post.replies.id(replyId);
+    if (!reply) {
+      return res.status(404).json({ error: "Reply not found" });
+    }
+
+    // Check if the logged-in user is the author of the reply
+    if (reply.author !== req.user.name) {
+      return res.status(403).json({ error: "You are not authorized to delete this reply" });
+    }
+
+    // Remove the reply
+    await Post.updateOne(
+      { _id: postId },
+      { $pull: { replies: { _id: replyId } } }
+    );
+
+    res.status(200).json({ message: "Reply deleted successfully" });
+  } catch (error) {
+    console.error("Error deleting reply:", error);
+    res.status(500).json({ error: "An error occurred while deleting the reply." });
+  }
+});
 // Start Server
 app.listen(8000, () => console.log("Server running on http://localhost:8000"));
