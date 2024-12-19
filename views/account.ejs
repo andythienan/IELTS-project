@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Account - learnEnglish</title>
+  <link rel="stylesheet" href="/styles/typography.css" />
+  <link rel="stylesheet" href="/styles/account.css" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <style>
+    /* Additional styling for tabs and forms */
+    .form-container {
+      width:500px;
+      margin: 0 auto;
+    }
+
+    .tab-container {
+      display: flex;
+      justify-content: space-around;
+      border-bottom: 1px solid #ddd;
+      margin-bottom: 20px;
+      cursor: pointer;
+    }
+
+
+    .tab.active {
+      color: #1e88e5;
+      font-weight: bold;
+      border-bottom: 2px solid #1e88e5;
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    .error-message {
+      color: red;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Tab navigation -->
+    <div class="tab-container">
+      <div class="tab <%= activeTab === 'login' ? 'active' : '' %>" id="tab-login">Log in <span class="material-icons">login</span></div>
+      <div class="tab <%= activeTab === 'register' ? 'active' : '' %>" id="tab-signup">Sign up <span class="material-icons">person_add</span></div>
+    </div>
+    
+    <% if (messages && messages.error) { %>
+      <div class="error-message">
+        <%= messages.error %>
+      </div>
+    <% } %>
+
+    <!-- Login Form -->
+    <div class="tab-content <%= activeTab === 'login' ? 'active' : '' %>" id="login-content">
+      <header class="page-header">Log in</header>
+      <form action="/login" method="POST" class="form-container">
+        <div class="form-group">
+          <label for="login-email">Email address</label>
+          <input
+            type="email"
+            id="login-email"
+            class="form-control"
+            name="email"
+            placeholder="me@myemail.com"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="login-password">Password</label>
+          <input
+            type="password"
+            id="login-password"
+            class="form-control"
+            name="password"
+            placeholder="Enter your password"
+            required
+          />
+        </div>
+
+        <button type="submit" class="primary-button">Log in</button>
+      </form>
+
+      <div class="forgot-password">
+        <a href="#" onclick="alert('Currently not available!')">Forgot your password?</a>
+      </div>
+    </div>
+
+    <!-- Register Form -->
+    <div class="tab-content <%= activeTab === 'register' ? 'active' : '' %>" id="signup-content">
+      <div class="signup-header">
+        <h1 id="step-title">Set up your new account</h1>
+      </div>
+
+      <form action="/register" method="POST" class="form-container">
+        <div class="form-group">
+          <label for="name">Username</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            class="form-control"
+            placeholder="Enter your name"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email address</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            class="form-control"
+            placeholder="Enter your email"
+            required oninput="checkEmailAvailability()"
+          />
+          <div id="email-error" class="error-message"></div>
+          <div id="email-valid" class="valid-message"></div>
+        </div>
+
+        <div class="form-group">
+          <label for="gender">Gender</label>
+          <select id="gender" name="gender" class="form-control" required>
+            <option value="" disabled selected>Select your gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+
+        <div class="form-group" style="position: relative">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            class="form-control"
+            placeholder="Enter your password"
+            required disabled
+          />
+          <div class="password-tooltip" id="password-rules">
+            <p id="rule-length" class="invalid"><span class="material-icons">title</span> At least 8 characters</p>
+            <p id="rule-number" class="invalid"><span class="material-icons">pin</span> At least 1 number</p>
+            <p id="rule-special" class="invalid"><span class="material-icons">priority_high</span> At least 1 special character (!@#$%^&*)</p>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="confirm-password">Re-enter your password</label>
+          <input
+            type="password"
+            id="confirm-password"
+            name="confirm-password"
+            class="form-control"
+            placeholder="Confirm your password"
+            required disabled
+          />
+          <p class="error-message" id="password-error">
+            Passwords do not match.
+          </p>
+        </div>
+
+        <button type="submit" class="primary-button" id="continue-button" disabled>
+          Sign up
+        </button>
+      </form>
+    </div>
+
+    <div class="return-home">
+      <a href="/" class="return-home-btn">← Return to Home</a>
+    </div>
+  </div>
+
+  <script>
+    const tabLogin = document.getElementById('tab-login');
+    const tabSignup = document.getElementById('tab-signup');
+    const loginContent = document.getElementById('login-content');
+    const signupContent = document.getElementById('signup-content');
+
+    tabLogin.addEventListener('click', () => {
+      tabLogin.classList.add('active');
+      tabSignup.classList.remove('active');
+      loginContent.classList.add('active');
+      signupContent.classList.remove('active');
+    });
+
+    tabSignup.addEventListener('click', () => {
+      tabSignup.classList.add('active');
+      tabLogin.classList.remove('active');
+      signupContent.classList.add('active');
+      loginContent.classList.remove('active');
+    });
+
+    // Password and email validation scripts (as in your original code)
+    const passwordInput = document.getElementById("password");
+    const confirmPasswordInput = document.getElementById("confirm-password");
+    const passwordRules = document.getElementById("password-rules");
+    const passwordError = document.getElementById("password-error");
+    const continueButton = document.getElementById("continue-button");
+
+    const ruleLength = document.getElementById("rule-length");
+    const ruleNumber = document.getElementById("rule-number");
+    const ruleSpecial = document.getElementById("rule-special");
+
+    const validatePassword = () => {
+      const password = passwordInput.value;
+      const isLongEnough = password.length >= 8;
+      const hasNumber = /\d/.test(password);
+      const hasSpecialChar = /[!@#$%^&*]/.test(password);
+
+      ruleLength.classList.toggle("valid", isLongEnough);
+      ruleLength.classList.toggle("invalid", !isLongEnough);
+
+      ruleNumber.classList.toggle("valid", hasNumber);
+      ruleNumber.classList.toggle("invalid", !hasNumber);
+
+      ruleSpecial.classList.toggle("valid", hasSpecialChar);
+      ruleSpecial.classList.toggle("invalid", !hasSpecialChar);
+
+      const isValidPassword = isLongEnough && hasNumber && hasSpecialChar;
+      confirmPasswordInput.disabled = !isValidPassword;
+
+      if (!isValidPassword) {
+        confirmPasswordInput.value = "";
+        validatePasswordMatch(); 
+      } else {
+        validatePasswordMatch();
+      }
+    };
+
+    const validatePasswordMatch = () => {
+      const password = passwordInput.value;
+      const confirmPassword = confirmPasswordInput.value;
+      if (confirmPassword && password !== confirmPassword) {
+        confirmPasswordInput.classList.add("error");
+        passwordError.style.display = "block";
+        continueButton.disabled = true;
+      } else {
+        confirmPasswordInput.classList.remove("error");
+        passwordError.style.display = "none";
+      }
+
+      const isValidPassword =
+        !ruleLength.classList.contains("invalid") &&
+        !ruleNumber.classList.contains("invalid") &&
+        !ruleSpecial.classList.contains("invalid") &&
+        password === confirmPassword;
+
+      continueButton.disabled = !isValidPassword;
+    };
+
+    passwordInput.addEventListener("focus", () => {
+      passwordRules.style.display = "block";
+    });
+
+    passwordInput.addEventListener("blur", () => {
+      if (passwordInput.value === "") {
+        passwordRules.style.display = "none";
+      }
+    });
+
+    passwordInput.addEventListener("input", validatePassword);
+    confirmPasswordInput.addEventListener("input", validatePasswordMatch);
+
+    async function checkEmailAvailability() {
+      const emailField = document.getElementById('email');
+      const errorMessage = document.getElementById('email-error');
+      const validMessage = document.getElementById('email-valid');
+
+      try {
+        const response = await fetch(`/check-email?email=${encodeURIComponent(emailField.value)}`);
+        const result = await response.json();
+
+        if (result.exists) {
+            errorMessage.style.display = 'block';
+            errorMessage.textContent = 'This email is already taken.';
+            validMessage.style.display = 'none';
+            passwordInput.disabled = true;
+        } else {
+            validMessage.style.display = 'block';
+            validMessage.textContent = 'This email is available.';
+            errorMessage.style.display = 'none';
+            passwordInput.disabled = false;
+        }
+      } catch (error) {
+        console.error('Error checking email:', error);
+        errorMessage.style.display = 'block';
+        errorMessage.textContent = 'Error checking email. Please try again.';
+        validMessage.style.display = 'none';
+      }
+    }
+  </script>
+</body>
+</html>

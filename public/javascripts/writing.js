@@ -124,7 +124,7 @@ async function handleSubmit() {
 
    // Redirect to the exam library after a delay (only if submission was successful)
    setTimeout(() => {
-        window.location.href = "/exam-library";
+        window.location.href = "/library?type=exam";
     }, 5000);
 }
 responseInputEl.addEventListener("input", updateWordCount);

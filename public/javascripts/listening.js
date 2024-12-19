@@ -1,162 +1,217 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const startLessonBtn = document.getElementById('start-lesson-btn');
-  const lessonContent = document.getElementById('lesson-content');
-  let lessonData = null;
-  let lessonSections = [];
+// listening.js
+const audioPlayer = document.getElementById("audio-player");
+const playAudioButton = document.getElementById("play-audio-btn");
+const timerEl = document.getElementById("timer");
+const questionsContainer = document.getElementById("questions-list");
+const notificationEl = document.getElementById("notification");
+const audioSourceEl = document.getElementById("audio-source");
 
-  async function fetchLessonData() {
-    try {
-        const response = await fetch(`/api/lesson/${lessonId}`);
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      lessonData = await response.json();
-      console.log(lessonData);
-      loadLesson(lessonData);
-    } catch (error) {
-      console.error("Failed to fetch writing task data:", error);
+let timerInterval;
+let audioStarted = false;
+let timeRemaining = 0;
+let testData = null;
+let shuffledQuestions = [];
+
+async function fetchTestData() {
+  try {
+    console.log("Fetching test data for testId:", testId);
+    const response = await fetch(`/api/listening-test/${testId}`);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
     }
+    testData = await response.json();
+    console.log("Test data fetched:", testData);
+
+    // Set audio source and load
+    audioSourceEl.src = testData.audioSource;
+    audioPlayer.load();
+
+    // Display questions immediately
+    displayQuestions();
+
+    // Once metadata is loaded (length known), set timer
+    audioPlayer.onloadedmetadata = () => {
+      const audioDuration = getAudioDuration(testData.audioSource);
+      setTimer(audioDuration);
+    };
+  } catch (error) {
+    console.error("Failed to fetch listening test data:", error);
   }
-  function loadLesson(data) {
-  document.querySelector('.lesson-card h2').textContent = data.title;
-  document.querySelector('.lesson-card p').textContent = data.description;
-    data.sections.forEach((section, sectionIndex) => {
-      const sectionElement = document.createElement('div');
-      sectionElement.classList.add('lesson-section');
-      sectionElement.id = section.id;
-      if (sectionIndex > 0) {
-        sectionElement.style.display = 'none';
-     }
-    let contentHTML = `<h3 class="lesson-heading">${section.heading}</h3>
-                        <p class="lesson-text">${section.text}</p>`;
-   if (section.examples) {
-           contentHTML += `<div class="example-box">
-                             <p>Examples:</p>
-                                <ul>
-                                    ${section.examples.map(example => `<li>${example}</li>`).join('')}
-                                 </ul>
-                              </div>`;
-    }
-    if (section.synonymAntonymPairs) {
-            contentHTML += `
-                  <div class="example-box">
-                    ${section.synonymAntonymPairs.map(pair => `
-                      <div class="synonym-antonym-pair">
-                        <div class="word">${pair.word}</div>
-                        <div class="synonyms">Synonyms: ${pair.synonyms.map(s => `<span class="example-word">${s}</span>`).join(",")}</div>
-                        <div class="antonyms">Antonyms: ${pair.antonyms.map(s => `<span class="example-word">${s}</span>`).join(",")}</div>
-                      </div>
-                    `).join('')}
-                  </div>`;
-    }
-  if (section.quiz) {
-          contentHTML += `<div id="quiz-container"></div>`;
-      }
-    sectionElement.innerHTML = contentHTML;
-    lessonContent.appendChild(sectionElement);
-    lessonSections.push(sectionElement)
+}
 
-      if(section.quiz){
-          const quizContainer = sectionElement.querySelector("#quiz-container");
-              const quizQuestions = section.quizQuestions;
-               function displayQuizQuestions() {
-                 quizQuestions.forEach((questionData, index) => {
-                      const questionElement = document.createElement('div');
-                      questionElement.classList.add('quiz-question');
-                      questionElement.innerHTML = `
-                      <p>${index + 1}. ${questionData.question}</p>
-                      ${questionData.options.map(option => `
-                      <label>
-                        <input type="radio" name="question${index}" value="${option}">
-                          ${option}
-                      </label><br>
-                      `).join('')}
-                 `;
-               quizContainer.appendChild(questionElement);
-             });
-        }
-        displayQuizQuestions();
-          const submitQuizBtn = document.createElement('button');
-          submitQuizBtn.id = 'submit-quiz-btn';
-          submitQuizBtn.textContent = 'Submit Quiz';
-            sectionElement.appendChild(submitQuizBtn)
-          submitQuizBtn.addEventListener('click', checkQuizAnswers);
-
-              function checkQuizAnswers() {
-            let score = 0;
-           quizQuestions.forEach((questionData, index) => {
-             const selectedAnswer = document.querySelector(`input[name="question${index}"]:checked`)?.value;
-                if (selectedAnswer === questionData.answer) {
-                    score++;
-                }
-            });
-          alert(`You got ${score} out of ${quizQuestions.length} questions right!`);
-        }
-          }
-      });
-       const nextButtons = document.querySelectorAll('.next-btn');
-      const completeLessonBtn = document.createElement('button');
-       completeLessonBtn.id = "complete-lesson-btn";
-      completeLessonBtn.dataset.lessonId = lessonId;
-       completeLessonBtn.textContent = "Complete Lesson";
-          completeLessonBtn.style.display = 'none'; //initial hide
-     if(lessonSections.length > 0){
-         lessonSections.at(-1).appendChild(completeLessonBtn)
-       }
-         lessonContent.appendChild(completeLessonBtn)
-
-
-
-        nextButtons.forEach((button, buttonIndex) => {
-       if (buttonIndex < data.sections.length -1){
-           button.addEventListener('click', () => {
-                  const targetId = button.dataset.target;
-               lessonSections.forEach(section => section.style.display = 'none');
-               document.getElementById(targetId).style.display = 'block';
-           });
-       } else {
-           button.style.display = 'none';
-          }
-   });
-
-     startLessonBtn.addEventListener('click', () => {
-          lessonContent.style.display = 'block';
-             if (lessonSections && lessonSections.length > 0) {
-                lessonSections[0].style.display = 'block';
-             }
-        // Show complete button when the last section is reached
-          if(lessonSections.length > 0){
-              lessonSections.at(-1).appendChild(completeLessonBtn)
-           completeLessonBtn.style.display = "block"
-         }
-        // Hide the start lesson button after it's clicked
-         startLessonBtn.style.display = 'none';
-     });
-
-  completeLessonBtn.addEventListener('click', async function () {
-     const lessonId = this.dataset.lessonId;
-      try {
-         const response = await fetch('/api/complete-lesson', {
-            method: 'POST',
-              headers: {
-                 'Content-Type': 'application/json',
-              },
-            body: JSON.stringify({ lessonId }),
-          });
-
-        if (response.ok) {
-            console.log('Lesson completion data sent successfully');
-       } else {
-          console.error('Failed to send lesson completion data', await response.json());
-        }
-    } catch (error) {
-        console.error('Error while sending lesson completion data:', error);
-     }
-
-      setTimeout(() => {
-          window.location.href = "/lesson-library";
-      }, 1000);
-   });
+function getAudioDuration(source) {
+  // Adjust durations as needed
+  switch (source) {
+    case "/files/listening_audio/listening1.mp3":
+      return 316;
+    case "/files/listening_audio/listening2.mp3":
+      return 250;
+    case "/files/listening_audio/listening3.mp3":
+      return 316;
+    default:
+      return 0;
   }
-  fetchLessonData();
-});
+}
+
+function setTimer(audioDuration) {
+  const reviewDuration = 60; // 1 min review
+  const totalTime = audioDuration + reviewDuration;
+  timeRemaining = totalTime;
+  timerEl.textContent = "00:00";
+}
+
+function updateTimer() {
+  if (timeRemaining > 0) {
+    timeRemaining--;
+    const minutes = String(Math.floor(timeRemaining / 60)).padStart(2, "0");
+    const seconds = String(timeRemaining % 60).padStart(2, "0");
+    timerEl.textContent = `${minutes}:${seconds}`;
+
+    if (timeRemaining === 60) {
+      notificationEl.textContent = "Audio finished. You have 1 minute to check your answer!";
+      notificationEl.style.display = "block";
+    }
+  } else {
+    clearInterval(timerInterval);
+    handleSubmit();
+  }
+}
+
+function startTimer() {
+  timerInterval = setInterval(updateTimer, 1000);
+}
+
+function shuffleQuestions(questions) {
+  if (!questions || questions.length === 0) {
+    console.log("Invalid questions: ", questions);
+    return [];
+  }
+  const indices = Array.from({ length: questions.length }, (_, i) => i).sort(() => Math.random() - 0.5);
+  shuffledQuestions = indices.map((i) => ({
+    ...questions[i],
+    originalIndex: i,
+  }));
+  return shuffledQuestions;
+}
+
+function displayQuestions() {
+  if (!testData || !testData.questions) {
+    console.error("No test data or questions to display.");
+    return;
+  }
+  questionsContainer.innerHTML = "";
+
+  const randomizedQuestions = shuffleQuestions([...testData.questions]);
+  console.log("Randomized questions: ", randomizedQuestions);
+
+  randomizedQuestions.forEach((question, index) => {
+    const questionDiv = document.createElement("div");
+    questionDiv.classList.add("question");
+    if (question.type === "multiple-choice" || question.type === "t-f-ng") {
+      questionDiv.innerHTML = `
+        <p class="question-text">${question.question}</p>
+        <div class="choices">
+          ${question.options
+            .map((choice) => `<div class="choice" data-question="${index}" data-choice="${choice}">${choice}</div>`)
+            .join("")}
+        </div>
+      `;
+    } else if (question.type === "fill-in-the-blank") {
+      questionDiv.innerHTML = `
+        <p class="question-text">${question.question}</p>
+        <input type="text" class="fill-blank" data-question="${index}" placeholder="Type your answer here" />
+      `;
+    }
+    questionsContainer.appendChild(questionDiv);
+  });
+
+  document.querySelectorAll(".choice").forEach((choice) => {
+    choice.addEventListener("click", handleChoiceSelection);
+  });
+}
+
+function handleChoiceSelection(event) {
+  const selectedChoice = event.target;
+  const questionIndex = selectedChoice.dataset.question;
+  document.querySelectorAll(`.choice[data-question="${questionIndex}"]`).forEach((choice) => {
+    choice.classList.remove("selected");
+  });
+  selectedChoice.classList.add("selected");
+}
+
+function startAudio() {
+  audioPlayer.play().then(() => {
+    audioStarted = true;
+    notificationEl.textContent = "Audio started. Listen carefully!";
+    notificationEl.style.display = "block";
+    playAudioButton.style.display = "none";
+    startTimer();
+  }).catch((error) => {
+    console.error("Audio playback failed:", error);
+    notificationEl.textContent =
+      "Unable to play audio. Please ensure your browser allows audio playback.";
+    notificationEl.style.display = "block";
+  });
+}
+
+async function handleSubmit() {
+  clearInterval(timerInterval);
+  const userResponses = shuffledQuestions.map((question, index) => {
+    let userAnswer = null;
+    const originalQuestion = testData.questions[question.originalIndex];
+
+    if (question.type === "multiple-choice" || question.type === "t-f-ng") {
+      const selectedChoice = document.querySelector(`.choice[data-question="${index}"].selected`);
+      userAnswer = selectedChoice ? selectedChoice.dataset.choice : "Not answered";
+    } else if (question.type === "fill-in-the-blank") {
+      const inputField = document.querySelector(`.fill-blank[data-question="${index}"]`);
+      userAnswer = inputField ? inputField.value.trim() : "Not answered";
+    }
+
+    const normalizeText = (text) => text?.toLowerCase().trim();
+    const normalizedUserAnswer = normalizeText(userAnswer);
+    const normalizedCorrectAnswer = normalizeText(originalQuestion.answer);
+
+    return {
+      question: originalQuestion.question,
+      userAnswer: userAnswer,
+      correctAnswer: originalQuestion.answer,
+      isCorrect: normalizedUserAnswer === normalizedCorrectAnswer,
+    };
+  });
+
+  const score = userResponses.filter((r) => r.isCorrect).length;
+  const percentage = ((score / testData.questions.length) * 100).toFixed(2);
+
+  notificationEl.textContent = `Quiz submitted! Score: ${score}/${testData.questions.length} (${percentage}%)`;
+  notificationEl.style.display = "block";
+
+  const quizResponseData = {
+    userId: loggedInUserId,
+    quizId: testId,
+    questions: userResponses,
+    score: score,
+    percentage: percentage,
+  };
+
+  try {
+    const response = await fetch("/submit-quiz", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(quizResponseData),
+    });
+
+    if (!response.ok) {
+      console.error("Failed to send quiz data to server.");
+    }
+  } catch (error) {
+    console.error("Error sending quiz data to server:", error);
+  }
+
+  setTimeout(() => {
+    window.location.href = "/library?type=exam";
+  }, 5000);
+}
+
+playAudioButton.addEventListener("click", startAudio);
+fetchTestData();

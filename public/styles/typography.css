@@ -1,7 +1,7 @@
 /* Import Google Sans Font */
 @font-face {
     font-family: 'Google Sans';
-    src: url('GoogleSansText-Medium.ttf') format('truetype');
+    src: url('font/GoogleSansText-Medium.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }

@@ -8,6 +8,30 @@ const ruleLength = document.getElementById("rule-length");
 const ruleNumber = document.getElementById("rule-number");
 const ruleSpecial = document.getElementById("rule-special");
 
+const tabs = document.querySelectorAll('.tab');
+const formAreas = document.querySelectorAll('.form-area');
+
+tabs.forEach(tab => {
+  tab.addEventListener('click', () => {
+    // Remove active class from all tabs
+    tabs.forEach(t => t.classList.remove('active'));
+
+    // Toggle the 'hidden' class for form areas
+    formAreas.forEach(f => f.classList.add('hidden'));
+
+    // Add active class to the clicked tab
+    tab.classList.add('active');
+
+    // Remove 'hidden' class to show the corresponding form area
+    const target = tab.dataset.target;
+    document.getElementById(target).classList.remove('hidden');
+  });
+});
+
+// Initially, hide the signup form and show the login form
+document.getElementById('signup').classList.add('hidden');
+document.getElementById('login').classList.remove('hidden');
+
 const validatePassword = () => {
   const password = passwordInput.value;
 

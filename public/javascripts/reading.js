@@ -301,7 +301,7 @@ async function handleSubmit() {
   
     // Redirect to the exam library after a delay
     setTimeout(() => {
-      window.location.href = "/exam-library";
+      window.location.href = "/library?type=exam";
     }, 5000);
   }
 

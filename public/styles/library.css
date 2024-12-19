@@ -1,3 +1,4 @@
+
 /* General Reset & Styling */
 body {
     font-size: 16px; /* Base font size */
@@ -187,132 +188,228 @@ main {
     cursor: not-allowed;
 }
 
-
-
-  .announcement {
+/* Unavailable Card Styling */
+.card.unavailable {
     position: relative;
-    padding: 24px; /* Increased padding */
-    background-color: #fff8e1; /* Soft yellow background */
-    border: none; /* Removed border */
-    border-radius: 12px; /* Increased border radius */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    margin-bottom: 32px; /* Increased margin */
-    animation: fadeIn 1s ease-in-out;
-  }
-  
-  .announcement h2 {
-    font-size: 1.3rem; /* Adjusted font size */
-    color: #ff8f00; /* Adjusted orange color */
-    margin-bottom: 12px; /* Adjusted margin */
-    display: flex;
-    align-items: center;
-    gap: 12px; /* Adjusted gap */
-    font-weight: 600; /* Semibold font weight */
-  }
-  
-  .announcement h2::before {
-    content: "🎉";
-    font-size: 1.6rem; /* Adjusted font size */
-    animation: bounce 1s infinite;
-  }
-  
-  .announcement p {
-    font-size: 0.95rem; /* Slightly reduced font size */
-    color: #555;
-    line-height: 1.6;
-  }
-  
-  /* --- Logout Button --- */
-  .logout-form {
-    margin-top: 32px; /* Increased margin */
-  }
-  
-  .btn-logout {
-    display: block;
-    width: 100%;
-    padding: 12px 20px; /* Adjusted padding */
-    font-size: 1rem;
-    font-weight: 600; /* Semibold font weight */
-    text-align: center;
-    color: white;
-    background-color: #dc3545; /* Adjusted red color */
-    border: none;
-    border-radius: 8px; /* Adjusted border radius */
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-  }
-  
-  .btn-logout:hover {
-    background-color: #c82333; /* Darker red on hover */
-    transform: translateY(-2px);
-  }
-  
-  .btn-logout:active {
-    background-color: #bd2130; /* Even darker red on active */
-    transform: translateY(0);
-  }
-  
-  /* --- Changelog Section --- */
-  .changelog {
-    padding: 24px; /* Increased padding */
-    background-color: #f8f9fa; /* Very light gray background */
-    border: none; /* Removed border */
-    border-radius: 12px; /* Increased border radius */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    margin-bottom: 32px; /* Increased margin */
-    animation: fadeIn 1s ease-in-out;
-  }
-  
-  .changelog h2 {
-    font-size: 1.5rem; /* Adjusted font size */
-    color: #007bff;
-    margin-bottom: 20px; /* Adjusted margin */
-    display: flex;
-    align-items: center;
-    gap: 12px; /* Adjusted gap */
-    font-weight: 600; /* Semibold font weight */
-  }
-  
-  .changelog h2::before {
-    content: "✨"; /* Different emoji */
-    font-size: 1.4rem; /* Adjusted font size */
-  }
-  
-  .changelog h3 {
-    font-size: 1.2rem; /* Adjusted font size */
-    color: #343a40; /* Dark gray color */
-    margin-bottom: 16px; /* Adjusted margin */
-    font-weight: 600; /* Semibold font weight */
-  }
-  
-  .changelog ul {
-    padding: 0;
-    list-style: none;
-    margin: 0;
-  }
-  
-  .changelog ul li {
-    margin-bottom: 12px; /* Adjusted margin */
-    padding-left: 24px; /* Adjusted padding */
-    position: relative;
-    font-size: 0.95rem; /* Slightly reduced font size */
-    line-height: 1.6;
-    color: #555;
-  }
-  
-  .changelog ul li:before {
-    content: "→"; /* Different bullet style */
-    position: absolute;
-    left: 0;
-    top: 2px; /* Adjusted vertical alignment */
-    font-size: 0.9rem; /* Adjusted font size */
-    color: #007bff;
-  }
-
-  body.history-view .some-profile-element {
-    display: none; /* Hide something on the history view */
+    background: #f5f5f5;
+    cursor: not-allowed;
+    opacity: 0.7;
+    pointer-events: none;
+    user-select: none;
+    z-index: 2;
 }
 
-body.history-view .history-section {
-    border: 2px solid red; /* Style the history section differently */
+
+.card.unavailable::after {
+    content: "Unavailable";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    font-size: 1.2rem;
+    padding: 10px 18px;
+    border-radius: 8px;
+    text-transform: uppercase;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+/* Dropdown */
+/* Dropdown */
+.exam-dropdown {
+    position: relative;
+    width: 100%;
+    margin-top: 15px;
+    z-index: 1;  /* High z-index to ensure visibility */
+}
+  
+  .exam-dropbtn {
+    padding: 14px 20px;
+    background-color: #2196f3;
+    color: white;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .exam-dropbtn:hover {
+    background-color: #1976d2;
+  }
+  
+  .exam-dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #ffffff;
+    width: 100%;
+    left: 0;
+    border: 1px solid #ddd;
+    /* Softer border */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    border-radius: 5px;
+  }
+  
+  .exam-dropdown-content a {
+    color: #444;
+    padding: 12px 20px;
+    text-decoration: none;
+    display: block;
+    font-size: 1.1rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .exam-dropdown-content a:hover {
+    background-color: #f0f7ff;
+    color: #2196f3;
+  }
+  
+  /* Overlay for dropdown */
+  main::before {
+      content: "";
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0);
+      z-index: 1; /* Place it on top of content but behind dropdown */
+  }
+  
+  .exam-dropdown:hover .exam-dropdown-content {
+    display: block;
+  }
+  
+  .exam-dropdown:hover + main::before {
+      display: block; /* Show the overlay on dropdown hover */
+       background-color: rgba(0, 0, 0, 0.2); /* Make it slightly dark */
+  }
+
+/* Lesson specific styles */
+.lesson a,
+.lesson button {
+    padding: 12px 20px;
+    border: none;
+    text-decoration: none;
+    font-size: 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: auto;
+    display: inline-block; /* for better control */
+}
+
+.lesson a.btn-primary {
+    background-color: #2196f3;
+    color: white;
+    margin-right: 8px;
+}
+
+.lesson a.btn-success {
+    background-color: #4caf50;
+    color: white;
+}
+
+.lesson a.btn-primary:hover,
+.lesson a.btn-success:hover {
+  background-color: #1976d2;
+    transform: translateY(-2px);
+}
+
+.lesson button.btn-secondary {
+    background-color: #eee;
+    color: #aaa;
+    cursor: not-allowed;
+}
+
+
+/* Announcement Section */
+.announcement {
+    position: relative;
+    padding: 25px;
+    background-color: #fffde7; /* very light yellow */
+    border: 2px solid #ffeb3b; /* light yellow */
+    border-radius: 15px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+    margin-bottom: 30px;
+    animation: fadeIn 1s ease-in-out;
+    z-index: 2;
+}
+
+.announcement h2 {
+    font-size: 1.8rem;
+    color: #e65100; /* Orange */
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.announcement h2::before {
+    content: "🎉";
+    font-size: 2.2rem;
+    animation: bounce 1s infinite;
+}
+
+.announcement p {
+    font-size: 1.1rem;
+    color: #555;
+    line-height: 1.6;
+}
+
+/* Animation */
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    main {
+        flex-direction: column;
+        padding: 15px;
+        gap: 15px;
+        width: 98%;
+    }
+
+    .sidebar {
+        width: 100%;
+        margin-bottom: 20px;
+        padding: 20px;
+    }
+
+    .content {
+        width: 100%;
+        padding: 20px;
+    }
+
+    .grid {
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
 }

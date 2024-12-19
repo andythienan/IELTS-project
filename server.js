@@ -22,7 +22,7 @@ const LessonCompletion = require("./models/LessonCompletion");
 // Passport configuration
 const initializePassport = require("./passport-config");
 
-// Post configuration
+// Post Schema
 const PostSchema = new mongoose.Schema({
   title: { type: String, required: true },
   content: { type: String, required: true },
@@ -41,20 +41,23 @@ const PostSchema = new mongoose.Schema({
 const Post = mongoose.model("Post", PostSchema);
 
 // Database connection
-const DB_URI = "mongodb+srv://Mikeblocky:iamawizardty%3AD%21@learnenglish.tnwoh.mongodb.net/?retryWrites=true&w=majority&appName=learnEnglish";
+const DB_URI =
+  "mongodb+srv://Mikeblocky:iamawizardty%3AD%21@learnenglish.tnwoh.mongodb.net/?retryWrites=true&w=majority&appName=learnEnglish";
+
 mongoose
   .connect(DB_URI, { dbName: "myDatabase" })
   .then(() => console.log("Connected to MongoDB"))
   .catch((err) => console.error("MongoDB connection error:", err));
 
 const app = express();
+
+// Middleware
 app.set("view-engine", "ejs");
 app.use(express.urlencoded({ extended: false }));
-app.use(express.static(__dirname + "/public"));
+app.use(express.static(path.join(__dirname, "public")));
 app.use(bodyParser.json());
 app.use(flash());
 app.use(methodOverride("_method"));
-
 app.use(
   session({
     secret: process.env.SESSION_SECRET || "some-secret",
@@ -63,194 +66,167 @@ app.use(
   })
 );
 
-// Initialize Passport
+// Passport Initialization
 initializePassport(
   passport,
-  async (email) => await User.findOne({ email }).catch(() => null),
-  async (id) => await User.findById(id).catch(() => null)
+  (email) => User.findOne({ email }).catch(() => null),
+  (id) => User.findById(id).catch(() => null)
 );
-
 app.use(passport.initialize());
 app.use(passport.session());
 
-// Middleware for user context
+// User Context Middleware
 app.use((req, res, next) => {
   res.locals.user = req.user || null;
   next();
 });
 
-// Authentication middleware
-const checkAuthenticated = (req, res, next) => {
-  if (req.isAuthenticated()) return next();
-  res.redirect("/login");
-};
-const checkNotAuthenticated = (req, res, next) => {
-  if (req.isAuthenticated()) return res.redirect("/");
-  next();
-};
+// Authentication Middleware
+const checkAuthenticated = (req, res, next) =>
+  req.isAuthenticated() ? next() : res.redirect("/account/login");
+const checkNotAuthenticated = (req, res, next) =>
+  req.isAuthenticated() ? res.redirect("/") : next();
 
-// Route Handlers
+// Utility Functions
 const renderPage = (page) => (req, res) =>
   res.render(`${page}.ejs`, { name: req.user?.name || null });
 
+const loadData = async (type, id) => {
+  try {
+    const filePath = path.join(__dirname, "data", type, `${id}.json`);
+    return JSON.parse(await fs.readFile(filePath, "utf-8"));
+  } catch (error) {
+    console.error(`Error loading ${type} data:`, error);
+    return null;
+  }
+};
+
+// Routes
 // Public Routes
 app.get("/", renderPage("index"));
-app.get("/login", checkNotAuthenticated, renderPage("login"));
-app.get("/register", checkNotAuthenticated, renderPage("register"));
 app.get("/about-us", renderPage("about-us"));
 app.get("/vocabulary", renderPage("vocab"));
-app.get("/skills", renderPage("skill"));
+app.get("/skills", renderPage("skills"));
 app.get("/tips", renderPage("tips"));
 
 // Authenticated Routes
-app.get("/profile", checkAuthenticated, renderPage("profile"));
-app.get("/exam-library", checkAuthenticated, renderPage("exam-library"));
-app.get("/lesson-library", checkAuthenticated, renderPage("lessons-library"));
-app.get("/history", checkAuthenticated, renderPage("history"));
+app.get("/library", checkAuthenticated, (req, res) =>
+  res.render("library.ejs", {
+    type: req.query.type,
+    name: req.user?.name || null,
+  })
+);
+// Profile Route (now handles both profile and history)
+app.get("/profile", checkAuthenticated, async (req, res) => {
+  try {
+      // Fetch user activity data (similar to what you do in /api/user-activity)
+      const userId = req.user._id;
+      const completedQuizzes = await QuizResponse.countDocuments({ userId });
+      const completedLessons = await LessonCompletion.countDocuments({ userId });
+      const completedWritings = await WritingResponse.countDocuments({ userId });
+
+      res.render("profile.ejs", {
+          name: req.user?.name || null,
+          showHistory: false, // Flag to indicate we're on the main profile page
+          user: req.user,
+          completedQuizzes, // Pass the fetched data to the template
+          completedLessons,
+          completedWritings,
+      });
+  } catch (error) {
+      console.error("Error fetching user activity:", error);
+      res.status(500).render("error", { message: "Failed to fetch user activity" });
+  }
+});
+
+app.get("/profile/history", checkAuthenticated, (req, res) => {
+  res.render("profile.ejs", {
+    name: req.user?.name || null,
+    showHistory: true, // Flag to indicate we're on the history subpage
+    user: req.user,
+  });
+});
 app.get("/forum", checkAuthenticated, renderPage("forum"));
 
+// Account Routes
+app.get("/account/:formType", checkNotAuthenticated, (req, res) => {
+  const { formType } = req.params;
+  if (formType === "login" || formType === "register") {
+    res.render("account.ejs", {
+      formType,
+      activeTab: formType,
+      name: req.user?.name || null,
+    });
+  } else {
+    res.status(404).send("Page not found");
+  }
+});
+
+// Lesson Routes
+app.get("/lesson/:lessonId", checkAuthenticated, (req, res) =>
+  res.render("lesson.ejs", { lessonId: req.params.lessonId })
+);
 app.get("/api/lesson/:lessonId", checkAuthenticated, async (req, res) => {
-  const { lessonId } = req.params;
-  const lessonData = await loadLessonData(lessonId);
-  if (lessonData) {
-    res.json(lessonData);
-  } else {
-    res.status(404).send("Lesson not found");
-  }
+  const lessonData = await loadData("lesson", req.params.lessonId);
+  lessonData
+    ? res.json(lessonData)
+    : res.status(404).send("Lesson not found");
 });
-
 app.post("/api/complete-lesson", checkAuthenticated, async (req, res) => {
-    const { lessonId } = req.body;
-
-    try {
-        const lessonCompletion = new LessonCompletion({
-          userId: req.user._id,
-          lessonId: lessonId,
-        });
-
-        await lessonCompletion.save();
-        res.status(200).json({ message: "Lesson completed" });
-    } catch (error) {
-        console.error("Error while marking lesson as complete", error);
-        res.status(500).json({ error: "Failed to mark lesson as complete" });
-    }
-});
-
-
-// Load lesson data from JSON
-async function loadLessonData(lessonId) {
   try {
-      const filePath = path.join(__dirname, "data", "lesson", `${lessonId}.json`);
-      const data = await fs.readFile(filePath, "utf-8");
-      return JSON.parse(data);
+    await new LessonCompletion({
+      userId: req.user._id,
+      lessonId: req.body.lessonId,
+    }).save();
+    res.status(200).json({ message: "Lesson completed" });
   } catch (error) {
-    console.error("Error loading lesson data:", error);
-    return null;
-  }
-}
-
-// Dynamic lesson route
-app.get("/lesson/:lessonId", checkAuthenticated, async (req, res) => {
-    const { lessonId } = req.params;
-    res.render("lesson.ejs", { lessonId });
-});
-
-
-
-// Listening test route
-app.get("/listening/:testId", checkAuthenticated, async (req, res) => {
-  const { testId } = req.params;
-  res.render("listening.ejs", { testId });
-});
-
-// Load listening data from JSON
-async function loadListeningTestData(testId) {
-  try {
-    const filePath = path.join(__dirname, "data", "listening", `${testId}.json`);
-    const data = await fs.readFile(filePath, "utf-8");
-    return JSON.parse(data);
-  } catch (error) {
-    console.error("Error loading listening data:", error);
-    return null;
-  }
-}
-
-// API endpoint for listening test
-app.get("/api/listening-test/:testId", checkAuthenticated, async (req, res) => {
-  const { testId } = req.params;
-  const testData = await loadListeningTestData(testId);
-  if (testData) {
-    res.json(testData);
-  } else {
-    res.status(404).send("Test not found");
+    console.error("Error marking lesson as complete:", error);
+    res.status(500).json({ error: "Failed to mark lesson as complete" });
   }
 });
 
-// Reading test routes
-app.get("/reading/:quizId", checkAuthenticated, async (req, res) => {
-  const { quizId } = req.params;
-  res.render("reading.ejs", { quizId });
-});
-
-async function loadQuizData(quizId) {
-  try {
-    const filePath = path.join(__dirname, "data", "reading", `${quizId}.json`);
-    const data = await fs.readFile(filePath, "utf-8");
-    return JSON.parse(data);
-  } catch (error) {
-    console.error("Error loading quiz data:", error);
-    return null;
+// Listening Test Routes
+app.get("/listening/:testId", checkAuthenticated, (req, res) =>
+  res.render("listening.ejs", { testId: req.params.testId })
+);
+app.get(
+  "/api/listening-test/:testId",
+  checkAuthenticated,
+  async (req, res) => {
+    const testData = await loadData("listening", req.params.testId);
+    testData ? res.json(testData) : res.status(404).send("Test not found");
   }
-}
+);
 
+// Reading Test Routes
+app.get("/reading/:quizId", checkAuthenticated, (req, res) =>
+  res.render("reading.ejs", { quizId: req.params.quizId })
+);
 app.get("/api/reading-quiz/:quizId", checkAuthenticated, async (req, res) => {
-  const { quizId } = req.params;
-  const quizData = await loadQuizData(quizId);
-  if (quizData) {
-    res.json(quizData);
-  } else {
-    res.status(404).send("Quiz not found");
-  }
+  const quizData = await loadData("reading", req.params.quizId);
+  quizData ? res.json(quizData) : res.status(404).send("Quiz not found");
 });
 
-// Writing tasks
-app.get("/writing/:taskId", checkAuthenticated, async (req, res) => {
-  const { taskId } = req.params;
-  res.render("writing.ejs", { taskId });
-});
-
-async function loadWritingTaskData(taskId) {
-  try {
-    const filePath = path.join(__dirname, "data", "writing", `${taskId}.json`);
-    const data = await fs.readFile(filePath, "utf-8");
-    return JSON.parse(data);
-  } catch (error) {
-    console.error("Error loading writing task data:", error);
-    return null;
-  }
-}
-
+// Writing Task Routes
+app.get("/writing/:taskId", checkAuthenticated, (req, res) =>
+  res.render("writing.ejs", { taskId: req.params.taskId })
+);
 app.get("/api/writing-task/:taskId", checkAuthenticated, async (req, res) => {
-  const { taskId } = req.params;
-  const taskData = await loadWritingTaskData(taskId);
-  if (taskData) {
-    res.json(taskData);
-  } else {
-    res.status(404).send("Task not found");
-  }
+  const taskData = await loadData("writing", req.params.taskId);
+  taskData ? res.json(taskData) : res.status(404).send("Task not found");
 });
-
 app.post("/submit-writing", checkAuthenticated, async (req, res) => {
   try {
     const { task, response, wordCount } = req.body;
-    const writingResponse = new WritingResponse({
+    await new WritingResponse({
       userId: req.user._id,
       task,
       response,
       wordCount,
-    });
-    await writingResponse.save();
-    res.status(200).json({ message: "Writing response submitted successfully." });
+    }).save();
+    res
+      .status(200)
+      .json({ message: "Writing response submitted successfully." });
   } catch (error) {
     console.error("Error saving writing response:", error);
     res.status(500).json({ error: "Failed to save writing response." });
@@ -263,37 +239,31 @@ app.post(
   checkNotAuthenticated,
   passport.authenticate("local", {
     successRedirect: "/",
-    failureRedirect: "/login",
+    failureRedirect: "/account/login",
     failureFlash: true,
   })
 );
-
 app.post("/register", checkNotAuthenticated, async (req, res) => {
   const { name, email, password, gender } = req.body;
   try {
-    const existingUser = await User.findOne({ email });
-    if (existingUser) {
-      req.flash("error", "A user with this email already exists.");
+    if (await User.findOne({ email })) {
+      req.flash("error", "User with this email already exists.");
       return res.redirect("/register");
     }
-
     const hashedPassword = await bcrypt.hash(password, 10);
-    const newUser = new User({ name, email, password: hashedPassword, gender });
-    await newUser.save();
-    res.redirect("/login");
+    await new User({ name, email, password: hashedPassword, gender }).save();
+    res.redirect("/account/login");
   } catch (err) {
     console.error("Error registering user:", err);
-    req.flash("error", "An error occurred during registration.");
+    req.flash("error", "Error during registration.");
     res.redirect("/register");
   }
 });
 
-// Quiz submission
+// Quiz Submission
 app.post("/submit-quiz", checkAuthenticated, async (req, res) => {
   try {
-    const { userId, quizId, questions, score, percentage } = req.body;
-    const quizResponse = new QuizResponse({ userId, quizId, questions, score, percentage });
-    await quizResponse.save();
+    await new QuizResponse(req.body).save();
     res.status(200).json({ message: "Quiz response submitted successfully." });
   } catch (error) {
     console.error("Error saving quiz response:", error);
@@ -302,22 +272,21 @@ app.post("/submit-quiz", checkAuthenticated, async (req, res) => {
 });
 
 // Logout
-app.delete("/logout", (req, res, next) => {
-  req.logOut((err) => (err ? next(err) : res.redirect("/")));
-});
+app.delete("/logout", (req, res, next) =>
+  req.logOut((err) => (err ? next(err) : res.redirect("/")))
+);
 
 // Email Check
 app.get("/check-email", async (req, res) => {
   try {
-    const emailExists = !!(await User.findOne({ email: req.query.email }));
-    res.json({ exists: emailExists });
+    res.json({ exists: !!(await User.findOne({ email: req.query.email })) });
   } catch (err) {
     console.error("Error checking email:", err);
     res.status(500).json({ error: "Error checking email" });
   }
 });
 
-// User activity and history
+// User Activity and History
 app.get("/api/user-activity", checkAuthenticated, async (req, res) => {
   try {
     const userId = req.user._id;
@@ -344,11 +313,10 @@ app.get("/api/user-history", checkAuthenticated, async (req, res) => {
   }
 });
 
-// Forum posts
+// Forum Posts
 app.get("/api/posts", async (req, res) => {
   try {
-    const posts = await Post.find().sort({ timestamp: -1 });
-    res.json(posts);
+    res.json(await Post.find().sort({ timestamp: -1 }));
   } catch (err) {
     console.error("Error fetching posts:", err);
     res.status(500).json({ error: "Error fetching posts" });
@@ -357,10 +325,13 @@ app.get("/api/posts", async (req, res) => {
 
 app.post("/api/posts", checkAuthenticated, async (req, res) => {
   try {
-    const { title, content } = req.body;
-    const newPost = new Post({ title, content, author: req.user.name });
-    await newPost.save();
-    res.status(201).json(newPost);
+    res.status(201).json(
+      await new Post({
+        title: req.body.title,
+        content: req.body.content,
+        author: req.user.name,
+      }).save()
+    );
   } catch (err) {
     console.error("Error adding post:", err);
     res.status(500).json({ error: "Error adding post" });
@@ -369,11 +340,10 @@ app.post("/api/posts", checkAuthenticated, async (req, res) => {
 
 app.put("/api/posts/:id/vote", async (req, res) => {
   try {
-    const { id } = req.params;
-    const { action } = req.body;
-    const post = await Post.findById(id);
+    const post = await Post.findById(req.params.id);
     if (!post) return res.status(404).json({ error: "Post not found" });
-    post.votes += action === "upvote" ? 1 : action === "downvote" ? -1 : 0;
+    post.votes +=
+      req.body.action === "upvote" ? 1 : req.body.action === "downvote" ? -1 : 0;
     await post.save();
     res.status(200).json(post);
   } catch (err) {
@@ -382,5 +352,5 @@ app.put("/api/posts/:id/vote", async (req, res) => {
   }
 });
 
-// Start server
+// Start Server
 app.listen(8000, () => console.log("Server running on http://localhost:8000"));

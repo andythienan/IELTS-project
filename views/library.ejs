@@ -1,30 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exam Library - Learn English</title>
+    <title>Library - Learn English</title>
     <link rel="stylesheet" href="/styles/styles.css">
     <link rel="stylesheet" href="/styles/typography.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
-
-<body class="page-exam-library">
-
+<body class="page-library">
     <header class="header">
         <%- include('partials/header', { user: name }) %>
     </header>
 
     <main>
         <aside class="sidebar">
-            <h1>Categories</h1>
+            <h1>
+                <% if (type === 'exam') { %>
+                Categories
+                <% } else { %>
+                Lesson Topics
+                <% } %>
+            </h1>
             <ul>
+                <% if (type === 'exam') { %>
                 <li><a href="#">Listening</a></li>
                 <li><a href="#">Reading</a></li>
                 <li><a href="#">Writing</a></li>
                 <li><a href="#">Speaking</a></li>
                 <li><a href="#">Mixed</a></li>
+                <% } else { %>
+                <li><a href="#">Grammar</a></li>
+                <li><a href="#">Vocabulary</a></li>
+                <li><a href="#">Phrasal Verbs</a></li>
+                <li><a href="#">Idioms</a></li>
+                <li><a href="#">Expressions</a></li>
+                <% } %>
             </ul>
         </aside>
 
@@ -33,23 +44,46 @@
         <section class="content">
             <!-- Announcement Section -->
             <section class="announcement">
-                <h2>New Exams Added!</h2>
-                <p>Get ready to elevate your skills! 🚀 Our brand-new interactive tests for <b>Reading</b> and
+                <h2>
+                    <% if (type === 'exam') { %>
+                    New Exams Added!
+                    <% } else { %>
+                    New Lessons Added!
+                    <% } %>
+                </h2>
+                <p>
+                    <% if (type === 'exam') { %>
+                    Get ready to elevate your skills! 🚀 Our brand-new interactive tests for <b>Reading</b> and
                     <b>Writing</b> are here to challenge and inspire you! 🎉 Test your knowledge today and stay
-                    tuned—more exciting tests are just around the corner! 🔥</p>
-            </section>
-
-
-            <!-- Introduction -->
-            <section class="category">
-                <h1>Exam Library</h1>
-                <p>Simple to use, simple to adopt. Our exam library is designed to meet the standard scope and sequence
-                    requirements of their respective courses – and are 100% free online. Complete with free resources
-                    for educators (like LMS integration, lecture slides, instructor answer keys, and more), all tests
-                    are fully customizable. Explore our library below and add any and all parts useful to your course.
+                    tuned—more exciting tests are just around the corner! 🔥
+                    <% } else { %>
+                    Dive into our newest lesson library updates! 🌟 From mastering grammar to unlocking idiomatic expressions, we’ve got all the tools you need to become fluent in English. Start your journey today! 📚✨
+                    <% } %>
                 </p>
             </section>
 
+            <!-- Introduction Section -->
+            <section class="category">
+                <h1>
+                    <% if (type === 'exam') { %>
+                    Exam Library
+                    <% } else { %>
+                    Lesson Library
+                    <% } %>
+                </h1>
+                <p>
+                    <% if (type === 'exam') { %>
+                    Simple to use, simple to adopt. Our exam library is designed to meet the standard scope and sequence
+                    requirements of their respective courses – and are 100% free online. Complete with free resources
+                    for educators (like LMS integration, lecture slides, instructor answer keys, and more), all tests
+                    are fully customizable. Explore our library below and add any and all parts useful to your course.
+                    <% } else { %>
+                    Find carefully curated lessons tailored to help you improve your English skills. Browse through a variety of topics and learn at your own pace. Our resources are 100% free and accessible anytime.
+                    <% } %>
+                </p>
+            </section>
+
+            <% if (type === 'exam') { %>
             <!-- Listening Section -->
             <section class="category">
                 <h2>Listening</h2>
@@ -184,7 +218,6 @@
                         </div>
                     </div>
 
-
                     <div class="card exam available">
                         <h3>Test 3 <span class="tag">Available</span></h3>
                         <div class="dropdown exam-dropdown">
@@ -223,6 +256,51 @@
                     </div>
                 </div>
             </section>
+
+            <% } else { %>
+
+            <!-- Grammar Lessons -->
+            <section class="category">
+                <h2>Grammar</h2>
+                <p>Master the building blocks of English with our comprehensive grammar lessons.</p>
+                <div class="grid">
+                    <div class="card lesson available">
+                        <h3>Lesson 1: Parts of Speech</h3>
+                        <a href="/lesson/lesson1" class="btn btn-primary">Start Lesson</a>
+                    </div>
+                    <div class="card lesson available">
+                        <h3>Lesson 2: Tenses</h3>
+                        <a href="/lesson/lesson2" class="btn btn-primary">Start Lesson</a>
+                    </div>
+                    <div class="card lesson unavailable">
+                        <h3>Lesson 3: Clauses</h3>
+                        <button class="btn btn-secondary" disabled>Coming Soon</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Vocabulary Lessons -->
+            <section class="category">
+                <h2>Vocabulary</h2>
+                <p>Expand your word bank with lessons focused on commonly used English words and phrases.</p>
+                <div class="grid">
+                    <div class="card lesson available">
+                        <h3>Lesson 1: Synonyms and Antonyms</h3>
+                        <a href="/lesson/lesson4" class="btn btn-success">Start Lesson</a>
+                    </div>
+                    <div class="card lesson unavailable">
+                        <h3>Lesson 2: Word Families</h3>
+                        <button class="btn btn-secondary" disabled>Coming Soon</button>
+                    </div>
+                    <div class="card lesson unavailable">
+                        <h3>Lesson 3: Prefixes and Suffixes</h3>
+                        <button class="btn btn-secondary" disabled>Coming Soon</button>
+                    </div>
+                </div>
+            </section>
+
+            <% } %>
+
         </section>
     </main>
 

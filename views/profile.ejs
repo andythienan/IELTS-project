@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Profile</title>
-    <link rel="stylesheet" href="/styles/profile.css"> <!-- Ensure this points to your CSS file -->
-    <link rel="stylesheet" href="/styles/typography.css"> <!-- Ensure this points to your CSS file -->
+    <link rel="stylesheet" href="/styles/profile.css">
+    <link rel="stylesheet" href="/styles/typography.css">
+    <link rel="stylesheet" href="/styles/history.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
-<body>
+
+<body class="<%= showHistory ? 'history-view' : '' %>">
     <header>
         <%- include('partials/header') %>
     </header>
@@ -20,11 +23,11 @@
             <ul>
                 <li><a href="/">Home</a></li>
                 <li><a href="/profile">Profile</a></li>
-                <li><a href="/exam-library">Exam Library</a></li>
-                <li><a href="/reading">Reading</a></li>
+                <li><a href="/profile/history">History</a></li>
+                <li><a href="/library?type=exam">Exam Library</a></li>
                 <li>
                     <form action="/logout?_method=DELETE" method="POST" class="logout-form">
-                        <button type="submit" class="btn-logout"><span class="material-icons">logout</span>  Logout</button>
+                        <button type="submit" class="btn-logout"><span class="material-icons">logout</span> Logout</button>
                     </form>
                 </li>
             </ul>
@@ -35,6 +38,7 @@
 
         <!-- Content Area -->
         <div class="content">
+            <% if (!showHistory) { %>
             <div class="category">
                 <h1>Your Profile</h1>
                 <h2>Details</h2>
@@ -45,142 +49,82 @@
                 <h2>Activity</h2>
                 <div class="grid">
                     <div class="card">
-                        <h3>Completed tests</h3>
-                        <p id="completed-tests">Loading...</p>
-                        <a href="/history" class="btn-primary"><span class="material-icons">history</span>  View history</a>
+                        <h3>Completed Tests</h3>
+                        <p id="completed-tests">
+                            <%= completedQuizzes + completedWritings %> tests completed<br>
+                            (<%= completedQuizzes %> quizzes, <%= completedWritings %> writings)
+                        </p>
+                        <a href="/profile/history" class="btn-primary"><span class="material-icons">history</span> View history</a>
                     </div>
                     <div class="card">
-                        <h3>Lesson progress</h3>
-                        <p id="lesson-progress">Loading...</p>
-                        <a href="/history" class="btn-success"><span class="material-icons">history</span>  View history</a>
+                        <h3>Lesson Progress</h3>
+                        <p id="lesson-progress">
+                            <%= completedLessons %> lessons completed
+                        </p>
+                        <a href="/profile/history" class="btn-success"><span class="material-icons">history</span> View history</a>
                     </div>
                 </div>
-                
 
                 <h2>Pathway to Achieve</h2>
                 <div class="grid">
                     <div class="card">
                         <h3>Step 1: Build Grammar</h3>
                         <p>Focus on mastering grammar fundamentals to strengthen your writing and speaking skills.</p>
-                        <a href="/lesson-library" class="btn-primary">Start Grammar Lessons</a>
+                        <a href="/library?type=lesson" class="btn-primary">Start Grammar Lessons</a>
                     </div>
                     <div class="card">
                         <h3>Step 2: Practice Listening</h3>
                         <p>Improve your listening comprehension by practicing with audio materials.</p>
-                        <a href="/exam-library" class="btn-success">Try Listening Practice</a>
+                        <a href="/library?type=exam" class="btn-success">Try Listening Practice</a>
                     </div>
                     <div class="card">
                         <h3>Step 3: Take Mock Exams</h3>
                         <p>Simulate real exam scenarios to prepare yourself for test conditions.</p>
-                        <a href="/exam-library" class="btn-primary">Take a Mock Exam</a>
+                        <a href="/library?type=exam" class="btn-primary">Take a Mock Exam</a>
                     </div>
                     <div class="card">
                         <h3>Step 4: Expand Vocabulary</h3>
                         <p>Learn new words daily to enhance your reading, writing, and speaking skills.</p>
-                        <a href="/lesson-library" class="btn-success">Learn Vocabulary</a>
+                        <a href="/library?type=lesson" class="btn-success">Learn Vocabulary</a>
                     </div>
                 </div>
                 <h2>Announcements</h2>
                 <div class="announcement changelog">
                     <h2>📜 Changelog</h2>
-                    <div class="changelog-entry">
-                        <h3>December 11th, 2024</h3>
-                        <ul>
-                            <li>
-                                <strong>🚀 Interactive Tests:</strong> 
-                                Reading and Writing tests are now live, offering a comprehensive way to challenge your skills. Test your knowledge with:
-                                <ul>
-                                    <li>Reading comprehension passages with detailed questions.</li>
-                                    <li>Writing prompts designed to evaluate grammar, structure, and creativity.</li>
-                                    <li>Instant feedback to help you improve as you progress.</li>
-                                </ul>
-                                Don’t wait—start testing your skills today!
-                            </li>
-                            <li>
-                                <strong>📘 New Lessons Added:</strong> 
-                                We’ve expanded our lesson library with advanced content, including:
-                                <ul>
-                                    <li><strong>Advanced Grammar Topics:</strong> Deep dive into complex sentence structures, conditionals, and modifiers.</li>
-                                    <li><strong>Idiomatic Expressions:</strong> Master 50+ new idioms to enhance your everyday communication.</li>
-                                </ul>
-                                Perfect for learners looking to refine their English fluency.
-                            </li>
-                            <li>
-                                <strong>🎯 Updated Mock Exams:</strong> 
-                                Mock exams for Listening and Reading have been revamped to align with the latest testing standards:
-                                <ul>
-                                    <li><strong>Listening:</strong> New audio scenarios added, including business meetings, lectures, and everyday conversations.</li>
-                                    <li><strong>Reading:</strong> Enhanced reading passages with diverse topics and updated question formats.</li>
-                                </ul>
-                                These updates aim to simulate real test conditions for optimal preparation.
-                            </li>
-                            <li>
-                                <strong>🧑‍💻 Profile Enhancements:</strong> 
-                                Explore the all-new **Profile** section, designed to give you insights into your progress:
-                                <ul>
-                                    <li>View your completed tests, lessons, and writing assignments.</li>
-                                    <li>Track your learning progress with easy-to-read charts and stats.</li>
-                                    <li>Access available only to registered users—sign up today if you haven’t already!</li>
-                                </ul>
-                            </li>
-                            <li>
-                                <strong>📖 Vocabulary Page Integration:</strong> 
-                                To streamline learning and avoid duplicated content, the Vocabulary page has been merged into the Lessons section:
-                                <ul>
-                                    <li>All vocabulary content is now part of relevant lessons for a seamless learning experience.</li>
-                                    <li>Expect new vocabulary topics to be added in upcoming lessons.</li>
-                                    <li>This change allows for more focused and efficient content delivery.</li>
-                                </ul>
-                            </li>
-                            <li>
-                                <strong>🐛 Fixed Bugs:</strong>
-                                We squashed a number of bugs to make the platform more stable:
-                                <ul>
-                                    <li>Fixed a crash when accessing the "Reading" tests on older browsers.</li>
-                                    <li>Corrected typo errors in some vocabulary lessons.</li>
-                                    <li>Resolved an issue where user progress wasn't being updated in the Profile section.</li>
-                                    <li>Fixed inconsistent button styling in the sidebar navigation.</li>
-                                    <li>Addressed a problem where the "Lesson Completed" status was not reflected correctly on mobile devices.</li>
-                                    <li>Fixed audio playback issues in Listening tests for Safari users.</li>
-                                </ul>
-                            </li>
-                            <li>
-                                <strong>⚠️ Known Issues:</strong>
-                                As this is our first publish, there are a few known bugs we’re actively working to fix:
-                                <ul>
-                                    <li>Progress tracking for mock exams may occasionally show incorrect completion percentages.</li>
-                                    <li>Some users experience delays when loading the Profile page.</li>
-                                    <li>Dropdown menus in the sidebar may overlap content on smaller screens.</li>
-                                    <li>Grammar lessons may not load correctly on Internet Explorer (we recommend switching to a modern browser).</li>
-                                    <li>Audio may not pause correctly when switching tabs in Listening practice tests.</li>
-                                </ul>
-                                Our team is working diligently to resolve these issues in upcoming updates!
-                            </li>
-                            <li>
-                                <strong>✨ Future Improvements:</strong>
-                                We’re excited about upcoming features and improvements, including:
-                                <ul>
-                                    <li>Adding AI-powered feedback for writing assignments to give you personalized tips.</li>
-                                    <li>Introducing a dark mode for a better viewing experience at night.</li>
-                                    <li>Improving the user dashboard with more detailed analytics and goal-setting features.</li>
-                                    <li>Launching mobile-friendly mock exams for seamless practice on-the-go.</li>
-                                    <li>Expanding the lessons library with business English, TOEFL preparation, and IELTS practice materials.</li>
-                                </ul>
-                                Stay tuned for more updates!
-                            </li>
-                        </ul>
-                        
-                        
-                    </div>
-                    <div class="changelog-entry">
-                        <h3>December 6th, 2024</h3>
-                        <ul>
-                            <li><strong>Released to public:</strong> Our website is now online, we will add more features in the near feature!</li>
-                        </ul>
-                    </div>
+                    <!-- ... Changelog content ... -->
                 </div>
-                
             </div>
+            <% } else { %>
+            <!-- History Content -->
+            <h1 id="history-title">Your Activity History</h1>
+
+            <section id="quiz-section" class="history-section">
+                <h2>Completed Quizzes</h2>
+                <div class="history-list-container">
+                    <ul id="quiz-history-list" class="history-list">
+                        <li class="no-data">Loading quizzes...</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="lesson-section" class="history-section">
+                <h2>Completed Lessons</h2>
+                <div class="history-list-container">
+                    <ul id="lesson-history-list" class="history-list">
+                        <li class="no-data">Loading lessons...</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="writing-section" class="history-section">
+                <h2>Writing Submissions</h2>
+                <div class="history-list-container">
+                    <ul id="writing-history-list" class="history-list">
+                        <li class="no-data">Loading writings...</li>
+                    </ul>
+                </div>
+            </section>
+            <% } %>
         </div>
     </main>
 
@@ -189,30 +133,170 @@
     </footer>
 
     <script>
-        async function fetchUserActivity() {
+        document.addEventListener('DOMContentLoaded', () => {
+            // Toggle visibility for history sections
+            const toggleHistorySection = (sectionId) => {
+                const section = document.getElementById(sectionId);
+                const header = section.querySelector('h2');
+                const container = section.querySelector('.history-list-container');
+
+                if (header && container) {
+                    header.addEventListener('click', () => {
+                        container.classList.toggle('collapsed');
+                        header.classList.toggle('collapsed');
+                    });
+                }
+            };
+
+            toggleHistorySection('quiz-section');
+            toggleHistorySection('lesson-section');
+            toggleHistorySection('writing-section');
+        });
+
+        async function fetchUserActivityHistory() {
             try {
-                const response = await fetch('/api/user-activity');
-                if (!response.ok) throw new Error('Failed to fetch user activity.');
-    
-                const { completedQuizzes, completedLessons, completedWritings } = await response.json();
-    
-                // Update the UI with fetched data
-                document.getElementById('completed-tests').textContent = 
-                    `${completedQuizzes + completedWritings} tests completed (${completedQuizzes} quizzes, ${completedWritings} writings)`;
-                
-                document.getElementById('lesson-progress').textContent = 
-                    `${completedLessons} lessons completed`;
-    
+                const response = await fetch('/api/user-history');
+                if (!response.ok) throw new Error('Failed to fetch user history.');
+
+                const { quizzes, lessons, writings } = await response.json();
+
+                // Populate quizzes
+                const quizListContainer = document.getElementById('quiz-history-list');
+                if (quizListContainer) {
+                    const quizData = quizzes.reduce((acc, quiz) => {
+                        const quizType = quiz.quizId.split('-')[0];
+                        if (!acc[quizType]) {
+                            acc[quizType] = [];
+                        }
+                        acc[quizType].push(quiz);
+                        return acc;
+                    }, {});
+
+                    quizListContainer.innerHTML = '';
+
+                    for (const quizType in quizData) {
+                        const quizSection = document.createElement('div');
+                        quizSection.classList.add('skill-section');
+
+                        const quizHeading = document.createElement('h3');
+                        quizHeading.style.fontSize = '1.2rem';
+                        quizHeading.style.color = '#444';
+                        quizHeading.textContent = quizType.charAt(0).toUpperCase() + quizType.slice(1);
+
+                        const historyListContainer = document.createElement('div');
+                        historyListContainer.classList.add('history-list-container');
+
+                        const historyList = document.createElement('ul');
+                        historyList.classList.add('history-list');
+
+                        quizData[quizType].forEach(quiz => {
+                            const listItem = document.createElement('li');
+                            listItem.innerHTML = `
+                                <strong>Quiz ID:</strong> ${quiz.quizId}<br>
+                                <strong>Score:</strong> ${quiz.score}<br>
+                                <strong>Percentage:</strong> ${quiz.percentage}%<br>
+                                <strong>Completed on:</strong> ${new Date(quiz.timestamp).toLocaleDateString()}
+                            `;
+                            historyList.appendChild(listItem);
+                        });
+
+                        historyListContainer.appendChild(historyList);
+                        quizSection.appendChild(quizHeading);
+                        quizSection.appendChild(historyListContainer);
+                        quizListContainer.appendChild(quizSection);
+                    }
+
+                    if (Object.keys(quizData).length === 0) {
+                        quizListContainer.innerHTML = '<li class="no-data">No quizzes completed yet.</li>';
+                    }
+                }
+
+                // Populate lessons
+                const lessonListContainer = document.getElementById('lesson-history-list');
+                if (lessonListContainer) {
+                    const lessonData = lessons.reduce((acc, lesson) => {
+                        if (!acc[lesson.lessonId]) {
+                            acc[lesson.lessonId] = [];
+                        }
+                        acc[lesson.lessonId].push(lesson);
+                        return acc;
+                    }, {});
+
+                    lessonListContainer.innerHTML = '';
+
+                    for (const lessonId in lessonData) {
+                        const lessonSection = document.createElement('div');
+                        lessonSection.classList.add('skill-section');
+
+                        const lessonHeading = document.createElement('h3');
+                        lessonHeading.style.fontSize = '1.2rem';
+                        lessonHeading.style.color = '#444';
+                        lessonHeading.textContent = lessonId.charAt(0).toUpperCase() + lessonId.slice(1);
+
+                        const historyListContainer = document.createElement('div');
+                        historyListContainer.classList.add('history-list-container');
+
+                        const historyList = document.createElement('ul');
+                        historyList.classList.add('history-list');
+
+                        lessonData[lessonId].forEach(lesson => {
+                            const listItem = document.createElement('li');
+                            listItem.innerHTML = `
+                                <strong>Lesson ID:</strong> ${lesson.lessonId}<br>
+                                <strong>Completed on:</strong> ${new Date(lesson.completedAt).toLocaleDateString()}
+                            `;
+                            historyList.appendChild(listItem);
+                        });
+
+                        historyListContainer.appendChild(historyList);
+                        lessonSection.appendChild(lessonHeading);
+                        lessonSection.appendChild(historyListContainer);
+                        lessonListContainer.appendChild(lessonSection);
+                    }
+
+                    if (Object.keys(lessonData).length === 0) {
+                        lessonListContainer.innerHTML = '<li class="no-data">No lessons completed yet.</li>';
+                    }
+                }
+
+                // Populate writings
+                const writingListContainer = document.getElementById('writing-history-list');
+                if (writingListContainer) {
+                    writingListContainer.innerHTML = '';
+
+                    const writingList = document.createElement('ul');
+                    writingList.classList.add('history-list');
+
+                    if (writings && writings.length > 0) {
+                        writings.forEach(writing => {
+                            const listItem = document.createElement('li');
+                            listItem.innerHTML = `
+                                <strong>Task:</strong> ${writing.task}<br>
+                                <strong>Word count:</strong> ${writing.wordCount}<br>
+                                <strong>Submitted on:</strong> ${new Date(writing.completedAt).toLocaleDateString()}
+                            `;
+                            writingList.appendChild(listItem);
+                        });
+                    } else {
+                        const noData = document.createElement('li');
+                        noData.classList.add('no-data');
+                        noData.textContent = 'No writing submissions yet.';
+                        writingList.appendChild(noData);
+                    }
+
+                    writingListContainer.appendChild(writingList);
+                }
             } catch (error) {
-                console.error('Error fetching user activity:', error);
-                document.getElementById('completed-tests').textContent = 'Unable to load data.';
-                document.getElementById('lesson-progress').textContent = 'Unable to load data.';
+                console.error('Error fetching user history:', error);
             }
         }
-    
-        // Fetch user activity on page load
-        fetchUserActivity();
+
+        // Fetch user history on page load
+        const showHistory = <%- showHistory ? 'true' : 'false' %>;
+        if (showHistory) {
+            fetchUserActivityHistory();
+        }
     </script>
-    
 </body>
+
 </html>

@@ -6,7 +6,6 @@
 }
 
 body {
-    font-family: 'Roboto', sans-serif; /* Modern Font */
     background-color: #f7f9fc; /* Soft Background */
     color: #333;
     overflow-x: hidden; /* Prevent horizontal scroll due to animations */
@@ -128,8 +127,8 @@ main {
     border-radius: 20px;
     background: rgba(255, 255, 255, 0.8);
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-    backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
     border: 1px solid rgba(255, 255, 255, 0.18);
     transition: transform 0.4s ease, box-shadow 0.4s ease;
     display: flex;
@@ -224,8 +223,8 @@ main {
     margin-top: 60px;
     text-align: center;
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-    backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
@@ -273,8 +272,8 @@ main {
     border-radius: 20px;
     padding: 30px;
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-    backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
     border: 1px solid rgba(255, 255, 255, 0.18);
     transition: transform 0.3s, box-shadow 0.3s;
 }
