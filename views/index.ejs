@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= 'Homepage - learnEnglish' %></title>
+    <link rel="stylesheet" href="/styles/styles.css">
+    <link rel="stylesheet" href="/styles/typography.css">   
+
+</head>
+<body class="page-home">
+    <header class="header">
+        <%- include('partials/header', { user: name}) %>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Unlock Your Potential</h1>
+        <p>Join millions of learners on the path to mastering English skills.</p>
+        <a href="/exam-library">Get Started</a>
+    </section>
+
+    
+    <!-- Features Section -->
+    <section class="features">
+        <% const features = [
+            { title: "Access Anywhere", description: "Enjoy free, world-class resources from any device. Easy to access!", link: "/lesson-library" },
+            { title: "Personalized Tests", description: "Track your progress with tailored English proficiency tests.", link: "/exam-library" },
+            { title: "Interactive Courses", description: "Explore dynamic and engaging courses designed for your success.", link: "/lesson-library" },
+            { title: "Join the Community", description: "Connect with other learners and share your journey. There's no limitation!", link: "/forum" }
+        ]; %>
+
+        <% features.forEach(feature => { %>
+        <div class="feature-card">
+            <h3><%= feature.title %></h3>
+            <p><%= feature.description %></p>
+            <a href="<%= feature.link %>">Learn More</a>
+        </div>
+        <% }); %>
+    </section>
+
+    <!-- Info Section -->
+    <section class="info-section">
+        <h2>Take the First Step Today</h2>
+        <p>Discover the tools and resources you need to succeed in your English learning journey.</p>
+        <a href="/lesson-library">Join Now</a>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <%- include('partials/footer'); -%>
+    </footer>
+</body>
+</html>

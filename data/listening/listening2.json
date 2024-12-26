@@ -1,0 +1,40 @@
+{
+    "audioSource": "/files/listening_audio/listening2.mp3",
+    "questions": [
+      {
+        "type": "fill-in-the-blank",
+        "question": "Architecture, chemical processes, and material sciences are being increasingly influenced by ideas inspired by nature. Where in the past, man’s inventions have been considered all-powerful, engineers are now turning to the ________, which over the last 3.8 billion years, has developed a wealth of successful innovations.",
+        "answer": "natural world"
+      },
+      {
+        "type": "fill-in-the-blank",
+        "question": "Velcro, one of the most famous biomimetic products, was invented in 1941 by Swiss engineer George de Mestral, who noticed how the ________ of burdock became entangled in his clothes and his dog’s coat.",
+        "answer": "seed heads"
+      },
+      {
+        "type": "fill-in-the-blank",
+        "question": "Researchers at the Centre of Biomimetics at Reading University have developed a material based on the properties of wood. Unlike traditional wood, which is affected by ________ levels and temperature, this new material utilizes glass fibres and resin to replicate the geometric arrangement of wood while eliminating these disadvantages.",
+        "answer": "moisture"
+      },
+      {
+        "type": "fill-in-the-blank",
+        "question": "The Sahara Forest Project mimics the moisture-harvesting ability of the Namibian Fog Basking Beetle. This beetle, which lives in harsh desert conditions, uses hydrophilic ________ on its shell to attract water, separated by a waxy finish that repels water. Consequently, the water gathers in tight, spherical droplets, ensuring minimal wastage.",
+        "answer": "bumps"
+      },
+      {
+        "type": "fill-in-the-blank",
+        "question": "Human designs are described as linear, where resources are taken from the Earth, used, and the rest is discarded as ________. In contrast, natural systems are cyclical, where waste from one organism becomes nutrients for another.",
+        "answer": "waste"
+      },
+      {
+        "type": "fill-in-the-blank",
+        "question": "The Able Project in Wakefield, Yorkshire, exemplifies cyclical design principles. Cardboard is first used as animal bedding, then composted using ________. The worms produced are used to feed fish, and the fish excrement is recycled back into the system.",
+        "answer": "vermiculture"
+      },
+       {
+          "type": "fill-in-the-blank",
+          "question": "As industrial development accelerates, increasing extinction rates result in the loss of habitats and species. The demise of the Gastric Brooding Frog, for example, has cost us the chance to study its ability to ________ its production of stomach acid, potentially offering solutions for individuals suffering from excessive stomach acid.",
+          "answer": "turn off"
+      }
+    ]
+  }

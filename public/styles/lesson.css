@@ -1,0 +1,319 @@
+/***************************************************************
+ * 1) GLOBAL STYLES & BASIC RESET
+ ***************************************************************/
+ body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 20px;
+    background: linear-gradient(120deg, #f6d365, #fda085);
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+/***************************************************************
+ * 2) LESSON CARD & ANIMATION
+ ***************************************************************/
+.lesson-card {
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    text-align: center;
+    max-width: 500px;
+    width: 100%;
+    border: 4px solid #4CAF50;
+    animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.lesson-card h2 {
+    margin-top: 0;
+    color: #4CAF50;
+    font-weight: 700;
+}
+
+/***************************************************************
+ * 3) START LESSON BUTTON
+ ***************************************************************/
+#start-lesson-btn {
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s;
+    font-weight: 500;
+}
+
+#start-lesson-btn:hover {
+    background-color: #218838;
+    transform: scale(1.05);
+}
+
+/***************************************************************
+ * 4) LESSON CONTENT WRAPPER
+ ***************************************************************/
+#lesson-content {
+    margin-top: 2rem;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    width: 100%;
+    max-width: 700px;
+    display: none;
+}
+
+/***************************************************************
+ * 5) LESSON SECTIONS & HEADINGS
+ ***************************************************************/
+.lesson-section {
+    display: none;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.lesson-section.active {
+    display: block;
+}
+
+.lesson-heading {
+    color: #4CAF50;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.lesson-text {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+/***************************************************************
+ * 6) NEXT & COMPLETE LESSON BUTTONS
+ ***************************************************************/
+.next-btn,
+#complete-lesson-btn {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s;
+    margin-top: 1rem;
+}
+
+.next-btn:hover,
+#complete-lesson-btn:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+/***************************************************************
+ * 7) EXAMPLE BOX
+ ***************************************************************/
+.example-box {
+    background: #f8f8f8;
+    border-left: 5px solid #4CAF50;
+    padding: 10px 15px;
+    margin: 10px 0;
+    border-radius: 5px;
+}
+
+/***************************************************************
+ * 8) QUIZ (CONTAINER & QUESTION STYLING)
+ ***************************************************************/
+.quiz {
+    margin-top: 20px;
+}
+
+.quiz-container {
+    margin-top: 20px;
+}
+
+.quiz-question {
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 15px 20px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.quiz-question p {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+}
+
+.quiz-question label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 1rem;
+    color: #555;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.quiz-question label:hover {
+    color: #007bff;
+}
+
+.quiz-question input[type="radio"] {
+    accent-color: #007bff;
+    margin-right: 8px;
+    cursor: pointer;
+}
+
+.quiz-question input[type="radio"]:checked + label {
+    color: #007bff;
+    font-weight: 500;
+}
+
+/* Submit Quiz Button */
+#submit-quiz-btn {
+    background-color: #ffc107;
+    color: #333;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s;
+    margin-top: 1rem;
+}
+
+#submit-quiz-btn:hover {
+    background-color: #e0a800;
+    transform: scale(1.05);
+}
+
+/* Result Message */
+.quiz-result {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    text-align: center;
+}
+
+.quiz-result.success {
+    background-color: #e8f5e9;
+    border: 1px solid #a5d6a7;
+    color: #388e3c;
+}
+
+.quiz-result.error {
+    background-color: #fde0dc;
+    border: 1px solid #f4a29b;
+    color: #c62828;
+}
+
+/***************************************************************
+ * 9) TIMELINE (MARKER & INFO)
+ ***************************************************************/
+.timeline {
+    width: 80%;
+    height: 8px;
+    background-color: #ddd;
+    margin: 20px auto;
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.timeline-marker {
+    width: 24px;
+    height: 24px;
+    background-color: #007bff;
+    border-radius: 50%;
+    position: absolute;
+    top: -8px;
+    transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.timeline-marker.clicked {
+    background-color: #0056b3;
+    transform: scale(1.2);
+}
+
+.timeline-marker.clicked-reset {
+    transform: scale(1);
+    background-color: #007bff;
+}
+
+.timeline-label {
+    position: absolute;
+    top: -40px;
+    text-align: center;
+    width: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.9rem;
+    color: #333;
+    white-space: nowrap;
+}
+
+.timeline-info {
+    text-align: center;
+    font-size: 1rem;
+    color: #333;
+    margin-top: 20px;
+}
+
+/***************************************************************
+ * 10) SYNONYM / ANTONYM HIGHLIGHTS
+ ***************************************************************/
+.example-word {
+    font-weight: bold;
+    animation: pulse 1s infinite alternate;
+}
+
+@keyframes pulse {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(1.05);
+    }
+}
+
+.synonym-antonym-pair {
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #f8f8f8;
+}
+
+.word {
+    font-weight: bold;
+    color: #28a745;
+    margin-bottom: 5px;
+}
+
+.synonyms {
+    color: #007bff;
+}
+
+.antonyms {
+    color: #dc3545;
+}

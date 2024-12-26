@@ -1,0 +1,87 @@
+{
+    "title":"Lesson 2: Tenses",
+    "description": "Learn about different tenses in English!",
+     "sections": [
+        {
+            "id": "tense-1",
+            "heading": "Simple Present",
+            "text": "The simple present tense is used to describe habits, unchanging situations, general truths, and fixed arrangements.",
+              "examples":[
+                   "The sun <span class='example-word'>rises</span> in the east.",
+                   "She <span class='example-word'>works</span> as a teacher."
+                ]
+        },
+        {
+            "id": "tense-2",
+            "heading": "Simple Past",
+            "text": "The simple past tense is used to talk about completed actions in the past.",
+              "examples":[
+                 "He <span class='example-word'>visited</span> Paris last year.",
+                    "They <span class='example-word'>watched</span> a movie yesterday."
+              ]
+        },
+        {
+            "id": "tense-3",
+            "heading": "Simple Future",
+            "text": "The simple future tense is used to talk about things that haven't happened yet.",
+              "examples":[
+                 "I <span class='example-word'>will travel</span> to Japan next month.",
+                 "She <span class='example-word'>will start</span> her new job soon."
+              ]
+       },
+       {
+            "id": "tense-4",
+            "heading": "Present Continuous",
+             "text": "The present continuous tense is used to describe actions that are happening at the current moment.",
+              "examples":[
+                "They <span class='example-word'>are playing</span> football now.",
+                "He <span class='example-word'>is studying</span> for his exam."
+              ]
+        },
+       {
+             "id": "tense-5",
+            "heading": "Past Continuous",
+            "text": "The past continuous tense is used to describe actions that were ongoing at a specific time in the past.",
+             "examples":[
+                 "She <span class='example-word'>was reading</span> a book when I called.",
+                  "They <span class='example-word'>were watching</span> TV all night."
+            ]
+        },
+        {
+            "id": "tense-6",
+            "heading": "Future Continuous",
+            "text": "The future continuous tense indicates an action that will be ongoing at a specific time in the future.",
+            "examples":[
+                 "At this time tomorrow, I <span class='example-word'>will be flying</span> to New York.",
+                 "She <span class='example-word'>will be working</span> on her project all day."
+             ]
+        },
+       {
+            "id": "tense-7",
+           "heading": "Present Perfect",
+            "text": "The present perfect tense is used to describe actions that happened at an unspecified time before now, or that began in the past and continue to the present.",
+             "examples":[
+                "I <span class='example-word'>have visited</span> Rome.",
+                 "He <span class='example-word'>has lived</span> here for five years."
+             ]
+        },
+        {
+           "id": "tense-8",
+            "heading": "Past Perfect",
+           "text": "The past perfect tense is used to describe an action that was completed before another action in the past.",
+              "examples":[
+                   "She <span class='example-word'>had finished</span> her work before he arrived.",
+                   "By the time I got there, they <span class='example-word'>had already left</span>."
+               ]
+       },
+        {
+           "id": "tense-9",
+            "heading": "Future Perfect",
+            "text": "The future perfect tense indicates an action that will be completed before another action in the future.",
+           "examples":[
+                 "By next year, I <span class='example-word'>will have graduated</span> from university.",
+                 "She <span class='example-word'>will have finished</span> the report by the time the meeting starts."
+                ]
+       }
+    ]
+}

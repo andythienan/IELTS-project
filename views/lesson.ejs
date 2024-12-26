@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lessons - learnEnglish</title>
+    <link rel="stylesheet" href="/styles/lesson.css">
+    <link rel="stylesheet" href="/styles/typography.css" >
+</head>
+<body>
+    <div class="lesson-card">
+        <h2>Lesson</h2>
+        <p>Loading...</p>
+        <button id="start-lesson-btn">Start lesson</button>
+    </div>
+
+    <div id="lesson-content" style="display: none;">
+    </div>
+      <script>
+    const loggedInUserId = "<%= user ? user._id : null %>";
+    const lessonId = "<%= lessonId %>";
+    </script>
+    <script src="/javascripts/lesson.js"></script>
+
+</body>
+</html>

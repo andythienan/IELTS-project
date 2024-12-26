@@ -1,0 +1,274 @@
+/*Index*/
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #fdfdfd;
+    color: #333;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Hero Section */
+/* General Styles (Same as before) */
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    background-color: #f9f9f9;
+}
+
+/* Hero Section */
+.hero {
+    height: 750px;
+    position: relative;
+    overflow: hidden;
+    text-align: left; /* Changed to left-align */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start; /* Align items to the start (left) */
+    color: white;
+    margin-top: -80px;
+    padding-left: 10%; /* added left padding */
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(90deg,
+            #FF5E5E, #FFAA5E, #FFEE5E, #A7FF5E,
+            #5EFF5E, #5EFFAA, #5EFFFF, #5EAAFF,
+            #5E5EFF, #AA5EFF, #FF5EFF, #FF5EAA, #FF5E5E);
+    background-size: 400% 100%;
+    animation: seamlessMove 10s linear infinite;
+    z-index: -1;
+    opacity: 0.8;
+    filter: blur(5px);
+}
+
+@keyframes seamlessMove {
+    0% {
+        background-position: 0% 0%;
+    }
+
+    100% {
+        background-position: -200% 0%;
+    }
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    letter-spacing: 1.5px;
+    color: white;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.hero p {
+    font-size: 1.3rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 30px;
+}
+
+.hero a {
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #333;
+    padding: 15px 30px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 50px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-top: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    border: none;
+}
+
+.hero a:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+    background-color: rgba(255, 255, 255, 1);
+}
+
+/* Features Section (Same as before) */
+.features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    padding: 60px 10%;
+}
+
+.feature-card {
+    background: #fff;
+    padding: 25px;
+    border-radius: 15px;
+    text-align: left;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Rainbow line on top */
+.feature-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(to right,
+            #FF5E5E 0%, #FFAA5E 16.66%, #FFEE5E 33.33%, #A7FF5E 50%,
+            #5EFF5E 66.66%, #5EFFAA 83.33%, #5EFFFF 100%);
+    border-radius: 15px 15px 0 0;
+    z-index: 2;
+}
+
+/* Gradient overlay for feature cards */
+.feature-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg,
+            rgba(255, 94, 94, 0.2), rgba(255, 170, 94, 0.2), rgba(255, 238, 94, 0.2),
+            rgba(167, 255, 94, 0.2), rgba(94, 255, 94, 0.2), rgba(94, 255, 170, 0.2),
+            rgba(94, 255, 255, 0.2), rgba(94, 170, 255, 0.2), rgba(94, 94, 255, 0.2),
+            rgba(170, 94, 255, 0.2), rgba(255, 94, 255, 0.2), rgba(255, 94, 170, 0.2));
+    z-index: 1;
+    pointer-events: none;
+    border-radius: inherit;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.feature-card:hover::after {
+    opacity: 1;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.feature-card h3 {
+    font-size: 1.6rem;
+    color: #333;
+    margin-bottom: 12px;
+    font-weight: 600;
+    z-index: 2;
+    position: relative;
+}
+
+.feature-card p {
+    font-size: 1.1rem;
+    color: #555;
+    z-index: 2;
+    position: relative;
+}
+
+.feature-card a {
+    display: inline-block;
+    margin-top: 20px;
+    background-color: #6BCB77;
+    color: white;
+    padding: 12px 25px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 50px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    border: none;
+    z-index: 2;
+    position: relative;
+}
+
+.feature-card a:hover {
+    background-color: #5CAA65;
+    transform: translateY(-2px);
+}
+
+/* Info Section */
+.info-section {
+    background-color: #f0fafa;
+    padding: 80px 10%;
+    text-align: left; /* Changed to left-align */
+    position: relative;
+    overflow: hidden;
+     padding-left: 10%;/* added left padding */
+}
+
+/*  Background pattern for info section */
+.info-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: 40px 40px;
+    z-index: 1;
+}
+
+.info-section>* {
+    position: relative;
+    z-index: 2;
+}
+
+.info-section h2 {
+    font-size: 2.8rem;
+    color: #333;
+    margin-bottom: 25px;
+    font-weight: 600;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.info-section p {
+    font-size: 1.3rem;
+    color: #555;
+    margin-bottom: 35px;
+}
+
+.info-section a {
+    display: inline-block;
+    background-color: #4D96FF;
+    color: white;
+    padding: 18px 35px;
+    font-size: 1.2rem;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.info-section a:hover {
+    background-color: #3D7BE5;
+    transform: translateY(-3px);
+}
+
+/* --- ICONS --- */
+.material-icons {
+    font-size: 1.2rem;
+    vertical-align: middle;
+}

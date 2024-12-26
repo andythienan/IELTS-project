@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Header</title>
+    <link rel="stylesheet" href="/styles/header-footer.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <header class="navbar">
+        <div class="navbar-container">
+            <!-- Logo and Branding -->
+            <div class="navbar-logo">
+                <a class="navbar-brand" href="/" style="text-decoration:none; color:black;">learnEnglish™</a>
+            </div>
+
+            <!-- Hamburger Menu -->
+            <div id="hamburger-menu" class="hamburger-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+
+            <!-- Navigation Links and Actions (Combined for Mobile) -->
+            <nav id="navbar-links" class="navbar-links">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/library?type=exam">Exam library</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/tips">Tips</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/skills">Skills</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/library?type=lesson">Lessons</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/forum">Forum</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/about-us" class="nav-link">About us</a>
+                    </li>
+                    <!-- Action Buttons (Moved inside for Mobile) -->
+                    <li class="nav-item action-buttons">
+                        <% if (user) { %>
+                        <a class="user-greeting" href="/profile" style="text-decoration:none; color:black; font-weight:1500px"><b><%= name || 'guest' %></b></a>
+                        <% } else { %>
+                        <a href="/account/login" class="btn login-btn">Log in</a>
+                        <a href="/account/register" class="btn register-btn">Sign up</a>
+                        <% } %>
+                    </li>
+                </ul>
+            </nav>
+
+            <!-- Action Buttons (Visible only on Desktop) -->
+            <div class="navbar-actions desktop-actions">
+                <% if (user) { %>
+                <a class="user-greeting" href="/profile" style="text-decoration:none; color:black; font-weight:1500px"><b><%= name || 'guest' %></b></a>
+                <% } else { %>
+                <a href="/account/login" class="btn login-btn">Log in</a>
+                <a href="/account/register" class="btn register-btn">Sign up</a>
+                <% } %>
+            </div>
+        </div>
+    </header>
+
+    <script>
+        // Hamburger menu toggle logic
+        document.addEventListener("DOMContentLoaded", () => {
+            const hamburgerMenu = document.getElementById("hamburger-menu");
+            const navbarLinks = document.getElementById("navbar-links");
+
+            // Toggle menu visibility
+            hamburgerMenu.addEventListener("click", () => {
+                navbarLinks.classList.toggle("open");
+            });
+        });
+    </script>
+</body>
+</html>

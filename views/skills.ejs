@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skills - learnEnglish</title>
+    <link rel="stylesheet" href="/styles/skills.css">
+    <link rel="stylesheet" href="/styles/typography.css">
+</head>
+
+<body class="page-skill">
+    <header class="header">
+        <%- include('partials/header', { user: name}) %>
+    </header>
+
+
+    <section class="title">
+        <h1>Skills</h1>
+        <p>Improve your reading, writing, listening, and speaking skills at your level.</p>
+    </section>
+    <main>
+        <!-- Introduction Section -->
+        <section class="intro-section">
+            <h2>Improve Your English Proficiency</h2>
+            <p>Enhance your vocabulary and develop English communication skills through practice activities and
+                structured lessons.</p>
+        </section>
+
+        <!-- Skills Section -->
+        <section class="skills-section">
+            <div class="skill-row listening">
+                <h3>Listening</h3>
+                <p>Practice your listening skills to understand English conversations better.</p>
+                <a href="/lesson-library">Start</a>
+            </div>
+            <div class="skill-row reading">
+                <h3>Reading</h3>
+                <p>Enhance your vocabulary and reading comprehension with targeted exercises.</p>
+                <a href="/lesson-library">Start</a>
+            </div>
+            <div class="skill-row writing">
+                <h3>Writing</h3>
+                <p>Develop your writing skills to express your ideas effectively in English.</p>
+                <a href="/lesson-library">Start</a>
+            </div>
+            <div class="skill-row speaking">
+                <h3>Speaking</h3>
+                <p>Improve your fluency and pronunciation through speaking activities.</p>
+                <a href="/lesson-library">Start</a>
+            </div>
+        </section>
+
+        <!-- Courses Section -->
+        <section class="courses-section">
+            <h2>Discover Our Online English Courses</h2>
+            <p>Boost your English proficiency with our curated courses tailored to all skill levels.</p>
+            <a href="#">Explore Courses</a>
+        </section>
+    </main>
+    <footer class="footer">
+        <%- include('partials/footer'); -%>
+    </footer>
+    
+
+</body>
+
+</html>

@@ -1,0 +1,321 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #f0f0f8; /* Soft background color */
+    color: #333;
+    overflow-x: hidden; /* Prevent horizontal scroll due to animations */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Make sure the body takes up full viewport height */
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Header */
+.title {
+    position: relative;
+    padding: 80px 10%; /* More Padding */
+    text-align: center;
+    overflow: hidden; /* Hide overflowing star elements */
+    min-height: 750px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: left;
+    overflow-x:hidden;
+    text-align:left;
+    margin-top:-80px;
+}
+
+.title::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #4655B8, #9b59b6, #2ecc71, #f1c40f, #e74c3c);
+    background-size: 400% 400%;
+    animation: gradientAnimation 15s ease infinite;
+    z-index: -1;
+    opacity: 0.8;
+}
+
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.title h1 {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    color: white;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    font-weight: bold;
+}
+
+.title p {
+    font-size: 1.3rem;
+    color: white;
+    z-index: 1;
+}
+
+
+/* Main Content */
+main {
+    padding: 60px 10%;
+    flex-grow: 1; /* Allow main to grow and push footer down */
+}
+
+/* Intro Section */
+.intro-section {
+    text-align: center;
+    margin-bottom: 60px;
+    padding: 40px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.intro-section h2 {
+    font-size: 2.5rem;
+    color: #4655B8;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.intro-section p {
+    font-size: 1.2rem;
+    color: #555;
+    line-height: 1.6;
+}
+
+/* Skills Section */
+/* ... (Previous CSS) ... */
+
+/* Skills Section */
+.skills-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /* Adjusted minmax */
+    gap: 30px;
+}
+
+.skill-row {
+    position: relative; /* For positioning the rainbow line */
+    padding: 30px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden; /* Hide overflowing parts of the rainbow line */
+}
+
+/* Rainbow Line */
+.skill-row::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px; /* Height of the rainbow line */
+    background: linear-gradient(to right, #ff9a9e, #fad0c4, #a1c4fd, #c2e9fb, #f6d365, #fda085, #ffecd2, #fcb69f);
+    background-size: 200% 200%; /* Animate the gradient */
+    animation: rainbowAnimation 5s linear infinite;
+}
+
+@keyframes rainbowAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    100% {
+        background-position: 200% 50%;
+    }
+}
+
+/* ... (Rest of the CSS) ... */
+.skill-row:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 40px 0 rgba(31, 38, 135, 0.5);
+}
+
+.skill-row h3 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+    color: #333;
+    font-weight: bold;
+}
+
+.skill-row p {
+    font-size: 1.1rem;
+    color: #555;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+.skill-row a {
+    padding: 12px 25px;
+    background: transparent;
+    color: #4655B8;
+    font-weight: bold;
+    border-radius: 30px;
+    border: 2px solid #4655B8;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    text-align: center;
+    display: inline-block;
+}
+
+.skill-row a:hover {
+    background-color: #4655B8;
+    color: white;
+}
+
+/* Skill Row Colors (Rainbow Gradient on Hover) */
+.skill-row.listening:hover {
+    background: linear-gradient(to right, #ff9a9e, #fad0c4);
+}
+
+.skill-row.reading:hover {
+    background: linear-gradient(to right, #a1c4fd, #c2e9fb);
+}
+
+.skill-row.writing:hover {
+    background: linear-gradient(to right, #f6d365, #fda085);
+}
+
+.skill-row.speaking:hover {
+    background: linear-gradient(to right, #ffecd2, #fcb69f);
+}
+
+/* Courses Section */
+.courses-section {
+    background: rgba(70, 85, 184, 0.2);
+    /* Translucent */
+    padding: 50px;
+    border-radius: 20px;
+    margin-top: 60px;
+    text-align: center;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.courses-section h2 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 25px;
+    font-weight: bold;
+}
+
+.courses-section p {
+    font-size: 1.2rem;
+    color: #555;
+    margin-bottom: 40px;
+    line-height: 1.6;
+}
+
+.courses-section a {
+    background-color: #4655B8;
+    color: white;
+    padding: 15px 30px;
+    border-radius: 30px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.courses-section a:hover {
+    background-color: #3544a6;
+    transform: scale(1.05);
+}
+
+/* Help Section */
+.help-section {
+    margin-top: 60px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+}
+
+.help-box {
+    background: rgba(208, 217, 245, 0.5);
+    /* Translucent */
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.help-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 40px 0 rgba(31, 38, 135, 0.5);
+}
+
+.help-box h3 {
+    font-size: 1.8rem;
+    color: #4655B8;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.help-box ul {
+    list-style: none;
+    padding: 0;
+}
+
+.help-box ul li {
+    margin-bottom: 15px;
+}
+
+.help-box ul li a {
+    font-size: 1.1rem;
+    color: #333;
+    display: block;
+    transition: color 0.3s, padding-left 0.3s;
+}
+
+.help-box ul li a:hover {
+    color: #4655B8;
+    padding-left: 5px;
+}
+
+/* Footer (adjust as needed) */
+footer {
+    margin-top: auto; /* Push footer to the bottom */
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}

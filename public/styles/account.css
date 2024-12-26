@@ -1,0 +1,435 @@
+/* General Styles */
+
+body {
+  background-color: #f9f9f9;
+  color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px; /* Add padding for smaller screens */
+  box-sizing: border-box; /* Include padding in width calculations */
+}
+
+.tab-group {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.tab {
+  flex: 1;
+  text-align: center;
+  padding: 10px;
+  font-size: 1em;
+  cursor: pointer;
+  color: #666;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.3s, color 0.3s;
+  background: none;
+  border: none;
+}
+
+.tab:hover {
+  color: #1e88e5;
+}
+
+.tab.login--active,
+.tab.active {
+  color: #1e88e5;
+  font-weight: bold;
+  border-bottom: 2px solid #1e88e5;
+}
+
+.page-header {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #1e88e5;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-container {
+  width: 100%; /* Make the container full width */
+  max-width: 450px; /* But limit the maximum width */
+  margin: 0 auto;
+  padding: 0 20px; /* Add horizontal padding for smaller screens */
+}
+
+.form-group {
+  margin-bottom: 15px;
+  position: relative;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 500;
+  color: #555;
+}
+
+.form-control {
+  width: calc(100% - 22px);
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  transition: border-color 0.3s;
+}
+
+.form-control:focus {
+  border-color: #1e88e5;
+  outline: none;
+}
+
+.form-control.error {
+  border-color: #e53935;
+}
+
+.form-control[disabled] {
+  background-color: #f0f0f0;
+  cursor: not-allowed;
+}
+
+.primary {
+  background-color: #1e88e5;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.3s;
+}
+
+.primary:hover {
+  background-color: #1565c0;
+}
+
+.primary:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.forgot-password {
+  text-align: right;
+  font-size: 0.9rem;
+  margin-top: 10px;
+}
+
+.forgot-password a {
+  color: #1e88e5;
+  text-decoration: none;
+}
+
+.forgot-password a:hover {
+  text-decoration: underline;
+}
+
+.container {
+  width: 95%; /* Make container responsive */
+  max-width: 1000px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  position: relative;
+}
+
+.tab-container {
+  display: flex;
+  justify-content: space-around;
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 20px;
+}
+
+.signup-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.signup-header h1 {
+  font-size: 2.2em;
+  color: #1e88e5;
+  margin: 0;
+}
+
+.signup-header p {
+  font-size: 1em;
+  color: #666;
+}
+
+.error-message {
+  color: red;
+  font-size: 16px;
+  text-align: left;
+  display: none;
+}
+
+.primary-button {
+  width: 100%;
+  padding: 12px;
+  background-color: #1e88e5;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 10px;
+}
+
+.primary-button:disabled {
+  background-color: #bbb;
+  cursor: not-allowed;
+}
+
+.primary-button:hover:not(:disabled) {
+  background-color: #1565c0;
+}
+
+.password-tooltip {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 110%;
+  transform: translateY(-50%);
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  width: 250px;
+  font-size: 0.9rem;
+  color: #333;
+  z-index: 1000;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.password-tooltip p {
+  margin: 5px 0;
+}
+
+.password-tooltip .valid {
+  color: #4caf50;
+}
+
+.password-tooltip .invalid {
+  color: #e53935;
+}
+
+/* Success Message */
+.success-message {
+  display: none;
+  text-align: center;
+  color: #4caf50;
+  font-size: 1em;
+  margin-top: 20px;
+}
+
+.return-home,
+.return-login {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.return-home-btn,
+.return-login-btn {
+  display: inline-block;
+  text-decoration: none;
+  color: #1e88e5;
+  font-weight: bold;
+  font-size: 1rem;
+  padding: 10px 20px;
+  border: 2px solid #1e88e5;
+  border-radius: 5px;
+  background-color: white;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.return-home-btn:hover,
+.return-login-btn:hover {
+  background-color: #1e88e5;
+  color: white;
+}
+
+.form-input:disabled {
+  background-color: #eaeaea;
+  cursor: not-allowed;
+}
+
+.form-button {
+  width: 100%;
+  padding: 15px;
+  font-size: 18px;
+  color: #fff;
+  background-color: #a97142;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.form-button:hover {
+  background-color: #8c5d33;
+  transform: translateY(-2px);
+}
+
+.form-link {
+  display: block;
+  margin-top: 20px;
+  font-size: 16px;
+  color: #6b4423;
+  text-decoration: none;
+  font-weight: bold;
+  text-align: center;
+}
+
+.form-link:hover {
+  text-decoration: underline;
+}
+
+.valid-message {
+  font-size: 14px;
+  color: green;
+  margin-top: 5px;
+  display: none;
+}
+
+.form-area {
+  display: none;
+  /* Initially hidden */
+}
+
+.form-area.active {
+  display: block;
+  /* Override to show when active */
+}
+
+.form-container {
+  width: 500px;
+  margin: 0 auto;
+}
+
+.tab-container {
+  display: flex;
+  justify-content: space-around;
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.tab.active {
+  color: #1e88e5;
+  font-weight: bold;
+  border-bottom: 2px solid #1e88e5;
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+.error-message {
+  color: red;
+  margin-bottom: 10px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    width: 90%; /* Adjust container width */
+    padding: 20px; /* Reduce padding */
+  }
+
+  .form-container {
+    width: 100%; /* Full width on smaller screens */
+    max-width: 400px; /* Adjust max-width */
+    padding: 0 15px; /* Reduce padding */
+  }
+
+  .tab {
+    font-size: 0.9rem; /* Reduce font size */
+    padding: 8px; /* Reduce padding */
+  }
+
+  .page-header {
+    font-size: 1.5rem; /* Reduce font size */
+  }
+
+  .form-control {
+    padding: 8px; /* Reduce padding */
+    font-size: 0.9rem; /* Reduce font size */
+  }
+
+  .primary,
+  .primary-button {
+    font-size: 0.9rem; /* Reduce font size */
+    padding: 10px; /* Reduce padding */
+  }
+
+  .password-tooltip {
+    top: 100%; /* Position below the input */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Adjust centering */
+    width: 90%; /* Adjust width */
+    max-width: 300px; /* Limit maximum width */
+  }
+
+  .return-home-btn,
+  .return-login-btn {
+    font-size: 0.9rem; /* Reduce font size */
+    padding: 8px 15px; /* Reduce padding */
+  }
+
+  .form-button {
+    font-size: 16px; /* Reduce font size */
+    padding: 12px; /* Reduce padding */
+  }
+
+  .form-link {
+    font-size: 14px; /* Reduce font size */
+  }
+
+  .signup-header h1 {
+    font-size: 2em; /* Reduce font size */
+  }
+
+  .signup-header p {
+    font-size: 0.9em; /* Reduce font size */
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    width: 100%; /* Full width on very small screens */
+    border-radius: 0; /* Remove border radius */
+  }
+
+  .tab-group {
+    flex-wrap: wrap; /* Allow tabs to wrap */
+  }
+
+  .tab {
+    flex: 1 0 50%; /* Tabs take up half the width */
+    margin-bottom: 10px; /* Add margin between wrapped tabs */
+  }
+
+  .password-tooltip {
+    width: 95%; /* Adjust width */
+  }
+}

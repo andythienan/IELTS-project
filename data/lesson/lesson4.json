@@ -1,0 +1,79 @@
+{
+    "title":"Lesson 3: Synonyms and Antonyms",
+   "description": "Learn about words with similar and opposite meanings!",
+     "sections":[
+         {
+           "id":"section-1",
+           "heading": "What are Synonyms?",
+          "text": "Synonyms are words that have the same or nearly the same meaning as another word.",
+            "examples":[
+                "happy, joyful, content",
+                "big, large, huge"
+              ]
+         },
+       {
+            "id":"section-2",
+          "heading": "What are Antonyms?",
+            "text":"Antonyms are words that have opposite meanings.",
+            "examples":[
+                "hot / cold",
+                "fast / slow"
+              ]
+       },
+      {
+        "id":"section-3",
+          "heading": "Examples of Synonyms and Antonyms",
+           "text": "Here are some more examples to help you understand the concept.",
+            "synonymAntonymPairs":[
+              {
+                    "word":"Beautiful",
+                   "synonyms": ["pretty","gorgeous", "stunning"],
+                  "antonyms":["ugly","unattractive"]
+              },
+              {
+                  "word":"Brave",
+                  "synonyms": ["courageous","fearless", "bold"],
+                 "antonyms": ["cowardly", "timid"]
+              },
+             {
+                "word":"Begin",
+                "synonyms": ["start", "initiate","commence"],
+               "antonyms": ["end", "finish","conclude"]
+            },
+           {
+                 "word":"Happy",
+                 "synonyms": ["joyful","cheerful","content"],
+               "antonyms": ["sad","unhappy","miserable"]
+           }
+         ]
+     },
+      {
+           "id":"section-4",
+           "heading":"Interactive Quiz",
+           "text": "Test your knowledge of synonyms and antonyms!",
+            "quiz":true,
+              "quizQuestions": [
+                   {
+                       "question": "What is a synonym for 'happy'?",
+                       "options": ["sad", "joyful", "angry", "tired"],
+                      "answer": "joyful"
+                   },
+                   {
+                       "question": "What is an antonym for 'big'?",
+                       "options": ["large", "huge", "small", "tall"],
+                      "answer": "small"
+                   },
+                  {
+                      "question": "What is a synonym for 'brave'?",
+                       "options": ["cowardly", "timid", "fearless", "weak"],
+                       "answer": "fearless"
+                    },
+                  {
+                      "question": "What is an antonym for 'begin'?",
+                      "options": ["start", "initiate", "commence", "end"],
+                      "answer": "end"
+                    }
+             ]
+      }
+    ]
+}

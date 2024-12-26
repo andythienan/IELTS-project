@@ -1,0 +1,204 @@
+@font-face {
+    font-family: 'Google Sans';
+    src: url('/view/fonts/GoogleSansText-Medium.ttf') format('truetype');
+}
+
+*{
+    font-family:'Google Sans';
+}
+
+
+/* General Styling */
+body {
+    font-family: 'Google Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333; /* Dark gray for body text */
+    background-color: #f0f0f8; /* Soft background color */
+    font-size: 18px;
+    line-height: 1.7;
+    overflow-x: hidden; /* To prevent horizontal scroll */
+    margin-top:20px;
+    margin-bottom: 40px;
+}
+
+/* Main Container */
+.about {
+    max-width: 1200px;
+    margin: 60px auto; /* Increased margins */
+    padding: 40px;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* Section Headings */
+.about h1 {
+    color: #2c3e50; /* Dark navy for main headings */
+    font-size: 3.5rem; /* Larger font size */
+    font-weight: 700; /* Bold font weight */
+    text-align: center;
+    margin-top:20px;
+    margin-bottom: 40px;
+    letter-spacing: -1px;
+    line-height: 1.2;
+    position: relative; /* For pseudo element */
+}
+
+.about h1::before{
+    content: '';
+    position: absolute;
+    width: 120px;
+    height: 3px;
+    background-color: #3498db;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.about h2 {
+    color: #3498db; /* Accent color for sub-headings */
+    font-size: 2.2rem; /* Larger sub-heading size */
+    font-weight: 600;
+    margin-bottom: 25px;
+    border-left: 4px solid #3498db;
+    padding-left: 10px;
+    display: inline-block; /* Avoid line break for the sub-heading*/
+}
+
+/* Mission Section */
+.about-mission {
+    margin-top: 40px;
+    text-align: justify;
+    position: relative;
+    padding: 0 30px;
+}
+
+.about-mission p {
+    font-size: 1.1em;
+    color: #555;
+    line-height: 1.8;
+    margin-bottom: 10px;
+}
+
+/* Values Section */
+.about-values h2{
+    margin-top:30px;
+    margin-bottom:20px;
+}
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+    padding: 0 20px;
+}
+
+.value-card {
+    background: #fff; /* White card background */
+    border-radius: 16px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08); /* Light box shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #e0e0e0; /* Slight border for the card */
+}
+
+.value-card:hover{
+  transform: translateY(-5px);
+   box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+}
+
+
+.value-card i {
+    font-size: 3em; /* Larger icons */
+    color: #3498db;
+    margin-bottom: 20px;
+}
+
+.value-card h3 {
+    font-size: 1.3rem;
+    color: #2c3e50; /* Dark Navy for value headings */
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.value-card p{
+    font-size: 1.1em;
+    color: #555;
+}
+
+/* Team Section */
+.about-team h2{
+    margin-top:30px;
+    margin-bottom:20px;
+}
+.team-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around; /* Distribute evenly */
+  gap: 30px;
+  margin-top: 40px;
+  padding: 0 20px;
+}
+
+.team-member {
+    text-align: center;
+    width: calc(25% - 30px); /* Four items in one row with gaps */
+    min-width: 250px; /* Set min width */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    padding: 15px;
+    border-radius: 15px; /* Increased roundness */
+}
+
+.team-member:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
+}
+
+
+.team-member img {
+    width: 100%;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid #eee;
+}
+
+.team-member h3 {
+    margin: 15px 0 10px;
+    color: #2c3e50; /* Dark Navy for team member names */
+    font-size: 1.3em; /* Larger name font */
+    font-weight: 600;
+}
+
+.team-member p {
+    color: #555;
+    font-size: 1.1em;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+  .about-mission::before{
+    width: 50px;
+    height: 50px;
+    top: 2%;
+    left: 2%;
+  }
+    .about h1 {
+        font-size: 3rem; /* Adjust heading size for smaller screens */
+    }
+
+    .about h2 {
+      font-size: 1.8rem;
+    }
+    
+    .values-grid {
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+    
+    .team-member {
+      width: calc(50% - 30px); /* Two team members per row on small screens */
+       min-width: 150px;
+    }
+}

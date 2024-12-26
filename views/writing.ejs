@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Writing Test</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="/styles/writing.css" rel="stylesheet">
+  <style>
+    /* Add some styles for the image container */
+    #image-container {
+      margin-top: 20px;
+      text-align: center; /* Center the image */
+    }
+
+    #image-container img {
+      max-width: 100%; /* Make sure the image doesn't overflow its container */
+      height: auto;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    Writing Test
+    <div id="timer"><span class="material-icons">timer</span>  25:00</div>
+  </header>
+  <div id="notification">
+    Writing test submitted successfully! Redirecting...
+    <button id="notification-close"><i class="material-icons">close</i></button>
+  </div>
+  <main>
+    <div class="column" id="task-container">
+      <h2>Writing Task</h2>
+      <p id="task-instructions">Loading...</p>
+      <div id="image-container">
+      </div>
+    </div>
+    <div class="column" id="response-container">
+      <h2>Your Response</h2>
+      <textarea id="response-input" placeholder="Write your response here..." maxlength="5000"></textarea>
+      <div class="word-count">
+        Word Count: <span id="word-count">0</span>
+      </div>
+    </div>
+  </main>
+  <footer>
+    <button id="submit-writing" class="btn" disabled>Submit</button>
+  </footer>
+  <script>
+    const loggedInUserId = "<%= user ? user._id : null %>";
+    const taskId = "<%= taskId %>";
+  </script>
+  <script src="/javascripts/writing.js"></script>
+</body>
+</html>

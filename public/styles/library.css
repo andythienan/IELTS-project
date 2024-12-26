@@ -1,0 +1,419 @@
+/* General Reset & Styling */
+body {
+    font-size: 16px; /* Base font size */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #f0f0f8; /* Soft background color */
+    color: #333; /* Dark text */
+    line-height: 1.7; /* Increased line-height */
+}
+
+main {
+    display: flex;
+    flex: 1;
+    width: 95%; /* Reduced width for padding */
+    max-width: 1600px;
+    margin: 20px auto; /* Centered main */
+    padding: 20px;
+    gap: 30px; /* Spacing */
+    box-sizing: border-box;
+    position: relative; /* Add this to make relative for the overlay */
+    z-index: 1;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 15%; /* Increased width */
+    background-color: #fff; /* White background */
+    padding: 40px; /* More padding */
+    border-radius: 12px; /* Rounded corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08); /* Refined shadow */
+    z-index: 2;
+}
+
+.sidebar h1 {
+    font-size: 2rem; /* Increased heading size */
+    color: #2196f3; /* Material Blue */
+    margin-bottom: 20px; /* Increased margin */
+    font-weight: bold;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar li {
+    margin-bottom: 20px;
+}
+
+.sidebar a {
+    text-decoration: none;
+    color: #555; /* Darker grey */
+    font-size: 1.1rem; /* Slightly larger */
+    font-weight: 500;
+    padding: 10px 0; /* Increased padding */
+    display: block;
+    transition: color 0.3s ease, background-color 0.3s ease, padding-left 0.3s ease; /* Smooth transition */
+    border-left: 4px solid transparent; /* Left indicator */
+}
+
+.sidebar a:hover,
+.sidebar a.active {
+    color: #2196f3; /* Material Blue on hover/active */
+    background-color: #f0f7ff; /* Light blue hover */
+    padding-left: 10px; /* Animation */
+    border-left: 4px solid #2196f3;
+}
+
+/* Divider */
+.divider {
+    width: 6px; /* Reduced width */
+    height: auto;
+    background: linear-gradient(to bottom, #d7bde2, #a9dfbf, #f9e79f, #f5b7b1);
+    margin: 0 20px; /* Increased margin */
+    border-radius: 3px; /* Slight rounding */
+    z-index: 2;
+}
+
+.content {
+    flex: 1;
+    padding: 25px;
+    z-index: 2;
+}
+
+.content h2 {
+    font-size: 2.5rem; /* Increased heading size */
+    color: #1565c0; /* Darker Blue */
+    margin-top: 20px; /* Increased margin */
+    margin-bottom: 20px;
+}
+
+/* Shared Grid */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Increased min size */
+    gap: 25px;
+    z-index: 2;
+}
+
+/* Shared Card Styles */
+.card {
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 12px;
+    text-align: left; /* Left aligned */
+    padding: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+    position: relative; /* For pseudo-elements */
+    overflow: visible; /* Allow content to overflow */
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(to right, #ff5e5e 0%, #ffa726 20%, #ffd500 40%, #76ff03 60%, #00e676 80%, #03a9f4 100%);
+    border-radius: 12px 12px 0 0;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.card h3 {
+    font-size: 1.6rem;
+    margin-bottom: 15px;
+    color: #444;
+}
+
+.card h3 .tag {
+    background-color: #4caf50;
+    color: white;
+    font-size: 0.9rem;
+    font-weight: bold;
+    padding: 4px 8px;
+    margin-left: 8px;
+    vertical-align: middle;
+    text-transform: uppercase;
+    border-radius: 6px;
+}
+
+.card button,
+.card a {
+    padding: 12px 20px; /* increased size */
+    border: none;
+    text-decoration: none;
+    font-size: 1rem;
+    border-radius: 6px; /* increased border radius */
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: auto;
+    display: inline-block; /* for better control */
+}
+
+.card a.btn-primary {
+    background-color: #2196f3;
+    color: white;
+    margin-right: 8px; /* spacing */
+}
+
+.card a.btn-success {
+    background-color: #4caf50;
+    color: white;
+}
+
+.card a.btn-primary:hover,
+.card a.btn-success:hover {
+    background-color: #1976d2; /* Darker on hover */
+     transform: translateY(-2px);
+}
+
+.card button.btn-secondary {
+    background-color: #eee;
+    color: #aaa;
+    cursor: not-allowed;
+}
+
+/* Unavailable Card Styling */
+.card.unavailable {
+    position: relative;
+    background: #f5f5f5;
+    cursor: not-allowed;
+    opacity: 0.7;
+    pointer-events: none;
+    user-select: none;
+    z-index: 2;
+}
+
+.card.unavailable::after {
+    content: "Unavailable";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    font-size: 1.2rem;
+    padding: 10px 18px;
+    border-radius: 8px;
+    text-transform: uppercase;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+/* Dropdown */
+.exam-dropdown {
+    position: relative;
+    width: 100%;
+    margin-top: 15px;
+}
+
+.exam-dropbtn {
+    padding: 14px 20px;
+    background-color: #2196f3;
+    color: white;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%; /* Make button full width */
+    text-align: left; /* Align text to the left */
+}
+
+.exam-dropbtn:hover {
+    background-color: #1976d2;
+}
+
+.exam-dropbtn::after {
+    content: "▾"; /* Unicode down arrow */
+    float: right;
+    margin-left: 10px;
+}
+
+.exam-dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #ffffff;
+    width: 100%; /* Make dropdown full width */
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    z-index: 10; /* Keep a high z-index */
+    top: 100%; /* Position below the button */
+    left: 0; /* Align to the left edge of the card */
+}
+
+.exam-dropdown-content a {
+    color: #444;
+    padding: 12px 20px;
+    text-decoration: none;
+    display: block;
+    font-size: 1.1rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.exam-dropdown-content a:hover {
+    background-color: #f0f7ff;
+    color: #2196f3;
+}
+
+/* Show dropdown on hover */
+.exam-dropdown:hover .exam-dropdown-content {
+    display: block;
+}
+
+
+/* Lesson specific styles */
+.lesson a,
+.lesson button {
+    padding: 12px 20px;
+    border: none;
+    text-decoration: none;
+    font-size: 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: auto;
+    display: inline-block; /* for better control */
+}
+
+.lesson a.btn-primary {
+    background-color: #2196f3;
+    color: white;
+    margin-right: 8px;
+}
+
+.lesson a.btn-success {
+    background-color: #4caf50;
+    color: white;
+}
+
+.lesson a.btn-primary:hover,
+.lesson a.btn-success:hover {
+  background-color: #1976d2;
+    transform: translateY(-2px);
+}
+
+.lesson button.btn-secondary {
+    background-color: #eee;
+    color: #aaa;
+    cursor: not-allowed;
+}
+
+/* Announcement Section */
+.announcement {
+    position: relative;
+    padding: 25px;
+    background-color: #fffde7; /* very light yellow */
+    border: 2px solid #ffeb3b; /* light yellow */
+    border-radius: 15px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+    margin-bottom: 30px;
+    animation: fadeIn 1s ease-in-out;
+    z-index: 2;
+}
+
+.announcement h2 {
+    font-size: 1.8rem;
+    color: #e65100; /* Orange */
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.announcement h2::before {
+    content: "🎉";
+    font-size: 2.2rem;
+    animation: bounce 1s infinite;
+}
+
+.announcement p {
+    font-size: 1.1rem;
+    color: #555;
+    line-height: 1.6;
+}
+
+/* Animation */
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    main {
+        flex-direction: column;
+        padding: 15px;
+        gap: 15px;
+        width: 98%;
+    }
+
+    .sidebar {
+        width: 100%;
+        margin-bottom: 20px;
+        padding: 20px;
+    }
+
+    .content {
+        width: 100%;
+        padding: 20px;
+    }
+
+    .grid {
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+
+    .exam-dropdown-content {
+        position: static; /* Default positioning on small screens */
+        width: 100%; /* Full width on small screens */
+        box-shadow: none; /* Remove shadow on small screens */
+        border: none; /* Remove border on small screens */
+        border-radius: 0; /* Remove border radius on small screens */
+        display: none; /* Initially hidden on small screens */
+    }
+
+      .exam-dropdown-content a {
+        padding: 10px 15px; /* Adjust padding for smaller screens */
+    }
+
+
+    .exam-dropdown.open .exam-dropdown-content {
+        display: block; /* Show when the dropdown has the 'open' class */
+    }
+}

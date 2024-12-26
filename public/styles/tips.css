@@ -1,0 +1,207 @@
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif; /* Modern Font */
+  background-color: #f0f0f8; /* Soft background color */
+  color: #333;
+  overflow-x: hidden; /* Prevent horizontal scroll due to animations */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Make sure the body takes up full viewport height */
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Header */
+.title {
+  height: 750px;
+  position: relative;
+  overflow: hidden;
+  text-align: left; /* Changed to left-align */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start; /* Align items to the start (left) */
+  color: white;
+  margin-top: -80px;
+  padding-left: 10%; /* added left padding */
+}
+
+.title::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(65deg, #4655B8, #9b59b6, #2ecc71, #f1c40f, #e74c3c);
+  background-size: 400% 400%;
+  animation: gradientAnimation 15s ease infinite;
+  z-index: -1;
+  opacity: 0.8;
+}
+
+@keyframes gradientAnimation {
+  0% {
+      background-position: 0% 50%;
+  }
+
+  50% {
+      background-position: 100% 50%;
+  }
+
+  100% {
+      background-position: 0% 50%;
+  }
+}
+
+.title h1 {
+  font-size: 4rem; /* Increased font size */
+  margin-bottom: 25px; /* Increased margin */
+  color: white;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  font-weight: bold;
+}
+
+.title p {
+  font-size: 1.5rem; /* Increased font size */
+  color: white;
+  z-index: 1;
+}
+
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+
+/* Main Content */
+main {
+  padding: 80px 10%; /* Increased padding */
+  flex-grow: 1; /* Allow main to grow and push footer down */
+}
+
+/* Intro Section */
+.intro-section {
+  text-align: left; /* Left-align text */
+  margin-bottom: 80px; /* Increased margin */
+  padding: 50px; /* Increased padding */
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.intro-section h2 {
+  font-size: 3rem; /* Increased font size */
+  color: #4655B8;
+  margin-bottom: 25px; /* Increased margin */
+  font-weight: bold;
+}
+
+.intro-section p {
+  font-size: 1.4rem; /* Increased font size */
+  color: #555;
+  line-height: 1.7; /* Increased line height */
+}
+
+
+  .skills-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.skill-row {
+  margin-top:25px;
+  margin-bottom:25px;
+  background: #fff;
+  padding: 25px;
+  border-radius: 15px;
+  text-align: left;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Rainbow Line */
+.skill-row::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px; /* Height of the rainbow line */
+  background: linear-gradient(to right,
+  #FF5E5E 0%, #FFAA5E 16.66%, #FFEE5E 33.33%, #A7FF5E 50%,
+  #5EFF5E 66.66%, #5EFFAA 83.33%, #5EFFFF 100%);
+  background-size: 200% 200%; /* Animate the gradient */
+  animation: rainbowAnimation 5s linear infinite;
+}
+
+
+@keyframes rainbowAnimation {
+  0% {
+      background-position: 0% 50%;
+  }
+
+  100% {
+      background-position: 200% 50%;
+  }
+}
+
+.skill-row:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 40px 0 rgba(31, 38, 135, 0.5);
+}
+
+.skill-row h3 {
+    font-size: 2.2rem; /* Increased font size */
+    margin-bottom: 20px; /* Increased margin */
+    color: #333;
+    font-weight: bold;
+}
+
+.skill-row p {
+    font-size: 1.3rem; /* Increased font size */
+    color: #555;
+    line-height: 1.6; /* Increased line height */
+    margin-bottom: 25px; /* Increased margin */
+}
+
+.skill-row a {
+  display: inline-block;
+  margin-top: 20px;
+  background-color: #6BCB77;
+  color: white;
+  padding: 12px 25px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 50px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  border: none;
+  z-index: 2;
+  position: relative;
+}
+
+.skill-row a:hover {
+    background-color: #4655B8;
+    color: white;
+}

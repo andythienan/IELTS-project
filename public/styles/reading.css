@@ -1,0 +1,459 @@
+/* --- GLOBAL STYLES --- */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Import Google Sans Font */
+@font-face {
+    font-family: 'Google Sans';
+    src: url('font/GoogleSansText-Medium.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    font-family: 'Google Sans', Arial, sans-serif;
+}
+
+body {
+    font-family: 'Google Sans', Arial, sans-serif; /* Changed to Google Sans */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Start from the top */
+    align-items: center;
+    min-height: 100vh;
+    background-color: var(--background-light); /* Simplified background */
+    color: var(--text-color-light);
+    overflow-x: hidden;
+    transition: background-color 0.3s ease; /* Smooth background transition */
+}
+
+/* --- VARIABLES --- */
+:root {
+    --primary-color: #1a73e8; /* Accessible blue */
+    --secondary-color: #fbbc04; /* Adjusted yellow */
+    --accent-color: #ea4335; /* Adjusted red */
+    --background-light: #eef0f1;
+    --background-dark: #202124;
+    --text-color-light: #202124;
+    --text-color-dark: #e8eaed;
+    --ease-in-out-quad: cubic-bezier(0.45, 0, 0.55, 1);
+    --ease-out-back: cubic-bezier(0.18, 0.89, 0.32, 1.28);
+    --base-font-size: 0.75rem; /* Base for scaling */
+    --passage-font-size: 1.2rem; /* Larger default for readability */
+    --line-height: 1.6;
+}
+
+/* --- HEADER --- */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem; /* Increased padding */
+    z-index: 100;
+    background-color: var(--background-light); /* Solid background */
+    transition: background-color 0.3s var(--ease-in-out-quad), box-shadow 0.3s var(--ease-in-out-quad);
+}
+
+header.scrolled {
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow when scrolled */
+}
+
+#timer {
+    font-weight: 600;
+    font-size: 1.1rem; /* Slightly larger */
+    color: var(--text-color-light);
+    padding: 0.5rem 1.2rem;
+    border-radius: 20px;
+    background-color: rgba(0, 0, 0, 0.1); /* Less prominent background */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    transition: all 0.3s var(--ease-in-out-quad);
+}
+
+/* --- PROGRESS BAR --- */
+#progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 4px;
+    background-color: var(--primary-color);
+    z-index: 101;
+}
+
+/* --- MAIN --- */
+main {
+    margin-top:-30px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    max-width: 1800px;
+    padding: 7rem 2rem 6rem; /* Adjusted padding */
+    gap: 2rem;
+}
+/* --- COLUMNS --- */
+.column {
+    flex: 1;
+    background-color: var(--background-light); /* Solid background */
+    border-radius: 20px; /* Slightly smaller radius */
+    padding: 2rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); /* Softer shadow */
+    transition: transform 0.3s var(--ease-out-back), box-shadow 0.3s var(--ease-out-back);
+    overflow: hidden;
+}
+
+.passage-column {
+    flex: 2;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+
+.column:hover {
+    transform: translateY(-5px); /* Reduced movement */
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.column.passage-column {
+    flex: 2;
+    position: relative;
+}
+
+/* --- PASSAGE --- */
+#passage {
+    font-size: var(--passage-font-size);
+    line-height: var(--line-height);
+    overflow-y: auto;
+    max-height: 600px; /* Increased max-height */
+    padding-right: 1rem;
+    margin-bottom: 1rem; 
+}
+
+/* width */
+#passage::-webkit-scrollbar {
+    width: 8px;
+}
+
+/* Track */
+#passage::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+/* Handle */
+#passage::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+}
+
+/* Handle on hover */
+#passage::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.passage-column::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 80px; /* Slightly smaller gradient */
+    pointer-events: none;
+    background: linear-gradient(to top, var(--background-light) 30%, transparent);
+}
+
+/* --- HEADINGS --- */
+h2 {
+    font-size: 2rem; /* Slightly larger */
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: var(--primary-color);
+    text-align: left;
+}
+
+/* --- NOTE INPUT --- */
+
+#toggle-notes-btn {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--primary-color);
+    color: #fff;
+    cursor: pointer;
+    margin-bottom: 1rem; /* Added margin for spacing */
+}
+
+#note-wrapper {
+    transition: max-height 0.3s var(--ease-in-out-quad);
+    max-height: 0;
+    overflow: hidden;
+}
+
+#note-wrapper.open {
+    max-height: 500px; /* Adjust as needed */
+}
+
+#note-input {
+    width: 100%;
+    height: auto; /* Auto height */
+    min-height: 150px;
+    padding: 1rem;
+    font-size: 1rem;
+    font-family: inherit;
+    line-height: var(--line-height);
+    color: var(--text-color-light);
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 10px; /* Smaller radius */
+    background-color: rgba(0, 0, 0, 0.05);
+    margin-bottom: 1.5rem;
+    resize: vertical;
+    transition: box-shadow 0.3s var(--ease-in-out-quad);
+    position: sticky;
+    bottom: 2rem; /* Stick to the bottom of the passage column */
+    z-index: 50; /* Ensure it stays above other elements */
+}
+
+#note-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(66, 133, 244, 0.3); /* Focus ring */
+}
+
+/* --- QUESTION & CHOICES --- */
+#question {
+    font-size: 1.3rem; /* Slightly larger */
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: var(--text-color-light);
+}
+
+.choice-box {
+    border: 2px solid transparent;
+    border-radius: 30px;
+    padding: 1rem 2rem;
+    margin-bottom: 1rem;
+    background-color: rgba(0, 0, 0, 0.05);
+    color: var(--text-color-light);
+    cursor: pointer;
+    transition: all 0.2s var(--ease-in-out-quad); /* Faster transition */
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.choice-box:hover {
+    border-color: var(--primary-color);
+    background-color: rgba(0, 0, 0, 0.08);
+    /* transform: scale(1.02);  Removed scaling on hover */
+}
+
+.choice-box.selected {
+    background-color: var(--primary-color);
+    color: #fff;
+    border-color: transparent;
+    /* transform: scale(1.05); Removed scaling on selection */
+}
+
+.choice-box.selected .choice-icon {
+    background-color: #fff;
+    color: var(--primary-color);
+}
+
+.choice-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.1);
+    color: #fff;
+    transition: all 0.3s var(--ease-in-out-quad);
+}
+
+/* --- FOOTER --- */
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: var(--background-light); /* Solid background */
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+}
+
+/* --- BUTTONS --- */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.8rem 2rem;
+    border: none;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: none;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: all 0.2s var(--ease-in-out-quad); /* Faster transition */
+    background-color: var(--primary-color); /* Solid background */
+    color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Softer shadow */
+}
+
+.btn:hover {
+    background-color: #3367d6;
+    /* Removed scaling on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn:disabled {
+    background-color: #ddd;
+    color: #999;
+    cursor: default;
+    box-shadow: none;
+    transform: none;
+    animation: none;
+}
+
+/* --- NOTIFICATIONS --- */
+#notification,
+#notification-container {
+    position: fixed;
+    top: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    border-radius: 10px; /* Smaller radius */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    font-size: 0.9rem;
+    display: none; /* Initially hidden */
+}
+
+#notification {
+    background-color: #4CAF50;
+    color: white;
+    padding: 0.8rem 1.5rem;
+}
+
+#notification-close {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    position: absolute;
+    top: 0.3rem;
+    right: 0.5rem;
+}
+
+#notification-container {
+    opacity: 0;
+    transition: opacity 0.4s var(--ease-in-out-quad);
+    background-color: var(--background-dark);
+    color: var(--text-color-dark);
+    padding: 0.8rem 1.5rem;
+}
+
+#notification-container.show {
+    opacity: 1;
+    display: block;
+}
+
+/* --- ANIMATIONS --- */
+.highlight.selected-highlight {
+    background-color: var(--accent-color);
+    animation: highlight-pulse 1.5s infinite alternate; /* Slower animation */
+}
+
+@keyframes highlight-pulse {
+    0% {
+        background-color: var(--accent-color);
+    }
+    100% {
+        background-color: #f06292; /* Lighter shade */
+    }
+}
+
+/* --- ICONS --- */
+.material-icons {
+    font-size: 1.2rem;
+    vertical-align: middle;
+}
+
+/* --- DISTRACTION-FREE MODE --- */
+body.distraction-free main {
+    max-width: 900px; /* Narrower width */
+}
+
+body.distraction-free .column:not(.passage-column) {
+    display: none; /* Hide other columns */
+}
+
+/* --- MEDIA QUERIES --- */
+@media (max-width: 900px) {
+    main {
+        flex-direction: column;
+        padding: 6rem 1rem 5rem;
+        gap: 1.5rem;
+    }
+
+    .column {
+        width: 100%;
+        max-width: none;
+    }
+
+    .column.passage-column {
+        flex: 1; /* Reset flex */
+    }
+
+    #passage {
+        max-height: 400px;
+        font-size: var(--passage-font-size); /* Responsive font size */
+    }
+
+    h2 {
+        font-size: 1.7rem; /* Slightly smaller */
+    }
+
+    #note-input {
+        min-height: 120px;
+        margin-bottom: 1rem;
+    }
+
+    #question {
+        font-size: 1.2rem; /* Slightly smaller */
+        margin-bottom: 1.2rem;
+    }
+
+    .choice-box {
+        padding: 0.8rem 1.5rem;
+        margin-bottom: 0.8rem;
+        font-size: 0.9rem;
+    }
+
+    footer {
+        padding: 0.8rem 1rem;
+    }
+
+    .btn {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+    }
+
+}

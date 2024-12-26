@@ -1,0 +1,465 @@
+/***************************************************************
+ * 1) GENERAL RESET & BODY
+ ***************************************************************/
+ * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Patrick Hand", cursive, sans-serif;
+  background-color: #f0f0f8;
+  color: #333;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+}
+
+/***************************************************************
+ * 2) FORUM CONTAINER & HEADER
+ ***************************************************************/
+.forum-container {
+  max-width: 950px;
+  margin: 40px auto;
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 20px;
+  box-shadow: 0px 8px 25px -5px rgba(0, 0, 0, 0.2);
+  animation: slideUp 0.8s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.forum-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 3px dashed #e0e0e0;
+}
+
+.forum-header h1 {
+  font-size: 2.5rem;
+  color: #0077cc;
+  font-weight: 700;
+  text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.1);
+}
+
+/***************************************************************
+ * 3) FORUM CONTENT (MAIN + SIDEBAR)
+ ***************************************************************/
+.forum-content {
+  display: flex;
+  gap: 30px;
+}
+
+.main-content {
+  flex-grow: 1;
+}
+
+.sidebar {
+  width: 250px;
+  flex-shrink: 0;
+}
+
+/***************************************************************
+ * 4) POST CARDS
+ ***************************************************************/
+.post-card {
+  padding: 25px;
+  margin-bottom: 25px;
+  background-color: #fefefe;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s ease;
+}
+
+.post-card:hover {
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+  transform: translateY(-5px) rotate(1deg);
+}
+
+.post-card h3 {
+  font-size: 1.7rem;
+  margin-bottom: 15px;
+  color: #0077cc;
+  cursor: pointer;
+  transition: color 0.3s, transform 0.3s;
+}
+
+.post-card h3:hover {
+  color: #0055aa;
+  transform: translateX(5px);
+}
+
+.post-card p {
+  font-size: 1.1rem;
+  color: #444;
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+/* Animated "New!" tag */
+.post-card.new .post-meta::before {
+  content: "New!";
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background-color: #ffcc00;
+  color: #333;
+  font-weight: bold;
+  padding: 5px 10px;
+  border-radius: 5px;
+  animation: pulse 1.5s infinite alternate;
+}
+
+@keyframes pulse {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.1);
+  }
+}
+
+.post-meta {
+  font-size: 0.95rem;
+  color: #777;
+  margin-top: 15px;
+}
+
+/***************************************************************
+ * 5) POST ACTIONS & VOTE CONTROLS
+ ***************************************************************/
+.post-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.vote-controls {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.vote-controls i {
+  cursor: pointer;
+  font-size: 1.4rem;
+  color: #777;
+  transition: all 0.3s ease;
+}
+
+.vote-controls i:hover {
+  color: #0077cc;
+  animation: wobble 0.5s;
+}
+
+@keyframes wobble {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(10deg); }
+  50% { transform: rotate(-10deg); }
+  75% { transform: rotate(5deg); }
+  100% { transform: rotate(0deg); }
+}
+
+.vote-count {
+  font-size: 1.1rem;
+  color: #555;
+  font-weight: 500;
+}
+
+.delete-post {
+  background: none;
+  border: none;
+  color: #ff4d4f;
+  cursor: pointer;
+  font-size: 1.05rem;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.3s ease;
+}
+
+.delete-post:hover {
+  color: #cc0000;
+  transform: translateX(2px);
+}
+
+/***************************************************************
+ * 6) FLOATING CREATE-POST BUTTON
+ ***************************************************************/
+.floating-button {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background-color: #0077cc;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  font-size: 1.8rem;
+  font-weight: bold;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.floating-button:hover {
+  background-color: #0055aa;
+  transform: rotate(360deg);
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+.floating-button i {
+  font-size: 1.8rem;
+}
+
+/***************************************************************
+ * 7) MODAL STYLING (CREATE NEW POST)
+ ***************************************************************/
+#new-post-modal {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.3);
+  z-index: 1001;
+  max-width: 600px;
+  width: 90%;
+  animation: popIn 0.5s ease-out;
+}
+
+@keyframes popIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+#new-post-modal form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+#new-post-modal form input,
+#new-post-modal form textarea {
+  width: 100%;
+  padding: 12px;
+  font-size: 1.05rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-family: inherit;
+}
+
+#new-post-modal form button {
+  padding: 12px;
+  font-size: 1.1rem;
+  background-color: #0077cc;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#new-post-modal form button:hover {
+  background-color: #0055aa;
+  transform: translateY(-2px);
+}
+
+#new-post-modal .close-button {
+  background: none;
+  border: none;
+  color: #333;
+  font-size: 1.5rem;
+  cursor: pointer;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  transition: all 0.3s ease;
+}
+
+#new-post-modal .close-button:hover {
+  color: #ff4d4f;
+  transform: scale(1.2) rotate(180deg);
+}
+
+/***************************************************************
+ * 8) REPLIES
+ ***************************************************************/
+.replies {
+  margin-top: 25px;
+  padding-top: 20px;
+  border-top: 3px dashed #e0e0e0;
+}
+
+.reply {
+  padding: 15px;
+  margin-top: 15px;
+  background-color: #f8f8f8;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.reply:hover {
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
+  transform: scale(1.02);
+}
+
+.reply-meta {
+  font-size: 0.9rem;
+  color: #777;
+  margin-top: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.reply-form {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.reply-form textarea {
+  width: 100%;
+  padding: 12px;
+  font-size: 1.05rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  resize: vertical;
+  font-family: inherit;
+}
+
+.reply-form button {
+  align-self: flex-end;
+  padding: 8px 20px;
+  font-size: 1.05rem;
+  background-color: #0077cc;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.reply-form button:hover {
+  background-color: #0055aa;
+  transform: translateY(-1px);
+}
+
+.delete-reply {
+  background: none;
+  border: none;
+  color: #ff4d4f;
+  cursor: pointer;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.3s ease;
+}
+
+.delete-reply:hover {
+  color: #cc0000;
+  transform: translateX(2px);
+}
+
+/***************************************************************
+ * 9) SIDEBAR CONTENT
+ ***************************************************************/
+.sidebar-widget {
+  background-color: #f8f8f8;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+.sidebar-widget h4 {
+  font-size: 1.3rem;
+  color: #333;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.sidebar-widget ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar-widget li {
+  margin-bottom: 10px;
+}
+
+.sidebar-widget a {
+  display: block;
+  padding: 8px 12px;
+  border-radius: 5px;
+  background-color: #fff;
+  color: #0077cc;
+  transition: all 0.3s ease;
+}
+
+.sidebar-widget a:hover {
+  background-color: #e0f0ff;
+  transform: translateX(3px);
+}
+
+/***************************************************************
+ * 10) RESPONSIVE DESIGN
+ ***************************************************************/
+@media (max-width: 768px) {
+  .forum-content {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    margin-bottom: 30px;
+  }
+
+  .floating-button {
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+  }
+}

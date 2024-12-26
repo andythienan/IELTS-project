@@ -1,0 +1,83 @@
+{
+    "title":"Lesson 1: Parts of Speech",
+    "description": "Learn about stuffs involving parts of speech!",
+    "sections": [
+        {
+            "id": "part-1",
+            "heading": "Nouns",
+            "text": "Nouns are words that name people, places, things, or ideas.",
+            "examples":[
+                "The <span class='example-word'>teacher</span> instructed her <span class='example-word'>students</span> in the <span class='example-word'>classroom</span>.",
+               "<span class='example-word'>Happiness</span> is a warm <span class='example-word'>puppy</span>."
+            ]
+        },
+        {
+            "id": "part-2",
+           "heading": "Pronouns",
+            "text": "Pronouns replace nouns to avoid repetition.",
+             "examples":[
+                "<span class='example-word'>She</span> is reading a book. <span class='example-word'>It</span> is very interesting.",
+                 "<span class='example-word'>They</span> went to the park, and <span class='example-word'>they</span> enjoyed <span class='example-word'>themselves</span>."
+            ]
+       },
+        {
+            "id": "part-3",
+             "heading": "Verbs",
+             "text": "Verbs describe actions or states of being.",
+               "examples":[
+                   "The children <span class='example-word'>play</span> in the garden.",
+                   "He <span class='example-word'>is</span> a doctor.",
+                 "She <span class='example-word'>thinks</span> about the problem carefully."
+             ]
+        },
+       {
+            "id": "part-4",
+            "heading": "Adjectives",
+            "text": "Adjectives describe nouns or pronouns.",
+                "examples":[
+                "She wore a <span class='example-word'>beautiful</span> dress.",
+                 "The <span class='example-word'>tall</span> man walked with a <span class='example-word'>quick</span> pace."
+            ]
+        },
+        {
+            "id": "part-5",
+           "heading": "Adverbs",
+            "text": "Adverbs modify verbs, adjectives, or other adverbs. They often end in '-ly'.",
+            "examples":[
+               "He ran <span class='example-word'>quickly</span> to catch the bus.",
+                "The test was <span class='example-word'>extremely</span> difficult.",
+                "She spoke <span class='example-word'>very</span> softly."
+           ]
+       },
+        {
+           "id": "part-6",
+            "heading": "Prepositions",
+             "text": "Prepositions show the relationship between a noun or pronoun and another word in the sentence.",
+              "examples":[
+                  "The cat is <span class='example-word'>on</span> the table.",
+                   "He walked <span class='example-word'>to</span> the store.",
+                   "She is good <span class='example-word'>at</span> playing the piano."
+               ]
+        },
+       {
+            "id": "part-7",
+             "heading": "Conjunctions",
+             "text": "Conjunctions connect words, phrases, or clauses.",
+            "examples":[
+                 "I like tea <span class='example-word'>and</span> coffee.",
+                "She is smart <span class='example-word'>but</span> lazy.",
+                "He studied hard <span class='example-word'>because</span> he wanted to pass the exam."
+            ]
+       },
+       {
+            "id": "part-8",
+            "heading": "Interjections",
+            "text": "Interjections are words that express strong emotions and are often followed by an exclamation mark.",
+              "examples":[
+                 "<span class='example-word'>Wow!</span> That's amazing!",
+                   "<span class='example-word'>Ouch!</span> That hurts!",
+                  "<span class='example-word'>Oh no!</span> I forgot my keys."
+              ]
+        }
+    ]
+}

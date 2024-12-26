@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Forum - learnEnglish</title>
+    <link rel="stylesheet" href="/styles/typography.css" />
+    <link rel="stylesheet" href="/styles/forum.css" />
+  </head>
+  <body>
+    <header class="header">
+      <%- include('partials/header', { user: name}) %>
+    </header>
+
+    <div class="forum-container">
+      <div class="forum-header">
+        <h1>Forum</h1>
+      </div>
+      <div id="posts">
+        </div>
+    </div>
+
+    <!-- Floating Button -->
+    <button id="create-post-button" class="floating-button">
+      <i class="fas fa-plus"></i>
+    </button>
+
+    <!-- Modal for New Post Creation -->
+    <div id="new-post-modal">
+      <button class="close-button" onclick="closeModal()">×</button>
+      <form id="new-post-form">
+        <input type="text" id="title" placeholder="Post title" required />
+        <textarea id="content" placeholder="Post content" required></textarea>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+
+    <footer class="footer"><%- include('partials/footer'); -%></footer>
+
+    <!-- Include the JavaScript file -->
+    <script src="/javascripts/forum.js"></script>
+    <script>
+      // Make the logged-in user's name available to the forum.js script
+      const loggedInUser = "<%= name %>"; 
+    </script>
+  </body>
+</html>

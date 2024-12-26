@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Profile</title>
+    <link rel="stylesheet" href="/styles/profile.css" />
+    <link rel="stylesheet" href="/styles/typography.css" />
+    <link rel="stylesheet" href="/styles/history.css" />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body class="<%= showHistory ? 'history-view' : '' %>">
+    <header><%- include('partials/header') %></header>
+
+    <main>
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <!-- Display the user's name -->
+        <h1>Welcome, <%= user.name %>!</h1>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/profile">Profile</a></li>
+          <li><a href="/profile/history">History</a></li>
+          <li><a href="/library?type=exam">Exam library</a></li>
+          <li>
+            <!-- Logout form -->
+            <form
+              action="/logout?_method=DELETE"
+              method="POST"
+              class="logout-form"
+            >
+              <button type="submit" class="btn-logout">
+                <span class="material-icons">logout</span> Logout
+              </button>
+            </form>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Divider -->
+      <div class="divider"></div>
+
+      <!-- Content Area -->
+      <div class="content">
+        <% if (!showHistory) { %>
+        <!-- Profile Page (not history view) -->
+        <div class="category">
+          <h1>Your profile</h1>
+          <h2>Details</h2>
+          <!-- Display user details -->
+          <p><strong>Name:</strong> <%= user.name %></p>
+          <p><strong>Email:</strong> <%= user.email %></p>
+          <p><strong>Gender:</strong> <%= user.gender %></p>
+
+          <h2>Activity</h2>
+          <div class="grid">
+            <div class="card">
+              <h3>Completed tests</h3>
+              <p id="completed-tests">
+                <!-- Display completed quizzes and writings counts -->
+                <%= completedQuizzes %> quizzes completed, <%= completedWritings
+                %> writings completed<br />
+                (<%= completedReading %> reading quizzes, <%= completedListening
+                %> listening quizzes)
+              </p>
+              <a href="/profile/history" class="btn-primary"
+                ><span class="material-icons">history</span> View history</a
+              >
+            </div>
+            <div class="card">
+              <h3>Lesson progress</h3>
+              <p id="lesson-progress">
+                <!-- Display completed lessons count -->
+                <%= completedLessons %> lessons completed
+              </p>
+              <a href="/profile/history" class="btn-success"
+                ><span class="material-icons">history</span> View history</a
+              >
+            </div>
+          </div>
+
+          <!-- Pathway to Achieve Section -->
+          <h2>Pathway to achieve</h2>
+          <div class="grid">
+            <div class="card">
+              <h3>Step 1: Build grammar</h3>
+              <p>
+                Focus on mastering grammar fundamentals to strengthen your
+                writing and speaking skills.
+              </p>
+              <a href="/library?type=lesson" class="btn-primary"
+                >Start grammar lessons</a
+              >
+            </div>
+            <div class="card">
+              <h3>Step 2: Practice listening</h3>
+              <p>
+                Improve your listening comprehension by practicing with audio
+                materials.
+              </p>
+              <a href="/library?type=exam" class="btn-success"
+                >Try listening practice</a
+              >
+            </div>
+            <div class="card">
+              <h3>Step 3: Take mock exams</h3>
+              <p>
+                Simulate real exam scenarios to prepare yourself for test
+                conditions.
+              </p>
+              <a href="/library?type=exam" class="btn-primary"
+                >Take a mock exam</a
+              >
+            </div>
+            <div class="card">
+              <h3>Step 4: Expand vocabulary</h3>
+              <p>
+                Learn new words daily to enhance your reading, writing, and
+                speaking skills.
+              </p>
+              <a href="/library?type=lesson" class="btn-success"
+                >Learn vocabulary</a
+              >
+            </div>
+          </div>
+          <h2>Announcements</h2>
+          <div class="announcement changelog">
+            <h2>📜 Changelog</h2>
+            <!-- ... Changelog content (add your changelog here) ... -->
+          </div>
+        </div>
+        <% } else { %>
+        <!-- History Page View -->
+        <h1 id="history-title">Your activity history</h1>
+
+        <!-- Completed Quizzes Section -->
+        <section id="quiz-section" class="history-section">
+          <h2>Completed Quizzes</h2>
+          <div class="history-list-container">
+            <ul id="quiz-history-list" class="history-list">
+              <li class="no-data">Loading quizzes...</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- Listening Activities Section -->
+        <section id="listening-section" class="history-section">
+          <h2>Listening Activities</h2>
+          <div class="history-list-container">
+            <ul id="listening-history-list" class="history-list">
+              <li class="no-data">Loading listening activities...</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- Writing Submissions Section -->
+        <section id="writing-section" class="history-section">
+          <h2>Writing Submissions</h2>
+          <div class="history-list-container">
+            <ul id="writing-history-list" class="history-list">
+              <li class="no-data">Loading writings...</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- Completed Lessons Section -->
+        <section id="lesson-section" class="history-section">
+          <h2>Completed Lessons</h2>
+          <div class="history-list-container">
+            <ul id="lesson-history-list" class="history-list">
+              <li class="no-data">Loading lessons...</li>
+            </ul>
+          </div>
+        </section>
+        <% } %>
+      </div>
+    </main>
+
+    <footer class="footer"><%- include('partials/footer'); -%></footer>
+
+    <!-- Include the profile.js script -->
+    <script src="/javascripts/profile.js"></script>
+    <script>
+      // Fetch user history on page load only if showHistory is true
+      const showHistory = <%- showHistory ? 'true' : 'false' %>;
+      if (showHistory) {
+        fetchUserActivityHistory();
+      }
+    </script>
+  </body>
+</html>
