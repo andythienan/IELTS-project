@@ -1,319 +1,426 @@
 /* General Reset & Styling */
 body {
-    font-size: 16px; /* Base font size */
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    background-color: #f0f0f8; /* Soft background color */
-    color: #333; /* Dark text */
-    line-height: 1.7; /* Increased line-height */
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #f9f9f9;
+  color: #333;
+  line-height: 1.7;
+  transition: background-color 0.3s ease; /* Added transition for background */
 }
 
 main {
-    display: flex;
-    flex: 1;
-    width: 95%; /* Reduced width for padding */
-    max-width: 1600px;
-    margin: 20px auto; /* Centered main */
-    padding: 20px;
-    gap: 30px; /* Spacing */
-    box-sizing: border-box;
-    position: relative; /* Add this to make relative for the overlay */
-    z-index: 1;
+display: flex;
+flex: 1;
+width: 95%;
+max-width: 1600px;
+margin: 20px auto;
+padding: 20px;
+gap: 30px;
+box-sizing: border-box;
+position: relative;
+z-index: 1;
+transition: all 0.3s ease; /* Added transition to Main for animation*/
 }
+
 
 /* Sidebar */
 .sidebar {
-    width: 20%; /* Increased width */
-    background-color: #fff; /* White background */
-    padding: 40px; /* More padding */
-    border-radius: 12px; /* Rounded corners */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08); /* Refined shadow */
-    z-index: 2;
+  width: 20.75%; /* Increased width */
+  background-color: #fff;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  z-index: 2;
+  transition: width 0.3s ease, padding 0.3s ease; /* Transition for width and padding */
 }
 
 .sidebar h1 {
-    font-size: 2rem; /* Increased heading size */
-    color: #2196f3; /* Material Blue */
-    margin-bottom: 20px; /* Increased margin */
-    font-weight: bold;
+  font-size: 2rem;
+  color: #2196f3;
+  margin-bottom: 20px;
+  font-weight: bold;
+  transition: font-size 0.3s ease; /* Transition for font-size */
 }
 
 .sidebar ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .sidebar li {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 .sidebar a {
-    text-decoration: none;
-    color: #555; /* Darker grey */
-    font-size: 1.1rem; /* Slightly larger */
-    font-weight: 500;
-    padding: 10px 0; /* Increased padding */
-    display: block;
-    transition: color 0.3s ease, background-color 0.3s ease, padding-left 0.3s ease; /* Smooth transition */
-    border-left: 4px solid transparent; /* Left indicator */
+  text-decoration: none;
+  color: #555;
+  font-size: 1.1rem;
+  font-weight: 500;
+  padding: 10px 0;
+  display: block;
+  transition: color 0.3s ease, background-color 0.3s ease, padding-left 0.3s ease;
+  border-left: 4px solid transparent;
 }
 
 .sidebar a:hover,
 .sidebar a.active {
-    color: #2196f3; /* Material Blue on hover/active */
-    background-color: #f0f7ff; /* Light blue hover */
-    padding-left: 10px; /* Animation */
-    border-left: 4px solid #2196f3;
+  color: #2196f3;
+  background-color: #f0f7ff;
+  padding-left: 10px;
+  border-left: 4px solid #2196f3;
 }
 
 /* Divider */
 .divider {
-    width: 6px; /* Reduced width */
-    height: auto;
-    background: linear-gradient(to bottom, #d7bde2, #a9dfbf, #f9e79f, #f5b7b1);
-    margin: 0 20px; /* Increased margin */
-    border-radius: 3px; /* Slight rounding */
-    z-index: 2;
+  width: 6px;
+  height: auto;
+  background: linear-gradient(to bottom, #d7bde2, #a9dfbf, #f9e79f, #f5b7b1);
+  margin: 0 20px;
+  border-radius: 3px;
+  z-index: 2;
+  transition: margin 0.3s ease, opacity 0.3s ease; /* Transition for margin and opacity */
 }
 
 .content {
-    flex: 1;
-    padding: 25px;
-    z-index: 2;
+  flex: 1;
+  padding: 25px;
+  z-index: 2;
+  transition: padding 0.3s ease; /* Transition for padding */
 }
 
 .content h2 {
-    font-size: 2.5rem; /* Increased heading size */
-    color: #1565c0; /* Darker Blue */
-    margin-top: 20px; /* Increased margin */
-    margin-bottom: 20px;
+  font-size: 2.5rem;
+  color: #1565c0;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  transition: font-size 0.3s ease, margin 0.3s ease; /* Transition for font-size and margin */
 }
 
 /* Shared Grid */
 .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Increased min size */
-    gap: 25px;
-    z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+  z-index: 2;
+  transition: grid-template-columns 0.3s ease; /* Transition for grid layout */
 }
 
 /* Shared Card Styles */
 .card {
-    background: #fff;
-    border: 1px solid #eee;
-    border-radius: 12px;
-    text-align: left; /* Left aligned */
-    padding: 20px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
-    position: relative; /* For pseudo-elements */
+background: #fff;
+border: 1px solid #eee;
+border-radius: 12px;
+text-align: left;
+padding: 20px;
+transition: transform 0.3s ease, box-shadow 0.3s ease;
+display: flex;
+flex-direction: column;
+box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+position: relative;
 }
 
 .card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 5px;
-    background: linear-gradient(to right, #ff5e5e 0%, #ffa726 20%, #ffd500 40%, #76ff03 60%, #00e676 80%, #03a9f4 100%);
-    border-radius: 12px 12px 0 0;
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 5px;
+background: linear-gradient(to right, #ff5e5e 0%, #ffa726 20%, #ffd500 40%, #76ff03 60%, #00e676 80%, #03a9f4 100%);
+border-radius: 12px 12px 0 0;
 }
 
-
 .card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+transform: translateY(-6px);
+box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
 }
 
 .card h3 {
-    font-size: 1.6rem;
-    margin-bottom: 15px;
-    color: #444;
+  font-size: 1.6rem;
+  margin-bottom: 15px;
+  color: #444;
+  transition: font-size 0.3s ease; /* Transition for font-size */
 }
 
 .card h3 .tag {
-    background-color: #4caf50;
-    color: white;
-    font-size: 0.9rem;
-    font-weight: bold;
-    padding: 4px 8px;
-    margin-left: 8px;
-    vertical-align: middle;
-    text-transform: uppercase;
-    border-radius: 6px;
+  background-color: #4caf50;
+  color: white;
+  font-size: 0.9rem;
+  font-weight: bold;
+  padding: 4px 8px;
+  margin-left: 8px;
+  vertical-align: middle;
+  text-transform: uppercase;
+  border-radius: 6px;
 }
 
 .card button,
 .card a {
-    padding: 12px 20px; /* increased size */
-    border: none;
-    text-decoration: none;
-    font-size: 1rem;
-    border-radius: 6px; /* increased border radius */
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    margin-top: auto;
-    display: inline-block; /* for better control */
+  padding: 12px 20px;
+  border: none;
+  text-decoration: none;
+  font-size: 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-top: auto;
+  display: inline-block;
 }
 
-
 .card a.btn-primary {
-    background-color: #2196f3;
-    color: white;
-    margin-right: 8px; /* spacing */
+  background-color: #2196f3;
+  color: white;
+  margin-right: 8px;
 }
 
 .card a.btn-success {
-    background-color: #4caf50;
-    color: white;
+  background-color: #4caf50;
+  color: white;
 }
 
 .card a.btn-primary:hover,
 .card a.btn-success:hover {
-    background-color: #1976d2; /* Darker on hover */
-     transform: translateY(-2px);
+  background-color: #1976d2;
+  transform: translateY(-2px);
 }
 
 .card button.btn-secondary {
-    background-color: #eee;
-    color: #aaa;
-    cursor: not-allowed;
+  background-color: #eee;
+  color: #aaa;
+  cursor: not-allowed;
 }
 
+.announcement {
+  position: relative;
+  padding: 24px;
+  background-color: #fff8e1;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-bottom: 32px;
+  animation: fadeIn 1s ease-in-out;
+  transition: padding 0.3s ease, margin-bottom 0.3s ease;
+}
 
+.announcement h2 {
+  font-size: 1.3rem;
+  color: #ff8f00;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 600;
+}
 
-  .announcement {
-    position: relative;
-    padding: 24px; /* Increased padding */
-    background-color: #fff8e1; /* Soft yellow background */
-    border: none; /* Removed border */
-    border-radius: 12px; /* Increased border radius */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    margin-bottom: 32px; /* Increased margin */
-    animation: fadeIn 1s ease-in-out;
-  }
-  
-  .announcement h2 {
-    font-size: 1.3rem; /* Adjusted font size */
-    color: #ff8f00; /* Adjusted orange color */
-    margin-bottom: 12px; /* Adjusted margin */
-    display: flex;
-    align-items: center;
-    gap: 12px; /* Adjusted gap */
-    font-weight: 600; /* Semibold font weight */
-  }
-  
-  .announcement h2::before {
-    content: "🎉";
-    font-size: 1.6rem; /* Adjusted font size */
-    animation: bounce 1s infinite;
-  }
-  
-  .announcement p {
-    font-size: 0.95rem; /* Slightly reduced font size */
-    color: #555;
-    line-height: 1.6;
-  }
-  
-  /* --- Logout Button --- */
-  .logout-form {
-    margin-top: 32px; /* Increased margin */
-  }
-  
-  .btn-logout {
-    display: block;
-    width: 100%;
-    padding: 12px 20px; /* Adjusted padding */
-    font-size: 1rem;
-    font-weight: 600; /* Semibold font weight */
-    text-align: center;
-    color: white;
-    background-color: #dc3545; /* Adjusted red color */
-    border: none;
-    border-radius: 8px; /* Adjusted border radius */
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-  }
-  
-  .btn-logout:hover {
-    background-color: #c82333; /* Darker red on hover */
-    transform: translateY(-2px);
-  }
-  
-  .btn-logout:active {
-    background-color: #bd2130; /* Even darker red on active */
-    transform: translateY(0);
-  }
-  
-  /* --- Changelog Section --- */
-  .changelog {
-    padding: 24px; /* Increased padding */
-    background-color: #f8f9fa; /* Very light gray background */
-    border: none; /* Removed border */
-    border-radius: 12px; /* Increased border radius */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    margin-bottom: 32px; /* Increased margin */
-    animation: fadeIn 1s ease-in-out;
-  }
-  
-  .changelog h2 {
-    font-size: 1.5rem; /* Adjusted font size */
-    color: #007bff;
-    margin-bottom: 20px; /* Adjusted margin */
-    display: flex;
-    align-items: center;
-    gap: 12px; /* Adjusted gap */
-    font-weight: 600; /* Semibold font weight */
-  }
-  
-  .changelog h2::before {
-    content: "✨"; /* Different emoji */
-    font-size: 1.4rem; /* Adjusted font size */
-  }
-  
-  .changelog h3 {
-    font-size: 1.2rem; /* Adjusted font size */
-    color: #343a40; /* Dark gray color */
-    margin-bottom: 16px; /* Adjusted margin */
-    font-weight: 600; /* Semibold font weight */
-  }
-  
-  .changelog ul {
-    padding: 0;
-    list-style: none;
-    margin: 0;
-  }
-  
-  .changelog ul li {
-    margin-bottom: 12px; /* Adjusted margin */
-    padding-left: 24px; /* Adjusted padding */
-    position: relative;
-    font-size: 0.95rem; /* Slightly reduced font size */
-    line-height: 1.6;
-    color: #555;
-  }
-  
-  .changelog ul li:before {
-    content: "→"; /* Different bullet style */
-    position: absolute;
-    left: 0;
-    top: 2px; /* Adjusted vertical alignment */
-    font-size: 0.9rem; /* Adjusted font size */
-    color: #007bff;
-  }
+.announcement h2::before {
+  content: "🎉";
+  font-size: 1.6rem;
+  animation: bounce 1s infinite;
+}
 
-  body.history-view .some-profile-element {
-    display: none; /* Hide something on the history view */
+.announcement p {
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.6;
+}
+
+/* --- Logout Button --- */
+.logout-form {
+  margin-top: 32px;
+  transition: margin-top 0.3s ease; /* Transition for margin-top */
+}
+
+.btn-logout {
+  display: block;
+  width: 100%;
+  padding: 12px 20px;
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: center;
+  color: white;
+  background-color: #dc3545;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-logout:hover {
+  background-color: #c82333;
+  transform: translateY(-2px);
+}
+
+.btn-logout:active {
+  background-color: #bd2130;
+  transform: translateY(0);
+}
+
+/* --- Changelog Section --- */
+.changelog {
+  padding: 24px;
+  background-color: #f8f9fa;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-bottom: 32px;
+  animation: fadeIn 1s ease-in-out;
+  transition: padding 0.3s ease, margin-bottom 0.3s ease;
+}
+
+.changelog h2 {
+  font-size: 1.5rem;
+  color: #007bff;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 600;
+}
+
+.changelog h2::before {
+  content: "✨";
+  font-size: 1.4rem;
+}
+
+.changelog h3 {
+  font-size: 1.2rem;
+  color: #343a40;
+  margin-bottom: 16px;
+  font-weight: 600;
+}
+
+.changelog ul {
+  padding: 0;
+  list-style: none;
+  margin: 0;
+}
+
+.changelog ul li {
+  margin-bottom: 12px;
+  padding-left: 24px;
+  position: relative;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #555;
+}
+
+.changelog ul li:before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  top: 2px;
+  font-size: 0.9rem;
+  color: #007bff;
+}
+
+body.history-view .some-profile-element {
+  display: none;
 }
 
 body.history-view .history-section {
-    padding: 20px;
-    border: 3px solid #007bff; /* Style the history section differently */
+  border: 2px solid red;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 1200px) {
+main {
+  flex-direction: column;
+  align-items: center;
+  padding: 15px; /* Reduced main padding on bigger screens, but small sizes */
+}
+
+
+  .sidebar {
+      width: 80%;
+      margin-bottom: 20px;
+      padding: 20px;
+  }
+
+.divider {
+  display: none;
+}
+
+
+  .content {
+      width: 100%;
+      padding: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+
+.sidebar {
+      width: 90%;
+      padding: 15px;
+}
+
+
+.sidebar h1 {
+      font-size: 1.8rem;
+  }
+
+  .sidebar a {
+      font-size: 1rem;
+  }
+
+  .content h2 {
+      font-size: 2rem;
+  }
+
+  .grid {
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+
+  .card h3 {
+      font-size: 1.4rem;
+  }
+
+   .announcement {
+      padding: 18px; /* Reduced announcement padding */
+      margin-bottom: 24px;
+  }
+
+  .logout-form {
+      margin-top: 24px; /* Reduced logout margin */
+  }
+
+  .changelog {
+      padding: 18px; /* Reduced changelog padding */
+      margin-bottom: 24px;
+  }
+}
+
+@media (max-width: 500px) {
+
+  .sidebar {
+      width: 100%;
+       padding: 10px; /* Reduced sidebar padding */
+  }
+
+  .content {
+      padding: 10px;
+  }
+
+  .content h2 {
+      font-size: 1.8rem;
+  }
+
+  .grid {
+      grid-template-columns: 1fr;
+  }
+
+   .card h3 {
+      font-size: 1.3rem; /* Further reduce card heading size */
+  }
+
+  .card button,
+  .card a {
+      padding: 10px 15px; /* Reduced button/link padding */
+      font-size: 0.9rem;
+  }
 }
