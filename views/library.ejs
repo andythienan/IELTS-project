@@ -19,7 +19,7 @@
                 <% if (type === 'exam') { %>
                 Categories
                 <% } else { %>
-                Lesson Topics
+                Lesson topics
                 <% } %>
             </h1>
             <ul>
@@ -45,9 +45,9 @@
             <section class="announcement">
                 <h2>
                     <% if (type === 'exam') { %>
-                    New Exams Added!
+                    New exams added!
                     <% } else { %>
-                    New Lessons Added!
+                    New lessons added!
                     <% } %>
                 </h2>
                 <p>
@@ -65,9 +65,9 @@
             <section class="category">
                 <h1>
                     <% if (type === 'exam') { %>
-                    Exam Library
+                    Exam library
                     <% } else { %>
-                    Lesson Library
+                    Lesson library
                     <% } %>
                 </h1>
                 <p>
@@ -83,221 +83,144 @@
             </section>
 
             <% if (type === 'exam') { %>
-            <!-- Listening Section -->
-            <section class="category" id="listening-section">
-                <h2>Listening</h2>
-                <p>Our listening tests are 100% free, customizable, and can be accessed anytime, anywhere. Did we also
-                    mention that they come with free resources for educators and students? Check them out below!</p>
-                <div class="grid">
-                    <div class="card exam available">
-                        <h3>Test 1 <span class="tag">Available</span></h3>
-                        <div class="dropdown exam-dropdown">
-                            <button class="btn btn-primary">Take a look <span
-                                    class="material-icons">keyboard_arrow_down</span></button>
-                            <div class="dropdown-content exam-dropdown-content">
-                                <a href="/listening/listening1"><span class="material-icons">visibility</span> Take
-                                    online</a>
-                                <a href="/files/listening_pdf/listening1.pdf"><span class="material-icons">picture_as_pdf</span> View
-                                    in PDF</a>
+                <!-- Listening Section -->
+                <section class="category" id="listening-section">
+                    <h2>Listening</h2>
+                    <p>Our listening tests are 100% free, customizable, and can be accessed anytime, anywhere. Did we also
+                        mention that they come with free resources for educators and students? Check them out below!</p>
+                    <div class="grid">
+                        <% data.listening.forEach(exam => { %>
+                            <div class="card exam <%= exam.available ? 'available' : 'unavailable' %>">
+                                <h3><%= exam.title %> <span class="tag"><%= exam.available ? 'Available' : 'Coming soon' %></span></h3>
+                                <% if (exam.available) { %>
+                                    <div class="dropdown exam-dropdown">
+                                        <button class="btn btn-primary">Take a look <span
+                                                class="material-icons">keyboard_arrow_down</span></button>
+                                        <div class="dropdown-content exam-dropdown-content">
+                                            <a href="<%= exam.url %>"><span class="material-icons">visibility</span> Take
+                                                online</a>
+                                            <a href="<%= exam.pdfUrl %>"><span class="material-icons">picture_as_pdf</span> View
+                                                in PDF</a>
+                                        </div>
+                                    </div>
+                                <% } else { %>
+                                    <button class="btn btn-secondary" disabled>Coming soon</button>
+                                <% } %>
                             </div>
-                        </div>
+                        <% }); %>
                     </div>
+                </section>
 
-                    <div class="card exam available">
-                        <h3>Test 2 <span class="tag">Available</span></h3>
-                        <div class="dropdown exam-dropdown">
-                            <button class="btn btn-primary">Take a look <span
-                                    class="material-icons">keyboard_arrow_down</span></button>
-                            <div class="dropdown-content exam-dropdown-content">
-                                <a href="/listening/listening2"><span class="material-icons">visibility</span> Take
-                                    online</a>
-                                <a href="/files/listening_pdf/listening2.pdf"><span class="material-icons">picture_as_pdf</span> View
-                                    in PDF</a>
+                <!-- Reading Section -->
+                <section class="category" id="reading-section">
+                    <h2>Reading</h2>
+                    <p>Our free reading tests are free, flexible, and can be viewed online, downloaded as a PDF, and come
+                        with additional free educational resources. Check them out below!</p>
+                    <div class="grid">
+                        <% data.reading.forEach(exam => { %>
+                            <div class="card exam <%= exam.available ? 'available' : 'unavailable' %>">
+                                <h3><%= exam.title %> <span class="tag"><%= exam.available ? 'Available' : 'Coming soon' %></span></h3>
+                                <% if (exam.available) { %>
+                                    <div class="dropdown exam-dropdown">
+                                        <button class="btn btn-primary">Take a look <span
+                                                class="material-icons">keyboard_arrow_down</span></button>
+                                        <div class="dropdown-content exam-dropdown-content">
+                                            <a href="<%= exam.url %>"><span class="material-icons">visibility</span> Take
+                                                online</a>
+                                            <a href="<%= exam.pdfUrl %>"><span class="material-icons">picture_as_pdf</span> View
+                                                in PDF</a>
+                                        </div>
+                                    </div>
+                                <% } else { %>
+                                    <button class="btn btn-secondary" disabled>Coming soon</button>
+                                <% } %>
                             </div>
-                        </div>
+                        <% }); %>
                     </div>
+                </section>
 
-                    <div class="card exam available">
-                        <h3>Test 3 <span class="tag">Available</span></h3>
-                        <div class="dropdown exam-dropdown">
-                            <button class="btn btn-primary">Take a look <span
-                                    class="material-icons">keyboard_arrow_down</span></button>
-                            <div class="dropdown-content exam-dropdown-content">
-                                <a href="/listening/listening3"><span class="material-icons">visibility</span> Take
-                                    online</a>
-                                <a href="/files/listening_pdf/listening3.pdf"><span class="material-icons">picture_as_pdf</span> View
-                                    in PDF</a>
+                 <!-- Writing Section -->
+                <section class="category" id="writing-section">
+                    <h2>Writing</h2>
+                    <p>Our free writing tests are free, flexible, and can be viewed online, downloaded as a PDF, and come
+                        with additional free educational resources. Check them out below!</p>
+                    <div class="grid">
+                        <% data.writing.forEach(exam => { %>
+                            <div class="card exam <%= exam.available ? 'available' : 'unavailable' %>">
+                                <h3><%= exam.title %> <span class="tag"><%= exam.available ? 'Available' : 'Coming soon' %></span></h3>
+                                <% if (exam.available) { %>
+                                    <div class="dropdown exam-dropdown">
+                                        <button class="btn btn-primary">Take a look <span
+                                                class="material-icons">keyboard_arrow_down</span></button>
+                                        <div class="dropdown-content exam-dropdown-content">
+                                            <a href="<%= exam.url %>"><span class="material-icons">visibility</span> Take
+                                                online</a>
+                                            <a href="<%= exam.pdfUrl %>"><span class="material-icons">picture_as_pdf</span> View
+                                                in PDF</a>
+                                        </div>
+                                    </div>
+                                <% } else { %>
+                                    <button class="btn btn-secondary" disabled>Coming Soon</button>
+                                <% } %>
                             </div>
-                        </div>
+                        <% }); %>
                     </div>
-                </div>
-            </section>
+                </section>
 
-            <!-- Reading Section -->
-            <section class="category" id="reading-section">
-                <h2>Reading</h2>
-                <p>Our free reading tests are free, flexible, and can be viewed online, downloaded as a PDF, and come
-                    with additional free educational resources. Check them out below!</p>
-                <div class="grid">
-                    <div class="card exam available">
-                        <h3>Test 1 <span class="tag">Available</span></h3>
-                        <div class="dropdown exam-dropdown">
-                            <button class="btn btn-primary">Take a look <span
-                                    class="material-icons">keyboard_arrow_down</span></button>
-                            <div class="dropdown-content exam-dropdown-content">
-                                <a href="/reading/reading1"><span class="material-icons">visibility</span> Take
-                                    online</a>
-                                <a href="/files/reading_pdf/reading1.pdf"><span class="material-icons">picture_as_pdf</span> View in
-                                    PDF</a>
+
+               <!-- Speaking Section -->
+                <section class="category" id="speaking-section">
+                    <h2>Speaking</h2>
+                    <p>Our free speaking tests are free, flexible, and can be viewed online, downloaded as a PDF, and come
+                        with additional free educational resources. Check them out below!</p>
+                    <div class="grid">
+                      <% data.speaking.forEach(exam => { %>
+                            <div class="card exam <%= exam.available ? 'available' : 'unavailable' %>">
+                                <h3><%= exam.title %> <span class="tag"><%= exam.available ? 'Available' : 'Coming soon' %></span></h3>
+                                <% if (!exam.available) { %>
+                                    <button class="btn btn-secondary" disabled>Coming soon</button>
+                                <% } %>
                             </div>
+                        <% }); %>
+                    </div>
+                </section>
+
+                <% } else { %>
+                   <!-- Grammar Lessons -->
+                    <section class="category" id="grammar-section">
+                        <h2>Grammar</h2>
+                        <p>Master the building blocks of English with our comprehensive grammar lessons.</p>
+                        <div class="grid">
+                            <% data.grammar.forEach(lesson => { %>
+                                <div class="card lesson <%= lesson.available ? 'available' : 'unavailable' %>">
+                                    <h3><%= lesson.title %></h3>
+                                    <% if (lesson.available) { %>
+                                        <a href="<%= lesson.url %>" class="btn btn-primary">Start lesson</a>
+                                    <% } else { %>
+                                        <button class="btn btn-secondary" disabled>Coming Soon</button>
+                                    <% } %>
+                                </div>
+                            <% }); %>
                         </div>
-                    </div>
+                    </section>
 
-                    <div class="card exam available">
-                        <h3>Test 2 <span class="tag">Available</span></h3>
-                        <div class="dropdown exam-dropdown">
-                            <button class="btn btn-primary">Take a look <span
-                                    class="material-icons">keyboard_arrow_down</span></button>
-                            <div class="dropdown-content exam-dropdown-content">
-                                <a href="/reading/reading2"><span class="material-icons">visibility</span> Take
-                                    online</a>
-                                <a href="/files/reading_pdf/reading2.pdf"><span class="material-icons">picture_as_pdf</span> View in
-                                    PDF</a>
-                            </div>
+                      <!-- Vocabulary Lessons -->
+                    <section class="category" id="vocabulary-section">
+                        <h2>Vocabulary</h2>
+                        <p>Expand your word bank with lessons focused on commonly used English words and phrases.</p>
+                        <div class="grid">
+                            <% data.vocabulary.forEach(lesson => { %>
+                                <div class="card lesson <%= lesson.available ? 'available' : 'unavailable' %>">
+                                    <h3><%= lesson.title %></h3>
+                                     <% if (lesson.available) { %>
+                                        <a href="<%= lesson.url %>" class="btn btn-primary">Start lesson</a>
+                                    <% } else { %>
+                                        <button class="btn btn-secondary" disabled>Coming Soon</button>
+                                    <% } %>
+                                </div>
+                            <% }); %>
                         </div>
-                    </div>
-
-                    <div class="card exam available">
-                        <h3>Test 3 <span class="tag">Available</span></h3>
-                        <div class="dropdown exam-dropdown">
-                            <button class="btn btn-primary">Take a look <span
-                                    class="material-icons">keyboard_arrow_down</span></button>
-                            <div class="dropdown-content exam-dropdown-content">
-                                <a href="/reading/reading3"><span class="material-icons">visibility</span> Take
-                                    online</a>
-                                <a href="/files/reading_pdf/reading3.pdf"><span class="material-icons">picture_as_pdf</span> View in
-                                    PDF</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Writing Section -->
-            <section class="category" id="writing-section">
-                <h2>Writing</h2>
-                <p>Our free writing tests are free, flexible, and can be viewed online, downloaded as a PDF, and come
-                    with additional free educational resources. Check them out below!</p>
-                <div class="grid">
-                    <div class="card exam available">
-                        <h3>Test 1 <span class="tag">Available</span></h3>
-                        <div class="dropdown exam-dropdown">
-                            <button class="btn btn-primary">Take a look <span
-                                    class="material-icons">keyboard_arrow_down</span></button>
-                            <div class="dropdown-content exam-dropdown-content">
-                                <a href="/writing/writing1"><span class="material-icons">visibility</span> Take
-                                    online</a>
-                                <a href="/files/writing_pdf/writing1.pdf"><span class="material-icons">picture_as_pdf</span> View in
-                                    PDF</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card exam available">
-                        <h3>Test 2 <span class="tag">Available</span></h3>
-                        <div class="dropdown exam-dropdown">
-                            <button class="btn btn-primary">Take a look <span
-                                    class="material-icons">keyboard_arrow_down</span></button>
-                            <div class="dropdown-content exam-dropdown-content">
-                                <a href="/writing/writing2"><span class="material-icons">visibility</span> Take
-                                    online</a>
-                                <a href="/files/writing_pdf/writing2.pdf"><span class="material-icons">picture_as_pdf</span> View in
-                                    PDF</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card exam available">
-                        <h3>Test 3 <span class="tag">Available</span></h3>
-                        <div class="dropdown exam-dropdown">
-                            <button class="btn btn-primary">Take a look <span
-                                    class="material-icons">keyboard_arrow_down</span></button>
-                            <div class="dropdown-content exam-dropdown-content">
-                                <a href="/writing/writing3"><span class="material-icons">visibility</span> Take
-                                    online</a>
-                                <a href="/files/writing_pdf/writing3.pdf"><span class="material-icons">picture_as_pdf</span> View in
-                                    PDF</a>
-                            </div>
-                        </div>
-                    </div>
-
-            </section>
-
-            <!-- Speaking Section -->
-            <section class="category" id="speaking-section">
-                <h2>Speaking</h2>
-                <p>Our free speaking tests are free, flexible, and can be viewed online, downloaded as a PDF, and come
-                    with additional free educational resources. Check them out below!</p>
-                <div class="grid">
-                    <div class="card exam unavailable">
-                        <h3>Test 1</h3>
-                        <button class="btn btn-secondary" disabled>Coming Soon</button>
-                    </div>
-
-                    <div class="card exam unavailable">
-                        <h3>Test 2</h3>
-                        <button class="btn btn-secondary" disabled>Coming Soon</button>
-                    </div>
-
-                    <div class="card exam unavailable">
-                        <h3>Test 3</h3>
-                        <button class="btn btn-secondary" disabled>Coming Soon</button>
-                    </div>
-                </div>
-            </section>
-
-            <% } else { %>
-
-            <!-- Grammar Lessons -->
-            <section class="category" id="grammar-section">
-                <h2>Grammar</h2>
-                <p>Master the building blocks of English with our comprehensive grammar lessons.</p>
-                <div class="grid">
-                    <div class="card lesson available">
-                        <h3>Lesson 1: Parts of Speech</h3>
-                        <a href="/lesson/lesson1" class="btn btn-primary">Start Lesson</a>
-                    </div>
-                    <div class="card lesson available">
-                        <h3>Lesson 2: Tenses</h3>
-                        <a href="/lesson/lesson2" class="btn btn-primary">Start Lesson</a>
-                    </div>
-                    <div class="card lesson unavailable">
-                        <h3>Lesson 3: Clauses</h3>
-                        <button class="btn btn-secondary" disabled>Coming Soon</button>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Vocabulary Lessons -->
-            <section class="category" id="vocabulary-section">
-                <h2>Vocabulary</h2>
-                <p>Expand your word bank with lessons focused on commonly used English words and phrases.</p>
-                <div class="grid">
-                    <div class="card lesson available">
-                        <h3>Lesson 1: Synonyms and Antonyms</h3>
-                        <a href="/lesson/lesson4" class="btn btn-success">Start Lesson</a>
-                    </div>
-                    <div class="card lesson unavailable">
-                        <h3>Lesson 2: Word Families</h3>
-                        <button class="btn btn-secondary" disabled>Coming Soon</button>
-                    </div>
-                    <div class="card lesson unavailable">
-                        <h3>Lesson 3: Prefixes and Suffixes</h3>
-                        <button class="btn btn-secondary" disabled>Coming Soon</button>
-                    </div>
-                </div>
-            </section>
-
+                    </section>
             <% } %>
 
         </section>
