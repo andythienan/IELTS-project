@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="/styles/typography.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
-<body class="page-library">
+<body class="page-library <%= type === 'exam' ? 'page-library-exam' : 'page-library-lesson' %>">
     <header class="header">
         <%- include('partials/header', { user: name }) %>
     </header>

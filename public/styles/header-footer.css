@@ -1,7 +1,7 @@
 /***************************************************************
  * 1) FONT IMPORT & GENERAL RESET
  ***************************************************************/
- @font-face {
+@font-face {
   font-family: "Google Sans";
   src: url("font/GoogleSansText-Medium.ttf") format("truetype");
 }
@@ -106,13 +106,22 @@ body {
 }
 
 /* Active link styling per page */
-.page-home .nav-link[href="/index.html"],
-.page-exam-library .nav-link[href="/pages/exam-library.html"],
-.page-tips .nav-link[href="/pages/tips.html"],
-.page-skill .nav-link[href="/pages/skill.html"],
-.page-lessons-library .nav-link[href="/pages/lessons-library.html"],
-.page-vocab .nav-link[href="/pages/vocab.html"],
-.page-forum .nav-link[href="/pages/forum.html"] {
+.page-library-exam .nav-link[href="/library?type=exam"] {
+  background-color: #007bff;
+  color: white;
+  font-weight: bold;
+}
+
+.page-library-lesson .nav-link[href="/library?type=lesson"] {
+  background-color: #007bff;
+  color: white;
+  font-weight: bold;
+}
+
+.page-tips .nav-link[href="/tips"],
+.page-skill .nav-link[href="/skills"],
+.page-about-us .nav-link[href="/about-us"],
+.page-forum .nav-link[href="/forum"] {
   background-color: #007bff;
   color: white;
   font-weight: bold;
